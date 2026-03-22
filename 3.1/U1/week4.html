@@ -381,23 +381,50 @@ nav { display: flex; align-items: center; justify-content: space-between; margin
         </div>
         <div class="grammar-body">
           <div class="word-chips" style="flex-direction:column;gap:10px;margin-top:4px">
-            ${[
-              ['dream','n/v','夢；夢想；希望','a hope or goal for the future; to have a hope or goal'],
-              ['leak','n','裂縫；漏水','a hole or crack that lets liquid or gas escape'],
-              ['peach','n','桃子','a soft, sweet fruit with a fuzzy skin'],
-              ['reach','v/n','碰到；達到','to stretch out or arrive at something; the distance you can go'],
-              ['reason','n','原因','the cause or explanation for something'],
-              ['arrow','n','箭；箭頭','a thin stick shot from a bow; a sign that points in a direction'],
-              ['owner','n','擁有者；主人','a person who has something or owns it'],
-              ['shadow','n','影子','a dark shape made when light is blocked by something'],
-              ['approach','n/v','方法；接近','a way of doing something; to come near or closer'],
-              ['charcoal','n','木炭','a black substance made from burned wood, used for fuel'],
-              ['toaster','n','烤麵包機','a small machine used to make bread crispy and brown'],
-            ].map(([w,p,zh,def]) => `
             <div style="display:flex;gap:10px;align-items:flex-start">
-              <div class="word-chip" style="flex-shrink:0;cursor:pointer" onclick="speakText('${w}')">${w} <span class="zh">${zh}</span></div>
-              <div style="font-size:13px;color:var(--muted);padding-top:10px">(${p}) ${def}</div>
-            </div>`).join('')}
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('dream')">dream <span class="zh">夢；夢想；希望</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n/v) a hope or goal for the future; to have a hope or goal</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('leak')">leak <span class="zh">裂縫；漏水</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a hole or crack that lets liquid or gas escape</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('peach')">peach <span class="zh">桃子</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a soft, sweet fruit with a fuzzy skin</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('reach')">reach <span class="zh">碰到；達到</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(v/n) to stretch out or arrive at something; the distance you can go</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('reason')">reason <span class="zh">原因</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) the cause or explanation for something</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('arrow')">arrow <span class="zh">箭；箭頭</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a thin stick shot from a bow; a sign that points in a direction</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('owner')">owner <span class="zh">擁有者；主人</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a person who has something or owns it</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('shadow')">shadow <span class="zh">影子</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a dark shape made when light is blocked by something</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('approach')">approach <span class="zh">方法；接近</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n/v) a way of doing something; to come near or closer</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('charcoal')">charcoal <span class="zh">木炭</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a black substance made from burned wood, used for fuel</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('toaster')">toaster <span class="zh">烤麵包機</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a small machine used to make bread crispy and brown</div>
+            </div>
           </div>
         </div>
       </div>
@@ -411,17 +438,26 @@ nav { display: flex; align-items: center; justify-content: space-between; margin
         </div>
         <div class="grammar-body">
           <div class="word-chips" style="flex-direction:column;gap:10px;margin-top:4px">
-            ${[
-              ['broadly','adv','咧嘴笑','widely and openly'],
-              ['foundation','n','地基；根基；基礎','the base or support for a building'],
-              ['sturdy','adj','堅固的','strong and solid'],
-              ['scale','n','鱗片','a small, thin plate that protects the skin of a fish'],
-              ['massive','adj','巨大的','very large'],
-            ].map(([w,p,zh,def]) => `
             <div style="display:flex;gap:10px;align-items:flex-start">
-              <div class="word-chip" style="flex-shrink:0;cursor:pointer" onclick="speakText('${w}')">${w} <span class="zh">${zh}</span></div>
-              <div style="font-size:13px;color:var(--muted);padding-top:10px">(${p}) ${def}</div>
-            </div>`).join('')}
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('broadly')">broadly <span class="zh">咧嘴笑</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(adv) widely and openly</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('foundation')">foundation <span class="zh">地基；根基；基礎</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) the base or support for a building</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('sturdy')">sturdy <span class="zh">堅固的</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(adj) strong and solid</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('scale')">scale <span class="zh">鱗片</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a small, thin plate that protects the skin of a fish</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('massive')">massive <span class="zh">巨大的</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(adj) very large</div>
+            </div>
           </div>
         </div>
       </div>
