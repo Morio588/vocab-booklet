@@ -682,23 +682,23 @@ fcRender();
 
 // ============ QUIZ ============
 const quizData = [
-  { sentence: 'The ball ___ off the wall and rolled under the table.', answer: 'bounced', choices: ['bounced','foil','noise','loyal'] },
-  { sentence: 'Children played around the ___ in the park on a hot day.', answer: 'fountain', choices: ['fountain','power','shower','unit'] },
-  { sentence: 'The team felt ___ when they won the game.', answer: 'proud', choices: ['moist','proud','loyal','avoid'] },
-  { sentence: 'More than a ___ parents came to watch the school performance.', answer: 'thousand', choices: ['figure','thousand','choice','unit'] },
-  { sentence: 'The superhero used his ___ to save the city from danger.', answer: 'power', choices: ['noise','enjoy','power','foil'] },
-  { sentence: 'A sudden ___ cooled the air.', answer: 'shower', choices: ['shower','bounce','annoy','moist'] },
-  { sentence: 'The principal will ___ a student to lead the school assembly.', answer: 'appoint', choices: ['avoid','appoint','enjoy','loyal'] },
-  { sentence: 'We took a detour to ___ the traffic.', answer: 'avoid', choices: ['avoid','annoy','choice','proud'] },
-  { sentence: 'Making the right ___ can sometimes be very difficult.', answer: 'choice', choices: ['noise','choice','figure','power'] },
-  { sentence: 'We wrapped the leftover pizza in ___ to keep it fresh.', answer: 'foil', choices: ['foil','unit','shower','moist'] },
-  { sentence: 'The ___ air in the greenhouse made it easy for the plants to grow.', answer: 'moist', choices: ['loyal','moist','proud','noise'] },
-  { sentence: 'A strange ___ came from the attic and everyone felt nervous.', answer: 'noise', choices: ['noise','foil','unit','power'] },
-  { sentence: 'The buzzing mosquito really ___ me while I was trying to sleep.', answer: 'annoyed', choices: ['enjoyed','annoyed','avoided','appointed'] },
-  { sentence: 'Jen ___ reading comic books in her free time.', answer: 'enjoys', choices: ['enjoys','avoids','annoys','appoints'] },
-  { sentence: 'Dogs are often ___ companions who follow their owners everywhere.', answer: 'loyal', choices: ['proud','moist','loyal','choice'] },
-  { sentence: 'I review one ___ of math each day.', answer: 'unit', choices: ['unit','figure','noise','power'] },
-  { sentence: 'The total ___ on the bill surprised everyone.', answer: 'figure', choices: ['choice','figure','unit','foil'] },
+  { sentence: 'The ball ___ off the wall and rolled under the table.', zh: '球___離牆壁，滾到桌子下面。', answer: 'bounced', choices: ['bounced','foil','noise','loyal'] },
+  { sentence: 'Children played around the ___ in the park on a hot day.', zh: '在炎熱的一天，孩子們在公園的___旁玩耍。', answer: 'fountain', choices: ['fountain','power','shower','unit'] },
+  { sentence: 'The team felt ___ when they won the game.', zh: '球隊贏得比賽時感到___。', answer: 'proud', choices: ['moist','proud','loyal','avoid'] },
+  { sentence: 'More than a ___ parents came to watch the school performance.', zh: '超過一___位家長來觀看學校表演。', answer: 'thousand', choices: ['figure','thousand','choice','unit'] },
+  { sentence: 'The superhero used his ___ to save the city from danger.', zh: '超級英雄用他的___拯救城市脫離危險。', answer: 'power', choices: ['noise','enjoy','power','foil'] },
+  { sentence: 'A sudden ___ cooled the air.', zh: '一場突如其來的___使空氣涼爽下來。', answer: 'shower', choices: ['shower','bounce','annoy','moist'] },
+  { sentence: 'The principal will ___ a student to lead the school assembly.', zh: '校長將___一名學生帶領學校朝會。', answer: 'appoint', choices: ['avoid','appoint','enjoy','loyal'] },
+  { sentence: 'We took a detour to ___ the traffic.', zh: '我們繞道而行以___交通。', answer: 'avoid', choices: ['avoid','annoy','choice','proud'] },
+  { sentence: 'Making the right ___ can sometimes be very difficult.', zh: '做出正確的___有時非常困難。', answer: 'choice', choices: ['noise','choice','figure','power'] },
+  { sentence: 'We wrapped the leftover pizza in ___ to keep it fresh.', zh: '我們用___包住剩餘的披薩以保持新鮮。', answer: 'foil', choices: ['foil','unit','shower','moist'] },
+  { sentence: 'The ___ air in the greenhouse made it easy for the tropical plants to grow.', zh: '溫室裡___的空氣使熱帶植物容易生長。', answer: 'moist', choices: ['loyal','moist','proud','noise'] },
+  { sentence: 'A strange ___ came from the attic and everyone felt nervous.', zh: '閣樓傳來奇怪的___，大家都感到緊張。', answer: 'noise', choices: ['noise','foil','unit','power'] },
+  { sentence: 'The buzzing mosquito really ___ me while I was trying to sleep.', zh: '嗡嗡作響的蚊子在我試圖睡覺時真的很___我。', answer: 'annoyed', choices: ['enjoyed','annoyed','avoided','appointed'] },
+  { sentence: 'Jen ___ reading comic books in her free time.', zh: 'Jen 在空閒時間___閱讀漫畫書。', answer: 'enjoys', choices: ['enjoys','avoids','annoys','appoints'] },
+  { sentence: 'Dogs are often ___ companions who follow their owners everywhere.', zh: '狗通常是___的伴侶，跟著主人到任何地方。', answer: 'loyal', choices: ['proud','moist','loyal','choice'] },
+  { sentence: 'I review one ___ of math each day.', zh: '我每天複習一個數學___。', answer: 'unit', choices: ['unit','figure','noise','power'] },
+  { sentence: 'The total ___ on the bill surprised everyone.', zh: '帳單上的總___讓大家都很驚訝。', answer: 'figure', choices: ['choice','figure','unit','foil'] },
 ];
 
 let qzQueue = [], qzCurrent = 0, qzCorrect = 0, qzAnswered = false;
@@ -722,17 +722,19 @@ function qzRender() {
       <div class="qz-sentence">${q.sentence.replace('___', '<span class="blank-box">___</span>')}</div>
       <button class="qz-speak-btn" onclick="speakText(${JSON.stringify(q.sentence.replace('___', 'blank'))})">🔊 Listen to sentence</button>
       <div class="qz-options">
-        ${shuffled.map((c,i) => `<button class="qz-option" data-letter="${letters[i]}" onclick="qzAnswer(this,'${c}','${q.answer}')"><span>${c}</span></button>`).join('')}
+        ${shuffled.map((c,i) => `<button class="qz-option" data-letter="${letters[i]}" onclick="qzAnswer(this,'${c}','${q.answer}','${(q.zh||'').replace(/'/g,"\\'")}')"><span>${c}</span></button>`).join('')}
       </div>
       <div class="qz-feedback" id="qz-fb"></div>
+      <div class="qz-zh-trans" id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(247,201,72,0.08);border-radius:8px;border-left:3px solid var(--gold);"></div>
     </div>`;
   document.getElementById('qz-next').classList.remove('show');
   qzAnswered = false;
 }
-function qzAnswer(btn, chosen, correct) {
+function qzAnswer(btn, chosen, correct, zh) {
   if (qzAnswered) return;
   qzAnswered = true;
   const fb = document.getElementById('qz-fb');
+  const zhEl = document.getElementById('qz-zh');
   document.querySelectorAll('.qz-option').forEach(b => b.classList.add('disabled'));
   if (chosen === correct) {
     btn.classList.add('correct');
@@ -743,10 +745,10 @@ function qzAnswer(btn, chosen, correct) {
     fb.textContent = '✗ The answer is: ' + correct; fb.className = 'qz-feedback show no';
     document.querySelectorAll('.qz-option').forEach(b => { if (b.querySelector('span').textContent === correct) b.classList.add('correct'); });
   }
+  if (zh) { zhEl.textContent = '📖 ' + zh; zhEl.style.display = 'block'; }
   speak(correct, 0.85);
   document.getElementById('qz-score-badge').textContent = qzCorrect + ' / ' + (qzCurrent + 1);
   document.getElementById('qz-next').classList.add('show');
-  setTimeout(() => speakText(correct), 600);
 }
 function qzNext() {
   qzCurrent++;

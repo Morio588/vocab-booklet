@@ -220,7 +220,7 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
   <div class="section active" id="sec-flashcard">
     <div class="flashcard-wrap">
       <div class="fc-progress-row">
-        <div class="fc-counter" id="fc-counter">1 / 20</div>
+        <div class="fc-counter" id="fc-counter">1 / 23</div>
         <div class="fc-bar-bg"><div class="fc-bar" id="fc-bar" style="width:5%"></div></div>
       </div>
       <div class="card-scene" onclick="flipCard()">
@@ -419,11 +419,17 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
       <div class="grammar-card">
         <div class="grammar-card-header" onclick="toggleGrammar(this)">
           <div class="grammar-icon" style="background:rgba(78,205,196,0.15)">📚</div>
-          <h3>Vocabulary Words 7–16</h3>
+          <h3>Vocabulary Words 1–16</h3>
           <span class="grammar-toggle">▾</span>
         </div>
         <div class="grammar-body">
           <div class="word-chips" style="flex-direction:column;gap:10px;margin-top:4px">
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('amaze')">amaze <span class="zh">使驚訝；使印象深刻</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to surprise; to impress</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('large')">large <span class="zh">大的</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(adj) bigger than usual</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('close')">close <span class="zh">近的；親近的；關閉</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(adj) near; having a strong relationship; (v) to shut</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('use')">use <span class="zh">使用</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to do something with an object or tool</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('write')">write <span class="zh">寫；寫作</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to put words on paper</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('move')">move <span class="zh">移動；搬走；感動</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to change the position of something; to make someone feel emotions</div></div>
             <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('beg')">beg <span class="zh">懇求；乞求</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to ask for something strongly or urgently</div></div>
             <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('begin')">begin <span class="zh">開始</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to start</div></div>
             <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('chop')">chop <span class="zh">切；剁</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to cut into pieces</div></div>
@@ -478,55 +484,67 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
 <script>
 // ===== DATA =====
 const cards = [
-  { word:'beg',       pos:'v',   zh:'懇求；乞求',        def:'to ask for something strongly or urgently',           ex:'I <strong>begged</strong> my parents to let me stay over at my friend\'s house.' },
-  { word:'begin',     pos:'v',   zh:'開始',              def:'to start',                                            ex:'Ellie <strong>began</strong> her dance practice as soon as the music started playing.' },
-  { word:'chop',      pos:'v',   zh:'切；剁',             def:'to cut into pieces',                                  ex:'The cook <strong>chopped</strong> vegetables carefully for the soup.' },
-  { word:'drag',      pos:'v',   zh:'拖；拉',             def:'to pull something along the ground slowly',           ex:'We had to <strong>drag</strong> the heavy suitcase across the airport.' },
-  { word:'angry',     pos:'adj', zh:'生氣的',             def:'feeling upset or mad',                                ex:'I was so <strong>angry</strong> because my cat ruined my project!' },
-  { word:'carry',     pos:'v',   zh:'攜帶',              def:'to move something',                                   ex:'The boy <strong>carried</strong> a large stack of books to the library.' },
-  { word:'easy',      pos:'adj', zh:'容易的；簡易的',      def:'not hard; comfortable or relaxed',                   ex:'Julian thought the puzzle was <strong>easy</strong> because he solved a similar one before.' },
-  { word:'empty',     pos:'adj', zh:'空的',              def:'having nothing inside',                               ex:'My little brother looked at the <strong>empty</strong> cookie jar with disappointment.' },
-  { word:'happy',     pos:'adj', zh:'開心的',             def:'feeling good or pleased',                             ex:'Nina was <strong>happy</strong> when she got a new puppy for her birthday.' },
-  { word:'noisy',     pos:'adj', zh:'吵鬧的；喧鬧的',     def:'making a lot of sound',                               ex:'Claudia couldn\'t concentrate because of the <strong>noisy</strong> construction outside.' },
-  { word:'notice',    pos:'v/n', zh:'察覺；通知；布告',   def:'to see or become aware of something; a written message or warning', ex:'I didn\'t <strong>notice</strong> that Ms. Shen was staring at me through the window.' },
-  { word:'slowly',    pos:'adv', zh:'緩慢地',             def:'not quickly',                                         ex:'The little girl poured the juice <strong>slowly</strong> so it wouldn\'t spill.' },
-  { word:'dream',     pos:'n/v', zh:'夢；夢想；希望',     def:'a hope or goal for the future; to have a hope or goal', ex:'Andy <strong>dreams</strong> of becoming an astronaut when he grows up.' },
-  { word:'amazing',   pos:'adj', zh:'驚奇的',             def:'very wonderful, surprising, or impressive',            ex:'Jay built an <strong>amazing</strong> Lego castle with moving parts.' },
-  { word:'bored',     pos:'adj', zh:'感到無聊的',          def:'not interested in something',                         ex:'Lucas became <strong>bored</strong> after listening to the same story again and again.' },
-  { word:'discovery', pos:'n',   zh:'探索；發現',          def:'something found for the first time',                  ex:'The hikers made a <strong>discovery</strong> of a hidden trail that led to a waterfall.' },
-  { word:'proud',     pos:'adj', zh:'自豪的',              def:'feeling good about oneself or something',             ex:'Raye felt <strong>proud</strong> when she showed her artwork to the class.' },
+  { word:'amaze',    pos:'v',   zh:'使驚訝；使印象深刻', def:'to surprise; to impress',                              ex:'The huge dinosaur skeleton <strong>amazed</strong> the children at the museum.' },
+  { word:'large',    pos:'adj', zh:'大的',               def:'bigger than usual',                                   ex:'Every student carried a <strong>large</strong> backpack filled with books home at the end of the semester.' },
+  { word:'close',    pos:'adj/v', zh:'近的；親近的；關閉', def:'near; having a strong relationship; to shut',        ex:'Harper is my <strong>close</strong> friend. We share our secrets with each other.' },
+  { word:'use',      pos:'v',   zh:'使用',               def:'to do something with an object or tool',              ex:'You need to <strong>use</strong> a ruler to draw straight lines for the math homework.' },
+  { word:'write',    pos:'v',   zh:'寫；寫作',            def:'to put words on paper',                              ex:'My sister likes to <strong>write</strong> stories about magical animals in her notebook.' },
+  { word:'move',     pos:'v',   zh:'移動；搬走；感動',    def:'to change the position of something; to make someone feel emotions', ex:'Oliver was <strong>moved</strong> by the story of a family rescuing abandoned animals.' },
+  { word:'beg',      pos:'v',   zh:'懇求；乞求',          def:'to ask for something strongly or urgently',           ex:'I <strong>begged</strong> my parents to let me stay over at my friend\'s house.' },
+  { word:'begin',    pos:'v',   zh:'開始',                def:'to start',                                            ex:'Ellie <strong>began</strong> her dance practice as soon as the music started playing.' },
+  { word:'chop',     pos:'v',   zh:'切；剁',              def:'to cut into pieces',                                  ex:'The cook <strong>chopped</strong> vegetables carefully for the soup.' },
+  { word:'drag',     pos:'v',   zh:'拖；拉',              def:'to pull something along the ground slowly',           ex:'We had to <strong>drag</strong> the heavy suitcase across the airport.' },
+  { word:'angry',    pos:'adj', zh:'生氣的',              def:'feeling upset or mad',                                ex:'I was so <strong>angry</strong> because my cat ruined my project!' },
+  { word:'carry',    pos:'v',   zh:'攜帶',               def:'to move something',                                   ex:'The boy <strong>carried</strong> a large stack of books to the library.' },
+  { word:'easy',     pos:'adj', zh:'容易的；簡易的',       def:'not hard; comfortable or relaxed',                   ex:'Julian thought the puzzle was <strong>easy</strong> because he solved a similar one before.' },
+  { word:'empty',    pos:'adj', zh:'空的',               def:'having nothing inside',                               ex:'My little brother looked at the <strong>empty</strong> cookie jar with disappointment.' },
+  { word:'happy',    pos:'adj', zh:'開心的',              def:'feeling good or pleased',                             ex:'Nina was <strong>happy</strong> when she got a new puppy for her birthday.' },
+  { word:'noisy',    pos:'adj', zh:'吵鬧的；喧鬧的',      def:'making a lot of sound',                               ex:'Claudia couldn\'t concentrate because of the <strong>noisy</strong> construction outside.' },
+  { word:'notice',   pos:'v/n', zh:'察覺；通知；布告',    def:'to see or become aware of something; a written message or warning', ex:'I didn\'t <strong>notice</strong> that Ms. Shen was staring at me through the window.' },
+  { word:'slowly',   pos:'adv', zh:'緩慢地',              def:'not quickly',                                         ex:'The little girl poured the juice <strong>slowly</strong> so it wouldn\'t spill.' },
+  { word:'dream',    pos:'n/v', zh:'夢；夢想；希望',      def:'a hope or goal for the future; to have a hope or goal', ex:'Andy <strong>dreams</strong> of becoming an astronaut when he grows up.' },
+  { word:'amazing',  pos:'adj', zh:'驚奇的',              def:'very wonderful, surprising, or impressive',            ex:'Jay built an <strong>amazing</strong> Lego castle with moving parts.' },
+  { word:'bored',    pos:'adj', zh:'感到無聊的',           def:'not interested in something',                         ex:'Lucas became <strong>bored</strong> after listening to the same story again and again.' },
+  { word:'discovery',pos:'n',   zh:'探索；發現',           def:'something found for the first time',                  ex:'The hikers made a <strong>discovery</strong> of a hidden trail that led to a waterfall.' },
+  { word:'proud',    pos:'adj', zh:'自豪的',               def:'feeling good about oneself or something',             ex:'Raye felt <strong>proud</strong> when she showed her artwork to the class.' },
 ];
 
 const quizData = [
-  { sentence:'I ___ my parents to let me stay over at my friend\'s house.', answer:'begged', choices:['begged','chopped','dragged','carried'] },
-  { sentence:'Ellie ___ her dance practice as soon as the music started playing.', answer:'began', choices:['began','begged','dragged','noticed'] },
-  { sentence:'The cook ___ vegetables carefully for the soup.', answer:'chopped', choices:['chopped','dragged','carried','begged'] },
-  { sentence:'We had to ___ the heavy suitcase across the airport.', answer:'drag', choices:['drag','carry','chop','begin'] },
-  { sentence:'I was so ___ because my cat ruined my project!', answer:'angry', choices:['angry','empty','noisy','happy'] },
-  { sentence:'The boy ___ a large stack of books to the library.', answer:'carried', choices:['carried','dragged','chopped','begged'] },
-  { sentence:'Julian thought the puzzle was ___ because he solved a similar one before.', answer:'easy', choices:['easy','empty','noisy','angry'] },
-  { sentence:'My little brother looked at the ___ cookie jar with disappointment.', answer:'empty', choices:['empty','easy','happy','noisy'] },
-  { sentence:'Nina was ___ when she got a new puppy for her birthday.', answer:'happy', choices:['happy','angry','noisy','empty'] },
-  { sentence:'Claudia couldn\'t concentrate because of the ___ construction outside.', answer:'noisy', choices:['noisy','angry','easy','happy'] },
-  { sentence:'I didn\'t ___ that Ms. Shen was staring at me through the window.', answer:'notice', choices:['notice','begin','drag','carry'] },
-  { sentence:'The little girl poured the juice ___ so it wouldn\'t spill.', answer:'slowly', choices:['slowly','broadly','easily','quietly'] },
-  { sentence:'Andy ___ of becoming an astronaut when he grows up.', answer:'dreams', choices:['dreams','notices','carries','drags'] },
-  { sentence:'Jay built an ___ Lego castle with moving parts.', answer:'amazing', choices:['amazing','angry','empty','easy'] },
-  { sentence:'Lucas became ___ after listening to the same story again and again.', answer:'bored', choices:['bored','proud','amazing','happy'] },
-  { sentence:'Raye felt ___ when she showed her artwork to the class.', answer:'proud', choices:['proud','bored','angry','noisy'] },
+  { sentence:'The huge dinosaur skeleton ___ the children at the museum.', zh:'巨大的恐龍骨骼___了博物館裡的孩子們。', answer:'amazed', choices:['amazed','moved','used','closed'] },
+  { sentence:'Every student carried a ___ backpack filled with books home.', zh:'每位學生都帶著一個裝滿書的___背包回家。', answer:'large', choices:['large','close','empty','noisy'] },
+  { sentence:'My home is ___ to our school.', zh:'我家離學校很___。', answer:'close', choices:['close','large','easy','angry'] },
+  { sentence:'You need to ___ a ruler to draw straight lines for the math homework.', zh:'你需要___尺在數學作業中畫直線。', answer:'use', choices:['use','move','write','begin'] },
+  { sentence:'My sister likes to ___ stories about magical animals in her notebook.', zh:'我姐姐喜歡在筆記本上___關於神奇動物的故事。', answer:'write', choices:['write','use','move','carry'] },
+  { sentence:'The students helped ___ the chairs into the gym for the assembly.', zh:'學生們幫忙把椅子___進體育館準備朝會。', answer:'move', choices:['move','write','drag','use'] },
+  { sentence:'I ___ my parents to let me stay over at my friend\'s house.', zh:'我___我的父母讓我在朋友家過夜。', answer:'begged', choices:['begged','chopped','dragged','carried'] },
+  { sentence:'Ellie ___ her dance practice as soon as the music started playing.', zh:'音樂一開始播放，Ellie 就___她的舞蹈練習。', answer:'began', choices:['began','begged','dragged','noticed'] },
+  { sentence:'The cook ___ vegetables carefully for the soup.', zh:'廚師仔細地___蔬菜來做湯。', answer:'chopped', choices:['chopped','dragged','carried','begged'] },
+  { sentence:'We had to ___ the heavy suitcase across the airport.', zh:'我們不得不把沉重的行李箱___過機場。', answer:'drag', choices:['drag','carry','chop','begin'] },
+  { sentence:'I was so ___ because my cat ruined my project!', zh:'我非常___，因為我的貓毀了我的作品！', answer:'angry', choices:['angry','empty','noisy','happy'] },
+  { sentence:'The boy ___ a large stack of books to the library.', zh:'那個男孩把一大疊書___到圖書館。', answer:'carried', choices:['carried','dragged','chopped','begged'] },
+  { sentence:'Julian thought the puzzle was ___ because he solved a similar one before.', zh:'Julian 認為這個拼圖很___，因為他以前解過類似的。', answer:'easy', choices:['easy','empty','noisy','angry'] },
+  { sentence:'My little brother looked at the ___ cookie jar with disappointment.', zh:'我的弟弟失望地看著___的餅乾罐。', answer:'empty', choices:['empty','easy','happy','noisy'] },
+  { sentence:'Nina was ___ when she got a new puppy for her birthday.', zh:'Nina 生日時得到一隻新小狗，非常___。', answer:'happy', choices:['happy','angry','noisy','empty'] },
+  { sentence:'Claudia couldn\'t concentrate because of the ___ construction outside.', zh:'Claudia 因為外面___的施工聲無法集中注意力。', answer:'noisy', choices:['noisy','angry','easy','happy'] },
+  { sentence:'I didn\'t ___ that Ms. Shen was staring at me through the window.', zh:'我沒有___到沈老師正透過窗戶盯著我。', answer:'notice', choices:['notice','begin','drag','carry'] },
+  { sentence:'The little girl poured the juice ___ so it wouldn\'t spill.', zh:'小女孩___地倒果汁，這樣就不會灑出來。', answer:'slowly', choices:['slowly','broadly','easily','quietly'] },
+  { sentence:'Andy ___ of becoming an astronaut when he grows up.', zh:'Andy ___著長大後成為太空人。', answer:'dreams', choices:['dreams','notices','carries','drags'] },
+  { sentence:'Jay built an ___ Lego castle with moving parts.', zh:'Jay 建造了一座有活動零件的___樂高城堡。', answer:'amazing', choices:['amazing','angry','empty','easy'] },
+  { sentence:'Lucas became ___ after listening to the same story again and again.', zh:'Lucas 一遍又一遍地聽同一個故事後感到___。', answer:'bored', choices:['bored','proud','amazing','happy'] },
+  { sentence:'Raye felt ___ when she showed her artwork to the class.', zh:'Raye 把她的作品展示給全班時感到___。', answer:'proud', choices:['proud','bored','angry','noisy'] },
 ];
 
 const matchPairs = [
-  { en:'beg',       zh:'懇求；乞求' },
-  { en:'drag',      zh:'拖；拉' },
-  { en:'angry',     zh:'生氣的' },
-  { en:'easy',      zh:'容易的' },
-  { en:'empty',     zh:'空的' },
-  { en:'happy',     zh:'開心的' },
-  { en:'noisy',     zh:'吵鬧的' },
-  { en:'amazing',   zh:'驚奇的' },
-  { en:'bored',     zh:'感到無聊的' },
-  { en:'proud',     zh:'自豪的' },
+  { en:'amaze',  zh:'使驚訝；使印象深刻' },
+  { en:'large',  zh:'大的' },
+  { en:'close',  zh:'近的；親近的' },
+  { en:'use',    zh:'使用' },
+  { en:'write',  zh:'寫；寫作' },
+  { en:'move',   zh:'移動；感動' },
+  { en:'beg',    zh:'懇求；乞求' },
+  { en:'angry',  zh:'生氣的' },
+  { en:'empty',  zh:'空的' },
+  { en:'proud',  zh:'自豪的' },
 ];
 
 // ===== Sentence Combine Data =====
@@ -573,8 +591,8 @@ fcRender();
 // ===== QUIZ =====
 let qzQueue=[],qzCurrent=0,qzCorrect=0,qzAnswered=false;
 function qzInit(){qzQueue=[...quizData].sort(()=>Math.random()-0.5);qzCurrent=0;qzCorrect=0;qzAnswered=false;document.getElementById('qz-main').style.display='block';document.getElementById('qz-result').style.display='none';qzRender();}
-function qzRender(){const q=qzQueue[qzCurrent];document.getElementById('qz-bar').style.width=Math.round(qzCurrent/qzQueue.length*100)+'%';document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+qzCurrent;const sh=[...q.choices].sort(()=>Math.random()-0.5);const L=['A','B','C','D'];document.getElementById('qz-card-wrap').innerHTML=`<div class="qz-card"><div class="qz-q-num">Question ${qzCurrent+1} of ${qzQueue.length}</div><div class="qz-sentence">${q.sentence.replace('___','<span class="blank-box">___</span>')}</div><button class="qz-speak-btn" onclick="speakText(${JSON.stringify(q.sentence.replace(/___/g,'blank'))})">🔊 Listen</button><div class="qz-options" style="margin-top:14px">${sh.map((c,i)=>`<button class="qz-option" data-letter="${L[i]}" onclick="qzAnswer(this,'${c}','${q.answer}')"><span>${c}</span></button>`).join('')}</div><div class="qz-feedback" id="qz-fb"></div></div>`;document.getElementById('qz-next').classList.remove('show');qzAnswered=false;}
-function qzAnswer(btn,chosen,correct){if(qzAnswered)return;qzAnswered=true;const fb=document.getElementById('qz-fb');document.querySelectorAll('.qz-option').forEach(b=>b.classList.add('disabled'));if(chosen===correct){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='qz-feedback show ok';qzCorrect++;}else{btn.classList.add('wrong');fb.textContent='✗ The answer is: '+correct;fb.className='qz-feedback show no';document.querySelectorAll('.qz-option').forEach(b=>{if(b.querySelector('span').textContent===correct)b.classList.add('correct');});}speak(correct,0.85);document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+(qzCurrent+1);document.getElementById('qz-next').classList.add('show');}
+function qzRender(){const q=qzQueue[qzCurrent];document.getElementById('qz-bar').style.width=Math.round(qzCurrent/qzQueue.length*100)+'%';document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+qzCurrent;const sh=[...q.choices].sort(()=>Math.random()-0.5);const L=['A','B','C','D'];document.getElementById('qz-card-wrap').innerHTML=`<div class="qz-card"><div class="qz-q-num">Question ${qzCurrent+1} of ${qzQueue.length}</div><div class="qz-sentence">${q.sentence.replace('___','<span class="blank-box">___</span>')}</div><button class="qz-speak-btn" onclick="speakText(${JSON.stringify(q.sentence.replace(/___/g,'blank'))})">🔊 Listen</button><div class="qz-options" style="margin-top:14px">${sh.map((c,i)=>`<button class="qz-option" data-letter="${L[i]}" onclick="qzAnswer(this,'${c}','${q.answer}','${(q.zh||'').replace(/'/g,"\\'")}')"><span>${c}</span></button>`).join('')}</div><div class="qz-feedback" id="qz-fb"></div><div id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(247,201,72,0.08);border-radius:8px;border-left:3px solid var(--gold);"></div></div>`;document.getElementById('qz-next').classList.remove('show');qzAnswered=false;}
+function qzAnswer(btn,chosen,correct,zh){if(qzAnswered)return;qzAnswered=true;const fb=document.getElementById('qz-fb');const zhEl=document.getElementById('qz-zh');document.querySelectorAll('.qz-option').forEach(b=>b.classList.add('disabled'));if(chosen===correct){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='qz-feedback show ok';qzCorrect++;}else{btn.classList.add('wrong');fb.textContent='✗ The answer is: '+correct;fb.className='qz-feedback show no';document.querySelectorAll('.qz-option').forEach(b=>{if(b.querySelector('span').textContent===correct)b.classList.add('correct');});}if(zh){zhEl.textContent='📖 '+zh;zhEl.style.display='block';}speak(correct,0.85);document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+(qzCurrent+1);document.getElementById('qz-next').classList.add('show');}
 function qzNext(){qzCurrent++;if(qzCurrent>=qzQueue.length){qzShowResult();return;}qzRender();}
 function qzShowResult(){document.getElementById('qz-main').style.display='none';document.getElementById('qz-result').style.display='block';const pct=Math.round(qzCorrect/qzQueue.length*100);document.getElementById('res-score').textContent=qzCorrect+' / '+qzQueue.length;document.getElementById('res-stars').textContent=pct>=90?'⭐⭐⭐':pct>=70?'⭐⭐':'⭐';document.getElementById('res-label').textContent=pct>=90?'Excellent!':pct>=70?'Good job!':'Keep practicing!';document.getElementById('res-sub').textContent=pct+'% correct';}
 function qzRestart(){qzInit();}
@@ -608,7 +626,9 @@ function buildCombine(){
 function previewCombine(i){
   const d=combineData[i];const sel=document.getElementById('cbs-'+i).value;const ra=document.getElementById('cbr-'+i);
   if(!sel){ra.textContent='Your sentence will appear here…';ra.classList.remove('has-result');return;}
-  const s1=d.s1.replace(/\.$/,'');const result=s1+', '+sel+' '+d.s2;
+  const s1=d.s1.replace(/\.$/,'');
+  const s2lower=d.s2.charAt(0).toLowerCase()+d.s2.slice(1);
+  const result=s1+', '+sel+' '+s2lower;
   ra.textContent=result;ra.classList.add('has-result');
 }
 function checkCombine(i){

@@ -519,24 +519,24 @@ const cards = [
 
 // ============ QUIZ DATA ============
 const quizData = [
-  { sentence: 'Her hair was ___ neatly for the school performance.', answer: 'braided', choices: ['braided','displayed','leaked','reached'] },
-  { sentence: 'We clean our desks to ___ a neat classroom.', answer: 'maintain', choices: ['maintain','approach','display','reason'] },
-  { sentence: 'The teacher will ___ the students\' artwork on the wall.', answer: 'display', choices: ['display','shadow','braid','dream'] },
-  { sentence: 'The students ___ to follow the classroom rules.', answer: 'agree', choices: ['agree','reach','approach','maintain'] },
-  { sentence: 'The baby fell ___ before the story ended.', answer: 'asleep', choices: ['asleep','broadly','massive','sturdy'] },
-  { sentence: 'My ___ is to travel around the world.', answer: 'dream', choices: ['dream','reason','arrow','shadow'] },
-  { sentence: 'A small ___ in the faucet caused water to drip all night.', answer: 'leak', choices: ['leak','shadow','toaster','charcoal'] },
-  { sentence: 'The farmer picked a ripe ___ and handed it to the children.', answer: 'peach', choices: ['peach','reason','arrow','foundation'] },
-  { sentence: 'The ___ for the delay was heavy traffic on the way to school.', answer: 'reason', choices: ['reason','dream','owner','approach'] },
-  { sentence: 'During archery lesson, I aimed the ___ carefully and hit the target.', answer: 'arrow', choices: ['arrow','shadow','charcoal','toaster'] },
-  { sentence: 'The ___ of the new restaurant welcomed everyone with a smile.', answer: 'owner', choices: ['owner','reason','approach','display'] },
-  { sentence: 'The tree\'s ___ gave cool shade during the hot summer afternoon.', answer: 'shadow', choices: ['shadow','dream','training','foundation'] },
-  { sentence: 'I slowly ___ the stray kitten so it would not run away.', answer: 'approached', choices: ['approached','braided','displayed','maintained'] },
-  { sentence: 'We made a fire using ___ to roast marshmallows.', answer: 'charcoal', choices: ['charcoal','toaster','arrow','shadow'] },
-  { sentence: 'Bread popped out of the ___ golden and warm.', answer: 'toaster', choices: ['toaster','charcoal','owner','peach'] },
-  { sentence: 'Builders made a strong ___ before constructing the house.', answer: 'foundation', choices: ['foundation','shadow','reason','display'] },
-  { sentence: 'The shelf is ___ enough to hold all the books and supplies.', answer: 'sturdy', choices: ['sturdy','massive','broadly','asleep'] },
-  { sentence: 'A ___ tree fell during the storm and blocked the road.', answer: 'massive', choices: ['massive','sturdy','broadly','training'] },
+  { sentence: 'Her hair was ___ neatly for the school performance.', zh: '她的頭髮為了學校表演而整齊地___。', answer: 'braided', choices: ['braided','displayed','leaked','reached'] },
+  { sentence: 'We clean our desks to ___ a neat classroom.', zh: '我們清潔桌子以___整潔的教室。', answer: 'maintain', choices: ['maintain','approach','display','reason'] },
+  { sentence: 'The teacher will ___ the students\' artwork on the wall.', zh: '老師將把學生的作品___在牆上。', answer: 'display', choices: ['display','shadow','braid','dream'] },
+  { sentence: 'The students ___ to follow the classroom rules.', zh: '學生___遵守課堂規則。', answer: 'agree', choices: ['agree','reach','approach','maintain'] },
+  { sentence: 'The baby fell ___ before the story ended.', zh: '故事結束前，嬰兒就___了。', answer: 'asleep', choices: ['asleep','broadly','massive','sturdy'] },
+  { sentence: 'My ___ is to travel around the world.', zh: '我的___是環遊世界。', answer: 'dream', choices: ['dream','reason','arrow','shadow'] },
+  { sentence: 'A small ___ in the faucet caused water to drip all night.', zh: '水龍頭上的小___導致水整夜滴落。', answer: 'leak', choices: ['leak','shadow','toaster','charcoal'] },
+  { sentence: 'The farmer picked a ripe ___ and handed it to the children.', zh: '農夫摘了一個熟透的___遞給孩子們。', answer: 'peach', choices: ['peach','reason','arrow','foundation'] },
+  { sentence: 'The ___ for the delay was heavy traffic on the way to school.', zh: '延誤的___是上學途中交通擁擠。', answer: 'reason', choices: ['reason','dream','owner','approach'] },
+  { sentence: 'During archery lesson, I aimed the ___ carefully and hit the target.', zh: '在射箭課上，我仔細瞄準___並射中目標。', answer: 'arrow', choices: ['arrow','shadow','charcoal','toaster'] },
+  { sentence: 'The ___ of the new restaurant welcomed everyone with a smile.', zh: '新餐廳的___面帶微笑地歡迎每個人。', answer: 'owner', choices: ['owner','reason','approach','display'] },
+  { sentence: 'The tree\'s ___ gave cool shade during the hot summer afternoon.', zh: '在炎熱的夏天下午，樹的___提供了涼爽的遮蔭。', answer: 'shadow', choices: ['shadow','dream','training','foundation'] },
+  { sentence: 'I slowly ___ the stray kitten so it would not run away.', zh: '我慢慢地___那隻流浪貓，這樣牠就不會跑掉。', answer: 'approached', choices: ['approached','braided','displayed','maintained'] },
+  { sentence: 'We made a fire using ___ to roast marshmallows.', zh: '我們用___生火烤棉花糖。', answer: 'charcoal', choices: ['charcoal','toaster','arrow','shadow'] },
+  { sentence: 'Bread popped out of the ___ golden and warm.', zh: '麵包從___裡彈出來，金黃又熱乎。', answer: 'toaster', choices: ['toaster','charcoal','owner','peach'] },
+  { sentence: 'Builders made a strong ___ before constructing the house.', zh: '建築工人在建造房屋前打好了堅固的___。', answer: 'foundation', choices: ['foundation','shadow','reason','display'] },
+  { sentence: 'The shelf is ___ enough to hold all the books and supplies.', zh: '書架___到足以支撐所有書籍和用品。', answer: 'sturdy', choices: ['sturdy','massive','broadly','asleep'] },
+  { sentence: 'A ___ tree fell during the storm and blocked the road.', zh: '暴風雨中一棵___的樹倒下，擋住了道路。', answer: 'massive', choices: ['massive','sturdy','broadly','training'] },
 ];
 
 // ============ GRAMMAR QUIZ DATA ============
@@ -667,17 +667,19 @@ function qzRender() {
       <div class="qz-sentence">${q.sentence.replace('___', '<span class="blank-box">___</span>').replace('___ and ___', '<span class="blank-box">___</span> and <span class="blank-box">___</span>')}</div>
       <button class="qz-speak-btn" onclick="speakText(${JSON.stringify(q.sentence.replace(/_+/g,'blank'))})">🔊 Listen</button>
       <div class="qz-options" style="margin-top:14px">
-        ${shuffled.map((c,i) => `<button class="qz-option" data-letter="${letters[i]}" onclick="qzAnswer(this,'${c}','${q.answer}')"><span>${c}</span></button>`).join('')}
+        ${shuffled.map((c,i) => `<button class="qz-option" data-letter="${letters[i]}" onclick="qzAnswer(this,'${c}','${q.answer}','${(q.zh||'').replace(/'/g,"\\'")}')"><span>${c}</span></button>`).join('')}
       </div>
       <div class="qz-feedback" id="qz-fb"></div>
+      <div class="qz-zh-trans" id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(247,201,72,0.08);border-radius:8px;border-left:3px solid var(--gold);"></div>
     </div>`;
   document.getElementById('qz-next').classList.remove('show');
   qzAnswered = false;
 }
-function qzAnswer(btn, chosen, correct) {
+function qzAnswer(btn, chosen, correct, zh) {
   if (qzAnswered) return;
   qzAnswered = true;
   const fb = document.getElementById('qz-fb');
+  const zhEl = document.getElementById('qz-zh');
   document.querySelectorAll('.qz-option').forEach(b => b.classList.add('disabled'));
   if (chosen === correct) {
     btn.classList.add('correct'); fb.textContent = '✓ Correct!'; fb.className = 'qz-feedback show ok'; qzCorrect++;
@@ -685,6 +687,7 @@ function qzAnswer(btn, chosen, correct) {
     btn.classList.add('wrong'); fb.textContent = '✗ The answer is: ' + correct; fb.className = 'qz-feedback show no';
     document.querySelectorAll('.qz-option').forEach(b => { if (b.querySelector('span').textContent === correct) b.classList.add('correct'); });
   }
+  if (zh) { zhEl.textContent = '📖 ' + zh; zhEl.style.display = 'block'; }
   speak(correct, 0.85);
   document.getElementById('qz-score-badge').textContent = qzCorrect + ' / ' + (qzCurrent + 1);
   document.getElementById('qz-next').classList.add('show');
