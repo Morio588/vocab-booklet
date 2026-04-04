@@ -279,62 +279,112 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
 
     <div id="r1-q13" class="q-card">
       <div class="q-num">13</div>
-      <div class="fill-sentence">The warm wind blew from the <span class="fill-blank"></span> in the summer.</div>
-      <div class="fill-row"><input class="fill-input" id="r1-fill13" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r1',13,'south')"><button class="fill-check" onclick="checkFill('r1',13,'south')">Check</button></div>
+      <div class="q-text">The warm wind blew from the <em>______</em> in the summer.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r1',13,'south')">north</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r1',13,'south')">south</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r1',13,'south')">slowly</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r1',13,'south')">voice</button>
+      </div>
       <div class="q-fb" id="r1-fb13"></div>
     </div>
     <div id="r1-q14" class="q-card">
       <div class="q-num">14</div>
-      <div class="fill-sentence">Can you <span class="fill-blank"></span> a picture of your favorite animal?</div>
-      <div class="fill-row"><input class="fill-input" id="r1-fill14" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r1',14,'draw')"><button class="fill-check" onclick="checkFill('r1',14,'draw')">Check</button></div>
+      <div class="q-text">Can you <em>______</em> a picture of your favorite animal?</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r1',14,'draw')">notice</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r1',14,'draw')">draw</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r1',14,'draw')">figure</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r1',14,'draw')">story</button>
+      </div>
       <div class="q-fb" id="r1-fb14"></div>
     </div>
     <div id="r1-q15" class="q-card">
       <div class="q-num">15</div>
-      <div class="fill-sentence">Please lower your <span class="fill-blank"></span> when other students are working.</div>
-      <div class="fill-row"><input class="fill-input" id="r1-fill15" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r1',15,'voice')"><button class="fill-check" onclick="checkFill('r1',15,'voice')">Check</button></div>
+      <div class="q-text">Please lower your <em>______</em> when other students are working.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r1',15,'voice')">table</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r1',15,'voice')">unit</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r1',15,'voice')">voice</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r1',15,'voice')">story</button>
+      </div>
       <div class="q-fb" id="r1-fb15"></div>
     </div>
     <div id="r1-q16" class="q-card">
       <div class="q-num">16</div>
-      <div class="fill-sentence">The math problem asked me to find the correct <span class="fill-blank"></span>.</div>
-      <div class="fill-row"><input class="fill-input" id="r1-fill16" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r1',16,'figure')"><button class="fill-check" onclick="checkFill('r1',16,'figure')">Check</button></div>
+      <div class="q-text">The math problem asked me to find the correct <em>______</em>.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r1',16,'figure')">draw</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r1',16,'figure')">figure</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r1',16,'figure')">notice</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r1',16,'figure')">unit</button>
+      </div>
       <div class="q-fb" id="r1-fb16"></div>
     </div>
     <div id="r1-q17" class="q-card">
       <div class="q-num">17</div>
-      <div class="fill-sentence">Put your homework on the <span class="fill-blank"></span> when you finish.</div>
-      <div class="fill-row"><input class="fill-input" id="r1-fill17" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r1',17,'table')"><button class="fill-check" onclick="checkFill('r1',17,'table')">Check</button></div>
+      <div class="q-text">Put your homework on the <em>______</em> when you finish.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r1',17,'table')">table</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r1',17,'table')">story</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r1',17,'table')">south</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r1',17,'table')">figure</button>
+      </div>
       <div class="q-fb" id="r1-fb17"></div>
     </div>
     <div id="r1-q18" class="q-card">
       <div class="q-num">18</div>
-      <div class="fill-sentence">Please <span class="fill-blank"></span> the new rules on the classroom bulletin board.</div>
-      <div class="fill-row"><input class="fill-input" id="r1-fill18" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r1',18,'notice')"><button class="fill-check" onclick="checkFill('r1',18,'notice')">Check</button></div>
+      <div class="q-text">Please <em>______</em> the new rules on the classroom bulletin board.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r1',18,'notice')">draw</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r1',18,'notice')">voice</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r1',18,'notice')">slowly</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r1',18,'notice')">notice</button>
+      </div>
       <div class="q-fb" id="r1-fb18"></div>
     </div>
     <div id="r1-q19" class="q-card">
       <div class="q-num">19</div>
-      <div class="fill-sentence">Canada is located to the <span class="fill-blank"></span> of the United States.</div>
-      <div class="fill-row"><input class="fill-input" id="r1-fill19" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r1',19,'north')"><button class="fill-check" onclick="checkFill('r1',19,'north')">Check</button></div>
+      <div class="q-text">Canada is located to the <em>______</em> of the United States.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r1',19,'north')">south</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r1',19,'north')">unit</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r1',19,'north')">north</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r1',19,'north')">table</button>
+      </div>
       <div class="q-fb" id="r1-fb19"></div>
     </div>
     <div id="r1-q20" class="q-card">
       <div class="q-num">20</div>
-      <div class="fill-sentence">We will have our midterm exam after we finish this <span class="fill-blank"></span>.</div>
-      <div class="fill-row"><input class="fill-input" id="r1-fill20" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r1',20,'unit')"><button class="fill-check" onclick="checkFill('r1',20,'unit')">Check</button></div>
+      <div class="q-text">We will have our midterm exam after we finish this <em>______</em>.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r1',20,'unit')">story</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r1',20,'unit')">figure</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r1',20,'unit')">notice</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r1',20,'unit')">unit</button>
+      </div>
       <div class="q-fb" id="r1-fb20"></div>
     </div>
     <div id="r1-q21" class="q-card">
       <div class="q-num">21</div>
-      <div class="fill-sentence">Write your answers <span class="fill-blank"></span> and carefully, so the teacher can read them.</div>
-      <div class="fill-row"><input class="fill-input" id="r1-fill21" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r1',21,'slowly')"><button class="fill-check" onclick="checkFill('r1',21,'slowly')">Check</button></div>
+      <div class="q-text">Write your answers <em>______</em> and carefully, so the teacher can read them.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r1',21,'slowly')">slowly</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r1',21,'slowly')">voice</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r1',21,'slowly')">north</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r1',21,'slowly')">draw</button>
+      </div>
       <div class="q-fb" id="r1-fb21"></div>
     </div>
     <div id="r1-q22" class="q-card">
       <div class="q-num">22</div>
-      <div class="fill-sentence">Our English classroom is on the second <span class="fill-blank"></span> of the English building.</div>
-      <div class="fill-row"><input class="fill-input" id="r1-fill22" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r1',22,'story')"><button class="fill-check" onclick="checkFill('r1',22,'story')">Check</button></div>
+      <div class="q-text">Our English classroom is on the second <em>______</em> of the English building.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r1',22,'story')">unit</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r1',22,'story')">table</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r1',22,'story')">story</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r1',22,'story')">figure</button>
+      </div>
       <div class="q-fb" id="r1-fb22"></div>
     </div>
 
@@ -649,22 +699,124 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
       Jen placed her books on the (11)<strong style="color:var(--accent)">______</strong> and began doing research for her homework. She read about animals that live in the (12)<strong style="color:var(--accent)">______</strong>, where it is very cold. She decided to (13)<strong style="color:var(--accent)">______</strong> some of the Arctic animals on the poster for her science project. Then, her brother told a silly (14)<strong style="color:var(--accent)">______</strong> about a penguin, but it annoyed Jen while she was trying to focus. Jen was not happy as she (15)<strong style="color:var(--accent)">______</strong> how late it was getting.
     </div>
     <div style="background:var(--surface2);border-radius:12px;padding:10px 14px;margin-bottom:1rem;font-size:13px;color:var(--muted);">Word bank: <strong style="color:var(--text)">draw &nbsp; north &nbsp; noticed &nbsp; story &nbsp; table</strong></div>
-    <div id="r2-q11" class="q-card"><div class="q-num">11</div><div class="fill-sentence">blank (11) — word about furniture with a flat top</div><div class="fill-row"><input class="fill-input" id="r2-fill11" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r2',11,'table')"><button class="fill-check" onclick="checkFill('r2',11,'table')">Check</button></div><div class="q-fb" id="r2-fb11"></div></div>
-    <div id="r2-q12" class="q-card"><div class="q-num">12</div><div class="fill-sentence">blank (12) — direction where it is very cold</div><div class="fill-row"><input class="fill-input" id="r2-fill12" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r2',12,'north')"><button class="fill-check" onclick="checkFill('r2',12,'north')">Check</button></div><div class="q-fb" id="r2-fb12"></div></div>
-    <div id="r2-q13" class="q-card"><div class="q-num">13</div><div class="fill-sentence">blank (13) — to make a picture</div><div class="fill-row"><input class="fill-input" id="r2-fill13" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r2',13,'draw')"><button class="fill-check" onclick="checkFill('r2',13,'draw')">Check</button></div><div class="q-fb" id="r2-fb13"></div></div>
-    <div id="r2-q14" class="q-card"><div class="q-num">14</div><div class="fill-sentence">blank (14) — a tale or narrative</div><div class="fill-row"><input class="fill-input" id="r2-fill14" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r2',14,'story')"><button class="fill-check" onclick="checkFill('r2',14,'story')">Check</button></div><div class="q-fb" id="r2-fb14"></div></div>
-    <div id="r2-q15" class="q-card"><div class="q-num">15</div><div class="fill-sentence">blank (15) — saw / became aware of</div><div class="fill-row"><input class="fill-input" id="r2-fill15" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r2',15,'noticed')"><button class="fill-check" onclick="checkFill('r2',15,'noticed')">Check</button></div><div class="q-fb" id="r2-fb15"></div></div>
+
+    <div id="r2-q11" class="q-card">
+      <div class="q-num">11</div>
+      <div class="q-text">Jen placed her books on the <em>______</em> and began doing research.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r2',11,'table')">north</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r2',11,'table')">draw</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r2',11,'table')">story</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r2',11,'table')">table</button>
+      </div>
+      <div class="q-fb" id="r2-fb11"></div>
+    </div>
+    <div id="r2-q12" class="q-card">
+      <div class="q-num">12</div>
+      <div class="q-text">She read about animals that live in the <em>______</em>, where it is very cold.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r2',12,'north')">table</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r2',12,'north')">north</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r2',12,'north')">noticed</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r2',12,'north')">story</button>
+      </div>
+      <div class="q-fb" id="r2-fb12"></div>
+    </div>
+    <div id="r2-q13" class="q-card">
+      <div class="q-num">13</div>
+      <div class="q-text">She decided to <em>______</em> some of the Arctic animals on the poster.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r2',13,'draw')">story</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r2',13,'draw')">noticed</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r2',13,'draw')">draw</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r2',13,'draw')">north</button>
+      </div>
+      <div class="q-fb" id="r2-fb13"></div>
+    </div>
+    <div id="r2-q14" class="q-card">
+      <div class="q-num">14</div>
+      <div class="q-text">Her brother told a silly <em>______</em> about a penguin.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r2',14,'story')">noticed</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r2',14,'story')">table</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r2',14,'story')">draw</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r2',14,'story')">story</button>
+      </div>
+      <div class="q-fb" id="r2-fb14"></div>
+    </div>
+    <div id="r2-q15" class="q-card">
+      <div class="q-num">15</div>
+      <div class="q-text">Jen was not happy as she <em>______</em> how late it was getting.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r2',15,'noticed')">draw</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r2',15,'noticed')">north</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r2',15,'noticed')">noticed</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r2',15,'noticed')">table</button>
+      </div>
+      <div class="q-fb" id="r2-fb15"></div>
+    </div>
 
     <div class="passage" style="margin-top:1rem">
       <h4>Passage 2</h4>
       The explorers walked (16)<strong style="color:var(--accent)">______</strong> across the desert under the hot sun. Their guide spoke in a quiet (17)<strong style="color:var(--accent)">______</strong> so everyone could listen closely. He reminded them to check each (18)<strong style="color:var(--accent)">______</strong> of distance, like inches and feet, on their tools. They wrote down the (19)<strong style="color:var(--accent)">______</strong> as they headed toward (20)<strong style="color:var(--accent)">______</strong>.
     </div>
     <div style="background:var(--surface2);border-radius:12px;padding:10px 14px;margin-bottom:1rem;font-size:13px;color:var(--muted);">Word bank: <strong style="color:var(--text)">figures &nbsp; slowly &nbsp; south &nbsp; unit &nbsp; voice</strong></div>
-    <div id="r2-q16" class="q-card"><div class="q-num">16</div><div class="fill-sentence">blank (16) — not quickly</div><div class="fill-row"><input class="fill-input" id="r2-fill16" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r2',16,'slowly')"><button class="fill-check" onclick="checkFill('r2',16,'slowly')">Check</button></div><div class="q-fb" id="r2-fb16"></div></div>
-    <div id="r2-q17" class="q-card"><div class="q-num">17</div><div class="fill-sentence">blank (17) — the sound made when speaking</div><div class="fill-row"><input class="fill-input" id="r2-fill17" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r2',17,'voice')"><button class="fill-check" onclick="checkFill('r2',17,'voice')">Check</button></div><div class="q-fb" id="r2-fb17"></div></div>
-    <div id="r2-q18" class="q-card"><div class="q-num">18</div><div class="fill-sentence">blank (18) — a single part or measure</div><div class="fill-row"><input class="fill-input" id="r2-fill18" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r2',18,'unit')"><button class="fill-check" onclick="checkFill('r2',18,'unit')">Check</button></div><div class="q-fb" id="r2-fb18"></div></div>
-    <div id="r2-q19" class="q-card"><div class="q-num">19</div><div class="fill-sentence">blank (19) — numbers / amounts</div><div class="fill-row"><input class="fill-input" id="r2-fill19" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r2',19,'figures')"><button class="fill-check" onclick="checkFill('r2',19,'figures')">Check</button></div><div class="q-fb" id="r2-fb19"></div></div>
-    <div id="r2-q20" class="q-card"><div class="q-num">20</div><div class="fill-sentence">blank (20) — direction opposite of north</div><div class="fill-row"><input class="fill-input" id="r2-fill20" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r2',20,'south')"><button class="fill-check" onclick="checkFill('r2',20,'south')">Check</button></div><div class="q-fb" id="r2-fb20"></div></div>
+
+    <div id="r2-q16" class="q-card">
+      <div class="q-num">16</div>
+      <div class="q-text">The explorers walked <em>______</em> across the desert under the hot sun.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r2',16,'slowly')">voice</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r2',16,'slowly')">slowly</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r2',16,'slowly')">south</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r2',16,'slowly')">figures</button>
+      </div>
+      <div class="q-fb" id="r2-fb16"></div>
+    </div>
+    <div id="r2-q17" class="q-card">
+      <div class="q-num">17</div>
+      <div class="q-text">Their guide spoke in a quiet <em>______</em> so everyone could listen closely.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r2',17,'voice')">unit</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r2',17,'voice')">figures</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r2',17,'voice')">slowly</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r2',17,'voice')">voice</button>
+      </div>
+      <div class="q-fb" id="r2-fb17"></div>
+    </div>
+    <div id="r2-q18" class="q-card">
+      <div class="q-num">18</div>
+      <div class="q-text">He reminded them to check each <em>______</em> of distance, like inches and feet.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r2',18,'unit')">figures</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r2',18,'unit')">south</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r2',18,'unit')">unit</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r2',18,'unit')">voice</button>
+      </div>
+      <div class="q-fb" id="r2-fb18"></div>
+    </div>
+    <div id="r2-q19" class="q-card">
+      <div class="q-num">19</div>
+      <div class="q-text">They wrote down the <em>______</em> as they headed toward south.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r2',19,'figures')">slowly</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r2',19,'figures')">figures</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r2',19,'figures')">unit</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r2',19,'figures')">voice</button>
+      </div>
+      <div class="q-fb" id="r2-fb19"></div>
+    </div>
+    <div id="r2-q20" class="q-card">
+      <div class="q-num">20</div>
+      <div class="q-text">They wrote down the figures as they headed toward <em>______</em>.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r2',20,'south')">slowly</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r2',20,'south')">unit</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r2',20,'south')">south</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r2',20,'south')">figures</button>
+      </div>
+      <div class="q-fb" id="r2-fb20"></div>
+    </div>
 
     <hr class="sec-divider">
     <div class="sec-header"><h2><span class="sec-label">III. Grammar</span> Week 2 — Subjects &amp; Predicates</h2></div>
@@ -936,17 +1088,120 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <hr class="sec-divider">
     <div class="sec-header"><h2><span class="sec-label">II. High-Frequency Words</span> Fill in the blank</h2></div>
     <div style="background:var(--surface2);border-radius:12px;padding:10px 14px;margin-bottom:1rem;font-size:13px;color:var(--muted);">Word bank 1: <strong style="color:var(--text)">figure &nbsp; north &nbsp; noticed &nbsp; south &nbsp; story</strong></div>
-    <div id="r3-q11" class="q-card"><div class="q-num">11</div><div class="fill-sentence">The cold wind is stronger in the <span class="fill-blank"></span> during winter.</div><div class="fill-row"><input class="fill-input" id="r3-fill11" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r3',11,'north')"><button class="fill-check" onclick="checkFill('r3',11,'north')">Check</button></div><div class="q-fb" id="r3-fb11"></div></div>
-    <div id="r3-q12" class="q-card"><div class="q-num">12</div><div class="fill-sentence">Some birds migrate to the <span class="fill-blank"></span> for the warmer weather.</div><div class="fill-row"><input class="fill-input" id="r3-fill12" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r3',12,'south')"><button class="fill-check" onclick="checkFill('r3',12,'south')">Check</button></div><div class="q-fb" id="r3-fb12"></div></div>
-    <div id="r3-q13" class="q-card"><div class="q-num">13</div><div class="fill-sentence">The students <span class="fill-blank"></span> the sign on the wall in the hallway.</div><div class="fill-row"><input class="fill-input" id="r3-fill13" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r3',13,'noticed')"><button class="fill-check" onclick="checkFill('r3',13,'noticed')">Check</button></div><div class="q-fb" id="r3-fb13"></div></div>
-    <div id="r3-q14" class="q-card"><div class="q-num">14</div><div class="fill-sentence">Our classroom is on the second <span class="fill-blank"></span> of the English building.</div><div class="fill-row"><input class="fill-input" id="r3-fill14" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r3',14,'story')"><button class="fill-check" onclick="checkFill('r3',14,'story')">Check</button></div><div class="q-fb" id="r3-fb14"></div></div>
-    <div id="r3-q15" class="q-card"><div class="q-num">15</div><div class="fill-sentence">The teacher asked us to find the <span class="fill-blank"></span> for the next math question.</div><div class="fill-row"><input class="fill-input" id="r3-fill15" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r3',15,'figure')"><button class="fill-check" onclick="checkFill('r3',15,'figure')">Check</button></div><div class="q-fb" id="r3-fb15"></div></div>
+
+    <div id="r3-q11" class="q-card">
+      <div class="q-num">11</div>
+      <div class="q-text">The cold wind is stronger in the <em>______</em> during winter.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r3',11,'north')">south</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r3',11,'north')">north</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r3',11,'north')">story</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r3',11,'north')">figure</button>
+      </div>
+      <div class="q-fb" id="r3-fb11"></div>
+    </div>
+    <div id="r3-q12" class="q-card">
+      <div class="q-num">12</div>
+      <div class="q-text">Some birds migrate to the <em>______</em> for the warmer weather.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r3',12,'south')">north</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r3',12,'south')">noticed</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r3',12,'south')">south</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r3',12,'south')">figure</button>
+      </div>
+      <div class="q-fb" id="r3-fb12"></div>
+    </div>
+    <div id="r3-q13" class="q-card">
+      <div class="q-num">13</div>
+      <div class="q-text">The students <em>______</em> the sign on the wall in the hallway.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r3',13,'noticed')">story</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r3',13,'noticed')">figure</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r3',13,'noticed')">north</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r3',13,'noticed')">noticed</button>
+      </div>
+      <div class="q-fb" id="r3-fb13"></div>
+    </div>
+    <div id="r3-q14" class="q-card">
+      <div class="q-num">14</div>
+      <div class="q-text">Our classroom is on the second <em>______</em> of the English building.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r3',14,'story')">figure</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r3',14,'story')">noticed</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r3',14,'story')">story</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r3',14,'story')">south</button>
+      </div>
+      <div class="q-fb" id="r3-fb14"></div>
+    </div>
+    <div id="r3-q15" class="q-card">
+      <div class="q-num">15</div>
+      <div class="q-text">The teacher asked us to find the <em>______</em> for the next math question.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r3',15,'figure')">noticed</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r3',15,'figure')">figure</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r3',15,'figure')">south</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r3',15,'figure')">north</button>
+      </div>
+      <div class="q-fb" id="r3-fb15"></div>
+    </div>
+
     <div style="background:var(--surface2);border-radius:12px;padding:10px 14px;margin-bottom:1rem;margin-top:1rem;font-size:13px;color:var(--muted);">Word bank 2: <strong style="color:var(--text)">draw &nbsp; slowly &nbsp; table &nbsp; unit &nbsp; voice</strong></div>
-    <div id="r3-q16" class="q-card"><div class="q-num">16</div><div class="fill-sentence">Ms. Jen will give us a test after we finish this <span class="fill-blank"></span>.</div><div class="fill-row"><input class="fill-input" id="r3-fill16" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r3',16,'unit')"><button class="fill-check" onclick="checkFill('r3',16,'unit')">Check</button></div><div class="q-fb" id="r3-fb16"></div></div>
-    <div id="r3-q17" class="q-card"><div class="q-num">17</div><div class="fill-sentence">She wanted to <span class="fill-blank"></span> a colorful picture of her house.</div><div class="fill-row"><input class="fill-input" id="r3-fill17" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r3',17,'draw')"><button class="fill-check" onclick="checkFill('r3',17,'draw')">Check</button></div><div class="q-fb" id="r3-fb17"></div></div>
-    <div id="r3-q18" class="q-card"><div class="q-num">18</div><div class="fill-sentence">Put your pencils and erasers on the <span class="fill-blank"></span> before the exam.</div><div class="fill-row"><input class="fill-input" id="r3-fill18" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r3',18,'table')"><button class="fill-check" onclick="checkFill('r3',18,'table')">Check</button></div><div class="q-fb" id="r3-fb18"></div></div>
-    <div id="r3-q19" class="q-card"><div class="q-num">19</div><div class="fill-sentence">The explorers walked <span class="fill-blank"></span> across the desert under the hot sun.</div><div class="fill-row"><input class="fill-input" id="r3-fill19" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r3',19,'slowly')"><button class="fill-check" onclick="checkFill('r3',19,'slowly')">Check</button></div><div class="q-fb" id="r3-fb19"></div></div>
-    <div id="r3-q20" class="q-card"><div class="q-num">20</div><div class="fill-sentence">You need to lower your <span class="fill-blank"></span> in the library because everyone is reading quietly.</div><div class="fill-row"><input class="fill-input" id="r3-fill20" placeholder="type answer…" onkeydown="if(event.key==='Enter')checkFill('r3',20,'voice')"><button class="fill-check" onclick="checkFill('r3',20,'voice')">Check</button></div><div class="q-fb" id="r3-fb20"></div></div>
+
+    <div id="r3-q16" class="q-card">
+      <div class="q-num">16</div>
+      <div class="q-text">Ms. Jen will give us a test after we finish this <em>______</em>.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r3',16,'unit')">draw</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r3',16,'unit')">table</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r3',16,'unit')">voice</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r3',16,'unit')">unit</button>
+      </div>
+      <div class="q-fb" id="r3-fb16"></div>
+    </div>
+    <div id="r3-q17" class="q-card">
+      <div class="q-num">17</div>
+      <div class="q-text">She wanted to <em>______</em> a colorful picture of her house.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r3',17,'draw')">slowly</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r3',17,'draw')">draw</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r3',17,'draw')">table</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r3',17,'draw')">voice</button>
+      </div>
+      <div class="q-fb" id="r3-fb17"></div>
+    </div>
+    <div id="r3-q18" class="q-card">
+      <div class="q-num">18</div>
+      <div class="q-text">Put your pencils and erasers on the <em>______</em> before the exam.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r3',18,'table')">unit</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r3',18,'table')">voice</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r3',18,'table')">slowly</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r3',18,'table')">table</button>
+      </div>
+      <div class="q-fb" id="r3-fb18"></div>
+    </div>
+    <div id="r3-q19" class="q-card">
+      <div class="q-num">19</div>
+      <div class="q-text">The explorers walked <em>______</em> across the desert under the hot sun.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r3',19,'slowly')">voice</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r3',19,'slowly')">draw</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r3',19,'slowly')">slowly</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r3',19,'slowly')">unit</button>
+      </div>
+      <div class="q-fb" id="r3-fb19"></div>
+    </div>
+    <div id="r3-q20" class="q-card">
+      <div class="q-num">20</div>
+      <div class="q-text">You need to lower your <em>______</em> in the library because everyone is reading quietly.</div>
+      <div class="q-options">
+        <button class="q-opt" data-letter="A" onclick="ans(this,'r3',20,'voice')">slowly</button>
+        <button class="q-opt" data-letter="B" onclick="ans(this,'r3',20,'voice')">table</button>
+        <button class="q-opt" data-letter="C" onclick="ans(this,'r3',20,'voice')">draw</button>
+        <button class="q-opt" data-letter="D" onclick="ans(this,'r3',20,'voice')">voice</button>
+      </div>
+      <div class="q-fb" id="r3-fb20"></div>
+    </div>
 
     <hr class="sec-divider">
     <div class="sec-header"><h2><span class="sec-label">III. Grammar</span> Comprehensive</h2></div>
