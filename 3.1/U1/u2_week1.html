@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3.1 U1 Week 2 — Vocabulary Booklet</title>
+<title>3.1 U2 Week 1 — Vocabulary Booklet</title>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#FFFFF0;--surface:#FFFFFF;--surface2:#FFF8EC;--border:rgba(230,81,0,0.15);--accent:#E65100;--accent2:#43A047;--gold:#FF8F00;--text:#1B2A1B;--muted:#5D6B52;--success:#43A047;--error:#C62828;--radius:16px;}
@@ -40,7 +40,7 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
 .card-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;}
 .card-front{background:var(--surface);border:1px solid var(--border);}
 .card-back{background:linear-gradient(135deg,rgba(255,143,0,0.18),rgba(67,160,71,0.12));border:1px solid rgba(230,81,0,0.25);transform:rotateY(180deg);}
-.card-word{font-size:clamp(32px,7vw,56px);font-weight:700;color:var(--text);letter-spacing:-0.02em;margin-bottom:12px;}
+.card-word{font-size:clamp(32px,7vw,52px);font-weight:700;color:var(--text);letter-spacing:-0.02em;margin-bottom:12px;}
 .card-pos{font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);background:rgba(230,81,0,0.10);border:1px solid rgba(230,81,0,0.22);padding:4px 12px;border-radius:999px;margin-bottom:16px;}
 .card-hint{font-size:14px;color:var(--muted);font-style:italic;}
 .card-flip-hint{position:absolute;bottom:20px;font-size:12px;color:var(--muted);letter-spacing:0.05em;}
@@ -128,16 +128,13 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
 .grammar-table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0 16px;}
 .grammar-table th{background:var(--surface2);color:var(--muted);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 12px;text-align:left;font-weight:600;}
 .grammar-table td{padding:10px 12px;border-top:1px solid var(--border);color:var(--text);vertical-align:top;line-height:1.6;}
-.grammar-table td:first-child{color:var(--muted);font-size:13px;}
-.tag-subj{background:rgba(67,160,71,0.15);color:var(--accent2);border:1px solid rgba(67,160,71,0.3);font-size:11px;padding:2px 8px;border-radius:999px;font-weight:600;}
-.tag-pred{background:rgba(247,201,72,0.15);color:var(--gold);border:1px solid rgba(247,201,72,0.3);font-size:11px;padding:2px 8px;border-radius:999px;font-weight:600;}
-/* Grammar interactive */
+.grammar-table td:first-child{color:var(--accent);font-weight:600;font-size:13px;white-space:nowrap;}
+.grammar-table .ex{color:var(--muted);font-size:13px;}
+/* Grammar quiz */
 .gq-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:10px;}
 .gq-q{font-size:14px;color:var(--text);margin-bottom:10px;line-height:1.7;}
-.gq-sentence{font-size:15px;font-style:italic;color:var(--text);background:var(--surface);border-radius:8px;padding:10px 14px;margin-bottom:10px;line-height:1.7;}
-.gq-sentence .hl-s{color:var(--accent2);font-weight:700;}
-.gq-sentence .hl-p{color:var(--gold);font-weight:700;}
-.gq-options{display:flex;flex-direction:column;gap:6px;}
+.gq-context{font-size:14px;font-style:italic;color:var(--muted);background:var(--surface);border-radius:8px;padding:8px 12px;margin-bottom:10px;}
+.gq-options{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
 .gq-opt{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;cursor:pointer;color:var(--text);text-align:left;font-family:'Sora',sans-serif;transition:all 0.15s;}
 .gq-opt:hover:not(.disabled){border-color:var(--accent);background:rgba(230,81,0,0.06);}
 .gq-opt.correct{background:rgba(67,160,71,0.12);border-color:var(--success);color:var(--success);font-weight:600;}
@@ -150,12 +147,13 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
 .gq-score{font-family:'Space Mono',monospace;font-size:13px;color:var(--accent);margin-bottom:1rem;}
 .gq-reset{background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:8px 20px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;margin-top:1rem;transition:all 0.15s;}
 .gq-reset:hover{color:var(--text);}
-/* Spelling */
+/* Spelling table */
 .spell-table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0 16px;}
 .spell-table th{background:var(--surface2);color:var(--muted);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 12px;text-align:left;font-weight:600;}
 .spell-table td{padding:8px 12px;border-top:1px solid var(--border);color:var(--text);}
 .spell-table .base{font-weight:600;}
-.spell-table .rule-tag{font-size:10px;background:rgba(230,81,0,0.10);color:var(--accent);padding:2px 6px;border-radius:999px;margin-left:6px;}
+.spell-table .split{color:var(--accent2);font-family:'Space Mono',monospace;font-size:13px;}
+.spell-table .pat{font-size:11px;background:rgba(230,81,0,0.12);color:var(--accent);padding:2px 8px;border-radius:999px;}
 /* Word chips */
 .word-chips{display:flex;flex-wrap:wrap;gap:8px;}
 .word-chip{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:8px 14px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;transition:all 0.2s;}
@@ -169,12 +167,12 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <span class="nav-brand">Vocabulary Booklet</span>
     <div class="nav-links">
       <a class="nav-home" href="../../index.html">← Home</a>
-      <span class="nav-tag">Week 2</span>
+      <span class="nav-tag">U2 Week 1</span>
     </div>
   </nav>
   <div class="hero">
     <h1>Learn English<br><span>Interactively</span></h1>
-    <p>Inflected Endings · Vocabulary · Subjects &amp; Predicates · High-Frequency Words</p>
+    <p>Syllable VC/V &amp; V/CV · Vocabulary · Singular &amp; Plural Nouns · High-Frequency Words</p>
   </div>
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('flashcard')">📇 Flashcards</button>
@@ -187,8 +185,8 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
   <div class="section active" id="sec-flashcard">
     <div class="flashcard-wrap">
       <div class="fc-progress-row">
-        <div class="fc-counter" id="fc-counter">1 / 21</div>
-        <div class="fc-bar-bg"><div class="fc-bar" id="fc-bar" style="width:5%"></div></div>
+        <div class="fc-counter" id="fc-counter">1 / 12</div>
+        <div class="fc-bar-bg"><div class="fc-bar" id="fc-bar" style="width:8%"></div></div>
       </div>
       <div class="card-scene" onclick="flipCard()">
         <div class="card-3d" id="fc-card">
@@ -266,133 +264,92 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
   <div class="section" id="sec-grammar">
     <div class="grammar-grid">
 
-      <!-- 1. Subjects & Predicates -->
+      <!-- 1. Singular & Plural -->
       <div class="grammar-card">
         <div class="grammar-card-header" onclick="toggleGrammar(this)">
           <div class="grammar-icon" style="background:rgba(230,81,0,0.12)">📝</div>
-          <h3>Subjects and Predicates</h3>
+          <h3>Grammar: Singular and Plural Nouns</h3>
           <span class="grammar-toggle">▾</span>
         </div>
         <div class="grammar-body">
           <div class="rule-box">
-            <strong>Subject</strong> — tells <em>who or what</em> the sentence is about.<br>
-            <strong>Predicate</strong> — tells <em>what the subject does or is</em>. The verb must agree with the subject.
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
-            <div style="background:rgba(67,160,71,0.08);border:1px solid rgba(67,160,71,0.2);border-radius:10px;padding:12px 14px;font-size:13px;">
-              <div style="font-size:11px;color:var(--accent2);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Simple Subject</div>
-              the main noun or pronoun (1 word)
-            </div>
-            <div style="background:rgba(247,201,72,0.08);border:1px solid rgba(247,201,72,0.2);border-radius:10px;padding:12px 14px;font-size:13px;">
-              <div style="font-size:11px;color:var(--gold);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Simple Predicate</div>
-              the main verb (1 word / phrase)
-            </div>
-            <div style="background:rgba(67,160,71,0.08);border:1px solid rgba(67,160,71,0.2);border-radius:10px;padding:12px 14px;font-size:13px;">
-              <div style="font-size:11px;color:var(--accent2);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Complete Subject</div>
-              all words about who or what
-            </div>
-            <div style="background:rgba(247,201,72,0.08);border:1px solid rgba(247,201,72,0.2);border-radius:10px;padding:12px 14px;font-size:13px;">
-              <div style="font-size:11px;color:var(--gold);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Complete Predicate</div>
-              verb + all words that tell what happens
-            </div>
+            <strong>Singular noun</strong> — names one person, place, or thing.<br>
+            <strong>Plural noun</strong> — names more than one. Add <em>-s</em> or <em>-es</em>; some are <strong>irregular</strong>.
           </div>
           <table class="grammar-table">
-            <thead><tr><th>Complete Subject</th><th>Complete Predicate</th></tr></thead>
+            <thead><tr><th>Rule</th><th>Singular</th><th>Plural</th></tr></thead>
             <tbody>
-              <tr><td>The men on the farm</td><td>plant crops.</td></tr>
-              <tr><td>My best friend</td><td>practices before the game.</td></tr>
-              <tr><td>Her favorite artists</td><td>display work in the museum.</td></tr>
+              <tr><td>add -s</td><td class="ex">dog, room, tree, computer</td><td class="ex">dogs, rooms, trees, computers</td></tr>
+              <tr><td>add -es (sh, ch, tch, x, s, ss)</td><td class="ex">ash, inch, watch, fox, glass</td><td class="ex">ashes, inches, watches, foxes, glasses</td></tr>
+              <tr><td>consonant + y → change y to i + -es</td><td class="ex">lady, copy, hobby</td><td class="ex">ladies, copies, hobbies</td></tr>
+              <tr><td style="color:var(--error)">irregular plurals</td><td class="ex">man, mouse, deer, goose, person</td><td class="ex" style="color:var(--accent2)">men, mice, deer, geese, people</td></tr>
             </tbody>
           </table>
-
-          <!-- Grammar Practice -->
-          <div style="margin-top:1.5rem;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">🎯 Practice — Identify the simple subject &amp; predicate</div>
+          <div style="margin-top:1rem;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">🎯 Practice Quiz — 10 questions</div>
           <div class="gq-score" id="gq-score">0 / 10 answered</div>
           <div id="gq-container"></div>
           <button class="gq-reset" onclick="gqReset()">⇄ Reset</button>
         </div>
       </div>
 
-      <!-- 2. Spelling -->
+      <!-- 2. Spelling VC/V & V/CV -->
       <div class="grammar-card">
         <div class="grammar-card-header" onclick="toggleGrammar(this)">
           <div class="grammar-icon" style="background:rgba(247,201,72,0.15)">📏</div>
-          <h3>Spelling: Inflected Endings -es, -ies</h3>
+          <h3>Spelling: Syllable Pattern VC/V &amp; V/CV</h3>
           <span class="grammar-toggle">▾</span>
         </div>
         <div class="grammar-body">
           <div class="rule-box">
-            <strong>consonant + y</strong> → drop y, add <em>-ies</em> &nbsp;(e.g. city → cities)<br>
-            <strong>-ch, -sh, -o, -s, -x, -z</strong> → add <em>-es</em> &nbsp;(e.g. patch → patches)
+            <strong>VC/V</strong> — short vowel sound; split <em>after</em> the consonant following the short vowel.<br>
+            e.g. lem/on, hun/dred, rab/bit, win/ter
+          </div>
+          <div class="rule-box">
+            <strong>V/CV</strong> — long vowel sound; split <em>after</em> the long vowel.<br>
+            e.g. ba/by, ti/ger, mu/sic, ro/bot
           </div>
           <table class="spell-table">
-            <thead><tr><th>Base word</th><th>Plural / -es form</th><th>Rule</th></tr></thead>
+            <thead><tr><th>Word</th><th>Split</th><th>Pattern</th><th>Chinese</th></tr></thead>
             <tbody>
-              <tr><td class="base">city</td><td>cities</td><td>drop y → -ies</td></tr>
-              <tr><td class="base">country</td><td>countries</td><td>drop y → -ies</td></tr>
-              <tr><td class="base">family</td><td>families</td><td>drop y → -ies</td></tr>
-              <tr><td class="base">fry</td><td>fries</td><td>drop y → -ies</td></tr>
-              <tr><td class="base">party</td><td>parties</td><td>drop y → -ies</td></tr>
-              <tr><td class="base">penny</td><td>pennies</td><td>drop y → -ies</td></tr>
-              <tr><td class="base">pony</td><td>ponies</td><td>drop y → -ies</td></tr>
-              <tr><td class="base">spy</td><td>spies</td><td>drop y → -ies</td></tr>
-              <tr><td class="base">patch</td><td>patches</td><td>-ch → add -es</td></tr>
-              <tr><td class="base">pitch</td><td>pitches</td><td>-ch → add -es</td></tr>
-              <tr><td class="base">inch</td><td>inches</td><td>-ch → add -es</td></tr>
-              <tr><td class="base">dish</td><td>dishes</td><td>-sh → add -es</td></tr>
-              <tr><td class="base">glass</td><td>glasses</td><td>-ss → add -es</td></tr>
-              <tr><td class="base">dress</td><td>dresses</td><td>-ss → add -es</td></tr>
+              <tr><td class="base">digit</td><td class="split">dig·it</td><td><span class="pat">VC/V</span></td><td>數字</td></tr>
+              <tr><td class="base">finish</td><td class="split">fin·ish</td><td><span class="pat">VC/V</span></td><td>完成</td></tr>
+              <tr><td class="base">salad</td><td class="split">sal·ad</td><td><span class="pat">VC/V</span></td><td>沙拉</td></tr>
+              <tr><td class="base">talent</td><td class="split">tal·ent</td><td><span class="pat">VC/V</span></td><td>天賦</td></tr>
+              <tr><td class="base">defend</td><td class="split">de·fend</td><td><span class="pat">V/CV</span></td><td>防禦；防衛</td></tr>
+              <tr><td class="base">equal</td><td class="split">e·qual</td><td><span class="pat">V/CV</span></td><td>相等的</td></tr>
+              <tr><td class="base">famous</td><td class="split">fa·mous</td><td><span class="pat">V/CV</span></td><td>有名的</td></tr>
+              <tr><td class="base">human</td><td class="split">hu·man</td><td><span class="pat">V/CV</span></td><td>人類</td></tr>
+              <tr><td class="base">minus</td><td class="split">mi·nus</td><td><span class="pat">V/CV</span></td><td>減</td></tr>
+              <tr><td class="base">total</td><td class="split">to·tal</td><td><span class="pat">V/CV</span></td><td>總數</td></tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- 3. Vocabulary 1–14 -->
+      <!-- 3. Vocabulary 1–10 -->
       <div class="grammar-card">
         <div class="grammar-card-header" onclick="toggleGrammar(this)">
           <div class="grammar-icon" style="background:rgba(67,160,71,0.15)">📚</div>
-          <h3>Vocabulary Words 1–14</h3>
+          <h3>Vocabulary Words 1–10</h3>
           <span class="grammar-toggle">▾</span>
         </div>
         <div class="grammar-body">
           <div class="word-chips" style="flex-direction:column;gap:10px;margin-top:4px">
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('city')">city <span class="zh">城市</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a place where many people live and work with many buildings, roads, and services</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('country')">country <span class="zh">鄉下；國家</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) land outside cities and towns; a nation with its own government</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('family')">family <span class="zh">家庭</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) people who are related to each other</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('fry')">fry <span class="zh">炒</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to cook food in hot oil</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('party')">party <span class="zh">派對；政黨</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a fun event with food and games; a political group</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('penny')">penny <span class="zh">一分錢</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a small coin worth one cent; a very small amount of money</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('pony')">pony <span class="zh">小型馬</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a small horse</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('spy')">spy <span class="zh">間諜；查看</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a person who secretly watches or reports on others; (v) to secretly watch or collect information</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('patch')">patch <span class="zh">小片土地</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a small area that is different from its surroundings</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('pitch')">pitch <span class="zh">投，扔；音調、音高</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to throw something; (n) the tone of a sound that can be high or low</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('inch')">inch <span class="zh">英吋</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a unit of length equal to 2.54 centimeters</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('dish')">dish <span class="zh">碗盤；菜餚</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a plate for food; a type of food prepared in a special way</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('glass')">glass <span class="zh">玻璃杯；玻璃</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a container for drinking; a hard, clear material used for windows or containers</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('dress')">dress <span class="zh">洋裝；著裝</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) clothing for girls or women; (v) to put on clothing</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('digit')">digit <span class="zh">數字</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a number symbol from 0 to 9</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('finish')">finish <span class="zh">完成</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to complete something</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('salad')">salad <span class="zh">沙拉</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a food made from mixed vegetables</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('talent')">talent <span class="zh">天賦</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a natural ability or a skill someone is born with</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('defend')">defend <span class="zh">防禦；防衛</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to protect from harm; to say something right or true</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('equal')">equal <span class="zh">相等的</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(adj) exactly the same; the same in number or amount</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('famous')">famous <span class="zh">有名的</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(adj) well known, known by many people</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('human')">human <span class="zh">人類</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a person; relating to people</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('minus')">minus <span class="zh">減</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to take away an amount; (adj) below zero</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('total')">total <span class="zh">總數</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) the whole amount</div></div>
           </div>
         </div>
       </div>
 
-      <!-- 4. Story Vocab -->
-      <div class="grammar-card">
-        <div class="grammar-card-header" onclick="toggleGrammar(this)">
-          <div class="grammar-icon" style="background:rgba(255,107,107,0.15)">📖</div>
-          <h3>Story Vocabulary (Week 2 FT)</h3>
-          <span class="grammar-toggle">▾</span>
-        </div>
-        <div class="grammar-body">
-          <div class="word-chips" style="flex-direction:column;gap:10px;margin-top:4px">
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('preparation')">preparation <span class="zh">準備</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) activities to get ready for something</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('magnificent')">magnificent <span class="zh">壯觀的；華麗的</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(adj) very impressive; very wonderful</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('brood')">brood <span class="zh">沉思；擔憂</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to think deeply or worry about something</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('rejoice')">rejoice <span class="zh">高興慶祝</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to feel very happy</div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('satisfied')">satisfied <span class="zh">滿意的</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(adj) happy or pleased</div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5. High-Freq -->
+      <!-- 4. High-Freq -->
       <div class="grammar-card">
         <div class="grammar-card-header" onclick="toggleGrammar(this)">
           <div class="grammar-icon" style="background:rgba(247,201,72,0.12)">⚡</div>
@@ -401,8 +358,8 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
         </div>
         <div class="grammar-body">
           <div class="word-chips" style="flex-direction:column;gap:10px;margin-top:4px">
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('story')">story <span class="zh">故事；樓層</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) something told or written about real or imaginary events; a level of a building — <em>Noah wrote a story about dragons.</em></div></div>
-            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('draw')">draw <span class="zh">繪製；吸引；抽籤</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to make a picture; to pull or attract something; to choose something randomly — <em>Jen drew a card from the box to choose the class helper.</em></div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('certain')">certain <span class="zh">肯定的</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(adj) sure about something — <em>Ethan was certain that the test answers were correct after checking carefully.</em></div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('half')">half <span class="zh">一半</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) one of two equal parts of something — <em>Mom cut the orange in half for us to share.</em></div></div>
           </div>
         </div>
       </div>
@@ -412,80 +369,60 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
 </div>
 
 <script>
-// ===== DATA =====
 const cards = [
-  { word:'city',         pos:'n',   zh:'城市',             def:'a place where many people live and work with many buildings, roads, and services', ex:'Kevin lives in a busy <strong>city</strong> with tall buildings and crowded streets.' },
-  { word:'country',      pos:'n',   zh:'鄉下；國家',        def:'land outside cities and towns; a nation with its own government',               ex:'Canada is a <strong>country</strong> known for its cold winters and beautiful forests.' },
-  { word:'family',       pos:'n',   zh:'家庭',              def:'people who are related to each other',                                           ex:'Joanna\'s <strong>family</strong> eats dinner together every night.' },
-  { word:'fry',          pos:'v',   zh:'炒',                def:'to cook food in hot oil',                                                        ex:'Mom likes to <strong>fry</strong> eggs for breakfast on weekends.' },
-  { word:'party',        pos:'n',   zh:'派對；政黨',         def:'a fun event with food and games; a political group',                             ex:'Amelia had a birthday <strong>party</strong> with music and balloons.' },
-  { word:'penny',        pos:'n',   zh:'一分錢',             def:'a small coin worth one cent; a very small amount of money',                     ex:'Grandma saved every <strong>penny</strong> carefully.' },
-  { word:'pony',         pos:'n',   zh:'小型馬',             def:'a small horse',                                                                  ex:'The <strong>pony</strong> helped beginners feel safe while learning to ride a horse.' },
-  { word:'spy',          pos:'n/v', zh:'間諜；查看',         def:'a person who secretly watches or reports on others; to secretly watch or collect information', ex:'I hid behind the bushes to <strong>spy</strong> on the birds building their nest.' },
-  { word:'patch',        pos:'n',   zh:'小片土地',           def:'a small area that is different from its surroundings',                          ex:'Mom planted a <strong>patch</strong> of flowers in the garden near the fence.' },
-  { word:'pitch',        pos:'v/n', zh:'投，扔；音調',       def:'to throw something; the tone of a sound that can be high or low',               ex:'Daniel tried to <strong>pitch</strong> the baseball as far as possible.' },
-  { word:'inch',         pos:'n',   zh:'英吋',               def:'a unit of length equal to 2.54 centimeters',                                    ex:'I measured the box and found it was six <strong>inches</strong> long.' },
-  { word:'dish',         pos:'n',   zh:'碗盤；菜餚',         def:'a plate for food; a type of food prepared in a special way',                    ex:'Dad cooked a delicious <strong>dish</strong> for the whole family.' },
-  { word:'glass',        pos:'n',   zh:'玻璃杯；玻璃',       def:'a container for drinking; a hard, clear material used for windows or containers', ex:'I looked out the <strong>glass</strong> window and saw the snow falling softly.' },
-  { word:'dress',        pos:'n/v', zh:'洋裝；著裝',         def:'clothing for girls or women; to put on clothing',                              ex:'Olivia wore a beautiful <strong>dress</strong> for the school concert.' },
-  { word:'story',        pos:'n',   zh:'故事；樓層',         def:'something told or written about real or imaginary events; a level of a building', ex:'Noah wrote a <strong>story</strong> about dragons.' },
-  { word:'draw',         pos:'v',   zh:'繪製；吸引；抽籤',  def:'to make a picture; to pull or attract something; to choose something randomly', ex:'Jen <strong>drew</strong> a card from the box to choose the class helper.' },
-  { word:'preparation',  pos:'n',   zh:'準備',               def:'activities to get ready for something',                                          ex:'Mia made all the <strong>preparations</strong> for the school science fair.' },
-  { word:'magnificent',  pos:'adj', zh:'壯觀的；華麗的',     def:'very impressive; very wonderful',                                               ex:'We watched the <strong>magnificent</strong> fireworks display during the festival.' },
-  { word:'brood',        pos:'v',   zh:'沉思；擔憂',         def:'to think deeply or worry about something',                                       ex:'Ryan began to <strong>brood</strong> over the difficult homework problem.' },
-  { word:'rejoice',      pos:'v',   zh:'高興慶祝',           def:'to feel very happy',                                                             ex:'The students <strong>rejoiced</strong> after finishing the big school project.' },
-  { word:'satisfied',    pos:'adj', zh:'滿意的',             def:'happy or pleased',                                                               ex:'Benny was <strong>satisfied</strong> with his test score because he worked hard.' },
+  { word:'digit',   pos:'n',   zh:'數字',       def:'a number symbol from 0 to 9',                                      ex:'The code has four <strong>digits</strong>, and each <strong>digit</strong> must be correct.' },
+  { word:'finish',  pos:'v',   zh:'完成',        def:'to complete something',                                            ex:'Students must <strong>finish</strong> the test before the bell rings.' },
+  { word:'salad',   pos:'n',   zh:'沙拉',        def:'a food made from mixed vegetables',                                ex:'The chicken <strong>salad</strong> tastes fresh and delicious.' },
+  { word:'talent',  pos:'n',   zh:'天賦',        def:'a natural ability or a skill someone is born with',               ex:'She has a <strong>talent</strong> for playing the piano.' },
+  { word:'defend',  pos:'v',   zh:'防禦；防衛',   def:'to protect from harm; to say something right or true',            ex:'Animals <strong>defend</strong> themselves when they feel unsafe.' },
+  { word:'equal',   pos:'adj', zh:'相等的',       def:'exactly the same; the same in number, amount, value, or importance', ex:'All students should have <strong>equal</strong> chances to learn.' },
+  { word:'famous',  pos:'adj', zh:'有名的',       def:'well known, known by many people',                                ex:'Mount Fuji is a <strong>famous</strong> tourist attraction.' },
+  { word:'human',   pos:'n',   zh:'人類',        def:'a person; relating to people',                                    ex:'<strong>Humans</strong> are the only animals that can use complex language to communicate ideas.' },
+  { word:'minus',   pos:'v',   zh:'減',          def:'to take away an amount; below zero',                              ex:'Ten <strong>minus</strong> three equals seven.' },
+  { word:'total',   pos:'n',   zh:'總數',        def:'the whole amount',                                                ex:'The <strong>total</strong> number of students is thirty-five.' },
+  { word:'certain', pos:'adj', zh:'肯定的',       def:'sure about something',                                            ex:'Ethan was <strong>certain</strong> that the test answers were correct after checking carefully.' },
+  { word:'half',    pos:'n',   zh:'一半',        def:'one of two equal parts of something',                             ex:'Mom cut the orange in <strong>half</strong> for us to share.' },
 ];
 
 const quizData = [
-  { sentence:'Kevin lives in a busy ___ with tall buildings and crowded streets.', zh:'Kevin 住在一個有高樓和擁擠街道的繁忙___裡。', answer:'city', choices:['city','country','patch','party'] },
-  { sentence:'Canada is a ___ known for its cold winters and beautiful forests.', zh:'加拿大是一個以寒冷冬天和美麗森林聞名的___。', answer:'country', choices:['country','city','family','party'] },
-  { sentence:'Joanna\'s ___ eats dinner together every night.', zh:'Joanna 的___每晚一起吃晚飯。', answer:'family', choices:['family','party','country','city'] },
-  { sentence:'Mom likes to ___ eggs for breakfast on weekends.', zh:'媽媽在週末喜歡___雞蛋當早餐。', answer:'fry', choices:['fry','pitch','draw','dress'] },
-  { sentence:'Amelia had a birthday ___ with music and balloons.', zh:'Amelia 舉辦了一個有音樂和氣球的生日___。', answer:'party', choices:['party','family','story','patch'] },
-  { sentence:'Grandma saved every ___ carefully.', zh:'奶奶仔細地存好每一___錢。', answer:'penny', choices:['penny','inch','pitch','glass'] },
-  { sentence:'The ___ helped beginners feel safe while learning to ride a horse.', zh:'___幫助初學者在學騎馬時感到安全。', answer:'pony', choices:['pony','spy','patch','dress'] },
-  { sentence:'Mr. Smith worked as a ___ to gather information for his country.', zh:'史密斯先生擔任___，為他的國家蒐集情報。', answer:'spy', choices:['spy','pony','pitch','brood'] },
-  { sentence:'Mom planted a ___ of flowers in the garden near the fence.', zh:'媽媽在圍欄旁的花園裡種了一___花。', answer:'patch', choices:['patch','pitch','inch','glass'] },
-  { sentence:'Daniel tried to ___ the baseball as far as possible.', zh:'Daniel 試圖盡可能遠地___棒球。', answer:'pitch', choices:['pitch','fry','draw','brood'] },
-  { sentence:'I measured the box and found it was six ___ long.', zh:'我量了盒子，發現它有六___長。', answer:'inches', choices:['inches','glasses','patches','dresses'] },
-  { sentence:'Dad cooked a delicious ___ for the whole family.', zh:'爸爸為全家烹飪了一道美味的___。', answer:'dish', choices:['dish','glass','dress','patch'] },
-  { sentence:'I looked out the ___ window and saw the snow falling softly.', zh:'我望向___窗，看到雪輕輕飄落。', answer:'glass', choices:['glass','dish','inch','penny'] },
-  { sentence:'Olivia wore a beautiful ___ for the school concert.', zh:'Olivia 為學校音樂會穿了一件漂亮的___。', answer:'dress', choices:['dress','patch','dish','glass'] },
-  { sentence:'Noah wrote a ___ about dragons.', zh:'Noah 寫了一個關於龍的___。', answer:'story', choices:['story','party','preparation','country'] },
-  { sentence:'Jen ___ a card from the box to choose the class helper.', zh:'Jen 從盒子裡___了一張牌來選班級小幫手。', answer:'drew', choices:['drew','pitched','fried','brooded'] },
-  { sentence:'Mia made all the ___ for the school science fair.', zh:'Mia 為學校科學展覽做了所有的___。', answer:'preparations', choices:['preparations','parties','families','stories'] },
-  { sentence:'We watched the ___ fireworks display during the festival.', zh:'我們在節慶中觀看了___的煙火表演。', answer:'magnificent', choices:['magnificent','satisfied','brood','rejoice'] },
-  { sentence:'Ryan began to ___ over the difficult homework problem.', zh:'Ryan 開始對困難的作業問題___。', answer:'brood', choices:['brood','rejoice','draw','pitch'] },
-  { sentence:'The students ___ after finishing the big school project.', zh:'學生們完成大型學校專案後___慶祝。', answer:'rejoiced', choices:['rejoiced','brooded','drew','satisfied'] },
-  { sentence:'Benny was ___ with his test score because he worked hard.', zh:'Benny 因為努力學習而對他的考試成績感到___。', answer:'satisfied', choices:['satisfied','magnificent','rejoice','brood'] },
+  { sentence:'The code has four ___, and each one must be correct.', zh:'這個密碼有四個___，每個都必須正確。', answer:'digits', choices:['digits','talents','totals','salads'] },
+  { sentence:'Students must ___ the test before the bell rings.', zh:'學生必須在鈴聲響起前___測驗。', answer:'finish', choices:['finish','defend','equal','minus'] },
+  { sentence:'The chicken ___ tastes fresh and delicious.', zh:'雞肉___嚐起來新鮮又美味。', answer:'salad', choices:['salad','digit','talent','total'] },
+  { sentence:'She has a ___ for playing the piano.', zh:'她有彈鋼琴的___。', answer:'talent', choices:['talent','digit','salad','total'] },
+  { sentence:'Animals ___ themselves when they feel unsafe.', zh:'動物在感到不安全時會___自己。', answer:'defend', choices:['defend','finish','equal','minus'] },
+  { sentence:'Please divide the cake into eight ___ parts.', zh:'請把蛋糕分成八個___的部分。', answer:'equal', choices:['equal','famous','total','certain'] },
+  { sentence:'Mount Fuji is a ___ tourist attraction.', zh:'富士山是一個___的旅遊景點。', answer:'famous', choices:['famous','equal','human','certain'] },
+  { sentence:'___ are the only animals that can use complex language.', zh:'___是唯一能使用複雜語言的動物。', answer:'Humans', choices:['Humans','Talents','Totals','Digits'] },
+  { sentence:'Ten ___ three equals seven.', zh:'十___三等於七。', answer:'minus', choices:['minus','equal','total','finish'] },
+  { sentence:'The ___ number of students is thirty-five.', zh:'學生的___人數是三十五。', answer:'total', choices:['total','equal','digit','half'] },
+  { sentence:'Ethan was ___ that the test answers were correct.', zh:'Ethan ___測驗答案是正確的。', answer:'certain', choices:['certain','famous','equal','human'] },
+  { sentence:'Mom cut the orange in ___ for us to share.', zh:'媽媽把橘子切成___讓我們分享。', answer:'half', choices:['half','total','digit','equal'] },
 ];
 
 const matchPairs = [
-  { en:'city',        zh:'城市' },
-  { en:'country',     zh:'鄉下；國家' },
-  { en:'fry',         zh:'炒' },
-  { en:'spy',         zh:'間諜；查看' },
-  { en:'pitch',       zh:'投，扔；音調' },
-  { en:'dish',        zh:'碗盤；菜餚' },
-  { en:'magnificent', zh:'壯觀的；華麗的' },
-  { en:'brood',       zh:'沉思；擔憂' },
-  { en:'rejoice',     zh:'高興慶祝' },
-  { en:'satisfied',   zh:'滿意的' },
+  { en:'digit',   zh:'數字' },
+  { en:'finish',  zh:'完成' },
+  { en:'talent',  zh:'天賦' },
+  { en:'defend',  zh:'防禦；防衛' },
+  { en:'equal',   zh:'相等的' },
+  { en:'famous',  zh:'有名的' },
+  { en:'human',   zh:'人類' },
+  { en:'minus',   zh:'減' },
+  { en:'certain', zh:'肯定的' },
+  { en:'half',    zh:'一半' },
 ];
 
-// ===== Grammar Practice =====
 const grammarQuestions = [
-  { sentence:'The small <span class="hl-s">puppy</span> <span class="hl-p">ran</span> across the yard.', q:'What is the simple subject?', opts:['puppy','small puppy','ran','the small puppy'], ans:0, zh:'小小的小狗跑過院子。' },
-  { sentence:'My best <span class="hl-s">friend</span> <span class="hl-p">likes</span> adventure stories.', q:'What is the simple predicate (verb)?', opts:['best friend','likes','adventure stories','my best friend'], ans:1, zh:'我最好的朋友喜歡冒險故事。' },
-  { sentence:'The bright <span class="hl-s">moon</span> <span class="hl-p">shone</span> in the sky.', q:'What is the simple subject?', opts:['bright','moon','shone','the bright moon'], ans:1, zh:'明亮的月亮在天空中閃耀。' },
-  { sentence:'Our <span class="hl-s">class</span> <span class="hl-p">learns</span> new things every day.', q:'What is the simple predicate (verb)?', opts:['our class','new things','learns','every day'], ans:2, zh:'我們班每天學習新事物。' },
-  { sentence:'Some <span class="hl-s">students</span> <span class="hl-p">finished</span> the test quickly.', q:'Which is the complete subject?', opts:['Some students','students','finished the test quickly','finished'], ans:0, zh:'一些學生很快地完成了測驗。' },
-  { sentence:'The noisy <span class="hl-s">birds</span> <span class="hl-p">sang</span> early in the morning.', q:'Which is the complete predicate?', opts:['The noisy birds','birds','sang early in the morning','sang'], ans:2, zh:'吵鬧的鳥兒在清晨歌唱。' },
-  { sentence:'My little <span class="hl-s">brother</span> <span class="hl-p">lost</span> his backpack at school.', q:'What is the simple subject?', opts:['My little brother','little','brother','lost'], ans:2, zh:'我的弟弟在學校弄丟了他的背包。' },
-  { sentence:'The curious <span class="hl-s">students</span> <span class="hl-p">asked</span> many questions.', q:'Which is the complete subject?', opts:['students','asked many questions','The curious students','many questions'], ans:2, zh:'好奇的學生問了很多問題。' },
-  { sentence:'The nervous <span class="hl-s">team</span> <span class="hl-p">practiced</span> quietly in the gym.', q:'Which is the complete predicate?', opts:['The nervous team','team','practiced','practiced quietly in the gym'], ans:3, zh:'緊張的隊伍在體育館安靜地練習。' },
-  { sentence:'The tired <span class="hl-s">students</span> <span class="hl-p">waited</span> patiently near the gate.', q:'What is the simple predicate (verb)?', opts:['tired students','waited','patiently','near the gate'], ans:1, zh:'疲憊的學生在大門附近耐心等待。' },
+  { q:'We saw three <em>______</em> running quickly across the field. (deer)', ctx:'', opts:['deers','deer','deeres','dears'], ans:1 },
+  { q:'We placed several <em>______</em> on the table for the science experiment. (glass)', ctx:'', opts:['glass','glasss','glasses','glassies'], ans:2 },
+  { q:'At the zoo, we watched two <em>______</em> swinging from tree to tree. (monkey)', ctx:'', opts:['monkies','monkeys','monkeys','monkeies'], ans:1 },
+  { q:'In the forest, several <em>______</em> ran across the path when they heard a noise. (mouse)', ctx:'', opts:['mouses','mouse','mices','mice'], ans:3 },
+  { q:'After the storm, several <em>______</em> fell from the trees and blocked the road. (branch)', ctx:'', opts:['branchs','branches','branchies','branche'], ans:1 },
+  { q:'In the story, the brave <em>______</em> worked together to save the village from danger. (man)', ctx:'', opts:['mans','mens','men','manes'], ans:2 },
+  { q:'During the festival, many <em>______</em> sold food, toys, and colorful <em>______</em> to visitors. (lady / watch)', ctx:'', opts:['ladys / watchs','ladies / watchs','ladyes / watches','ladies / watches'], ans:3 },
+  { q:'Which sentence uses the correct <strong>plural form</strong>?', ctx:'', opts:['The baby cried because her toyes were broken.','The babies cried because their toys were broken.','The babys cried because their toys were broken.','The babies cried because their toyies were broken.'], ans:1 },
+  { q:'Which sentence contains a <strong>plural noun error</strong>?', ctx:'', opts:['The mice ran quickly into their holes when they saw the cat.','The deer stood quietly near the lake at sunset.','The boys carried heavy boxs into the classroom.','The ladies sang songs during the celebration.'], ans:2 },
+  { q:'Which sentence is <strong>completely correct</strong>?', ctx:'', opts:['The peoples watched the gooses swimming in the lake.','The people watched the gooses swimming in the lake.','The peoples watched the geese swimming in the lake.','The people watched the geese swimming in the lake.'], ans:3 },
 ];
 
 // ===== SPEECH =====
@@ -511,7 +448,7 @@ fcRender();
 // ===== QUIZ =====
 let qzQueue=[],qzCurrent=0,qzCorrect=0,qzAnswered=false;
 function qzInit(){qzQueue=[...quizData].sort(()=>Math.random()-0.5);qzCurrent=0;qzCorrect=0;qzAnswered=false;document.getElementById('qz-main').style.display='block';document.getElementById('qz-result').style.display='none';qzRender();}
-function qzRender(){const q=qzQueue[qzCurrent];document.getElementById('qz-bar').style.width=Math.round(qzCurrent/qzQueue.length*100)+'%';document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+qzCurrent;const sh=[...q.choices].sort(()=>Math.random()-0.5);const L=['A','B','C','D'];document.getElementById('qz-card-wrap').innerHTML=`<div class="qz-card"><div class="qz-q-num">Question ${qzCurrent+1} of ${qzQueue.length}</div><div class="qz-sentence">${q.sentence.replace('___','<span class="blank-box">___</span>')}</div><button class="qz-speak-btn" onclick="speakText(${JSON.stringify(q.sentence.replace(/___/g,'blank'))})">🔊 Listen</button><div class="qz-options" style="margin-top:14px">${sh.map((c,i)=>`<button class="qz-option" data-letter="${L[i]}" onclick="qzAnswer(this,'${c}','${q.answer}','${(q.zh||'').replace(/'/g,"\\'")}')"><span>${c}</span></button>`).join('')}</div><div class="qz-feedback" id="qz-fb"></div><div id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(247,201,72,0.08);border-radius:8px;border-left:3px solid var(--gold);"></div></div>`;document.getElementById('qz-next').classList.remove('show');qzAnswered=false;}
+function qzRender(){const q=qzQueue[qzCurrent];document.getElementById('qz-bar').style.width=Math.round(qzCurrent/qzQueue.length*100)+'%';document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+qzCurrent;const sh=[...q.choices].sort(()=>Math.random()-0.5);const L=['A','B','C','D'];document.getElementById('qz-card-wrap').innerHTML=`<div class="qz-card"><div class="qz-q-num">Question ${qzCurrent+1} of ${qzQueue.length}</div><div class="qz-sentence">${q.sentence.replace('___','<span class="blank-box">___</span>')}</div><button class="qz-speak-btn" onclick="speakText(${JSON.stringify(q.sentence.replace(/___/g,'blank'))})">🔊 Listen</button><div class="qz-options" style="margin-top:14px">${sh.map((c,i)=>`<button class="qz-option" data-letter="${L[i]}" onclick="qzAnswer(this,${JSON.stringify(c)},${JSON.stringify(q.answer)},${JSON.stringify(q.zh||'')})"><span>${c}</span></button>`).join('')}</div><div class="qz-feedback" id="qz-fb"></div><div id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(247,201,72,0.08);border-radius:8px;border-left:3px solid var(--gold);"></div></div>`;document.getElementById('qz-next').classList.remove('show');qzAnswered=false;}
 function qzAnswer(btn,chosen,correct,zh){if(qzAnswered)return;qzAnswered=true;const fb=document.getElementById('qz-fb');const zhEl=document.getElementById('qz-zh');document.querySelectorAll('.qz-option').forEach(b=>b.classList.add('disabled'));if(chosen===correct){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='qz-feedback show ok';qzCorrect++;}else{btn.classList.add('wrong');fb.textContent='✗ The answer is: '+correct;fb.className='qz-feedback show no';document.querySelectorAll('.qz-option').forEach(b=>{if(b.querySelector('span').textContent===correct)b.classList.add('correct');});}if(zh){zhEl.textContent='📖 '+zh;zhEl.style.display='block';}speak(correct,0.85);document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+(qzCurrent+1);document.getElementById('qz-next').classList.add('show');}
 function qzNext(){qzCurrent++;if(qzCurrent>=qzQueue.length){qzShowResult();return;}qzRender();}
 function qzShowResult(){document.getElementById('qz-main').style.display='none';document.getElementById('qz-result').style.display='block';const pct=Math.round(qzCorrect/qzQueue.length*100);document.getElementById('res-score').textContent=qzCorrect+' / '+qzQueue.length;document.getElementById('res-stars').textContent=pct>=90?'⭐⭐⭐':pct>=70?'⭐⭐':'⭐';document.getElementById('res-label').textContent=pct>=90?'Excellent!':pct>=70?'Good job!':'Keep practicing!';document.getElementById('res-sub').textContent=pct+'% correct';}
@@ -519,8 +456,8 @@ function qzRestart(){qzInit();}
 
 // ===== GRAMMAR QUIZ =====
 let gqAnswered=new Array(grammarQuestions.length).fill(false),gqCorrectCount=0;
-function gqBuild(){document.getElementById('gq-container').innerHTML=grammarQuestions.map((q,qi)=>`<div class="gq-card"><div class="gq-sentence">${q.sentence}</div><div class="gq-q">${qi+1}. ${q.q}</div><div class="gq-options">${q.opts.map((o,oi)=>`<button class="gq-opt" id="gqo-${qi}-${oi}" onclick="gqAnswer(${qi},${oi})">${String.fromCharCode(65+oi)}. ${o}</button>`).join('')}</div><div class="gq-fb" id="gqf-${qi}"></div></div>`).join('');}
-function gqAnswer(qi,oi){if(gqAnswered[qi])return;gqAnswered[qi]=true;const q=grammarQuestions[qi];const fb=document.getElementById('gqf-'+qi);for(let i=0;i<q.opts.length;i++)document.getElementById('gqo-'+qi+'-'+i).classList.add('disabled');if(oi===q.ans){document.getElementById('gqo-'+qi+'-'+oi).classList.add('correct');fb.textContent='✓ Correct!';fb.className='gq-fb show ok';gqCorrectCount++;}else{document.getElementById('gqo-'+qi+'-'+oi).classList.add('wrong');document.getElementById('gqo-'+qi+'-'+q.ans).classList.add('correct');fb.textContent='✗ Answer: '+q.opts[q.ans];fb.className='gq-fb show no';}const done=gqAnswered.filter(Boolean).length;document.getElementById('gq-score').textContent=gqCorrectCount+' / '+done+' answered';}
+function gqBuild(){document.getElementById('gq-container').innerHTML=grammarQuestions.map((q,qi)=>`<div class="gq-card"><div class="gq-q">${qi+1}. ${q.q}</div><div class="gq-options">${q.opts.map((o,oi)=>`<button class="gq-opt" id="gqo-${qi}-${oi}" onclick="gqAnswer(${qi},${oi})">${String.fromCharCode(65+oi)}. ${o}</button>`).join('')}</div><div class="gq-fb" id="gqf-${qi}"></div></div>`).join('');}
+function gqAnswer(qi,oi){if(gqAnswered[qi])return;gqAnswered[qi]=true;const q=grammarQuestions[qi];const fb=document.getElementById('gqf-'+qi);for(let i=0;i<q.opts.length;i++)document.getElementById('gqo-'+qi+'-'+i).classList.add('disabled');if(oi===q.ans){document.getElementById('gqo-'+qi+'-'+oi).classList.add('correct');fb.textContent='✓ Correct!';fb.className='gq-fb show ok';gqCorrectCount++;}else{document.getElementById('gqo-'+qi+'-'+oi).classList.add('wrong');document.getElementById('gqo-'+qi+'-'+q.ans).classList.add('correct');fb.textContent='✗ Answer: '+String.fromCharCode(65+q.ans);fb.className='gq-fb show no';}const done=gqAnswered.filter(Boolean).length;document.getElementById('gq-score').textContent=gqCorrectCount+' / '+done+' answered';}
 function gqReset(){gqAnswered=new Array(grammarQuestions.length).fill(false);gqCorrectCount=0;document.getElementById('gq-score').textContent='0 / 10 answered';gqBuild();}
 gqBuild();
 
@@ -529,8 +466,6 @@ let matchSelected=null,matchMatchedCount=0;
 function matchInit(){matchMatchedCount=0;matchSelected=null;document.getElementById('match-complete').classList.remove('show');document.getElementById('match-score').textContent='0 / '+matchPairs.length;const sl=[...matchPairs].sort(()=>Math.random()-0.5);const sr=[...matchPairs].sort(()=>Math.random()-0.5);document.getElementById('match-left').innerHTML=sl.map(p=>`<div class="match-item" data-en="${p.en}" onclick="matchClick(this,'en')">${p.en}</div>`).join('');document.getElementById('match-right').innerHTML=sr.map(p=>`<div class="match-item" data-en="${p.en}" onclick="matchClick(this,'zh')">${p.zh}</div>`).join('');}
 function matchClick(el,side){if(el.classList.contains('matched'))return;if(!matchSelected){el.classList.add('selected');matchSelected={el,side};return;}if(matchSelected.side===side){matchSelected.el.classList.remove('selected');el.classList.add('selected');matchSelected={el,side};return;}const enEl=side==='en'?el:matchSelected.el;const zhEl=side==='zh'?el:matchSelected.el;if(enEl.dataset.en===zhEl.dataset.en){enEl.classList.remove('selected');zhEl.classList.remove('selected');enEl.classList.add('matched');zhEl.classList.add('matched');matchMatchedCount++;document.getElementById('match-score').textContent=matchMatchedCount+' / '+matchPairs.length;if(matchMatchedCount===matchPairs.length)document.getElementById('match-complete').classList.add('show');}else{enEl.classList.add('wrong-flash');zhEl.classList.add('wrong-flash');setTimeout(()=>{enEl.classList.remove('wrong-flash','selected');zhEl.classList.remove('wrong-flash','selected');},450);}matchSelected=null;}
 function matchReset(){matchInit();}
-
-// ===== GRAMMAR TOGGLE =====
 function toggleGrammar(h){const b=h.nextElementSibling;const t=h.querySelector('.grammar-toggle');b.classList.toggle('open');t.classList.toggle('open');}
 </script>
 </body>
