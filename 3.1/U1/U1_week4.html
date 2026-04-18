@@ -836,6 +836,19 @@ function toggleGrammar(header) {
   body.classList.toggle('open');
   toggle.classList.toggle('open');
 }
+
+// Unlock audio on first user interaction (required by browsers)
+let _audioUnlocked = false;
+document.addEventListener('click', function _unlock() {
+  if (_audioUnlocked) return;
+  _audioUnlocked = true;
+  if (window.speechSynthesis) {
+    const u = new SpeechSynthesisUtterance('');
+    window.speechSynthesis.speak(u);
+    window.speechSynthesis.cancel();
+  }
+  document.removeEventListener('click', _unlock);
+}, { once: true });
 </script>
 </body>
 </html>
