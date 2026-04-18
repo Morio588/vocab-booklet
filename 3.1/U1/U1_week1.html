@@ -466,62 +466,62 @@ const grammarQuestions = [
 ];
 
 // ===== SPEECH ENGINE =====
-let speechRate=0.75;
-let _voices=[];
-let _voicesLoaded=false;
-function _loadVoices(){
-  _voices=window.speechSynthesis.getVoices();
-  if(_voices.length)_voicesLoaded=true;
-}
-if(window.speechSynthesis){
-  window.speechSynthesis.onvoiceschanged=_loadVoices;
-  _loadVoices();
-}
-function _pickVoice(){
-  if(!_voices.length)_voices=window.speechSynthesis.getVoices();
-  return _voices.find(v=>v.lang==='en-US'&&/female|zira|samantha|karen|moira/i.test(v.name))
-      ||_voices.find(v=>v.lang==='en-US')
-      ||_voices.find(v=>v.lang.startsWith('en'))
-      ||_voices[0]||null;
-}
-function speak(text,rate,onEnd){
-  if(!window.speechSynthesis)return;
-  window.speechSynthesis.cancel();
-  const doSpeak=()=>{
-    const u=new SpeechSynthesisUtterance(text);
-    u.lang='en-US';
-    u.rate=rate||speechRate;
-    const v=_pickVoice();
-    if(v)u.voice=v;
-    if(onEnd)u.onend=onEnd;
-    window.speechSynthesis.speak(u);
+let speechRate = 0.75;
+
+function speak(text, rate, onEnd) {
+  if (!window.speechSynthesis) return;
+  const ss = window.speechSynthesis;
+  ss.cancel();
+
+  const go = () => {
+    const voices = ss.getVoices();
+    const voice = voices.find(v => v.lang === 'en-US' && /samantha|zira|karen|moira|female/i.test(v.name))
+                || voices.find(v => v.lang === 'en-US')
+                || voices.find(v => v.lang.startsWith('en'))
+                || voices[0] || null;
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US';
+    u.rate = rate || speechRate;
+    if (voice) u.voice = voice;
+    if (onEnd) u.onend = onEnd;
+    // Safari needs resume() if paused
+    if (ss.paused) ss.resume();
+    ss.speak(u);
   };
-  _voices=window.speechSynthesis.getVoices();
-  if(_voices.length){doSpeak();}
-  else{
-    window.speechSynthesis.onvoiceschanged=()=>{_loadVoices();doSpeak();};
-    setTimeout(doSpeak,500);
+
+  const voices = ss.getVoices();
+  if (voices.length) {
+    go();
+  } else {
+    ss.onvoiceschanged = () => { ss.onvoiceschanged = null; go(); };
+    // Fallback if onvoiceschanged never fires (some browsers)
+    setTimeout(() => { if (!ss.speaking && !ss.pending) go(); }, 300);
   }
 }
-function setSpeed(rate,btn,e){
-  e.stopPropagation();speechRate=rate;
-  document.querySelectorAll('.speed-pill').forEach(p=>p.classList.remove('active'));
-  btn.classList.add('active');
+
+function setSpeed(rate, btn, e) {
+  if (e) e.stopPropagation();
+  speechRate = rate;
+  document.querySelectorAll('.speed-pill').forEach(p => p.classList.remove('active'));
+  if (btn) btn.classList.add('active');
 }
-function speakWord(e){
-  e.stopPropagation();
-  const btn=document.getElementById('fc-speak-btn');
-  btn.classList.add('speaking');
-  speak(fcList[fcIndex].word,speechRate,()=>btn.classList.remove('speaking'));
+
+function speakWord(e) {
+  if (e) e.stopPropagation();
+  const btn = document.getElementById('fc-speak-btn');
+  if (btn) btn.classList.add('speaking');
+  speak(fcList[fcIndex].word, speechRate, () => { if (btn) btn.classList.remove('speaking'); });
 }
-function speakExampleSentence(e){
-  e.stopPropagation();
-  const raw=fcList[fcIndex].ex.replace(/<[^>]+>/g,'');
-  const btn=document.getElementById('fc-speak-back');
-  btn.classList.add('speaking');
-  speak(raw,speechRate*0.9,()=>btn.classList.remove('speaking'));
+
+function speakExampleSentence(e) {
+  if (e) e.stopPropagation();
+  const raw = fcList[fcIndex].ex.replace(/<[^>]+>/g, '');
+  const btn = document.getElementById('fc-speak-back');
+  if (btn) btn.classList.add('speaking');
+  speak(raw, speechRate * 0.9, () => { if (btn) btn.classList.remove('speaking'); });
 }
-function speakText(t){speak(t,speechRate);}
+
+function speakText(t) { speak(t, speechRate); }
 
 // ===== TABS =====
 function switchTab(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('sec-'+id).classList.add('active');if(btn)btn.classList.add('active');if(id==='match')matchInit();if(id==='quiz')qzInit();}
