@@ -7,15 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0d0d14;
-  --surface: #16161f;
-  --surface2: #1e1e2e;
-  --border: rgba(255,255,255,0.08);
-  --accent: #7c6af7;
-  --accent2: #4ecdc4;
-  --gold: #f7c948;
-  --text: #f0eef8;
-  --muted: #7a788f;
+  --bg: #FFFFF0;
+  --surface: #FFFFFF;
+  --surface2: #FFF8EC;
+  --border: rgba(230,81,0,0.15);
+  --accent: #E65100;
+  --accent2: #43A047;
+  --gold: #FF8F00;
+  --text: #1B2A1B;
+  --muted: #5D6B52;
   --radius: 16px;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,8 +31,8 @@ body::before {
   content: '';
   position: fixed; inset: 0;
   background:
-    radial-gradient(ellipse 60% 40% at 15% 20%, rgba(124,106,247,0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 35% at 85% 80%, rgba(78,205,196,0.08) 0%, transparent 55%);
+    radial-gradient(ellipse 60% 40% at 15% 20%, rgba(230,81,0,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 85% 80%, rgba(67,160,71,0.08) 0%, transparent 55%);
   pointer-events: none; z-index: 0;
 }
 
@@ -44,7 +44,7 @@ nav {
 }
 .nav-brand { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; }
 .nav-tag {
-  background: rgba(124,106,247,0.15); border: 1px solid rgba(124,106,247,0.3);
+  background: rgba(230,81,0,0.15); border: 1px solid rgba(230,81,0,0.3);
   color: var(--accent); font-size: 12px; padding: 4px 12px; border-radius: 999px;
   font-weight: 600; letter-spacing: 0.06em;
 }
@@ -78,10 +78,10 @@ nav {
 }
 .week-card::before {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(124,106,247,0.06), transparent);
+  background: linear-gradient(135deg, rgba(230,81,0,0.06), transparent);
   opacity: 0; transition: opacity 0.22s;
 }
-.week-card:hover { border-color: rgba(124,106,247,0.4); transform: translateY(-2px); }
+.week-card:hover { border-color: rgba(230,81,0,0.4); transform: translateY(-2px); }
 .week-card:hover::before { opacity: 1; }
 
 .week-card.coming-soon {
@@ -97,7 +97,7 @@ nav {
   font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 999px;
   letter-spacing: 0.05em;
 }
-.badge-new { background: rgba(78,205,196,0.15); color: var(--accent2); border: 1px solid rgba(78,205,196,0.3); }
+.badge-new { background: rgba(67,160,71,0.15); color: var(--accent2); border: 1px solid rgba(67,160,71,0.3); }
 .badge-soon { background: rgba(122,120,143,0.15); color: var(--muted); border: 1px solid var(--border); }
 
 .wc-title { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.4; }
@@ -248,6 +248,25 @@ nav {
             <span class="wc-tag">🔊 Audio</span>
           </div>
           <div class="wc-arrow" style="color:var(--error)">→</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Unit 2 -->
+    <div class="unit-section" style="margin-top:2rem">
+      <div class="unit-label">Unit 2 — Weekly Booklets</div>
+      <div class="week-grid">
+        <a class="week-card" href="3.1/U2/week1.html">
+          <div class="wc-top">
+            <span class="wc-week">WEEK 1</span>
+            <span class="wc-badge badge-new">NEW</span>
+          </div>
+          <div class="wc-title">Syllable VC/V &amp; V/CV · Singular &amp; Plural Nouns</div>
+          <div class="wc-tags">
+            <span class="wc-tag">VC/V &amp; V/CV</span>
+            <span class="wc-tag">12 words</span>
+          </div>
+          <div class="wc-arrow">→</div>
         </a>
       </div>
     </div>
