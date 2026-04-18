@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3.1 U1 Week 2 — Vocabulary Booklet</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFFF0;--surface:#FFFFFF;--surface2:#FFF8EC;--border:rgba(230,81,0,0.15);--accent:#E65100;--accent2:#43A047;--gold:#FF8F00;--text:#1B2A1B;--muted:#5D6B52;--success:#43A047;--error:#C62828;--radius:16px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Sora',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 15% 20%,rgba(255,143,0,0.10) 0%,transparent 60%),radial-gradient(ellipse 50% 35% at 85% 80%,rgba(67,160,71,0.08) 0%,transparent 55%);pointer-events:none;z-index:0;}
+.app{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:2rem 1.5rem 4rem;}
+nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.5rem;}
+.nav-brand{font-size:13px;font-weight:600;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;}
+.nav-links{display:flex;align-items:center;gap:10px;}
+.nav-home{font-size:12px;color:var(--muted);text-decoration:none;padding:4px 12px;border-radius:999px;border:1px solid var(--border);transition:all 0.15s;}
+.nav-home:hover{color:var(--text);border-color:rgba(27,42,27,0.35);}
+.nav-tag{background:rgba(230,81,0,0.12);border:1px solid rgba(230,81,0,0.28);color:var(--accent);font-size:12px;padding:4px 12px;border-radius:999px;font-weight:600;letter-spacing:0.06em;}
+.hero{margin-bottom:2.5rem;}
+.hero h1{font-size:clamp(26px,5vw,42px);font-weight:700;line-height:1.15;}
+.hero h1 span{color:var(--accent);}
+.hero p{font-size:15px;color:var(--muted);margin-top:10px;line-height:1.6;}
+.tabs{display:flex;gap:6px;margin-bottom:2rem;flex-wrap:wrap;}
+.tab-btn{background:var(--surface);border:1px solid var(--border);color:var(--muted);font-size:13px;font-weight:600;padding:8px 18px;border-radius:999px;cursor:pointer;transition:all 0.2s;letter-spacing:0.03em;font-family:'Sora',sans-serif;}
+.tab-btn:hover{color:var(--text);border-color:rgba(255,255,255,0.15);}
+.tab-btn.active{background:var(--accent);color:white;border-color:var(--accent);}
+.section{display:none;animation:fadeUp 0.35s ease;}
+.section.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+/* FLASHCARD */
+.flashcard-wrap{perspective:1200px;}
+.fc-progress-row{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem;}
+.fc-counter{font-family:'Space Mono',monospace;font-size:13px;color:var(--muted);white-space:nowrap;}
+.fc-bar-bg{flex:1;height:4px;background:var(--surface2);border-radius:999px;overflow:hidden;}
+.fc-bar{height:4px;background:var(--accent);border-radius:999px;transition:width 0.4s ease;}
+.card-scene{width:100%;height:320px;cursor:pointer;}
+.card-3d{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.55s cubic-bezier(.4,0,.2,1);}
+.card-3d.flipped{transform:rotateY(180deg);}
+.card-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;}
+.card-front{background:var(--surface);border:1px solid var(--border);}
+.card-back{background:linear-gradient(135deg,rgba(255,143,0,0.18),rgba(67,160,71,0.12));border:1px solid rgba(230,81,0,0.25);transform:rotateY(180deg);}
+.card-word{font-size:clamp(32px,7vw,56px);font-weight:700;color:var(--text);letter-spacing:-0.02em;margin-bottom:12px;}
+.card-pos{font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);background:rgba(230,81,0,0.10);border:1px solid rgba(230,81,0,0.22);padding:4px 12px;border-radius:999px;margin-bottom:16px;}
+.card-hint{font-size:14px;color:var(--muted);font-style:italic;}
+.card-flip-hint{position:absolute;bottom:20px;font-size:12px;color:var(--muted);letter-spacing:0.05em;}
+.card-def{font-size:16px;color:var(--text);line-height:1.6;margin-bottom:16px;max-width:400px;}
+.card-zh{font-size:22px;color:var(--gold);font-weight:600;margin-bottom:20px;}
+.card-example{font-size:14px;color:var(--muted);font-style:italic;line-height:1.6;max-width:380px;}
+.card-example strong{color:var(--accent2);font-style:normal;}
+.speak-btn{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;background:rgba(230,81,0,0.10);border:1px solid rgba(230,81,0,0.22);color:var(--accent);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;z-index:10;}
+.speak-btn:hover{background:rgba(230,81,0,0.20);transform:scale(1.08);}
+.speak-btn.speaking{background:rgba(230,81,0,0.20);border-color:var(--accent);animation:pulse-ring 0.9s ease-in-out infinite;}
+@keyframes pulse-ring{0%,100%{box-shadow:0 0 0 0 rgba(230,81,0,0.35);}50%{box-shadow:0 0 0 8px rgba(230,81,0,0);}}
+.speak-btn-back{display:inline-flex;align-items:center;gap:6px;background:rgba(230,81,0,0.10);border:1px solid rgba(230,81,0,0.22);color:var(--accent);border-radius:999px;padding:6px 16px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'Sora',sans-serif;margin-top:14px;}
+.speak-btn-back:hover{background:rgba(230,81,0,0.20);}
+.speak-btn-back.speaking{animation:pulse-ring 0.9s ease-in-out infinite;}
+.speed-row{position:absolute;top:16px;left:16px;display:flex;gap:4px;}
+.speed-pill{font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:all 0.15s;font-family:'Sora',sans-serif;}
+.speed-pill.active{background:rgba(67,160,71,0.15);border-color:rgba(67,160,71,0.4);color:var(--accent2);}
+.fc-controls{display:flex;gap:10px;justify-content:center;margin-top:1.5rem;flex-wrap:wrap;}
+.fc-btn{font-family:'Sora',sans-serif;font-size:13px;font-weight:600;padding:10px 24px;border-radius:999px;border:1px solid var(--border);cursor:pointer;transition:all 0.18s;background:var(--surface);color:var(--text);}
+.fc-btn:hover{background:var(--surface2);border-color:rgba(255,255,255,0.15);}
+.fc-btn.next{background:var(--accent);border-color:var(--accent);color:white;}
+.fc-btn.next:hover{background:#6a58e0;}
+/* QUIZ */
+.quiz-header{display:flex;align-items:center;gap:16px;margin-bottom:1.5rem;}
+.quiz-score-badge{font-family:'Space Mono',monospace;font-size:13px;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:6px 16px;color:var(--accent);}
+.qz-bar-bg{flex:1;height:4px;background:var(--surface2);border-radius:999px;overflow:hidden;}
+.qz-bar{height:4px;background:linear-gradient(90deg,#FF8F00,#43A047);border-radius:999px;transition:width 0.4s;}
+.qz-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;margin-bottom:1rem;}
+.qz-q-num{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;}
+.qz-sentence{font-size:18px;line-height:1.8;color:var(--text);margin-bottom:1.5rem;}
+.blank-box{display:inline-block;border-bottom:2px solid var(--accent);min-width:90px;padding:0 6px 3px;text-align:center;color:var(--accent);font-family:'Space Mono',monospace;font-size:18px;vertical-align:middle;margin:0 4px;}
+.qz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.qz-option{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 18px;cursor:pointer;font-family:'Sora',sans-serif;font-size:14px;font-weight:600;color:var(--text);transition:all 0.2s;text-align:left;position:relative;}
+.qz-option::before{content:attr(data-letter);position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--muted);font-family:'Space Mono',monospace;}
+.qz-option span{margin-left:22px;}
+.qz-option:hover:not(.disabled){border-color:var(--accent);background:rgba(230,81,0,0.08);}
+.qz-option.correct{background:rgba(67,160,71,0.15);border-color:var(--success);color:var(--success);}
+.qz-option.wrong{background:rgba(255,107,107,0.1);border-color:var(--error);color:var(--error);}
+.qz-option.disabled{cursor:default;}
+.qz-feedback{margin-top:12px;padding:10px 14px;border-radius:10px;font-size:14px;font-weight:600;display:none;}
+.qz-feedback.show{display:block;}
+.qz-feedback.ok{background:rgba(67,160,71,0.1);color:var(--success);}
+.qz-feedback.no{background:rgba(255,107,107,0.1);color:var(--error);}
+.qz-next-btn{display:none;margin-top:1.5rem;background:var(--accent);color:white;border:none;border-radius:999px;padding:12px 32px;font-family:'Sora',sans-serif;font-size:14px;font-weight:600;cursor:pointer;}
+.qz-next-btn.show{display:inline-block;}
+.qz-speak-btn{display:inline-flex;align-items:center;gap:5px;background:rgba(230,81,0,0.08);border:1px solid rgba(230,81,0,0.20);color:var(--accent);border-radius:999px;padding:5px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Sora',sans-serif;margin-top:10px;}
+.result-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:3rem 2rem;text-align:center;}
+.result-score{font-family:'Space Mono',monospace;font-size:64px;font-weight:700;color:var(--accent);}
+.result-label{font-size:18px;color:var(--text);margin:12px 0 6px;font-weight:600;}
+.result-sub{font-size:14px;color:var(--muted);}
+.result-stars{font-size:32px;margin:16px 0;letter-spacing:6px;}
+.retry-btn{margin-top:24px;background:var(--accent);color:white;border:none;border-radius:999px;padding:12px 32px;font-family:'Sora',sans-serif;font-size:14px;font-weight:600;cursor:pointer;}
+/* MATCH */
+.match-info{font-size:13px;color:var(--muted);margin-bottom:1.5rem;}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.match-col-title{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px;}
+.match-items{display:flex;flex-direction:column;gap:8px;}
+.match-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--text);text-align:center;user-select:none;}
+.match-item:hover:not(.matched):not(.selected){border-color:rgba(255,255,255,0.2);background:var(--surface2);}
+.match-item.selected{border-color:var(--accent);background:rgba(230,81,0,0.12);color:var(--accent);}
+.match-item.matched{border-color:var(--success);background:rgba(67,160,71,0.1);color:var(--success);opacity:0.6;cursor:default;}
+.match-item.wrong-flash{border-color:var(--error);background:rgba(255,107,107,0.1);animation:shake 0.4s ease;}
+@keyframes shake{0%,100%{transform:none}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.match-score-row{display:flex;align-items:center;gap:12px;margin-bottom:1rem;}
+.match-score-label{font-size:13px;color:var(--muted);}
+.match-score-num{font-family:'Space Mono',monospace;font-size:18px;color:var(--accent);font-weight:700;}
+.match-reset-btn{background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:8px 20px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.2s;}
+.match-reset-btn:hover{color:var(--text);border-color:rgba(255,255,255,0.2);}
+.match-complete{display:none;background:rgba(67,160,71,0.10);border:1px solid rgba(67,160,71,0.30);border-radius:12px;padding:16px;text-align:center;font-size:15px;color:var(--success);font-weight:600;margin-top:1rem;}
+.match-complete.show{display:block;animation:fadeUp 0.3s ease;}
+/* GRAMMAR */
+.grammar-grid{display:grid;gap:1rem;}
+.grammar-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.grammar-card-header{padding:1rem 1.25rem;display:flex;align-items:center;gap:12px;cursor:pointer;transition:background 0.15s;}
+.grammar-card-header:hover{background:var(--surface2);}
+.grammar-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.grammar-card-header h3{font-size:15px;font-weight:600;color:var(--text);flex:1;}
+.grammar-toggle{font-size:18px;color:var(--muted);transition:transform 0.25s;}
+.grammar-toggle.open{transform:rotate(180deg);}
+.grammar-body{display:none;padding:0 1.25rem 1.25rem;}
+.grammar-body.open{display:block;animation:fadeUp 0.25s ease;}
+.rule-box{background:rgba(255,143,0,0.08);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:14px;font-size:14px;line-height:1.7;}
+.rule-box strong{color:var(--accent);}
+.rule-box em{color:var(--accent2);}
+.grammar-table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0 16px;}
+.grammar-table th{background:var(--surface2);color:var(--muted);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 12px;text-align:left;font-weight:600;}
+.grammar-table td{padding:10px 12px;border-top:1px solid var(--border);color:var(--text);vertical-align:top;line-height:1.6;}
+.grammar-table td:first-child{color:var(--muted);font-size:13px;}
+.tag-subj{background:rgba(67,160,71,0.15);color:var(--accent2);border:1px solid rgba(67,160,71,0.3);font-size:11px;padding:2px 8px;border-radius:999px;font-weight:600;}
+.tag-pred{background:rgba(247,201,72,0.15);color:var(--gold);border:1px solid rgba(247,201,72,0.3);font-size:11px;padding:2px 8px;border-radius:999px;font-weight:600;}
+/* Grammar interactive */
+.gq-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:10px;}
+.gq-q{font-size:14px;color:var(--text);margin-bottom:10px;line-height:1.7;}
+.gq-sentence{font-size:15px;font-style:italic;color:var(--text);background:var(--surface);border-radius:8px;padding:10px 14px;margin-bottom:10px;line-height:1.7;}
+.gq-sentence .hl-s{color:var(--accent2);font-weight:700;}
+.gq-sentence .hl-p{color:var(--gold);font-weight:700;}
+.gq-options{display:flex;flex-direction:column;gap:6px;}
+.gq-opt{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;cursor:pointer;color:var(--text);text-align:left;font-family:'Sora',sans-serif;transition:all 0.15s;}
+.gq-opt:hover:not(.disabled){border-color:var(--accent);background:rgba(230,81,0,0.06);}
+.gq-opt.correct{background:rgba(67,160,71,0.12);border-color:var(--success);color:var(--success);font-weight:600;}
+.gq-opt.wrong{background:rgba(255,107,107,0.08);border-color:var(--error);color:var(--error);}
+.gq-opt.disabled{cursor:default;}
+.gq-fb{font-size:12px;margin-top:6px;padding:6px 10px;border-radius:8px;display:none;}
+.gq-fb.show{display:block;}
+.gq-fb.ok{background:rgba(67,160,71,0.08);color:var(--success);}
+.gq-fb.no{background:rgba(255,107,107,0.08);color:var(--error);}
+.gq-score{font-family:'Space Mono',monospace;font-size:13px;color:var(--accent);margin-bottom:1rem;}
+.gq-reset{background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:8px 20px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;margin-top:1rem;transition:all 0.15s;}
+.gq-reset:hover{color:var(--text);}
+/* Spelling */
+.spell-table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0 16px;}
+.spell-table th{background:var(--surface2);color:var(--muted);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 12px;text-align:left;font-weight:600;}
+.spell-table td{padding:8px 12px;border-top:1px solid var(--border);color:var(--text);}
+.spell-table .base{font-weight:600;}
+.spell-table .rule-tag{font-size:10px;background:rgba(230,81,0,0.10);color:var(--accent);padding:2px 6px;border-radius:999px;margin-left:6px;}
+/* Word chips */
+.word-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.word-chip{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:8px 14px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;transition:all 0.2s;}
+.word-chip:hover{border-color:var(--accent2);color:var(--accent2);transform:translateY(-2px);}
+.word-chip .zh{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px;}
+</style>
+</head>
+<body>
+<div class="app">
+  <nav>
+    <span class="nav-brand">Vocabulary Booklet</span>
+    <div class="nav-links">
+      <a class="nav-home" href="../../index.html">← Home</a>
+      <span class="nav-tag">Week 2</span>
+    </div>
+  </nav>
+  <div class="hero">
+    <h1>Learn English<br><span>Interactively</span></h1>
+    <p>Inflected Endings · Vocabulary · Subjects &amp; Predicates · High-Frequency Words</p>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('flashcard',this)">📇 Flashcards</button>
+    <button class="tab-btn" onclick="switchTab('quiz',this)">🎯 Quiz</button>
+    <button class="tab-btn" onclick="switchTab('match',this)">🔗 Matching</button>
+    <button class="tab-btn" onclick="switchTab('grammar',this)">📖 Grammar Notes</button>
+  </div>
+
+  <!-- FLASHCARD -->
+  <div class="section active" id="sec-flashcard">
+    <div class="flashcard-wrap">
+      <div class="fc-progress-row">
+        <div class="fc-counter" id="fc-counter">1 / 21</div>
+        <div class="fc-bar-bg"><div class="fc-bar" id="fc-bar" style="width:5%"></div></div>
+      </div>
+      <div class="card-scene" onclick="flipCard()">
+        <div class="card-3d" id="fc-card">
+          <div class="card-face card-front">
+            <div class="speed-row">
+              <button class="speed-pill active" onclick="setSpeed(0.75,this,event)">0.75x</button>
+              <button class="speed-pill" onclick="setSpeed(1,this,event)">1x</button>
+              <button class="speed-pill" onclick="setSpeed(1.25,this,event)">1.25x</button>
+            </div>
+            <button class="speak-btn" id="fc-speak-btn" onclick="speakWord(event)">🔊</button>
+            <div class="card-pos" id="fc-pos">—</div>
+            <div class="card-word" id="fc-word">—</div>
+            <div class="card-hint" id="fc-hint-zh">—</div>
+            <div class="card-flip-hint">tap card to flip</div>
+          </div>
+          <div class="card-face card-back">
+            <div class="card-def" id="fc-def">—</div>
+            <div class="card-zh" id="fc-zh">—</div>
+            <div class="card-example" id="fc-ex">—</div>
+            <button class="speak-btn-back" id="fc-speak-back" onclick="speakExampleSentence(event)">🔊 Listen to example</button>
+          </div>
+        </div>
+      </div>
+      <div class="fc-controls">
+        <button class="fc-btn prev" onclick="fcNav(-1)">← Prev</button>
+        <button class="fc-btn" onclick="fcShuffle()">⇄ Shuffle</button>
+        <button class="fc-btn next" onclick="fcNav(1)">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="section" id="sec-quiz">
+    <div id="qz-main">
+      <div class="quiz-header">
+        <div class="quiz-score-badge" id="qz-score-badge">0 / 0</div>
+        <div class="qz-bar-bg"><div class="qz-bar" id="qz-bar" style="width:0%"></div></div>
+      </div>
+      <div id="qz-card-wrap"></div>
+      <button class="qz-next-btn" id="qz-next" onclick="qzNext()">Next question →</button>
+    </div>
+    <div id="qz-result" style="display:none">
+      <div class="result-card">
+        <div class="result-stars" id="res-stars">⭐⭐⭐</div>
+        <div class="result-score" id="res-score">—</div>
+        <div class="result-label" id="res-label">—</div>
+        <div class="result-sub" id="res-sub">—</div>
+        <button class="retry-btn" onclick="qzRestart()">Try Again</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATCH -->
+  <div class="section" id="sec-match">
+    <div class="match-score-row">
+      <span class="match-score-label">Matched:</span>
+      <span class="match-score-num" id="match-score">0 / 10</span>
+      <button class="match-reset-btn" onclick="matchReset()">Reset</button>
+    </div>
+    <p class="match-info">Click a word on the left, then click its Chinese meaning on the right.</p>
+    <div class="match-grid">
+      <div>
+        <div class="match-col-title">English Word</div>
+        <div class="match-items" id="match-left"></div>
+      </div>
+      <div>
+        <div class="match-col-title">Chinese Meaning</div>
+        <div class="match-items" id="match-right"></div>
+      </div>
+    </div>
+    <div class="match-complete" id="match-complete">🎉 Perfect! All matched! Great job!</div>
+  </div>
+
+  <!-- GRAMMAR -->
+  <div class="section" id="sec-grammar">
+    <div class="grammar-grid">
+
+      <!-- 1. Subjects & Predicates -->
+      <div class="grammar-card">
+        <div class="grammar-card-header" onclick="toggleGrammar(this)">
+          <div class="grammar-icon" style="background:rgba(230,81,0,0.12)">📝</div>
+          <h3>Subjects and Predicates</h3>
+          <span class="grammar-toggle">▾</span>
+        </div>
+        <div class="grammar-body">
+          <div class="rule-box">
+            <strong>Subject</strong> — tells <em>who or what</em> the sentence is about.<br>
+            <strong>Predicate</strong> — tells <em>what the subject does or is</em>. The verb must agree with the subject.
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+            <div style="background:rgba(67,160,71,0.08);border:1px solid rgba(67,160,71,0.2);border-radius:10px;padding:12px 14px;font-size:13px;">
+              <div style="font-size:11px;color:var(--accent2);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Simple Subject</div>
+              the main noun or pronoun (1 word)
+            </div>
+            <div style="background:rgba(247,201,72,0.08);border:1px solid rgba(247,201,72,0.2);border-radius:10px;padding:12px 14px;font-size:13px;">
+              <div style="font-size:11px;color:var(--gold);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Simple Predicate</div>
+              the main verb (1 word / phrase)
+            </div>
+            <div style="background:rgba(67,160,71,0.08);border:1px solid rgba(67,160,71,0.2);border-radius:10px;padding:12px 14px;font-size:13px;">
+              <div style="font-size:11px;color:var(--accent2);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Complete Subject</div>
+              all words about who or what
+            </div>
+            <div style="background:rgba(247,201,72,0.08);border:1px solid rgba(247,201,72,0.2);border-radius:10px;padding:12px 14px;font-size:13px;">
+              <div style="font-size:11px;color:var(--gold);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Complete Predicate</div>
+              verb + all words that tell what happens
+            </div>
+          </div>
+          <table class="grammar-table">
+            <thead><tr><th>Complete Subject</th><th>Complete Predicate</th></tr></thead>
+            <tbody>
+              <tr><td>The men on the farm</td><td>plant crops.</td></tr>
+              <tr><td>My best friend</td><td>practices before the game.</td></tr>
+              <tr><td>Her favorite artists</td><td>display work in the museum.</td></tr>
+            </tbody>
+          </table>
+
+          <!-- Grammar Practice -->
+          <div style="margin-top:1.5rem;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">🎯 Practice — Identify the simple subject &amp; predicate</div>
+          <div class="gq-score" id="gq-score">0 / 10 answered</div>
+          <div id="gq-container"></div>
+          <button class="gq-reset" onclick="gqReset()">⇄ Reset</button>
+        </div>
+      </div>
+
+      <!-- 2. Spelling -->
+      <div class="grammar-card">
+        <div class="grammar-card-header" onclick="toggleGrammar(this)">
+          <div class="grammar-icon" style="background:rgba(247,201,72,0.15)">📏</div>
+          <h3>Spelling: Inflected Endings -es, -ies</h3>
+          <span class="grammar-toggle">▾</span>
+        </div>
+        <div class="grammar-body">
+          <div class="rule-box">
+            <strong>consonant + y</strong> → drop y, add <em>-ies</em> &nbsp;(e.g. city → cities)<br>
+            <strong>-ch, -sh, -o, -s, -x, -z</strong> → add <em>-es</em> &nbsp;(e.g. patch → patches)
+          </div>
+          <table class="spell-table">
+            <thead><tr><th>Base word</th><th>Plural / -es form</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td class="base">city</td><td>cities</td><td>drop y → -ies</td></tr>
+              <tr><td class="base">country</td><td>countries</td><td>drop y → -ies</td></tr>
+              <tr><td class="base">family</td><td>families</td><td>drop y → -ies</td></tr>
+              <tr><td class="base">fry</td><td>fries</td><td>drop y → -ies</td></tr>
+              <tr><td class="base">party</td><td>parties</td><td>drop y → -ies</td></tr>
+              <tr><td class="base">penny</td><td>pennies</td><td>drop y → -ies</td></tr>
+              <tr><td class="base">pony</td><td>ponies</td><td>drop y → -ies</td></tr>
+              <tr><td class="base">spy</td><td>spies</td><td>drop y → -ies</td></tr>
+              <tr><td class="base">patch</td><td>patches</td><td>-ch → add -es</td></tr>
+              <tr><td class="base">pitch</td><td>pitches</td><td>-ch → add -es</td></tr>
+              <tr><td class="base">inch</td><td>inches</td><td>-ch → add -es</td></tr>
+              <tr><td class="base">dish</td><td>dishes</td><td>-sh → add -es</td></tr>
+              <tr><td class="base">glass</td><td>glasses</td><td>-ss → add -es</td></tr>
+              <tr><td class="base">dress</td><td>dresses</td><td>-ss → add -es</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 3. Vocabulary 1–14 -->
+      <div class="grammar-card">
+        <div class="grammar-card-header" onclick="toggleGrammar(this)">
+          <div class="grammar-icon" style="background:rgba(67,160,71,0.15)">📚</div>
+          <h3>Vocabulary Words 1–14</h3>
+          <span class="grammar-toggle">▾</span>
+        </div>
+        <div class="grammar-body">
+          <div class="word-chips" style="flex-direction:column;gap:10px;margin-top:4px">
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('city')">city <span class="zh">城市</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a place where many people live and work with many buildings, roads, and services</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('country')">country <span class="zh">鄉下；國家</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) land outside cities and towns; a nation with its own government</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('family')">family <span class="zh">家庭</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) people who are related to each other</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('fry')">fry <span class="zh">炒</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to cook food in hot oil</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('party')">party <span class="zh">派對；政黨</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a fun event with food and games; a political group</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('penny')">penny <span class="zh">一分錢</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a small coin worth one cent; a very small amount of money</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('pony')">pony <span class="zh">小型馬</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a small horse</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('spy')">spy <span class="zh">間諜；查看</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a person who secretly watches or reports on others; (v) to secretly watch or collect information</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('patch')">patch <span class="zh">小片土地</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a small area that is different from its surroundings</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('pitch')">pitch <span class="zh">投，扔；音調、音高</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to throw something; (n) the tone of a sound that can be high or low</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('inch')">inch <span class="zh">英吋</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a unit of length equal to 2.54 centimeters</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('dish')">dish <span class="zh">碗盤；菜餚</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a plate for food; a type of food prepared in a special way</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('glass')">glass <span class="zh">玻璃杯；玻璃</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a container for drinking; a hard, clear material used for windows or containers</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('dress')">dress <span class="zh">洋裝；著裝</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) clothing for girls or women; (v) to put on clothing</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Story Vocab -->
+      <div class="grammar-card">
+        <div class="grammar-card-header" onclick="toggleGrammar(this)">
+          <div class="grammar-icon" style="background:rgba(255,107,107,0.15)">📖</div>
+          <h3>Story Vocabulary (Week 2 FT)</h3>
+          <span class="grammar-toggle">▾</span>
+        </div>
+        <div class="grammar-body">
+          <div class="word-chips" style="flex-direction:column;gap:10px;margin-top:4px">
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('preparation')">preparation <span class="zh">準備</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) activities to get ready for something</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('magnificent')">magnificent <span class="zh">壯觀的；華麗的</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(adj) very impressive; very wonderful</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('brood')">brood <span class="zh">沉思；擔憂</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to think deeply or worry about something</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('rejoice')">rejoice <span class="zh">高興慶祝</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to feel very happy</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('satisfied')">satisfied <span class="zh">滿意的</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(adj) happy or pleased</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. High-Freq -->
+      <div class="grammar-card">
+        <div class="grammar-card-header" onclick="toggleGrammar(this)">
+          <div class="grammar-icon" style="background:rgba(247,201,72,0.12)">⚡</div>
+          <h3>High-Frequency Words</h3>
+          <span class="grammar-toggle">▾</span>
+        </div>
+        <div class="grammar-body">
+          <div class="word-chips" style="flex-direction:column;gap:10px;margin-top:4px">
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('story')">story <span class="zh">故事；樓層</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) something told or written about real or imaginary events; a level of a building — <em>Noah wrote a story about dragons.</em></div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" style="flex-shrink:0" onclick="speakText('draw')">draw <span class="zh">繪製；吸引；抽籤</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to make a picture; to pull or attract something; to choose something randomly — <em>Jen drew a card from the box to choose the class helper.</em></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== DATA =====
+const cards = [
+  { word:'city',         pos:'n',   zh:'城市',             def:'a place where many people live and work with many buildings, roads, and services', ex:'Kevin lives in a busy <strong>city</strong> with tall buildings and crowded streets.' },
+  { word:'country',      pos:'n',   zh:'鄉下；國家',        def:'land outside cities and towns; a nation with its own government',               ex:'Canada is a <strong>country</strong> known for its cold winters and beautiful forests.' },
+  { word:'family',       pos:'n',   zh:'家庭',              def:'people who are related to each other',                                           ex:'Joanna\'s <strong>family</strong> eats dinner together every night.' },
+  { word:'fry',          pos:'v',   zh:'炒',                def:'to cook food in hot oil',                                                        ex:'Mom likes to <strong>fry</strong> eggs for breakfast on weekends.' },
+  { word:'party',        pos:'n',   zh:'派對；政黨',         def:'a fun event with food and games; a political group',                             ex:'Amelia had a birthday <strong>party</strong> with music and balloons.' },
+  { word:'penny',        pos:'n',   zh:'一分錢',             def:'a small coin worth one cent; a very small amount of money',                     ex:'Grandma saved every <strong>penny</strong> carefully.' },
+  { word:'pony',         pos:'n',   zh:'小型馬',             def:'a small horse',                                                                  ex:'The <strong>pony</strong> helped beginners feel safe while learning to ride a horse.' },
+  { word:'spy',          pos:'n/v', zh:'間諜；查看',         def:'a person who secretly watches or reports on others; to secretly watch or collect information', ex:'I hid behind the bushes to <strong>spy</strong> on the birds building their nest.' },
+  { word:'patch',        pos:'n',   zh:'小片土地',           def:'a small area that is different from its surroundings',                          ex:'Mom planted a <strong>patch</strong> of flowers in the garden near the fence.' },
+  { word:'pitch',        pos:'v/n', zh:'投，扔；音調',       def:'to throw something; the tone of a sound that can be high or low',               ex:'Daniel tried to <strong>pitch</strong> the baseball as far as possible.' },
+  { word:'inch',         pos:'n',   zh:'英吋',               def:'a unit of length equal to 2.54 centimeters',                                    ex:'I measured the box and found it was six <strong>inches</strong> long.' },
+  { word:'dish',         pos:'n',   zh:'碗盤；菜餚',         def:'a plate for food; a type of food prepared in a special way',                    ex:'Dad cooked a delicious <strong>dish</strong> for the whole family.' },
+  { word:'glass',        pos:'n',   zh:'玻璃杯；玻璃',       def:'a container for drinking; a hard, clear material used for windows or containers', ex:'I looked out the <strong>glass</strong> window and saw the snow falling softly.' },
+  { word:'dress',        pos:'n/v', zh:'洋裝；著裝',         def:'clothing for girls or women; to put on clothing',                              ex:'Olivia wore a beautiful <strong>dress</strong> for the school concert.' },
+  { word:'story',        pos:'n',   zh:'故事；樓層',         def:'something told or written about real or imaginary events; a level of a building', ex:'Noah wrote a <strong>story</strong> about dragons.' },
+  { word:'draw',         pos:'v',   zh:'繪製；吸引；抽籤',  def:'to make a picture; to pull or attract something; to choose something randomly', ex:'Jen <strong>drew</strong> a card from the box to choose the class helper.' },
+  { word:'preparation',  pos:'n',   zh:'準備',               def:'activities to get ready for something',                                          ex:'Mia made all the <strong>preparations</strong> for the school science fair.' },
+  { word:'magnificent',  pos:'adj', zh:'壯觀的；華麗的',     def:'very impressive; very wonderful',                                               ex:'We watched the <strong>magnificent</strong> fireworks display during the festival.' },
+  { word:'brood',        pos:'v',   zh:'沉思；擔憂',         def:'to think deeply or worry about something',                                       ex:'Ryan began to <strong>brood</strong> over the difficult homework problem.' },
+  { word:'rejoice',      pos:'v',   zh:'高興慶祝',           def:'to feel very happy',                                                             ex:'The students <strong>rejoiced</strong> after finishing the big school project.' },
+  { word:'satisfied',    pos:'adj', zh:'滿意的',             def:'happy or pleased',                                                               ex:'Benny was <strong>satisfied</strong> with his test score because he worked hard.' },
+];
+
+const quizData = [
+  { sentence:'Kevin lives in a busy ___ with tall buildings and crowded streets.', zh:'Kevin 住在一個有高樓和擁擠街道的繁忙___裡。', answer:'city', choices:['city','country','patch','party'] },
+  { sentence:'Canada is a ___ known for its cold winters and beautiful forests.', zh:'加拿大是一個以寒冷冬天和美麗森林聞名的___。', answer:'country', choices:['country','city','family','party'] },
+  { sentence:'Joanna\'s ___ eats dinner together every night.', zh:'Joanna 的___每晚一起吃晚飯。', answer:'family', choices:['family','party','country','city'] },
+  { sentence:'Mom likes to ___ eggs for breakfast on weekends.', zh:'媽媽在週末喜歡___雞蛋當早餐。', answer:'fry', choices:['fry','pitch','draw','dress'] },
+  { sentence:'Amelia had a birthday ___ with music and balloons.', zh:'Amelia 舉辦了一個有音樂和氣球的生日___。', answer:'party', choices:['party','family','story','patch'] },
+  { sentence:'Grandma saved every ___ carefully.', zh:'奶奶仔細地存好每一___錢。', answer:'penny', choices:['penny','inch','pitch','glass'] },
+  { sentence:'The ___ helped beginners feel safe while learning to ride a horse.', zh:'___幫助初學者在學騎馬時感到安全。', answer:'pony', choices:['pony','spy','patch','dress'] },
+  { sentence:'Mr. Smith worked as a ___ to gather information for his country.', zh:'史密斯先生擔任___，為他的國家蒐集情報。', answer:'spy', choices:['spy','pony','pitch','brood'] },
+  { sentence:'Mom planted a ___ of flowers in the garden near the fence.', zh:'媽媽在圍欄旁的花園裡種了一___花。', answer:'patch', choices:['patch','pitch','inch','glass'] },
+  { sentence:'Daniel tried to ___ the baseball as far as possible.', zh:'Daniel 試圖盡可能遠地___棒球。', answer:'pitch', choices:['pitch','fry','draw','brood'] },
+  { sentence:'I measured the box and found it was six ___ long.', zh:'我量了盒子，發現它有六___長。', answer:'inches', choices:['inches','glasses','patches','dresses'] },
+  { sentence:'Dad cooked a delicious ___ for the whole family.', zh:'爸爸為全家烹飪了一道美味的___。', answer:'dish', choices:['dish','glass','dress','patch'] },
+  { sentence:'I looked out the ___ window and saw the snow falling softly.', zh:'我望向___窗，看到雪輕輕飄落。', answer:'glass', choices:['glass','dish','inch','penny'] },
+  { sentence:'Olivia wore a beautiful ___ for the school concert.', zh:'Olivia 為學校音樂會穿了一件漂亮的___。', answer:'dress', choices:['dress','patch','dish','glass'] },
+  { sentence:'Noah wrote a ___ about dragons.', zh:'Noah 寫了一個關於龍的___。', answer:'story', choices:['story','party','preparation','country'] },
+  { sentence:'Jen ___ a card from the box to choose the class helper.', zh:'Jen 從盒子裡___了一張牌來選班級小幫手。', answer:'drew', choices:['drew','pitched','fried','brooded'] },
+  { sentence:'Mia made all the ___ for the school science fair.', zh:'Mia 為學校科學展覽做了所有的___。', answer:'preparations', choices:['preparations','parties','families','stories'] },
+  { sentence:'We watched the ___ fireworks display during the festival.', zh:'我們在節慶中觀看了___的煙火表演。', answer:'magnificent', choices:['magnificent','satisfied','brood','rejoice'] },
+  { sentence:'Ryan began to ___ over the difficult homework problem.', zh:'Ryan 開始對困難的作業問題___。', answer:'brood', choices:['brood','rejoice','draw','pitch'] },
+  { sentence:'The students ___ after finishing the big school project.', zh:'學生們完成大型學校專案後___慶祝。', answer:'rejoiced', choices:['rejoiced','brooded','drew','satisfied'] },
+  { sentence:'Benny was ___ with his test score because he worked hard.', zh:'Benny 因為努力學習而對他的考試成績感到___。', answer:'satisfied', choices:['satisfied','magnificent','rejoice','brood'] },
+];
+
+const matchPairs = [
+  { en:'city',        zh:'城市' },
+  { en:'country',     zh:'鄉下；國家' },
+  { en:'fry',         zh:'炒' },
+  { en:'spy',         zh:'間諜；查看' },
+  { en:'pitch',       zh:'投，扔；音調' },
+  { en:'dish',        zh:'碗盤；菜餚' },
+  { en:'magnificent', zh:'壯觀的；華麗的' },
+  { en:'brood',       zh:'沉思；擔憂' },
+  { en:'rejoice',     zh:'高興慶祝' },
+  { en:'satisfied',   zh:'滿意的' },
+];
+
+// ===== Grammar Practice =====
+const grammarQuestions = [
+  { sentence:'The small <span class="hl-s">puppy</span> <span class="hl-p">ran</span> across the yard.', q:'What is the simple subject?', opts:['puppy','small puppy','ran','the small puppy'], ans:0, zh:'小小的小狗跑過院子。' },
+  { sentence:'My best <span class="hl-s">friend</span> <span class="hl-p">likes</span> adventure stories.', q:'What is the simple predicate (verb)?', opts:['best friend','likes','adventure stories','my best friend'], ans:1, zh:'我最好的朋友喜歡冒險故事。' },
+  { sentence:'The bright <span class="hl-s">moon</span> <span class="hl-p">shone</span> in the sky.', q:'What is the simple subject?', opts:['bright','moon','shone','the bright moon'], ans:1, zh:'明亮的月亮在天空中閃耀。' },
+  { sentence:'Our <span class="hl-s">class</span> <span class="hl-p">learns</span> new things every day.', q:'What is the simple predicate (verb)?', opts:['our class','new things','learns','every day'], ans:2, zh:'我們班每天學習新事物。' },
+  { sentence:'Some <span class="hl-s">students</span> <span class="hl-p">finished</span> the test quickly.', q:'Which is the complete subject?', opts:['Some students','students','finished the test quickly','finished'], ans:0, zh:'一些學生很快地完成了測驗。' },
+  { sentence:'The noisy <span class="hl-s">birds</span> <span class="hl-p">sang</span> early in the morning.', q:'Which is the complete predicate?', opts:['The noisy birds','birds','sang early in the morning','sang'], ans:2, zh:'吵鬧的鳥兒在清晨歌唱。' },
+  { sentence:'My little <span class="hl-s">brother</span> <span class="hl-p">lost</span> his backpack at school.', q:'What is the simple subject?', opts:['My little brother','little','brother','lost'], ans:2, zh:'我的弟弟在學校弄丟了他的背包。' },
+  { sentence:'The curious <span class="hl-s">students</span> <span class="hl-p">asked</span> many questions.', q:'Which is the complete subject?', opts:['students','asked many questions','The curious students','many questions'], ans:2, zh:'好奇的學生問了很多問題。' },
+  { sentence:'The nervous <span class="hl-s">team</span> <span class="hl-p">practiced</span> quietly in the gym.', q:'Which is the complete predicate?', opts:['The nervous team','team','practiced','practiced quietly in the gym'], ans:3, zh:'緊張的隊伍在體育館安靜地練習。' },
+  { sentence:'The tired <span class="hl-s">students</span> <span class="hl-p">waited</span> patiently near the gate.', q:'What is the simple predicate (verb)?', opts:['tired students','waited','patiently','near the gate'], ans:1, zh:'疲憊的學生在大門附近耐心等待。' },
+];
+
+// ===== SPEECH ENGINE =====
+let speechRate=0.75;
+let _voices=[];
+let _voicesLoaded=false;
+function _loadVoices(){
+  _voices=window.speechSynthesis.getVoices();
+  if(_voices.length)_voicesLoaded=true;
+}
+if(window.speechSynthesis){
+  window.speechSynthesis.onvoiceschanged=_loadVoices;
+  _loadVoices();
+}
+function _pickVoice(){
+  if(!_voices.length)_voices=window.speechSynthesis.getVoices();
+  return _voices.find(v=>v.lang==='en-US'&&/female|zira|samantha|karen|moira/i.test(v.name))
+      ||_voices.find(v=>v.lang==='en-US')
+      ||_voices.find(v=>v.lang.startsWith('en'))
+      ||_voices[0]||null;
+}
+function speak(text,rate,onEnd){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  const doSpeak=()=>{
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang='en-US';
+    u.rate=rate||speechRate;
+    const v=_pickVoice();
+    if(v)u.voice=v;
+    if(onEnd)u.onend=onEnd;
+    window.speechSynthesis.speak(u);
+  };
+  _voices=window.speechSynthesis.getVoices();
+  if(_voices.length){doSpeak();}
+  else{
+    window.speechSynthesis.onvoiceschanged=()=>{_loadVoices();doSpeak();};
+    setTimeout(doSpeak,500);
+  }
+}
+function setSpeed(rate,btn,e){
+  e.stopPropagation();speechRate=rate;
+  document.querySelectorAll('.speed-pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+}
+function speakWord(e){
+  e.stopPropagation();
+  const btn=document.getElementById('fc-speak-btn');
+  btn.classList.add('speaking');
+  speak(fcList[fcIndex].word,speechRate,()=>btn.classList.remove('speaking'));
+}
+function speakExampleSentence(e){
+  e.stopPropagation();
+  const raw=fcList[fcIndex].ex.replace(/<[^>]+>/g,'');
+  const btn=document.getElementById('fc-speak-back');
+  btn.classList.add('speaking');
+  speak(raw,speechRate*0.9,()=>btn.classList.remove('speaking'));
+}
+function speakText(t){speak(t,speechRate);}
+
+// ===== TABS =====
+function switchTab(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('sec-'+id).classList.add('active');if(btn)btn.classList.add('active');if(id==='match')matchInit();if(id==='quiz')qzInit();}
+
+// ===== FLASHCARDS =====
+let fcIndex=0,fcList=[...cards],fcFlipped=false;
+function fcRender(){const c=fcList[fcIndex];fcFlipped=false;document.getElementById('fc-card').classList.remove('flipped');document.getElementById('fc-word').textContent=c.word;document.getElementById('fc-pos').textContent='('+c.pos+')';document.getElementById('fc-hint-zh').textContent=c.zh;document.getElementById('fc-def').textContent=c.def;document.getElementById('fc-zh').textContent=c.zh;document.getElementById('fc-ex').innerHTML=c.ex;const pct=Math.round((fcIndex+1)/fcList.length*100);document.getElementById('fc-bar').style.width=pct+'%';document.getElementById('fc-counter').textContent=(fcIndex+1)+' / '+fcList.length;document.getElementById('fc-speak-btn').classList.remove('speaking');document.getElementById('fc-speak-back').classList.remove('speaking');// auto-speak removed for compatibility
+}
+function flipCard(){fcFlipped=!fcFlipped;document.getElementById('fc-card').classList.toggle('flipped',fcFlipped);}
+function fcNav(dir){fcIndex=(fcIndex+dir+fcList.length)%fcList.length;fcRender();}
+function fcShuffle(){for(let i=fcList.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[fcList[i],fcList[j]]=[fcList[j],fcList[i]];}fcIndex=0;fcRender();}
+fcRender();
+
+// ===== QUIZ =====
+let qzQueue=[],qzCurrent=0,qzCorrect=0,qzAnswered=false;
+function qzInit(){qzQueue=[...quizData].sort(()=>Math.random()-0.5);qzCurrent=0;qzCorrect=0;qzAnswered=false;document.getElementById('qz-main').style.display='block';document.getElementById('qz-result').style.display='none';qzRender();}
+function qzRender(){const q=qzQueue[qzCurrent];document.getElementById('qz-bar').style.width=Math.round(qzCurrent/qzQueue.length*100)+'%';document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+qzCurrent;const sh=[...q.choices].sort(()=>Math.random()-0.5);const L=['A','B','C','D'];document.getElementById('qz-card-wrap').innerHTML=`<div class="qz-card"><div class="qz-q-num">Question ${qzCurrent+1} of ${qzQueue.length}</div><div class="qz-sentence">${q.sentence.replace('___','<span class="blank-box">___</span>')}</div><button class="qz-speak-btn" onclick="speakText(${JSON.stringify(q.sentence.replace(/___/g,'blank'))})">🔊 Listen</button><div class="qz-options" style="margin-top:14px">${sh.map((c,i)=>`<button class="qz-option" data-letter="${L[i]}" onclick="qzAnswer(this,'${c}','${q.answer}','${(q.zh||'').replace(/'/g,"\\'")}')"><span>${c}</span></button>`).join('')}</div><div class="qz-feedback" id="qz-fb"></div><div id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(255,143,0,0.08);border-radius:8px;border-left:3px solid var(--gold);"></div></div>`;document.getElementById('qz-next').classList.remove('show');qzAnswered=false;}
+function qzAnswer(btn,chosen,correct,zh){if(qzAnswered)return;qzAnswered=true;const fb=document.getElementById('qz-fb');const zhEl=document.getElementById('qz-zh');document.querySelectorAll('.qz-option').forEach(b=>b.classList.add('disabled'));if(chosen===correct){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='qz-feedback show ok';qzCorrect++;}else{btn.classList.add('wrong');fb.textContent='✗ The answer is: '+correct;fb.className='qz-feedback show no';document.querySelectorAll('.qz-option').forEach(b=>{if(b.querySelector('span').textContent===correct)b.classList.add('correct');});}if(zh){zhEl.textContent='📖 '+zh;zhEl.style.display='block';}speak(correct,0.85);document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+(qzCurrent+1);document.getElementById('qz-next').classList.add('show');}
+function qzNext(){qzCurrent++;if(qzCurrent>=qzQueue.length){qzShowResult();return;}qzRender();}
+function qzShowResult(){document.getElementById('qz-main').style.display='none';document.getElementById('qz-result').style.display='block';const pct=Math.round(qzCorrect/qzQueue.length*100);document.getElementById('res-score').textContent=qzCorrect+' / '+qzQueue.length;document.getElementById('res-stars').textContent=pct>=90?'⭐⭐⭐':pct>=70?'⭐⭐':'⭐';document.getElementById('res-label').textContent=pct>=90?'Excellent!':pct>=70?'Good job!':'Keep practicing!';document.getElementById('res-sub').textContent=pct+'% correct';}
+function qzRestart(){qzInit();}
+
+// ===== GRAMMAR QUIZ =====
+let gqAnswered=new Array(grammarQuestions.length).fill(false),gqCorrectCount=0;
+function gqBuild(){document.getElementById('gq-container').innerHTML=grammarQuestions.map((q,qi)=>`<div class="gq-card"><div class="gq-sentence">${q.sentence}</div><div class="gq-q">${qi+1}. ${q.q}</div><div class="gq-options">${q.opts.map((o,oi)=>`<button class="gq-opt" id="gqo-${qi}-${oi}" onclick="gqAnswer(${qi},${oi})">${String.fromCharCode(65+oi)}. ${o}</button>`).join('')}</div><div class="gq-fb" id="gqf-${qi}"></div></div>`).join('');}
+function gqAnswer(qi,oi){if(gqAnswered[qi])return;gqAnswered[qi]=true;const q=grammarQuestions[qi];const fb=document.getElementById('gqf-'+qi);for(let i=0;i<q.opts.length;i++)document.getElementById('gqo-'+qi+'-'+i).classList.add('disabled');if(oi===q.ans){document.getElementById('gqo-'+qi+'-'+oi).classList.add('correct');fb.textContent='✓ Correct!';fb.className='gq-fb show ok';gqCorrectCount++;}else{document.getElementById('gqo-'+qi+'-'+oi).classList.add('wrong');document.getElementById('gqo-'+qi+'-'+q.ans).classList.add('correct');fb.textContent='✗ Answer: '+q.opts[q.ans];fb.className='gq-fb show no';}const done=gqAnswered.filter(Boolean).length;document.getElementById('gq-score').textContent=gqCorrectCount+' / '+done+' answered';}
+function gqReset(){gqAnswered=new Array(grammarQuestions.length).fill(false);gqCorrectCount=0;document.getElementById('gq-score').textContent='0 / 10 answered';gqBuild();}
+gqBuild();
+
+// ===== MATCHING =====
+let matchSelected=null,matchMatchedCount=0;
+function matchInit(){matchMatchedCount=0;matchSelected=null;document.getElementById('match-complete').classList.remove('show');document.getElementById('match-score').textContent='0 / '+matchPairs.length;const sl=[...matchPairs].sort(()=>Math.random()-0.5);const sr=[...matchPairs].sort(()=>Math.random()-0.5);document.getElementById('match-left').innerHTML=sl.map(p=>`<div class="match-item" data-en="${p.en}" onclick="matchClick(this,'en')">${p.en}</div>`).join('');document.getElementById('match-right').innerHTML=sr.map(p=>`<div class="match-item" data-en="${p.en}" onclick="matchClick(this,'zh')">${p.zh}</div>`).join('');}
+function matchClick(el,side){if(el.classList.contains('matched'))return;if(!matchSelected){el.classList.add('selected');matchSelected={el,side};return;}if(matchSelected.side===side){matchSelected.el.classList.remove('selected');el.classList.add('selected');matchSelected={el,side};return;}const enEl=side==='en'?el:matchSelected.el;const zhEl=side==='zh'?el:matchSelected.el;if(enEl.dataset.en===zhEl.dataset.en){enEl.classList.remove('selected');zhEl.classList.remove('selected');enEl.classList.add('matched');zhEl.classList.add('matched');matchMatchedCount++;document.getElementById('match-score').textContent=matchMatchedCount+' / '+matchPairs.length;if(matchMatchedCount===matchPairs.length)document.getElementById('match-complete').classList.add('show');}else{enEl.classList.add('wrong-flash');zhEl.classList.add('wrong-flash');setTimeout(()=>{enEl.classList.remove('wrong-flash','selected');zhEl.classList.remove('wrong-flash','selected');},450);}matchSelected=null;}
+function matchReset(){matchInit();}
+
+// ===== GRAMMAR TOGGLE =====
+function toggleGrammar(h){const b=h.nextElementSibling;const t=h.querySelector('.grammar-toggle');b.classList.toggle('open');t.classList.toggle('open');}
+</script>
+</body>
+</html>

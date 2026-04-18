@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3.1 U1 Week 4 — Vocabulary Booklet</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FFFFF0;
+  --surface: #FFFFFF;
+  --surface2: #FFF8EC;
+  --border: rgba(230,81,0,0.15);
+  --accent: #E65100;
+  --accent2: #43A047;
+  --accent3: #ff6b6b;
+  --gold: #FF8F00;
+  --text: #1B2A1B;
+  --muted: #5D6B52;
+  --success: #43A047;
+  --error: #C62828;
+  --radius: 16px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Sora', sans-serif; min-height: 100vh; overflow-x: hidden; }
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background: radial-gradient(ellipse 60% 40% at 15% 20%, rgba(230,81,0,0.12) 0%, transparent 60%),
+              radial-gradient(ellipse 50% 35% at 85% 80%, rgba(67,160,71,0.08) 0%, transparent 55%);
+  pointer-events: none; z-index: 0;
+}
+.app { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2.5rem; }
+.nav-brand { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; }
+.nav-links { display: flex; align-items: center; gap: 10px; }
+.nav-home { font-size: 12px; color: var(--muted); text-decoration: none; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--border); transition: all 0.15s; }
+.nav-home:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+.nav-tag { background: rgba(230,81,0,0.15); border: 1px solid rgba(230,81,0,0.3); color: var(--accent); font-size: 12px; padding: 4px 12px; border-radius: 999px; font-weight: 600; letter-spacing: 0.06em; }
+.hero { margin-bottom: 2.5rem; }
+.hero h1 { font-size: clamp(26px, 5vw, 42px); font-weight: 700; line-height: 1.15; }
+.hero h1 span { color: var(--accent); }
+.hero p { font-size: 15px; color: var(--muted); margin-top: 10px; line-height: 1.6; }
+.tabs { display: flex; gap: 6px; margin-bottom: 2rem; flex-wrap: wrap; }
+.tab-btn { background: var(--surface); border: 1px solid var(--border); color: var(--muted); font-size: 13px; font-weight: 600; padding: 8px 18px; border-radius: 999px; cursor: pointer; transition: all 0.2s; letter-spacing: 0.03em; font-family: 'Sora', sans-serif; }
+.tab-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.15); }
+.tab-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+.section { display: none; animation: fadeUp 0.35s ease; }
+.section.active { display: block; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* FLASHCARD */
+.flashcard-wrap { perspective: 1200px; }
+.fc-progress-row { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+.fc-counter { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--muted); white-space: nowrap; }
+.fc-bar-bg { flex: 1; height: 4px; background: var(--surface2); border-radius: 999px; overflow: hidden; }
+.fc-bar { height: 4px; background: var(--accent); border-radius: 999px; transition: width 0.4s ease; }
+.card-scene { width: 100%; height: 320px; cursor: pointer; }
+.card-3d { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.55s cubic-bezier(.4,0,.2,1); }
+.card-3d.flipped { transform: rotateY(180deg); }
+.card-face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: var(--radius); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; }
+.card-front { background: var(--surface); border: 1px solid var(--border); }
+.card-back { background: linear-gradient(135deg, rgba(230,81,0,0.2), rgba(67,160,71,0.12)); border: 1px solid rgba(230,81,0,0.3); transform: rotateY(180deg); }
+.card-word { font-size: clamp(32px, 7vw, 56px); font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-bottom: 12px; }
+.card-pos { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: rgba(230,81,0,0.12); border: 1px solid rgba(230,81,0,0.25); padding: 4px 12px; border-radius: 999px; margin-bottom: 16px; }
+.card-hint { font-size: 14px; color: var(--muted); font-style: italic; }
+.card-flip-hint { position: absolute; bottom: 20px; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
+.card-def { font-size: 16px; color: var(--text); line-height: 1.6; margin-bottom: 16px; max-width: 400px; }
+.card-zh { font-size: 22px; color: var(--gold); font-weight: 600; margin-bottom: 20px; }
+.card-example { font-size: 14px; color: var(--muted); font-style: italic; line-height: 1.6; max-width: 380px; }
+.card-example strong { color: var(--accent2); font-style: normal; }
+.speak-btn { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: rgba(230,81,0,0.12); border: 1px solid rgba(230,81,0,0.25); color: var(--accent); cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 10; }
+.speak-btn:hover { background: rgba(230,81,0,0.25); transform: scale(1.08); }
+.speak-btn.speaking { background: rgba(230,81,0,0.3); border-color: var(--accent); animation: pulse-ring 0.9s ease-in-out infinite; }
+@keyframes pulse-ring { 0%,100% { box-shadow: 0 0 0 0 rgba(230,81,0,0.4); } 50% { box-shadow: 0 0 0 8px rgba(230,81,0,0); } }
+.speak-btn-back { display: inline-flex; align-items: center; gap: 6px; background: rgba(230,81,0,0.12); border: 1px solid rgba(230,81,0,0.25); color: var(--accent); border-radius: 999px; padding: 6px 16px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'Sora', sans-serif; margin-top: 14px; }
+.speak-btn-back:hover { background: rgba(230,81,0,0.25); }
+.speak-btn-back.speaking { animation: pulse-ring 0.9s ease-in-out infinite; }
+.speed-row { position: absolute; top: 16px; left: 16px; display: flex; gap: 4px; }
+.speed-pill { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--surface2); border: 1px solid var(--border); color: var(--muted); cursor: pointer; transition: all 0.15s; font-family: 'Sora', sans-serif; }
+.speed-pill.active { background: rgba(67,160,71,0.15); border-color: rgba(67,160,71,0.4); color: var(--accent2); }
+.fc-controls { display: flex; gap: 10px; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+.fc-btn { font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 600; padding: 10px 24px; border-radius: 999px; border: 1px solid var(--border); cursor: pointer; transition: all 0.18s; background: var(--surface); color: var(--text); }
+.fc-btn:hover { background: var(--surface2); border-color: rgba(255,255,255,0.15); }
+.fc-btn.next { background: var(--accent); border-color: var(--accent); color: white; }
+.fc-btn.next:hover { background: #6a58e0; }
+
+/* QUIZ */
+.quiz-header { display: flex; align-items: center; gap: 16px; margin-bottom: 1.5rem; }
+.quiz-score-badge { font-family: 'Space Mono', monospace; font-size: 13px; background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 6px 16px; color: var(--accent); }
+.qz-bar-bg { flex: 1; height: 4px; background: var(--surface2); border-radius: 999px; overflow: hidden; }
+.qz-bar { height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 999px; transition: width 0.4s; }
+.qz-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin-bottom: 1rem; }
+.qz-q-num { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+.qz-sentence { font-size: 18px; line-height: 1.8; color: var(--text); margin-bottom: 1.5rem; }
+.blank-box { display: inline-block; border-bottom: 2px solid var(--accent); min-width: 90px; padding: 0 6px 3px; text-align: center; color: var(--accent); font-family: 'Space Mono', monospace; font-size: 18px; letter-spacing: 0.05em; vertical-align: middle; margin: 0 4px; }
+.qz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.qz-option { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; cursor: pointer; font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 600; color: var(--text); transition: all 0.2s; text-align: left; position: relative; overflow: hidden; }
+.qz-option::before { content: attr(data-letter); position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 11px; color: var(--muted); font-family: 'Space Mono', monospace; }
+.qz-option span { margin-left: 22px; }
+.qz-option:hover:not(.disabled) { border-color: var(--accent); background: rgba(230,81,0,0.1); }
+.qz-option.correct { background: rgba(67,160,71,0.15); border-color: var(--success); color: var(--success); }
+.qz-option.wrong { background: rgba(255,107,107,0.1); border-color: var(--error); color: var(--error); }
+.qz-option.disabled { cursor: default; }
+.qz-feedback { margin-top: 12px; padding: 10px 14px; border-radius: 10px; font-size: 14px; font-weight: 600; display: none; }
+.qz-feedback.show { display: block; }
+.qz-feedback.ok { background: rgba(67,160,71,0.1); color: var(--success); }
+.qz-feedback.no { background: rgba(255,107,107,0.1); color: var(--error); }
+.qz-next-btn { display: none; margin-top: 1.5rem; background: var(--accent); color: white; border: none; border-radius: 999px; padding: 12px 32px; font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+.qz-next-btn.show { display: inline-block; }
+.qz-next-btn:hover { background: #6a58e0; }
+.qz-speak-btn { display: inline-flex; align-items: center; gap: 5px; background: rgba(230,81,0,0.1); border: 1px solid rgba(230,81,0,0.2); color: var(--accent); border-radius: 999px; padding: 5px 14px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Sora', sans-serif; transition: all 0.15s; margin-top: 10px; }
+.qz-speak-btn:hover { background: rgba(230,81,0,0.2); }
+.result-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 3rem 2rem; text-align: center; }
+.result-score { font-family: 'Space Mono', monospace; font-size: 64px; font-weight: 700; color: var(--accent); }
+.result-label { font-size: 18px; color: var(--text); margin: 12px 0 6px; font-weight: 600; }
+.result-sub { font-size: 14px; color: var(--muted); }
+.result-stars { font-size: 32px; margin: 16px 0; letter-spacing: 6px; }
+.retry-btn { margin-top: 24px; background: var(--accent); color: white; border: none; border-radius: 999px; padding: 12px 32px; font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; }
+
+/* GRAMMAR */
+.grammar-grid { display: grid; gap: 1rem; }
+.grammar-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.grammar-card-header { padding: 1rem 1.25rem; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: background 0.15s; }
+.grammar-card-header:hover { background: var(--surface2); }
+.grammar-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.grammar-card-header h3 { font-size: 15px; font-weight: 600; color: var(--text); flex: 1; }
+.grammar-toggle { font-size: 18px; color: var(--muted); transition: transform 0.25s; }
+.grammar-toggle.open { transform: rotate(180deg); }
+.grammar-body { display: none; padding: 0 1.25rem 1.25rem; }
+.grammar-body.open { display: block; animation: fadeUp 0.25s ease; }
+.rule-box { background: rgba(230,81,0,0.08); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 14px 16px; margin-bottom: 14px; font-size: 14px; line-height: 1.7; }
+.rule-box strong { color: var(--accent); }
+.rule-example { background: var(--surface2); border-radius: 10px; padding: 12px 16px; margin: 8px 0; font-size: 14px; line-height: 1.7; }
+.rule-example .subj { color: var(--accent2); font-weight: 700; text-decoration: underline; }
+.rule-example .pred { color: var(--gold); font-weight: 700; text-decoration: underline; }
+.grammar-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 10px 0; }
+.grammar-table th { background: var(--surface2); color: var(--muted); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 12px; text-align: left; font-weight: 600; }
+.grammar-table td { padding: 10px 12px; border-top: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.6; }
+.grammar-table td:first-child { color: var(--muted); white-space: nowrap; font-size: 13px; width: 35%; }
+.tag-cs { background: rgba(67,160,71,0.15); color: var(--accent2); border: 1px solid rgba(67,160,71,0.3); font-size: 11px; padding: 2px 8px; border-radius: 999px; font-weight: 600; white-space: nowrap; }
+.tag-cp { background: rgba(247,201,72,0.15); color: var(--gold); border: 1px solid rgba(247,201,72,0.3); font-size: 11px; padding: 2px 8px; border-radius: 999px; font-weight: 600; white-space: nowrap; }
+
+/* Grammar Quiz */
+.gq-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 10px; }
+.gq-q { font-size: 14px; color: var(--text); margin-bottom: 10px; line-height: 1.6; }
+.gq-q strong { color: var(--accent); }
+.gq-options { display: flex; flex-direction: column; gap: 6px; }
+.gq-opt { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; font-size: 13px; cursor: pointer; color: var(--text); text-align: left; font-family: 'Sora', sans-serif; transition: all 0.15s; }
+.gq-opt:hover:not(.disabled) { border-color: var(--accent); background: rgba(230,81,0,0.08); }
+.gq-opt.correct { background: rgba(67,160,71,0.12); border-color: var(--success); color: var(--success); font-weight: 600; }
+.gq-opt.wrong { background: rgba(255,107,107,0.08); border-color: var(--error); color: var(--error); }
+.gq-opt.disabled { cursor: default; }
+.gq-fb { font-size: 12px; margin-top: 6px; padding: 6px 10px; border-radius: 8px; display: none; }
+.gq-fb.show { display: block; }
+.gq-fb.ok { background: rgba(67,160,71,0.08); color: var(--success); }
+.gq-fb.no { background: rgba(255,107,107,0.08); color: var(--error); }
+.gq-score { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--accent); margin-bottom: 1rem; }
+.gq-reset { background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 8px 20px; font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; margin-top: 1rem; transition: all 0.15s; }
+.gq-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+/* SPELLING */
+.spelling-group { margin-bottom: 1.5rem; }
+.spelling-group h4 { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.word-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.word-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 8px 14px; font-size: 14px; font-weight: 600; color: var(--text); cursor: pointer; transition: all 0.2s; }
+.word-chip:hover { border-color: var(--accent2); color: var(--accent2); transform: translateY(-2px); }
+.word-chip:active { transform: scale(0.96); }
+.word-chip .zh { font-size: 12px; color: var(--muted); font-weight: 400; margin-left: 8px; }
+
+/* MATCH */
+.match-info { font-size: 13px; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.6; }
+.match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.match-col-title { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 10px; }
+.match-items { display: flex; flex-direction: column; gap: 8px; }
+.match-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; color: var(--text); text-align: center; user-select: none; }
+.match-item:hover:not(.matched):not(.selected) { border-color: rgba(255,255,255,0.2); background: var(--surface2); }
+.match-item.selected { border-color: var(--accent); background: rgba(230,81,0,0.15); color: var(--accent); }
+.match-item.matched { border-color: var(--success); background: rgba(67,160,71,0.1); color: var(--success); opacity: 0.6; cursor: default; }
+.match-item.wrong-flash { border-color: var(--error); background: rgba(255,107,107,0.1); animation: shake 0.4s ease; }
+@keyframes shake { 0%,100%{transform:none} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+.match-score-row { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+.match-score-label { font-size: 13px; color: var(--muted); }
+.match-score-num { font-family: 'Space Mono', monospace; font-size: 18px; color: var(--accent); font-weight: 700; }
+.match-reset-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 8px 20px; font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.2s; }
+.match-reset-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+.match-complete { display: none; background: rgba(67,160,71,0.1); border: 1px solid rgba(67,160,71,0.3); border-radius: 12px; padding: 16px; text-align: center; font-size: 15px; color: var(--success); font-weight: 600; margin-top: 1rem; }
+.match-complete.show { display: block; animation: fadeUp 0.3s ease; }
+</style>
+</head>
+<body>
+<div class="app">
+  <nav>
+    <span class="nav-brand">Vocabulary Booklet</span>
+    <div class="nav-links">
+      <a class="nav-home" href="../../index.html">← Home</a>
+      <span class="nav-tag">Week 4</span>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1>Learn English<br><span>Interactively</span></h1>
+    <p>Vowel Digraphs · Vocabulary · Grammar · High-Frequency Words</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('flashcard',this)">📇 Flashcards</button>
+    <button class="tab-btn" onclick="switchTab('quiz',this)">🎯 Quiz</button>
+    <button class="tab-btn" onclick="switchTab('match',this)">🔗 Matching</button>
+    <button class="tab-btn" onclick="switchTab('grammar',this)">📖 Grammar Notes</button>
+  </div>
+
+  <!-- FLASHCARD -->
+  <div class="section active" id="sec-flashcard">
+    <div class="flashcard-wrap">
+      <div class="fc-progress-row">
+        <div class="fc-counter" id="fc-counter">1 / 22</div>
+        <div class="fc-bar-bg"><div class="fc-bar" id="fc-bar" style="width:5%"></div></div>
+      </div>
+      <div class="card-scene" onclick="flipCard()">
+        <div class="card-3d" id="fc-card">
+          <div class="card-face card-front">
+            <div class="speed-row">
+              <button class="speed-pill active" onclick="setSpeed(0.75,this,event)">0.75x</button>
+              <button class="speed-pill" onclick="setSpeed(1,this,event)">1x</button>
+              <button class="speed-pill" onclick="setSpeed(1.25,this,event)">1.25x</button>
+            </div>
+            <button class="speak-btn" id="fc-speak-btn" onclick="speakWord(event)" title="Listen">🔊</button>
+            <div class="card-pos" id="fc-pos">—</div>
+            <div class="card-word" id="fc-word">—</div>
+            <div class="card-hint" id="fc-hint-zh">—</div>
+            <div class="card-flip-hint">tap card to flip</div>
+          </div>
+          <div class="card-face card-back">
+            <div class="card-def" id="fc-def">—</div>
+            <div class="card-zh" id="fc-zh">—</div>
+            <div class="card-example" id="fc-ex">—</div>
+            <button class="speak-btn-back" id="fc-speak-back" onclick="speakExampleSentence(event)">🔊 Listen to example</button>
+          </div>
+        </div>
+      </div>
+      <div class="fc-controls">
+        <button class="fc-btn prev" onclick="fcNav(-1)">← Prev</button>
+        <button class="fc-btn shuffle" onclick="fcShuffle()">⇄ Shuffle</button>
+        <button class="fc-btn next" onclick="fcNav(1)">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="section" id="sec-quiz">
+    <div id="qz-main">
+      <div class="quiz-header">
+        <div class="quiz-score-badge" id="qz-score-badge">0 / 0</div>
+        <div class="qz-bar-bg"><div class="qz-bar" id="qz-bar" style="width:0%"></div></div>
+      </div>
+      <div id="qz-card-wrap"></div>
+      <button class="qz-next-btn" id="qz-next" onclick="qzNext()">Next question →</button>
+    </div>
+    <div id="qz-result" style="display:none">
+      <div class="result-card">
+        <div class="result-stars" id="res-stars">⭐⭐⭐</div>
+        <div class="result-score" id="res-score">—</div>
+        <div class="result-label" id="res-label">—</div>
+        <div class="result-sub" id="res-sub">—</div>
+        <button class="retry-btn" onclick="qzRestart()">Try Again</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATCHING -->
+  <div class="section" id="sec-match">
+    <div class="match-score-row">
+      <span class="match-score-label">Matched:</span>
+      <span class="match-score-num" id="match-score">0 / 10</span>
+      <button class="match-reset-btn" onclick="matchReset()">Reset</button>
+    </div>
+    <p class="match-info">Click a word on the left, then click its Chinese meaning on the right.</p>
+    <div class="match-grid">
+      <div>
+        <div class="match-col-title">English Word</div>
+        <div class="match-items" id="match-left"></div>
+      </div>
+      <div>
+        <div class="match-col-title">Chinese Meaning</div>
+        <div class="match-items" id="match-right"></div>
+      </div>
+    </div>
+    <div class="match-complete" id="match-complete">🎉 Perfect! All matched! Great job!</div>
+  </div>
+
+  <!-- GRAMMAR -->
+  <div class="section" id="sec-grammar">
+    <div class="grammar-grid">
+
+      <!-- Compound Subjects & Predicates -->
+      <div class="grammar-card">
+        <div class="grammar-card-header" onclick="toggleGrammar(this)">
+          <div class="grammar-icon" style="background:rgba(230,81,0,0.12)">📝</div>
+          <h3>Compound Subjects &amp; Predicates</h3>
+          <span class="grammar-toggle">▾</span>
+        </div>
+        <div class="grammar-body">
+          <div class="rule-box">
+            <strong>Compound subject</strong> — two or more subjects joined by <em>and</em> or <em>or</em>.<br>
+            <strong>Compound predicate</strong> — two or more verbs joined by <em>and</em>, <em>but</em>, or <em>or</em>.
+          </div>
+          <table class="grammar-table">
+            <thead><tr><th>Sentence</th><th>Type</th><th>Explanation</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Harsh <span class="subj" style="color:var(--accent2);font-weight:700">weather</span> and <span class="subj" style="color:var(--accent2);font-weight:700">climate</span> make it hard to live in the desert.</td>
+                <td><span class="tag-cs">Compound Subject</span></td>
+                <td style="color:var(--muted);font-size:13px"><em>weather</em> and <em>climate</em> joined by <em>and</em></td>
+              </tr>
+              <tr>
+                <td>The desert sand <span style="color:var(--gold);font-weight:700;text-decoration:underline">blows</span> and <span style="color:var(--gold);font-weight:700;text-decoration:underline">stings</span> your face.</td>
+                <td><span class="tag-cp">Compound Predicate</span></td>
+                <td style="color:var(--muted);font-size:13px"><em>blows</em> and <em>stings</em> joined by <em>and</em></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Grammar Quiz -->
+          <div style="margin-top:1.5rem">
+            <div style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px">Practice Quiz — 9 questions</div>
+            <div class="gq-score" id="gq-score">0 / 9 answered</div>
+            <div id="gq-container"></div>
+            <button class="gq-reset" onclick="gqReset()">⇄ Reset quiz</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spelling -->
+      <div class="grammar-card">
+        <div class="grammar-card-header" onclick="toggleGrammar(this)">
+          <div class="grammar-icon" style="background:rgba(247,201,72,0.15)">🔊</div>
+          <h3>Spelling: Vowel Digraphs ai, ay, ee, ea, oa, ow</h3>
+          <span class="grammar-toggle">▾</span>
+        </div>
+        <div class="grammar-body">
+          <div class="spelling-group">
+            <h4>ai / ay sound</h4>
+            <div class="word-chips">
+              <div class="word-chip" onclick="speakText('braid')">braid <span class="zh">編成辮子</span></div>
+              <div class="word-chip" onclick="speakText('maintain')">maintain <span class="zh">維持；保持</span></div>
+              <div class="word-chip" onclick="speakText('training')">training <span class="zh">訓練</span></div>
+              <div class="word-chip" onclick="speakText('display')">display <span class="zh">展示</span></div>
+              <div class="word-chip" onclick="speakText('Wednesday')">Wednesday <span class="zh">星期三</span></div>
+            </div>
+          </div>
+          <div class="spelling-group">
+            <h4>ee / ea sound</h4>
+            <div class="word-chips">
+              <div class="word-chip" onclick="speakText('agree')">agree <span class="zh">同意</span></div>
+              <div class="word-chip" onclick="speakText('asleep')">asleep <span class="zh">睡著的</span></div>
+              <div class="word-chip" onclick="speakText('dream')">dream <span class="zh">夢；夢想</span></div>
+              <div class="word-chip" onclick="speakText('leak')">leak <span class="zh">裂縫；漏水</span></div>
+              <div class="word-chip" onclick="speakText('peach')">peach <span class="zh">桃子</span></div>
+              <div class="word-chip" onclick="speakText('reach')">reach <span class="zh">碰到；達到</span></div>
+              <div class="word-chip" onclick="speakText('reason')">reason <span class="zh">原因</span></div>
+            </div>
+          </div>
+          <div class="spelling-group">
+            <h4>oa / ow sound</h4>
+            <div class="word-chips">
+              <div class="word-chip" onclick="speakText('approach')">approach <span class="zh">方法；接近</span></div>
+              <div class="word-chip" onclick="speakText('charcoal')">charcoal <span class="zh">木炭</span></div>
+              <div class="word-chip" onclick="speakText('shadow')">shadow <span class="zh">影子</span></div>
+              <div class="word-chip" onclick="speakText('toaster')">toaster <span class="zh">烤麵包機</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vocabulary 1–18 -->
+      <div class="grammar-card">
+        <div class="grammar-card-header" onclick="toggleGrammar(this)">
+          <div class="grammar-icon" style="background:rgba(67,160,71,0.15)">📚</div>
+          <h3>Vocabulary Words 1–18</h3>
+          <span class="grammar-toggle">▾</span>
+        </div>
+        <div class="grammar-body">
+          <div class="word-chips" style="flex-direction:column;gap:10px;margin-top:4px">
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('braid')">braid <span class="zh">編成辮子</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to weave hair or strands together in a pattern</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('maintain')">maintain <span class="zh">維持；保持</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to keep something in good condition; to continue something</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('training')">training <span class="zh">訓練</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) learning or practicing skills to get better</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('display')">display <span class="zh">展示</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to show something so others can see it</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('Wednesday')">Wednesday <span class="zh">星期三</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) the day after Tuesday and before Thursday</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('agree')">agree <span class="zh">同意</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to say yes; to have the same opinion</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('asleep')">asleep <span class="zh">睡著的</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(adj) sleeping; not awake</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('dream')">dream <span class="zh">夢；夢想；希望</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n/v) a hope or goal for the future; to have a hope or goal</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('leak')">leak <span class="zh">裂縫；漏水</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a hole or crack that lets liquid or gas escape</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('peach')">peach <span class="zh">桃子</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a soft, sweet fruit with a fuzzy skin</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('reach')">reach <span class="zh">碰到；達到</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(v/n) to stretch out or arrive at something; the distance you can go</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('reason')">reason <span class="zh">原因</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) the cause or explanation for something</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('arrow')">arrow <span class="zh">箭；箭頭</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a thin stick shot from a bow; a sign that points in a direction</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('owner')">owner <span class="zh">擁有者；主人</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a person who has something or owns it</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('shadow')">shadow <span class="zh">影子</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a dark shape made when light is blocked by something</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('approach')">approach <span class="zh">方法；接近</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n/v) a way of doing something; to come near or closer</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('charcoal')">charcoal <span class="zh">木炭</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a black substance made from burned wood, used for fuel</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('toaster')">toaster <span class="zh">烤麵包機</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a small machine used to make bread crispy and brown</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story Vocabulary -->
+      <div class="grammar-card">
+        <div class="grammar-card-header" onclick="toggleGrammar(this)">
+          <div class="grammar-icon" style="background:rgba(255,107,107,0.15)">📖</div>
+          <h3>Story Vocabulary (Week 5 FT)</h3>
+          <span class="grammar-toggle">▾</span>
+        </div>
+        <div class="grammar-body">
+          <div class="word-chips" style="flex-direction:column;gap:10px;margin-top:4px">
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('broadly')">broadly <span class="zh">咧嘴笑</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(adv) widely and openly</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('foundation')">foundation <span class="zh">地基；根基；基礎</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) the base or support for a building</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('sturdy')">sturdy <span class="zh">堅固的</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(adj) strong and solid</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('scale')">scale <span class="zh">鱗片</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a small, thin plate that protects the skin of a fish</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('massive')">massive <span class="zh">巨大的</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(adj) very large</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- High-Frequency Words -->
+      <div class="grammar-card">
+        <div class="grammar-card-header" onclick="toggleGrammar(this)">
+          <div class="grammar-icon" style="background:rgba(247,201,72,0.12)">⚡</div>
+          <h3>High-Frequency Words</h3>
+          <span class="grammar-toggle">▾</span>
+        </div>
+        <div class="grammar-body">
+          <div class="word-chips" style="flex-direction:column;gap:10px;margin-top:4px">
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('voice')">voice <span class="zh">聲音；發聲</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) the sound made when speaking or singing; (v) to express or say something — <em>The teacher raised her voice to get everyone's attention.</em></div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="word-chip" style="flex-shrink:0" onclick="speakText('south')">south <span class="zh">南方；南邊</span></div>
+              <div style="font-size:13px;color:var(--muted);padding-top:10px">(n) the direction opposite to north; (adj) toward the south — <em>We decided to drive south to reach the beach before sunset.</em></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ============ DATA ============
+const cards = [
+  // Spelling Words
+  { word:'braid',      pos:'v',     zh:'編成辮子',       def:'to weave hair or strands together in a pattern',                    ex:'Her hair was <strong>braided</strong> neatly for the school performance.' },
+  { word:'maintain',   pos:'v',     zh:'維持；保持',      def:'to keep something in good condition; to continue something',         ex:'We clean our desks to <strong>maintain</strong> a neat classroom.' },
+  { word:'training',   pos:'n',     zh:'訓練',            def:'learning or practicing skills to get better',                        ex:'The team stayed after school for extra <strong>training</strong> before the big game.' },
+  { word:'display',    pos:'v',     zh:'展示',            def:'to show something so others can see it',                             ex:'The teacher will <strong>display</strong> the students\' artwork on the wall.' },
+  { word:'Wednesday',  pos:'n',     zh:'星期三',           def:'the day after Tuesday and before Thursday',                          ex:'The English library is closed on <strong>Wednesday</strong> afternoon.' },
+  { word:'agree',      pos:'v',     zh:'同意',            def:'to say yes; to have the same opinion',                               ex:'The students <strong>agree</strong> to follow the classroom rules.' },
+  { word:'asleep',     pos:'adj',   zh:'睡著的',           def:'sleeping; not awake',                                               ex:'The baby fell <strong>asleep</strong> before the story ended.' },
+  // Vocabulary 8–18
+  { word:'dream',      pos:'n/v',   zh:'夢；夢想；希望',  def:'a hope or goal for the future; to have a hope or goal',             ex:'My <strong>dream</strong> is to travel around the world.' },
+  { word:'leak',       pos:'n',     zh:'裂縫；漏水',       def:'a hole or crack that lets liquid or gas escape',                     ex:'A small <strong>leak</strong> in the faucet caused water to drip all night.' },
+  { word:'peach',      pos:'n',     zh:'桃子',            def:'a soft, sweet fruit with a fuzzy skin',                              ex:'The farmer picked a ripe <strong>peach</strong> and handed it to the children.' },
+  { word:'reach',      pos:'v/n',   zh:'碰到；達到',       def:'to stretch out or arrive at something; the distance you can go',    ex:'He stood on his toes to <strong>reach</strong> the shelf.' },
+  { word:'reason',     pos:'n',     zh:'原因',            def:'the cause or explanation for something',                             ex:'The <strong>reason</strong> for the delay was heavy traffic on the way to school.' },
+  { word:'arrow',      pos:'n',     zh:'箭；箭頭',         def:'a thin stick shot from a bow; a sign that points in a direction',   ex:'During archery lesson, I aimed the <strong>arrow</strong> carefully and hit the target.' },
+  { word:'owner',      pos:'n',     zh:'擁有者；主人',     def:'a person who has something or owns it',                              ex:'The <strong>owner</strong> of the new restaurant welcomed everyone with a smile.' },
+  { word:'shadow',     pos:'n',     zh:'影子',            def:'a dark shape made when light is blocked by something',               ex:'The tree\'s <strong>shadow</strong> gave cool shade during the hot summer afternoon.' },
+  { word:'approach',   pos:'n/v',   zh:'方法；接近',       def:'a way of doing something; to come near or closer',                  ex:'I slowly <strong>approached</strong> the stray kitten so it would not run away.' },
+  { word:'charcoal',   pos:'n',     zh:'木炭',            def:'a black substance made from burned wood, used for fuel',             ex:'We made a fire using <strong>charcoal</strong> to roast marshmallows.' },
+  { word:'toaster',    pos:'n',     zh:'烤麵包機',         def:'a small machine used to make bread crispy and brown',               ex:'Bread popped out of the <strong>toaster</strong> golden and warm.' },
+  // Story Vocab
+  { word:'broadly',    pos:'adv',   zh:'咧嘴笑',          def:'widely and openly',                                                  ex:'The boy grinned <strong>broadly</strong> after winning the game.' },
+  { word:'foundation', pos:'n',     zh:'地基；根基',       def:'the base or support for a building',                                ex:'Builders made a strong <strong>foundation</strong> before constructing the house.' },
+  { word:'sturdy',     pos:'adj',   zh:'堅固的',           def:'strong and solid',                                                  ex:'The shelf is <strong>sturdy</strong> enough to hold all the books and supplies.' },
+  { word:'massive',    pos:'adj',   zh:'巨大的',           def:'very large',                                                        ex:'A <strong>massive</strong> tree fell during the storm and blocked the road.' },
+];
+
+// ============ QUIZ DATA ============
+const quizData = [
+  { sentence: 'Her hair was ___ neatly for the school performance.', zh: '她的頭髮為了學校表演而整齊地___。', answer: 'braided', choices: ['braided','displayed','leaked','reached'] },
+  { sentence: 'We clean our desks to ___ a neat classroom.', zh: '我們清潔桌子以___整潔的教室。', answer: 'maintain', choices: ['maintain','approach','display','reason'] },
+  { sentence: 'The teacher will ___ the students\' artwork on the wall.', zh: '老師將把學生的作品___在牆上。', answer: 'display', choices: ['display','shadow','braid','dream'] },
+  { sentence: 'The students ___ to follow the classroom rules.', zh: '學生___遵守課堂規則。', answer: 'agree', choices: ['agree','reach','approach','maintain'] },
+  { sentence: 'The baby fell ___ before the story ended.', zh: '故事結束前，嬰兒就___了。', answer: 'asleep', choices: ['asleep','broadly','massive','sturdy'] },
+  { sentence: 'My ___ is to travel around the world.', zh: '我的___是環遊世界。', answer: 'dream', choices: ['dream','reason','arrow','shadow'] },
+  { sentence: 'A small ___ in the faucet caused water to drip all night.', zh: '水龍頭上的小___導致水整夜滴落。', answer: 'leak', choices: ['leak','shadow','toaster','charcoal'] },
+  { sentence: 'The farmer picked a ripe ___ and handed it to the children.', zh: '農夫摘了一個熟透的___遞給孩子們。', answer: 'peach', choices: ['peach','reason','arrow','foundation'] },
+  { sentence: 'The ___ for the delay was heavy traffic on the way to school.', zh: '延誤的___是上學途中交通擁擠。', answer: 'reason', choices: ['reason','dream','owner','approach'] },
+  { sentence: 'During archery lesson, I aimed the ___ carefully and hit the target.', zh: '在射箭課上，我仔細瞄準___並射中目標。', answer: 'arrow', choices: ['arrow','shadow','charcoal','toaster'] },
+  { sentence: 'The ___ of the new restaurant welcomed everyone with a smile.', zh: '新餐廳的___面帶微笑地歡迎每個人。', answer: 'owner', choices: ['owner','reason','approach','display'] },
+  { sentence: 'The tree\'s ___ gave cool shade during the hot summer afternoon.', zh: '在炎熱的夏天下午，樹的___提供了涼爽的遮蔭。', answer: 'shadow', choices: ['shadow','dream','training','foundation'] },
+  { sentence: 'I slowly ___ the stray kitten so it would not run away.', zh: '我慢慢地___那隻流浪貓，這樣牠就不會跑掉。', answer: 'approached', choices: ['approached','braided','displayed','maintained'] },
+  { sentence: 'We made a fire using ___ to roast marshmallows.', zh: '我們用___生火烤棉花糖。', answer: 'charcoal', choices: ['charcoal','toaster','arrow','shadow'] },
+  { sentence: 'Bread popped out of the ___ golden and warm.', zh: '麵包從___裡彈出來，金黃又熱乎。', answer: 'toaster', choices: ['toaster','charcoal','owner','peach'] },
+  { sentence: 'Builders made a strong ___ before constructing the house.', zh: '建築工人在建造房屋前打好了堅固的___。', answer: 'foundation', choices: ['foundation','shadow','reason','display'] },
+  { sentence: 'The shelf is ___ enough to hold all the books and supplies.', zh: '書架___到足以支撐所有書籍和用品。', answer: 'sturdy', choices: ['sturdy','massive','broadly','asleep'] },
+  { sentence: 'A ___ tree fell during the storm and blocked the road.', zh: '暴風雨中一棵___的樹倒下，擋住了道路。', answer: 'massive', choices: ['massive','sturdy','broadly','training'] },
+];
+
+// ============ GRAMMAR QUIZ DATA ============
+const grammarQuestions = [
+  { q: 'Which sentence has a <strong>compound subject</strong>?', opts: ['The musician performed on stage.','The musician and the dancer performed on stage.','The musician performed and bowed.','Performing on stage requires courage.'], ans: 1 },
+  { q: 'Which sentence has a <strong>compound predicate</strong>?', opts: ['The explorer traveled far.','The explorer and the guide traveled far.','The explorer traveled and discovered new lands.','Traveling across the desert is difficult.'], ans: 2 },
+  { q: 'Choose the correct verb.<br><em>The teachers and students ___ preparing for the school fair.</em>', opts: ['is','are','was','prepares'], ans: 1 },
+  { q: 'Which sentence has BOTH a compound subject and a compound predicate?', opts: ['The fire alarm rang loudly.','The fire alarm rang loudly and scared the students.','The fire alarm and the flashing lights warned everyone.','The fire alarm and the flashing lights warned everyone and caused confusion.'], ans: 3 },
+  { q: 'Choose the correct sentence.', opts: ['The author and the illustrator creates the book.','The author and the illustrator create the book.','The author and the illustrator creating the book.','The author and the illustrator creates and designs the book.'], ans: 1 },
+  { q: 'Which option shows a <strong>compound predicate</strong>?', opts: ['Lily and her friend','read books and write stories','in the library','after school'], ans: 1 },
+  { q: 'Which sentence has a <strong>compound subject</strong>?', opts: ['The principal announced the results.','The principal announced and explained the results.','The principal and the vice principal announced the results.','Announcing the results made everyone nervous.'], ans: 2 },
+  { q: 'Choose the correct verbs.<br><em>The eagle ___ and ___ above the mountains.</em>', opts: ['soar / glide','soars / glides','soar / glides','soars / glide'], ans: 1 },
+  { q: 'Which sentence tells that TWO people did TWO actions?', opts: ['Liam solved the puzzle.','Liam and Noah solved the puzzle.','Liam solved and explained the puzzle.','Liam and Noah solved and explained the puzzle.'], ans: 3 },
+];
+
+// ============ MATCH PAIRS ============
+const matchPairs = [
+  { en:'braid',      zh:'編成辮子' },
+  { en:'maintain',   zh:'維持；保持' },
+  { en:'dream',      zh:'夢；夢想' },
+  { en:'shadow',     zh:'影子' },
+  { en:'charcoal',   zh:'木炭' },
+  { en:'approach',   zh:'方法；接近' },
+  { en:'reason',     zh:'原因' },
+  { en:'sturdy',     zh:'堅固的' },
+  { en:'massive',    zh:'巨大的' },
+  { en:'foundation', zh:'地基；根基' },
+];
+
+// ============ SPEECH ============
+let speechRate = 0.75;
+let _voices = [];
+function _loadVoices() {
+  _voices = window.speechSynthesis.getVoices();
+  if (!_voices.length && window.speechSynthesis.onvoiceschanged === undefined)
+    setTimeout(_loadVoices, 200);
+}
+if (window.speechSynthesis) { window.speechSynthesis.onvoiceschanged = _loadVoices; _loadVoices(); }
+function _pickVoice() {
+  if (!_voices.length) _voices = window.speechSynthesis.getVoices();
+  return _voices.find(v => v.lang === 'en-US' && /female|zira|samantha|karen|moira/i.test(v.name))
+      || _voices.find(v => v.lang === 'en-US')
+      || _voices.find(v => v.lang.startsWith('en')) || null;
+}
+function setSpeed(rate, btn, e) {
+  e.stopPropagation(); speechRate = rate;
+  document.querySelectorAll('.speed-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+}
+function speak(text, rate, onStart, onEnd) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const doSpeak = () => {
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = 'en-US'; utt.rate = rate || speechRate; utt.pitch = 1;
+    const v = _pickVoice(); if (v) utt.voice = v;
+    if (onStart) utt.onstart = onStart;
+    if (onEnd) utt.onend = onEnd;
+    window.speechSynthesis.speak(utt);
+  };
+  if (_voices.length) doSpeak(); else setTimeout(doSpeak, 350);
+}
+function speakWord(e) {
+  e.stopPropagation();
+  const btn = document.getElementById('fc-speak-btn');
+  btn.classList.add('speaking');
+  speak(fcList[fcIndex].word, speechRate, null, () => btn.classList.remove('speaking'));
+}
+function speakExampleSentence(e) {
+  e.stopPropagation();
+  const raw = fcList[fcIndex].ex.replace(/<[^>]+>/g, '');
+  const btn = document.getElementById('fc-speak-back');
+  btn.classList.add('speaking');
+  speak(raw, speechRate * 0.9, null, () => btn.classList.remove('speaking'));
+}
+function speakText(text) { speak(text, speechRate); }
+
+// ============ TABS ============
+function switchTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  if (id === 'match') matchInit();
+  if (id === 'quiz') qzInit();
+}
+
+// ============ FLASHCARDS ============
+let fcIndex = 0, fcList = [...cards], fcFlipped = false;
+function fcRender() {
+  const c = fcList[fcIndex];
+  fcFlipped = false;
+  document.getElementById('fc-card').classList.remove('flipped');
+  document.getElementById('fc-word').textContent = c.word;
+  document.getElementById('fc-pos').textContent = '(' + c.pos + ')';
+  document.getElementById('fc-hint-zh').textContent = c.zh;
+  document.getElementById('fc-def').textContent = c.def;
+  document.getElementById('fc-zh').textContent = c.zh;
+  document.getElementById('fc-ex').innerHTML = c.ex;
+  const pct = Math.round((fcIndex + 1) / fcList.length * 100);
+  document.getElementById('fc-bar').style.width = pct + '%';
+  document.getElementById('fc-counter').textContent = (fcIndex + 1) + ' / ' + fcList.length;
+  document.getElementById('fc-speak-btn').classList.remove('speaking');
+  document.getElementById('fc-speak-back').classList.remove('speaking');
+  setTimeout(() => {
+    const btn = document.getElementById('fc-speak-btn');
+    btn.classList.add('speaking');
+    // auto-speak removed for compatibility
+  }, 300);
+}
+function flipCard() {
+  fcFlipped = !fcFlipped;
+  document.getElementById('fc-card').classList.toggle('flipped', fcFlipped);
+}
+function fcNav(dir) { fcIndex = (fcIndex + dir + fcList.length) % fcList.length; fcRender(); }
+function fcShuffle() {
+  for (let i = fcList.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [fcList[i], fcList[j]] = [fcList[j], fcList[i]]; }
+  fcIndex = 0; fcRender();
+}
+fcRender();
+
+// ============ QUIZ ============
+let qzQueue = [], qzCurrent = 0, qzCorrect = 0, qzAnswered = false;
+function qzInit() {
+  qzQueue = [...quizData].sort(() => Math.random() - 0.5);
+  qzCurrent = 0; qzCorrect = 0; qzAnswered = false;
+  document.getElementById('qz-main').style.display = 'block';
+  document.getElementById('qz-result').style.display = 'none';
+  qzRender();
+}
+function qzRender() {
+  const q = qzQueue[qzCurrent];
+  const pct = Math.round(qzCurrent / qzQueue.length * 100);
+  document.getElementById('qz-bar').style.width = pct + '%';
+  document.getElementById('qz-score-badge').textContent = qzCorrect + ' / ' + qzCurrent;
+  const shuffled = [...q.choices].sort(() => Math.random() - 0.5);
+  const letters = ['A','B','C','D'];
+  document.getElementById('qz-card-wrap').innerHTML = `
+    <div class="qz-card">
+      <div class="qz-q-num">Question ${qzCurrent + 1} of ${qzQueue.length}</div>
+      <div class="qz-sentence">${q.sentence.replace('___', '<span class="blank-box">___</span>').replace('___ and ___', '<span class="blank-box">___</span> and <span class="blank-box">___</span>')}</div>
+      <button class="qz-speak-btn" onclick="speakText(${JSON.stringify(q.sentence.replace(/_+/g,'blank'))})">🔊 Listen</button>
+      <div class="qz-options" style="margin-top:14px">
+        ${shuffled.map((c,i) => `<button class="qz-option" data-letter="${letters[i]}" onclick="qzAnswer(this,'${c}','${q.answer}','${(q.zh||'').replace(/'/g,"\\'")}')"><span>${c}</span></button>`).join('')}
+      </div>
+      <div class="qz-feedback" id="qz-fb"></div>
+      <div class="qz-zh-trans" id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(255,143,0,0.08);border-radius:8px;border-left:3px solid var(--gold);"></div>
+    </div>`;
+  document.getElementById('qz-next').classList.remove('show');
+  qzAnswered = false;
+}
+function qzAnswer(btn, chosen, correct, zh) {
+  if (qzAnswered) return;
+  qzAnswered = true;
+  const fb = document.getElementById('qz-fb');
+  const zhEl = document.getElementById('qz-zh');
+  document.querySelectorAll('.qz-option').forEach(b => b.classList.add('disabled'));
+  if (chosen === correct) {
+    btn.classList.add('correct'); fb.textContent = '✓ Correct!'; fb.className = 'qz-feedback show ok'; qzCorrect++;
+  } else {
+    btn.classList.add('wrong'); fb.textContent = '✗ The answer is: ' + correct; fb.className = 'qz-feedback show no';
+    document.querySelectorAll('.qz-option').forEach(b => { if (b.querySelector('span').textContent === correct) b.classList.add('correct'); });
+  }
+  if (zh) { zhEl.textContent = '📖 ' + zh; zhEl.style.display = 'block'; }
+  speak(correct, 0.85);
+  document.getElementById('qz-score-badge').textContent = qzCorrect + ' / ' + (qzCurrent + 1);
+  document.getElementById('qz-next').classList.add('show');
+}
+function qzNext() { qzCurrent++; if (qzCurrent >= qzQueue.length) { qzShowResult(); return; } qzRender(); }
+function qzShowResult() {
+  document.getElementById('qz-main').style.display = 'none';
+  document.getElementById('qz-result').style.display = 'block';
+  const pct = Math.round(qzCorrect / qzQueue.length * 100);
+  document.getElementById('res-score').textContent = qzCorrect + ' / ' + qzQueue.length;
+  document.getElementById('res-stars').textContent = pct >= 90 ? '⭐⭐⭐' : pct >= 70 ? '⭐⭐' : '⭐';
+  document.getElementById('res-label').textContent = pct >= 90 ? 'Excellent!' : pct >= 70 ? 'Good job!' : 'Keep practicing!';
+  document.getElementById('res-sub').textContent = pct + '% correct';
+}
+function qzRestart() { qzInit(); }
+
+// ============ GRAMMAR QUIZ ============
+let gqAnswered = new Array(grammarQuestions.length).fill(false);
+let gqCorrectCount = 0;
+function gqBuild() {
+  const container = document.getElementById('gq-container');
+  container.innerHTML = grammarQuestions.map((q, qi) => `
+    <div class="gq-card" id="gq-${qi}">
+      <div class="gq-q">${qi + 1}. ${q.q}</div>
+      <div class="gq-options">
+        ${q.opts.map((o, oi) => `<button class="gq-opt" id="gqo-${qi}-${oi}" onclick="gqAnswer(${qi},${oi})">${String.fromCharCode(65+oi)}. ${o}</button>`).join('')}
+      </div>
+      <div class="gq-fb" id="gqf-${qi}"></div>
+    </div>`).join('');
+}
+function gqAnswer(qi, oi) {
+  if (gqAnswered[qi]) return;
+  gqAnswered[qi] = true;
+  const q = grammarQuestions[qi];
+  const fb = document.getElementById('gqf-' + qi);
+  for (let i = 0; i < q.opts.length; i++) {
+    document.getElementById(`gqo-${qi}-${i}`).classList.add('disabled');
+  }
+  if (oi === q.ans) {
+    document.getElementById(`gqo-${qi}-${oi}`).classList.add('correct');
+    fb.textContent = '✓ Correct!'; fb.className = 'gq-fb show ok';
+    gqCorrectCount++;
+  } else {
+    document.getElementById(`gqo-${qi}-${oi}`).classList.add('wrong');
+    document.getElementById(`gqo-${qi}-${q.ans}`).classList.add('correct');
+    fb.textContent = '✗ Correct answer: ' + String.fromCharCode(65 + q.ans);
+    fb.className = 'gq-fb show no';
+  }
+  const answered = gqAnswered.filter(Boolean).length;
+  document.getElementById('gq-score').textContent = gqCorrectCount + ' / ' + answered + ' answered';
+}
+function gqReset() {
+  gqAnswered = new Array(grammarQuestions.length).fill(false);
+  gqCorrectCount = 0;
+  document.getElementById('gq-score').textContent = '0 / 9 answered';
+  gqBuild();
+}
+gqBuild();
+
+// ============ MATCHING ============
+let matchSelected = null, matchMatchedCount = 0;
+function matchInit() {
+  matchMatchedCount = 0; matchSelected = null;
+  document.getElementById('match-complete').classList.remove('show');
+  document.getElementById('match-score').textContent = '0 / ' + matchPairs.length;
+  const sl = [...matchPairs].sort(() => Math.random() - 0.5);
+  const sr = [...matchPairs].sort(() => Math.random() - 0.5);
+  document.getElementById('match-left').innerHTML = sl.map(p => `<div class="match-item" data-en="${p.en}" onclick="matchClick(this,'en')">${p.en}</div>`).join('');
+  document.getElementById('match-right').innerHTML = sr.map(p => `<div class="match-item" data-en="${p.en}" onclick="matchClick(this,'zh')">${p.zh}</div>`).join('');
+}
+function matchClick(el, side) {
+  if (el.classList.contains('matched')) return;
+  if (!matchSelected) { el.classList.add('selected'); matchSelected = { el, side }; return; }
+  if (matchSelected.side === side) { matchSelected.el.classList.remove('selected'); el.classList.add('selected'); matchSelected = { el, side }; return; }
+  const enEl = side === 'en' ? el : matchSelected.el;
+  const zhEl = side === 'zh' ? el : matchSelected.el;
+  if (enEl.dataset.en === zhEl.dataset.en) {
+    enEl.classList.remove('selected'); zhEl.classList.remove('selected');
+    enEl.classList.add('matched'); zhEl.classList.add('matched');
+    matchMatchedCount++;
+    document.getElementById('match-score').textContent = matchMatchedCount + ' / ' + matchPairs.length;
+    if (matchMatchedCount === matchPairs.length) document.getElementById('match-complete').classList.add('show');
+  } else {
+    enEl.classList.add('wrong-flash'); zhEl.classList.add('wrong-flash');
+    setTimeout(() => { enEl.classList.remove('wrong-flash','selected'); zhEl.classList.remove('wrong-flash','selected'); }, 450);
+  }
+  matchSelected = null;
+}
+function matchReset() { matchInit(); }
+
+// ============ GRAMMAR TOGGLE ============
+function toggleGrammar(header) {
+  const body = header.nextElementSibling;
+  const toggle = header.querySelector('.grammar-toggle');
+  body.classList.toggle('open');
+  toggle.classList.toggle('open');
+}
+</script>
+</body>
+</html>
