@@ -622,31 +622,42 @@ const cards = [
 
 // ============ SPEECH ============
 let speechRate = 0.75;
+let _voices = [];
+function _loadVoices() {
+  _voices = window.speechSynthesis.getVoices();
+  if (!_voices.length && window.speechSynthesis.onvoiceschanged === undefined)
+    setTimeout(_loadVoices, 200);
+}
+if (window.speechSynthesis) { window.speechSynthesis.onvoiceschanged = _loadVoices; _loadVoices(); }
+function _pickVoice() {
+  if (!_voices.length) _voices = window.speechSynthesis.getVoices();
+  return _voices.find(v => v.lang === 'en-US' && /female|zira|samantha|karen|moira/i.test(v.name))
+      || _voices.find(v => v.lang === 'en-US')
+      || _voices.find(v => v.lang.startsWith('en')) || null;
+}
 function setSpeed(rate, btn, e) {
-  e.stopPropagation();
-  speechRate = rate;
+  e.stopPropagation(); speechRate = rate;
   document.querySelectorAll('.speed-pill').forEach(p => p.classList.remove('active'));
   btn.classList.add('active');
 }
 function speak(text, rate, onStart, onEnd) {
   if (!window.speechSynthesis) return;
   window.speechSynthesis.cancel();
-  const utt = new SpeechSynthesisUtterance(text);
-  utt.lang = 'en-US'; utt.rate = rate || speechRate; utt.pitch = 1;
-  const voices = window.speechSynthesis.getVoices();
-  const enVoice = voices.find(v => v.lang.startsWith('en') && !v.name.includes('Google') === false)
-    || voices.find(v => v.lang.startsWith('en'));
-  if (enVoice) utt.voice = enVoice;
-  if (onStart) utt.onstart = onStart;
-  if (onEnd) utt.onend = onEnd;
-  window.speechSynthesis.speak(utt);
+  const doSpeak = () => {
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = 'en-US'; utt.rate = rate || speechRate; utt.pitch = 1;
+    const v = _pickVoice(); if (v) utt.voice = v;
+    if (onStart) utt.onstart = onStart;
+    if (onEnd) utt.onend = onEnd;
+    window.speechSynthesis.speak(utt);
+  };
+  if (_voices.length) doSpeak(); else setTimeout(doSpeak, 350);
 }
 function speakWord(e) {
   e.stopPropagation();
-  const word = fcList[fcIndex].word;
   const btn = document.getElementById('fc-speak-btn');
   btn.classList.add('speaking');
-  speak(word, speechRate, null, () => btn.classList.remove('speaking'));
+  speak(fcList[fcIndex].word, speechRate, null, () => btn.classList.remove('speaking'));
 }
 function speakExampleSentence(e) {
   e.stopPropagation();
@@ -655,12 +666,7 @@ function speakExampleSentence(e) {
   btn.classList.add('speaking');
   speak(raw, speechRate * 0.9, null, () => btn.classList.remove('speaking'));
 }
-function speakText(text) {
-  speak(text, speechRate);
-}
-if (window.speechSynthesis) {
-  window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
-}
+function speakText(text) { speak(text, speechRate); }
 
 // ============ TABS ============
 function switchTab(id) {
@@ -692,7 +698,7 @@ function fcRender() {
   setTimeout(() => {
     const btn = document.getElementById('fc-speak-btn');
     btn.classList.add('speaking');
-    speak(c.word, speechRate, null, () => btn.classList.remove('speaking'));
+    // auto-speak removed for compatibility
   }, 300);
 }
 function flipCard() {
@@ -757,7 +763,7 @@ function qzRender() {
         ${shuffled.map((c,i) => `<button class="qz-option" data-letter="${letters[i]}" onclick="qzAnswer(this,'${c}','${q.answer}','${(q.zh||'').replace(/'/g,"\\'")}')"><span>${c}</span></button>`).join('')}
       </div>
       <div class="qz-feedback" id="qz-fb"></div>
-      <div class="qz-zh-trans" id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(247,201,72,0.08);border-radius:8px;border-left:3px solid var(--gold);"></div>
+      <div class="qz-zh-trans" id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(255,143,0,0.08);border-radius:8px;border-left:3px solid var(--gold);"></div>
     </div>`;
   document.getElementById('qz-next').classList.remove('show');
   qzAnswered = false;

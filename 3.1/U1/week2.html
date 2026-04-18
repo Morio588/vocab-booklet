@@ -488,21 +488,67 @@ const grammarQuestions = [
   { sentence:'The tired <span class="hl-s">students</span> <span class="hl-p">waited</span> patiently near the gate.', q:'What is the simple predicate (verb)?', opts:['tired students','waited','patiently','near the gate'], ans:1, zh:'疲憊的學生在大門附近耐心等待。' },
 ];
 
-// ===== SPEECH =====
+// ===== SPEECH ENGINE =====
 let speechRate=0.75;
-function setSpeed(rate,btn,e){e.stopPropagation();speechRate=rate;document.querySelectorAll('.speed-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');}
-function speak(text,rate,onEnd){if(!window.speechSynthesis)return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=rate||speechRate;const v=window.speechSynthesis.getVoices();const ev=v.find(x=>x.lang.startsWith('en'));if(ev)u.voice=ev;if(onEnd)u.onend=onEnd;window.speechSynthesis.speak(u);}
-function speakWord(e){e.stopPropagation();const btn=document.getElementById('fc-speak-btn');btn.classList.add('speaking');speak(fcList[fcIndex].word,speechRate,()=>btn.classList.remove('speaking'));}
-function speakExampleSentence(e){e.stopPropagation();const raw=fcList[fcIndex].ex.replace(/<[^>]+>/g,'');const btn=document.getElementById('fc-speak-back');btn.classList.add('speaking');speak(raw,speechRate*0.9,()=>btn.classList.remove('speaking'));}
+let _voices=[];
+function _loadVoices(){
+  _voices=window.speechSynthesis.getVoices();
+  if(!_voices.length&&window.speechSynthesis.onvoiceschanged===undefined){
+    setTimeout(_loadVoices,200);
+  }
+}
+if(window.speechSynthesis){
+  window.speechSynthesis.onvoiceschanged=_loadVoices;
+  _loadVoices();
+}
+function _pickVoice(){
+  if(!_voices.length)_voices=window.speechSynthesis.getVoices();
+  return _voices.find(v=>v.lang==='en-US'&&/female|zira|samantha|karen|moira/i.test(v.name))
+      ||_voices.find(v=>v.lang==='en-US')
+      ||_voices.find(v=>v.lang.startsWith('en'))
+      ||null;
+}
+function speak(text,rate,onEnd){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  const doSpeak=()=>{
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang='en-US';
+    u.rate=rate||speechRate;
+    const v=_pickVoice();
+    if(v)u.voice=v;
+    if(onEnd)u.onend=onEnd;
+    window.speechSynthesis.speak(u);
+  };
+  if(_voices.length){doSpeak();}
+  else{setTimeout(doSpeak,350);}
+}
+function setSpeed(rate,btn,e){
+  e.stopPropagation();speechRate=rate;
+  document.querySelectorAll('.speed-pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+}
+function speakWord(e){
+  e.stopPropagation();
+  const btn=document.getElementById('fc-speak-btn');
+  btn.classList.add('speaking');
+  speak(fcList[fcIndex].word,speechRate,()=>btn.classList.remove('speaking'));
+}
+function speakExampleSentence(e){
+  e.stopPropagation();
+  const raw=fcList[fcIndex].ex.replace(/<[^>]+>/g,'');
+  const btn=document.getElementById('fc-speak-back');
+  btn.classList.add('speaking');
+  speak(raw,speechRate*0.9,()=>btn.classList.remove('speaking'));
+}
 function speakText(t){speak(t,speechRate);}
-if(window.speechSynthesis)window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();
 
 // ===== TABS =====
 function switchTab(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('sec-'+id).classList.add('active');event.currentTarget.classList.add('active');if(id==='match')matchInit();if(id==='quiz')qzInit();}
 
 // ===== FLASHCARDS =====
 let fcIndex=0,fcList=[...cards],fcFlipped=false;
-function fcRender(){const c=fcList[fcIndex];fcFlipped=false;document.getElementById('fc-card').classList.remove('flipped');document.getElementById('fc-word').textContent=c.word;document.getElementById('fc-pos').textContent='('+c.pos+')';document.getElementById('fc-hint-zh').textContent=c.zh;document.getElementById('fc-def').textContent=c.def;document.getElementById('fc-zh').textContent=c.zh;document.getElementById('fc-ex').innerHTML=c.ex;const pct=Math.round((fcIndex+1)/fcList.length*100);document.getElementById('fc-bar').style.width=pct+'%';document.getElementById('fc-counter').textContent=(fcIndex+1)+' / '+fcList.length;document.getElementById('fc-speak-btn').classList.remove('speaking');document.getElementById('fc-speak-back').classList.remove('speaking');setTimeout(()=>{const btn=document.getElementById('fc-speak-btn');btn.classList.add('speaking');speak(c.word,speechRate,()=>btn.classList.remove('speaking'));},300);}
+function fcRender(){const c=fcList[fcIndex];fcFlipped=false;document.getElementById('fc-card').classList.remove('flipped');document.getElementById('fc-word').textContent=c.word;document.getElementById('fc-pos').textContent='('+c.pos+')';document.getElementById('fc-hint-zh').textContent=c.zh;document.getElementById('fc-def').textContent=c.def;document.getElementById('fc-zh').textContent=c.zh;document.getElementById('fc-ex').innerHTML=c.ex;const pct=Math.round((fcIndex+1)/fcList.length*100);document.getElementById('fc-bar').style.width=pct+'%';document.getElementById('fc-counter').textContent=(fcIndex+1)+' / '+fcList.length;document.getElementById('fc-speak-btn').classList.remove('speaking');document.getElementById('fc-speak-back').classList.remove('speaking');// auto-speak removed for compatibility}
 function flipCard(){fcFlipped=!fcFlipped;document.getElementById('fc-card').classList.toggle('flipped',fcFlipped);}
 function fcNav(dir){fcIndex=(fcIndex+dir+fcList.length)%fcList.length;fcRender();}
 function fcShuffle(){for(let i=fcList.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[fcList[i],fcList[j]]=[fcList[j],fcList[i]];}fcIndex=0;fcRender();}
@@ -511,7 +557,7 @@ fcRender();
 // ===== QUIZ =====
 let qzQueue=[],qzCurrent=0,qzCorrect=0,qzAnswered=false;
 function qzInit(){qzQueue=[...quizData].sort(()=>Math.random()-0.5);qzCurrent=0;qzCorrect=0;qzAnswered=false;document.getElementById('qz-main').style.display='block';document.getElementById('qz-result').style.display='none';qzRender();}
-function qzRender(){const q=qzQueue[qzCurrent];document.getElementById('qz-bar').style.width=Math.round(qzCurrent/qzQueue.length*100)+'%';document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+qzCurrent;const sh=[...q.choices].sort(()=>Math.random()-0.5);const L=['A','B','C','D'];document.getElementById('qz-card-wrap').innerHTML=`<div class="qz-card"><div class="qz-q-num">Question ${qzCurrent+1} of ${qzQueue.length}</div><div class="qz-sentence">${q.sentence.replace('___','<span class="blank-box">___</span>')}</div><button class="qz-speak-btn" onclick="speakText(${JSON.stringify(q.sentence.replace(/___/g,'blank'))})">🔊 Listen</button><div class="qz-options" style="margin-top:14px">${sh.map((c,i)=>`<button class="qz-option" data-letter="${L[i]}" onclick="qzAnswer(this,'${c}','${q.answer}','${(q.zh||'').replace(/'/g,"\\'")}')"><span>${c}</span></button>`).join('')}</div><div class="qz-feedback" id="qz-fb"></div><div id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(247,201,72,0.08);border-radius:8px;border-left:3px solid var(--gold);"></div></div>`;document.getElementById('qz-next').classList.remove('show');qzAnswered=false;}
+function qzRender(){const q=qzQueue[qzCurrent];document.getElementById('qz-bar').style.width=Math.round(qzCurrent/qzQueue.length*100)+'%';document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+qzCurrent;const sh=[...q.choices].sort(()=>Math.random()-0.5);const L=['A','B','C','D'];document.getElementById('qz-card-wrap').innerHTML=`<div class="qz-card"><div class="qz-q-num">Question ${qzCurrent+1} of ${qzQueue.length}</div><div class="qz-sentence">${q.sentence.replace('___','<span class="blank-box">___</span>')}</div><button class="qz-speak-btn" onclick="speakText(${JSON.stringify(q.sentence.replace(/___/g,'blank'))})">🔊 Listen</button><div class="qz-options" style="margin-top:14px">${sh.map((c,i)=>`<button class="qz-option" data-letter="${L[i]}" onclick="qzAnswer(this,'${c}','${q.answer}','${(q.zh||'').replace(/'/g,"\\'")}')"><span>${c}</span></button>`).join('')}</div><div class="qz-feedback" id="qz-fb"></div><div id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(255,143,0,0.08);border-radius:8px;border-left:3px solid var(--gold);"></div></div>`;document.getElementById('qz-next').classList.remove('show');qzAnswered=false;}
 function qzAnswer(btn,chosen,correct,zh){if(qzAnswered)return;qzAnswered=true;const fb=document.getElementById('qz-fb');const zhEl=document.getElementById('qz-zh');document.querySelectorAll('.qz-option').forEach(b=>b.classList.add('disabled'));if(chosen===correct){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='qz-feedback show ok';qzCorrect++;}else{btn.classList.add('wrong');fb.textContent='✗ The answer is: '+correct;fb.className='qz-feedback show no';document.querySelectorAll('.qz-option').forEach(b=>{if(b.querySelector('span').textContent===correct)b.classList.add('correct');});}if(zh){zhEl.textContent='📖 '+zh;zhEl.style.display='block';}speak(correct,0.85);document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+(qzCurrent+1);document.getElementById('qz-next').classList.add('show');}
 function qzNext(){qzCurrent++;if(qzCurrent>=qzQueue.length){qzShowResult();return;}qzRender();}
 function qzShowResult(){document.getElementById('qz-main').style.display='none';document.getElementById('qz-result').style.display='block';const pct=Math.round(qzCorrect/qzQueue.length*100);document.getElementById('res-score').textContent=qzCorrect+' / '+qzQueue.length;document.getElementById('res-stars').textContent=pct>=90?'⭐⭐⭐':pct>=70?'⭐⭐':'⭐';document.getElementById('res-label').textContent=pct>=90?'Excellent!':pct>=70?'Good job!':'Keep practicing!';document.getElementById('res-sub').textContent=pct+'% correct';}

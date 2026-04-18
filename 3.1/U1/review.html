@@ -1480,15 +1480,28 @@ function resetRev(rev){
 }
 
 // ===== Speech =====
-let _speechRate=0.8;
+let _voices=[];
+function _loadVoices(){
+  _voices=window.speechSynthesis.getVoices();
+  if(!_voices.length&&window.speechSynthesis.onvoiceschanged===undefined)setTimeout(_loadVoices,200);
+}
+if(window.speechSynthesis){window.speechSynthesis.onvoiceschanged=_loadVoices;_loadVoices();}
+function _pickVoice(){
+  if(!_voices.length)_voices=window.speechSynthesis.getVoices();
+  return _voices.find(v=>v.lang==='en-US'&&/female|zira|samantha|karen|moira/i.test(v.name))
+      ||_voices.find(v=>v.lang==='en-US')
+      ||_voices.find(v=>v.lang.startsWith('en'))||null;
+}
 function speak(text,rate){
   if(!window.speechSynthesis)return;
   window.speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(text);
-  u.lang='en-US';u.rate=rate||_speechRate;
-  const v=window.speechSynthesis.getVoices();
-  const ev=v.find(x=>x.lang.startsWith('en'));if(ev)u.voice=ev;
-  window.speechSynthesis.speak(u);
+  const doSpeak=()=>{
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang='en-US';u.rate=rate||0.8;
+    const v=_pickVoice();if(v)u.voice=v;
+    window.speechSynthesis.speak(u);
+  };
+  if(_voices.length)doSpeak();else setTimeout(doSpeak,350);
 }
 function playWord(word,btn){
   if(btn){
@@ -1496,11 +1509,8 @@ function playWord(word,btn){
     btn.classList.add('playing');
     speak(word,0.75);
     setTimeout(()=>btn.classList.remove('playing'),1800);
-  } else {
-    speak(word,0.75);
-  }
+  }else{speak(word,0.75);}
 }
-if(window.speechSynthesis)window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();
 </script>
 </body>
 </html>
