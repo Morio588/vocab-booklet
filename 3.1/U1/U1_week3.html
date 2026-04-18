@@ -484,29 +484,29 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
 <script>
 // ===== DATA =====
 const cards = [
-  { word:'amaze',    pos:'v',   zh:'使驚訝；使印象深刻', def:'to surprise; to impress',                              ex:'The huge dinosaur skeleton <strong>amazed</strong> the children at the museum.' },
-  { word:'large',    pos:'adj', zh:'大的',               def:'bigger than usual',                                   ex:'Every student carried a <strong>large</strong> backpack filled with books home at the end of the semester.' },
-  { word:'close',    pos:'adj/v', zh:'近的；親近的；關閉', def:'near; having a strong relationship; to shut',        ex:'Harper is my <strong>close</strong> friend. We share our secrets with each other.' },
-  { word:'use',      pos:'v',   zh:'使用',               def:'to do something with an object or tool',              ex:'You need to <strong>use</strong> a ruler to draw straight lines for the math homework.' },
-  { word:'write',    pos:'v',   zh:'寫；寫作',            def:'to put words on paper',                              ex:'My sister likes to <strong>write</strong> stories about magical animals in her notebook.' },
-  { word:'move',     pos:'v',   zh:'移動；搬走；感動',    def:'to change the position of something; to make someone feel emotions', ex:'Oliver was <strong>moved</strong> by the story of a family rescuing abandoned animals.' },
-  { word:'beg',      pos:'v',   zh:'懇求；乞求',          def:'to ask for something strongly or urgently',           ex:'I <strong>begged</strong> my parents to let me stay over at my friend\'s house.' },
-  { word:'begin',    pos:'v',   zh:'開始',                def:'to start',                                            ex:'Ellie <strong>began</strong> her dance practice as soon as the music started playing.' },
-  { word:'chop',     pos:'v',   zh:'切；剁',              def:'to cut into pieces',                                  ex:'The cook <strong>chopped</strong> vegetables carefully for the soup.' },
-  { word:'drag',     pos:'v',   zh:'拖；拉',              def:'to pull something along the ground slowly',           ex:'We had to <strong>drag</strong> the heavy suitcase across the airport.' },
-  { word:'angry',    pos:'adj', zh:'生氣的',              def:'feeling upset or mad',                                ex:'I was so <strong>angry</strong> because my cat ruined my project!' },
-  { word:'carry',    pos:'v',   zh:'攜帶',               def:'to move something',                                   ex:'The boy <strong>carried</strong> a large stack of books to the library.' },
-  { word:'easy',     pos:'adj', zh:'容易的；簡易的',       def:'not hard; comfortable or relaxed',                   ex:'Julian thought the puzzle was <strong>easy</strong> because he solved a similar one before.' },
-  { word:'empty',    pos:'adj', zh:'空的',               def:'having nothing inside',                               ex:'My little brother looked at the <strong>empty</strong> cookie jar with disappointment.' },
-  { word:'happy',    pos:'adj', zh:'開心的',              def:'feeling good or pleased',                             ex:'Nina was <strong>happy</strong> when she got a new puppy for her birthday.' },
-  { word:'noisy',    pos:'adj', zh:'吵鬧的；喧鬧的',      def:'making a lot of sound',                               ex:'Claudia couldn\'t concentrate because of the <strong>noisy</strong> construction outside.' },
-  { word:'notice',   pos:'v/n', zh:'察覺；通知；布告',    def:'to see or become aware of something; a written message or warning', ex:'I didn\'t <strong>notice</strong> that Ms. Shen was staring at me through the window.' },
-  { word:'slowly',   pos:'adv', zh:'緩慢地',              def:'not quickly',                                         ex:'The little girl poured the juice <strong>slowly</strong> so it wouldn\'t spill.' },
-  { word:'dream',    pos:'n/v', zh:'夢；夢想；希望',      def:'a hope or goal for the future; to have a hope or goal', ex:'Andy <strong>dreams</strong> of becoming an astronaut when he grows up.' },
-  { word:'amazing',  pos:'adj', zh:'驚奇的',              def:'very wonderful, surprising, or impressive',            ex:'Jay built an <strong>amazing</strong> Lego castle with moving parts.' },
-  { word:'bored',    pos:'adj', zh:'感到無聊的',           def:'not interested in something',                         ex:'Lucas became <strong>bored</strong> after listening to the same story again and again.' },
-  { word:'discovery',pos:'n',   zh:'探索；發現',           def:'something found for the first time',                  ex:'The hikers made a <strong>discovery</strong> of a hidden trail that led to a waterfall.' },
-  { word:'proud',    pos:'adj', zh:'自豪的',               def:'feeling good about oneself or something',             ex:'Raye felt <strong>proud</strong> when she showed her artwork to the class.' },
+  { word:'amaze',    pos:'v',   zh:'使驚訝；使印象深刻', def:'to surprise; to impress',                              ex:'The huge dinosaur skeleton \u003cstrong\u003eamazed\u003c/strong\u003e the children at the museum.' },
+  { word:'large',    pos:'adj', zh:'大的',               def:'bigger than usual',                                   ex:'Every student carried a \u003cstrong\u003elarge\u003c/strong\u003e backpack filled with books home at the end of the semester.' },
+  { word:'close',    pos:'adj/v', zh:'近的；親近的；關閉', def:'near; having a strong relationship; to shut',        ex:'Harper is my \u003cstrong\u003eclose\u003c/strong\u003e friend. We share our secrets with each other.' },
+  { word:'use',      pos:'v',   zh:'使用',               def:'to do something with an object or tool',              ex:'You need to \u003cstrong\u003euse\u003c/strong\u003e a ruler to draw straight lines for the math homework.' },
+  { word:'write',    pos:'v',   zh:'寫；寫作',            def:'to put words on paper',                              ex:'My sister likes to \u003cstrong\u003ewrite\u003c/strong\u003e stories about magical animals in her notebook.' },
+  { word:'move',     pos:'v',   zh:'移動；搬走；感動',    def:'to change the position of something; to make someone feel emotions', ex:'Oliver was \u003cstrong\u003emoved\u003c/strong\u003e by the story of a family rescuing abandoned animals.' },
+  { word:'beg',      pos:'v',   zh:'懇求；乞求',          def:'to ask for something strongly or urgently',           ex:'I \u003cstrong\u003ebegged\u003c/strong\u003e my parents to let me stay over at my friend\'s house.' },
+  { word:'begin',    pos:'v',   zh:'開始',                def:'to start',                                            ex:'Ellie \u003cstrong\u003ebegan\u003c/strong\u003e her dance practice as soon as the music started playing.' },
+  { word:'chop',     pos:'v',   zh:'切；剁',              def:'to cut into pieces',                                  ex:'The cook \u003cstrong\u003echopped\u003c/strong\u003e vegetables carefully for the soup.' },
+  { word:'drag',     pos:'v',   zh:'拖；拉',              def:'to pull something along the ground slowly',           ex:'We had to \u003cstrong\u003edrag\u003c/strong\u003e the heavy suitcase across the airport.' },
+  { word:'angry',    pos:'adj', zh:'生氣的',              def:'feeling upset or mad',                                ex:'I was so \u003cstrong\u003eangry\u003c/strong\u003e because my cat ruined my project!' },
+  { word:'carry',    pos:'v',   zh:'攜帶',               def:'to move something',                                   ex:'The boy \u003cstrong\u003ecarried\u003c/strong\u003e a large stack of books to the library.' },
+  { word:'easy',     pos:'adj', zh:'容易的；簡易的',       def:'not hard; comfortable or relaxed',                   ex:'Julian thought the puzzle was \u003cstrong\u003eeasy\u003c/strong\u003e because he solved a similar one before.' },
+  { word:'empty',    pos:'adj', zh:'空的',               def:'having nothing inside',                               ex:'My little brother looked at the \u003cstrong\u003eempty\u003c/strong\u003e cookie jar with disappointment.' },
+  { word:'happy',    pos:'adj', zh:'開心的',              def:'feeling good or pleased',                             ex:'Nina was \u003cstrong\u003ehappy\u003c/strong\u003e when she got a new puppy for her birthday.' },
+  { word:'noisy',    pos:'adj', zh:'吵鬧的；喧鬧的',      def:'making a lot of sound',                               ex:'Claudia couldn\'t concentrate because of the \u003cstrong\u003enoisy\u003c/strong\u003e construction outside.' },
+  { word:'notice',   pos:'v/n', zh:'察覺；通知；布告',    def:'to see or become aware of something; a written message or warning', ex:'I didn\'t \u003cstrong\u003enotice\u003c/strong\u003e that Ms. Shen was staring at me through the window.' },
+  { word:'slowly',   pos:'adv', zh:'緩慢地',              def:'not quickly',                                         ex:'The little girl poured the juice \u003cstrong\u003eslowly\u003c/strong\u003e so it wouldn\'t spill.' },
+  { word:'dream',    pos:'n/v', zh:'夢；夢想；希望',      def:'a hope or goal for the future; to have a hope or goal', ex:'Andy \u003cstrong\u003edreams\u003c/strong\u003e of becoming an astronaut when he grows up.' },
+  { word:'amazing',  pos:'adj', zh:'驚奇的',              def:'very wonderful, surprising, or impressive',            ex:'Jay built an \u003cstrong\u003eamazing\u003c/strong\u003e Lego castle with moving parts.' },
+  { word:'bored',    pos:'adj', zh:'感到無聊的',           def:'not interested in something',                         ex:'Lucas became \u003cstrong\u003ebored\u003c/strong\u003e after listening to the same story again and again.' },
+  { word:'discovery',pos:'n',   zh:'探索；發現',           def:'something found for the first time',                  ex:'The hikers made a \u003cstrong\u003ediscovery\u003c/strong\u003e of a hidden trail that led to a waterfall.' },
+  { word:'proud',    pos:'adj', zh:'自豪的',               def:'feeling good about oneself or something',             ex:'Raye felt \u003cstrong\u003eproud\u003c/strong\u003e when she showed her artwork to the class.' },
 ];
 
 const quizData = [
@@ -559,13 +559,13 @@ const combineData = [
 
 // ===== Grammar Quiz Data =====
 const grammarQuestions = [
-  { q:'Which of the following is a <strong>compound sentence</strong>?', opts:['Opening their books, the students.','The students in the classroom.','The students opened their books and started reading.','The students opened their books, and they started reading.'], ans:3 },
+  { q:'Which of the following is a \u003cstrong\u003ecompound sentence\u003c/strong\u003e?', opts:['Opening their books, the students.','The students in the classroom.','The students opened their books and started reading.','The students opened their books, and they started reading.'], ans:3 },
   { q:'Which sentence is joined correctly?', opts:['The dog barked and the cat ran away.','The dog barked, and the cat ran away.','The dog barked, but the cat ran away and.','The dog barked, the cat ran away.'], ans:1 },
-  { q:'Which sentence shows a <strong>result</strong>?', opts:['She was tired, but she kept running.','She was tired, so she went to bed.','She was tired, and she went running.','She tired so went to bed.'], ans:1 },
-  { q:'Which sentence shows a <strong>choice</strong>?', opts:['We can play outside, and we can enjoy the sunshine.','We can play outside, or we can stay inside and read.','We can play outside, so we can enjoy the sunshine.','We can play outside, but we can enjoy the sunshine.'], ans:1 },
-  { q:'Which sentence shows <strong>addition</strong>?', opts:['The dog wagged its tail, and it barked happily.','The dog wagged its tail, but it barked happily.','The dog wagged its tail, so it barked happily.','The dog wagged its tail, or it barked happily.'], ans:0 },
-  { q:'Which sentence shows <strong>contrast</strong>?', opts:['The weather was cold, and the children played outside.','The weather was cold, but the children played outside.','The weather was cold, so the children played outside.','The weather was cold, or the children played outside.'], ans:1 },
-  { q:'Which of the following is a <strong>run-on sentence</strong>?', opts:['The sun was shining brightly, and the birds were singing.','We finished our homework we went outside to play.','After school, my friends and I went to the library.','While I was walking to school.'], ans:1 },
+  { q:'Which sentence shows a \u003cstrong\u003eresult\u003c/strong\u003e?', opts:['She was tired, but she kept running.','She was tired, so she went to bed.','She was tired, and she went running.','She tired so went to bed.'], ans:1 },
+  { q:'Which sentence shows a \u003cstrong\u003echoice\u003c/strong\u003e?', opts:['We can play outside, and we can enjoy the sunshine.','We can play outside, or we can stay inside and read.','We can play outside, so we can enjoy the sunshine.','We can play outside, but we can enjoy the sunshine.'], ans:1 },
+  { q:'Which sentence shows \u003cstrong\u003eaddition\u003c/strong\u003e?', opts:['The dog wagged its tail, and it barked happily.','The dog wagged its tail, but it barked happily.','The dog wagged its tail, so it barked happily.','The dog wagged its tail, or it barked happily.'], ans:0 },
+  { q:'Which sentence shows \u003cstrong\u003econtrast\u003c/strong\u003e?', opts:['The weather was cold, and the children played outside.','The weather was cold, but the children played outside.','The weather was cold, so the children played outside.','The weather was cold, or the children played outside.'], ans:1 },
+  { q:'Which of the following is a \u003cstrong\u003erun-on sentence\u003c/strong\u003e?', opts:['The sun was shining brightly, and the birds were singing.','We finished our homework we went outside to play.','After school, my friends and I went to the library.','While I was walking to school.'], ans:1 },
 ];
 
 // ===== SPEECH ENGINE =====
@@ -578,7 +578,7 @@ function speak(text, rate, onEnd) {
 
   const go = () => {
     const voices = ss.getVoices();
-    const voice = voices.find(v => v.lang === 'en-US' && /samantha|zira|karen|moira|female/i.test(v.name))
+    const voice = voices.find(v => v.lang === 'en-US' && (v.name.toLowerCase().indexOf('samantha') >= 0 || v.name.toLowerCase().indexOf('zira') >= 0 || v.name.toLowerCase().indexOf('karen') >= 0 || v.name.toLowerCase().indexOf('female') >= 0))
                 || voices.find(v => v.lang === 'en-US')
                 || voices.find(v => v.lang.startsWith('en'))
                 || voices[0] || null;
@@ -618,7 +618,7 @@ function speakWord(e) {
 
 function speakExampleSentence(e) {
   if (e) e.stopPropagation();
-  const raw = fcList[fcIndex].ex.replace(/<[^>]+>/g, '');
+  const raw = fcList[fcIndex].ex.replace(new RegExp('\u003c[^\u003e]+\u003e','g'), '');
   const btn = document.getElementById('fc-speak-back');
   if (btn) btn.classList.add('speaking');
   speak(raw, speechRate * 0.9, () => { if (btn) btn.classList.remove('speaking'); });
@@ -640,8 +640,68 @@ fcRender();
 // ===== QUIZ =====
 let qzQueue=[],qzCurrent=0,qzCorrect=0,qzAnswered=false;
 function qzInit(){qzQueue=[...quizData].sort(()=>Math.random()-0.5);qzCurrent=0;qzCorrect=0;qzAnswered=false;document.getElementById('qz-main').style.display='block';document.getElementById('qz-result').style.display='none';qzRender();}
-function qzRender(){const q=qzQueue[qzCurrent];document.getElementById('qz-bar').style.width=Math.round(qzCurrent/qzQueue.length*100)+'%';document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+qzCurrent;const sh=[...q.choices].sort(()=>Math.random()-0.5);const L=['A','B','C','D'];document.getElementById('qz-card-wrap').innerHTML=`<div class="qz-card"><div class="qz-q-num">Question ${qzCurrent+1} of ${qzQueue.length}</div><div class="qz-sentence">${q.sentence.replace('___','<span class="blank-box">___</span>')}</div><button class="qz-speak-btn" onclick="speakText(${JSON.stringify(q.sentence.replace(/___/g,'blank'))})">🔊 Listen</button><div class="qz-options" style="margin-top:14px">${sh.map((c,i)=>`<button class="qz-option" data-letter="${L[i]}" onclick="qzAnswer(this,'${c}','${q.answer}','${(q.zh||'').replace(/'/g,"\\'")}')"><span>${c}</span></button>`).join('')}</div><div class="qz-feedback" id="qz-fb"></div><div id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(255,143,0,0.08);border-radius:8px;border-left:3px solid var(--gold);"></div></div>`;document.getElementById('qz-next').classList.remove('show');qzAnswered=false;}
-function qzAnswer(btn,chosen,correct,zh){if(qzAnswered)return;qzAnswered=true;const fb=document.getElementById('qz-fb');const zhEl=document.getElementById('qz-zh');document.querySelectorAll('.qz-option').forEach(b=>b.classList.add('disabled'));if(chosen===correct){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='qz-feedback show ok';qzCorrect++;}else{btn.classList.add('wrong');fb.textContent='✗ The answer is: '+correct;fb.className='qz-feedback show no';document.querySelectorAll('.qz-option').forEach(b=>{if(b.querySelector('span').textContent===correct)b.classList.add('correct');});}if(zh){zhEl.textContent='📖 '+zh;zhEl.style.display='block';}speak(correct,0.85);document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+(qzCurrent+1);document.getElementById('qz-next').classList.add('show');}
+function qzRender(){
+  const q=qzQueue[qzCurrent];
+  document.getElementById('qz-bar').style.width=Math.round(qzCurrent/qzQueue.length*100)+'%';
+  document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+qzCurrent;
+  const sh=[...q.choices].sort(()=>Math.random()-0.5);
+  const L=['A','B','C','D'];
+  const sentenceHtml=q.sentence.replace('___','\u003c'+'span class="blank-box"\u003e'+'___'+'\u003c'+'/span\u003e');
+  let optionsHtml='';
+  for(let i=0;i<sh.length;i++){
+    optionsHtml+='\u003cbutton class="qz-option" data-letter="'+L[i]+
+      '" data-idx="'+qzCurrent+
+      '" data-choice="'+i+
+      '" onclick="qzAnswerIdx(this,'+i+')"\u003e\u003cspan\u003e'+sh[i]+'\u003c/span\u003e\u003c/button\u003e';
+  }
+  document.getElementById('qz-card-wrap').innerHTML=
+    '\u003cdiv class="qz-card"\u003e'+
+    '\u003cdiv class="qz-q-num"\u003eQuestion '+(qzCurrent+1)+' of '+qzQueue.length+'\u003c/div\u003e'+
+    '\u003cdiv class="qz-sentence"\u003e'+sentenceHtml+'\u003c/div\u003e'+
+    '\u003cbutton class="qz-speak-btn" id="qz-listen-btn" onclick="qzListen()"\u003e🔊 Listen\u003c/button\u003e'+
+    '\u003cdiv class="qz-options" style="margin-top:14px"\u003e'+optionsHtml+'\u003c/div\u003e'+
+    '\u003cdiv class="qz-feedback" id="qz-fb"\u003e\u003c/div\u003e'+
+    '\u003cdiv id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(255,143,0,0.08);border-radius:0 10px 10px 0;border-left:3px solid var(--gold);"\u003e\u003c/div\u003e'+
+    '\u003c/div\u003e';
+  document.getElementById('qz-next').classList.remove('show');
+  qzAnswered=false;
+  // Store shuffled choices for qzAnswerIdx
+  window._qzCurrentSh=sh;
+}
+function qzListen(){
+  const q=qzQueue[qzCurrent];
+  speakText(q.sentence.replace('___','blank'));
+}
+function qzAnswerIdx(btn,choiceIdx){
+  if(qzAnswered)return;
+  qzAnswered=true;
+  const q=qzQueue[qzCurrent];
+  const sh=window._qzCurrentSh;
+  const chosen=sh[choiceIdx];
+  const correct=q.answer;
+  const zh=q.zh||'';
+  const fb=document.getElementById('qz-fb');
+  const zhEl=document.getElementById('qz-zh');
+  document.querySelectorAll('.qz-option').forEach(b=>b.classList.add('disabled'));
+  if(chosen===correct){
+    btn.classList.add('correct');
+    fb.textContent='✓ Correct!';
+    fb.className='qz-feedback show ok';
+    qzCorrect++;
+  }else{
+    btn.classList.add('wrong');
+    fb.textContent='✗ The answer is: '+correct;
+    fb.className='qz-feedback show no';
+    document.querySelectorAll('.qz-option').forEach(function(b){
+      var idx=parseInt(b.getAttribute('data-choice'));
+      if(!isNaN(idx)&&sh[idx]===correct)b.classList.add('correct');
+    });
+  }
+  if(zh){zhEl.textContent='📖 '+zh;zhEl.style.display='block';}
+  speak(correct,0.85);
+  document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+(qzCurrent+1);
+  document.getElementById('qz-next').classList.add('show');
+}
 function qzNext(){qzCurrent++;if(qzCurrent>=qzQueue.length){qzShowResult();return;}qzRender();}
 function qzShowResult(){document.getElementById('qz-main').style.display='none';document.getElementById('qz-result').style.display='block';const pct=Math.round(qzCorrect/qzQueue.length*100);document.getElementById('res-score').textContent=qzCorrect+' / '+qzQueue.length;document.getElementById('res-stars').textContent=pct>=90?'⭐⭐⭐':pct>=70?'⭐⭐':'⭐';document.getElementById('res-label').textContent=pct>=90?'Excellent!':pct>=70?'Good job!':'Keep practicing!';document.getElementById('res-sub').textContent=pct+'% correct';}
 function qzRestart(){qzInit();}
@@ -650,32 +710,32 @@ function qzRestart(){qzInit();}
 function buildCombine(){
   const wrap=document.getElementById('combine-wrap');
   wrap.innerHTML=combineData.map((d,i)=>`
-  <div class="combine-card" id="cb-${i}">
-    <div class="combine-label">Question ${i+1}</div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:10px;font-style:italic">${d.hint}</div>
-    <div class="combine-parts">
-      <div class="sentence-block">${d.s1}</div>
-      <select class="conj-select" id="cbs-${i}">
-        <option value="">pick…</option>
-        <option value="and">, and</option>
-        <option value="but">, but</option>
-        <option value="or">, or</option>
-      </select>
-      <div class="sentence-block">${d.s2}</div>
-    </div>
-    <div class="combine-result-area" id="cbr-${i}">Your sentence will appear here…</div>
-    <div class="combine-btn-row">
-      <button class="combine-btn check" onclick="checkCombine(${i})">Check ✓</button>
-      <button class="combine-btn" onclick="previewCombine(${i})">Preview</button>
-    </div>
-    <div class="combine-feedback" id="cbf-${i}"></div>
-  </div>`).join('');
+  \u003cdiv class="combine-card" id="cb-${i}"\u003e
+    \u003cdiv class="combine-label"\u003eQuestion ${i+1}\u003c/div\u003e
+    \u003cdiv style="font-size:12px;color:var(--muted);margin-bottom:10px;font-style:italic"\u003e${d.hint}\u003c/div\u003e
+    \u003cdiv class="combine-parts"\u003e
+      \u003cdiv class="sentence-block"\u003e${d.s1}\u003c/div\u003e
+      \u003cselect class="conj-select" id="cbs-${i}"\u003e
+        \u003coption value=""\u003epick…\u003c/option\u003e
+        \u003coption value="and"\u003e, and\u003c/option\u003e
+        \u003coption value="but"\u003e, but\u003c/option\u003e
+        \u003coption value="or"\u003e, or\u003c/option\u003e
+      \u003c/select\u003e
+      \u003cdiv class="sentence-block"\u003e${d.s2}\u003c/div\u003e
+    \u003c/div\u003e
+    \u003cdiv class="combine-result-area" id="cbr-${i}"\u003eYour sentence will appear here…\u003c/div\u003e
+    \u003cdiv class="combine-btn-row"\u003e
+      \u003cbutton class="combine-btn check" onclick="checkCombine(${i})"\u003eCheck ✓\u003c/button\u003e
+      \u003cbutton class="combine-btn" onclick="previewCombine(${i})"\u003ePreview\u003c/button\u003e
+    \u003c/div\u003e
+    \u003cdiv class="combine-feedback" id="cbf-${i}"\u003e\u003c/div\u003e
+  \u003c/div\u003e`).join('');
   combineData.forEach((_,i)=>{document.getElementById('cbs-'+i).addEventListener('change',()=>previewCombine(i));});
 }
 function previewCombine(i){
   const d=combineData[i];const sel=document.getElementById('cbs-'+i).value;const ra=document.getElementById('cbr-'+i);
   if(!sel){ra.textContent='Your sentence will appear here…';ra.classList.remove('has-result');return;}
-  const s1=d.s1.replace(/\.$/,'');
+  const s1=d.s1.replace(new RegExp('\\.$'),'').trim();
   const s2lower=d.s2.charAt(0).toLowerCase()+d.s2.slice(1);
   const result=s1+', '+sel+' '+s2lower;
   ra.textContent=result;ra.classList.add('has-result');
@@ -683,15 +743,23 @@ function previewCombine(i){
 function checkCombine(i){
   const d=combineData[i];const sel=document.getElementById('cbs-'+i).value;const fb=document.getElementById('cbf-'+i);
   if(!sel){fb.textContent='Please choose a conjunction first.';fb.className='combine-feedback show no';return;}
-  if(sel===d.conj){fb.innerHTML='✓ Correct! Use <strong>'+d.conj+'</strong> here.';fb.className='combine-feedback show ok';}
-  else{fb.innerHTML='✗ Not quite. The best conjunction here is <strong>'+d.conj+'</strong>.';fb.className='combine-feedback show no';}
+  if(sel===d.conj){fb.innerHTML='✓ Correct! Use \u003cstrong\u003e'+d.conj+'\u003c/strong\u003e here.';fb.className='combine-feedback show ok';}
+  else{fb.innerHTML='✗ Not quite. The best conjunction here is \u003cstrong\u003e'+d.conj+'\u003c/strong\u003e.';fb.className='combine-feedback show no';}
 }
 buildCombine();
 
 // ===== GRAMMAR QUIZ =====
 let gqAnswered=new Array(grammarQuestions.length).fill(false),gqCorrectCount=0;
 function gqBuild(){
-  document.getElementById('gq-container').innerHTML=grammarQuestions.map((q,qi)=>`<div class="gq-card" id="gq-${qi}"><div class="gq-q">${qi+1}. ${q.q}</div><div class="gq-options">${q.opts.map((o,oi)=>`<button class="gq-opt" id="gqo-${qi}-${oi}" onclick="gqAnswer(${qi},${oi})">${String.fromCharCode(65+oi)}. ${o}</button>`).join('')}</div><div class="gq-fb" id="gqf-${qi}"></div></div>`).join('');
+  var html='';
+  grammarQuestions.forEach(function(q,qi){
+    var opts='';
+    q.opts.forEach(function(o,oi){
+      opts+='<button class="gq-opt" id="gqo-'+qi+'-'+oi+'" onclick="gqAnswer('+qi+','+oi+')">'+String.fromCharCode(65+oi)+'. '+o+'<\/button>';
+    });
+    html+='<div class="gq-card"><div class="gq-q">'+(qi+1)+'. '+q.q+'<\/div><div class="gq-options">'+opts+'<\/div><div class="gq-fb" id="gqf-'+qi+'"><\/div><\/div>';
+  });
+  document.getElementById('gq-container').innerHTML=html;
 }
 function gqAnswer(qi,oi){if(gqAnswered[qi])return;gqAnswered[qi]=true;const q=grammarQuestions[qi];const fb=document.getElementById('gqf-'+qi);for(let i=0;i<q.opts.length;i++)document.getElementById('gqo-'+qi+'-'+i).classList.add('disabled');if(oi===q.ans){document.getElementById('gqo-'+qi+'-'+oi).classList.add('correct');fb.textContent='✓ Correct!';fb.className='gq-fb show ok';gqCorrectCount++;}else{document.getElementById('gqo-'+qi+'-'+oi).classList.add('wrong');document.getElementById('gqo-'+qi+'-'+q.ans).classList.add('correct');fb.textContent='✗ Correct answer: '+String.fromCharCode(65+q.ans);fb.className='gq-fb show no';}const done=gqAnswered.filter(Boolean).length;document.getElementById('gq-score').textContent=gqCorrectCount+' / '+done+' answered';}
 function gqReset(){gqAnswered=new Array(grammarQuestions.length).fill(false);gqCorrectCount=0;document.getElementById('gq-score').textContent='0 / 7 answered';gqBuild();}
@@ -699,7 +767,7 @@ gqBuild();
 
 // ===== MATCHING =====
 let matchSelected=null,matchMatchedCount=0;
-function matchInit(){matchMatchedCount=0;matchSelected=null;document.getElementById('match-complete').classList.remove('show');document.getElementById('match-score').textContent='0 / '+matchPairs.length;const sl=[...matchPairs].sort(()=>Math.random()-0.5);const sr=[...matchPairs].sort(()=>Math.random()-0.5);document.getElementById('match-left').innerHTML=sl.map(p=>`<div class="match-item" data-en="${p.en}" onclick="matchClick(this,'en')">${p.en}</div>`).join('');document.getElementById('match-right').innerHTML=sr.map(p=>`<div class="match-item" data-en="${p.en}" onclick="matchClick(this,'zh')">${p.zh}</div>`).join('');}
+function matchInit(){matchMatchedCount=0;matchSelected=null;document.getElementById('match-complete').classList.remove('show');document.getElementById('match-score').textContent='0 / '+matchPairs.length;const sl=[...matchPairs].sort(()=>Math.random()-0.5);const sr=[...matchPairs].sort(()=>Math.random()-0.5);document.getElementById('match-left').innerHTML=sl.map(p=>`\u003cdiv class="match-item" data-en="${p.en}" onclick="matchClick(this,'en')"\u003e${p.en}\u003c/div\u003e`).join('');document.getElementById('match-right').innerHTML=sr.map(p=>`\u003cdiv class="match-item" data-en="${p.en}" onclick="matchClick(this,'zh')"\u003e${p.zh}\u003c/div\u003e`).join('');}
 function matchClick(el,side){if(el.classList.contains('matched'))return;if(!matchSelected){el.classList.add('selected');matchSelected={el,side};return;}if(matchSelected.side===side){matchSelected.el.classList.remove('selected');el.classList.add('selected');matchSelected={el,side};return;}const enEl=side==='en'?el:matchSelected.el;const zhEl=side==='zh'?el:matchSelected.el;if(enEl.dataset.en===zhEl.dataset.en){enEl.classList.remove('selected');zhEl.classList.remove('selected');enEl.classList.add('matched');zhEl.classList.add('matched');matchMatchedCount++;document.getElementById('match-score').textContent=matchMatchedCount+' / '+matchPairs.length;if(matchMatchedCount===matchPairs.length)document.getElementById('match-complete').classList.add('show');}else{enEl.classList.add('wrong-flash');zhEl.classList.add('wrong-flash');setTimeout(()=>{enEl.classList.remove('wrong-flash','selected');zhEl.classList.remove('wrong-flash','selected');},450);}matchSelected=null;}
 function matchReset(){matchInit();}
 

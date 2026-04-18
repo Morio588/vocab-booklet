@@ -601,23 +601,23 @@ nav {
 <script>
 // ============ DATA ============
 const cards = [
-  { word:'bounce',   pos:'v', zh:'彈跳', def:'to move quickly up or back after hitting a surface', ex:'The ball <strong>bounced</strong> off the wall and rolled under the table.' },
-  { word:'fountain', pos:'n', zh:'噴泉', def:'a structure that sends water into the air, often decorative', ex:'Children played around the <strong>fountain</strong> in the park.' },
-  { word:'proud',    pos:'adj', zh:'自豪的', def:'feeling good about oneself or someone else', ex:'The team felt <strong>proud</strong> when they won the game.' },
-  { word:'thousand', pos:'n', zh:'千', def:'the number 1,000', ex:'More than a <strong>thousand</strong> parents came to watch.' },
-  { word:'power',    pos:'n', zh:'力量；權力', def:'the ability to do something or make things happen', ex:'The superhero used his <strong>power</strong> to save the city.' },
-  { word:'shower',   pos:'n/v', zh:'陣雨；淋浴', def:'a brief fall of rain; to wash oneself with water', ex:'A sudden <strong>shower</strong> cooled the air.' },
-  { word:'appoint',  pos:'v', zh:'指派', def:'to choose someone for a job or position', ex:'The principal will <strong>appoint</strong> a student to lead the assembly.' },
-  { word:'avoid',    pos:'v', zh:'避開；避免', def:'to stay away from something; to prevent something from happening', ex:'We took a detour to <strong>avoid</strong> the traffic.' },
-  { word:'choice',   pos:'n', zh:'選擇；決定', def:'the act of picking one thing over another', ex:'Making the right <strong>choice</strong> can sometimes be very difficult.' },
-  { word:'foil',     pos:'n', zh:'箔', def:'a very thin sheet of metal', ex:'We wrapped the leftover pizza in <strong>foil</strong> to keep it fresh.' },
-  { word:'moist',    pos:'adj', zh:'潮濕的', def:'slightly wet, damp, not dry', ex:'The <strong>moist</strong> air in the greenhouse helped tropical plants grow.' },
-  { word:'noise',    pos:'n', zh:'噪音', def:'a sound, especially one that is loud or unpleasant', ex:'A strange <strong>noise</strong> came from the attic.' },
-  { word:'annoy',    pos:'v', zh:'惹惱；打擾', def:'to bother, irritate, or make someone slightly angry', ex:'The buzzing mosquito really <strong>annoyed</strong> me.' },
-  { word:'enjoy',    pos:'v', zh:'享受', def:'to like doing something', ex:'Jen <strong>enjoys</strong> reading comic books in her free time.' },
-  { word:'loyal',    pos:'adj', zh:'忠誠的', def:'always being faithful, true, or supportive', ex:'Dogs are often <strong>loyal</strong> companions.' },
-  { word:'unit',     pos:'n', zh:'單位；單元', def:'a single part or measure; a section in a book or course', ex:'I review one <strong>unit</strong> of math each day.' },
-  { word:'figure',   pos:'n/v', zh:'數字；想出', def:'a number or person; to think, calculate, or understand', ex:'It took a while to <strong>figure out</strong> the answer.' },
+  { word:'bounce',   pos:'v', zh:'彈跳', def:'to move quickly up or back after hitting a surface', ex:'The ball \u003cstrong\u003ebounced\u003c/strong\u003e off the wall and rolled under the table.' },
+  { word:'fountain', pos:'n', zh:'噴泉', def:'a structure that sends water into the air, often decorative', ex:'Children played around the \u003cstrong\u003efountain\u003c/strong\u003e in the park.' },
+  { word:'proud',    pos:'adj', zh:'自豪的', def:'feeling good about oneself or someone else', ex:'The team felt \u003cstrong\u003eproud\u003c/strong\u003e when they won the game.' },
+  { word:'thousand', pos:'n', zh:'千', def:'the number 1,000', ex:'More than a \u003cstrong\u003ethousand\u003c/strong\u003e parents came to watch.' },
+  { word:'power',    pos:'n', zh:'力量；權力', def:'the ability to do something or make things happen', ex:'The superhero used his \u003cstrong\u003epower\u003c/strong\u003e to save the city.' },
+  { word:'shower',   pos:'n/v', zh:'陣雨；淋浴', def:'a brief fall of rain; to wash oneself with water', ex:'A sudden \u003cstrong\u003eshower\u003c/strong\u003e cooled the air.' },
+  { word:'appoint',  pos:'v', zh:'指派', def:'to choose someone for a job or position', ex:'The principal will \u003cstrong\u003eappoint\u003c/strong\u003e a student to lead the assembly.' },
+  { word:'avoid',    pos:'v', zh:'避開；避免', def:'to stay away from something; to prevent something from happening', ex:'We took a detour to \u003cstrong\u003eavoid\u003c/strong\u003e the traffic.' },
+  { word:'choice',   pos:'n', zh:'選擇；決定', def:'the act of picking one thing over another', ex:'Making the right \u003cstrong\u003echoice\u003c/strong\u003e can sometimes be very difficult.' },
+  { word:'foil',     pos:'n', zh:'箔', def:'a very thin sheet of metal', ex:'We wrapped the leftover pizza in \u003cstrong\u003efoil\u003c/strong\u003e to keep it fresh.' },
+  { word:'moist',    pos:'adj', zh:'潮濕的', def:'slightly wet, damp, not dry', ex:'The \u003cstrong\u003emoist\u003c/strong\u003e air in the greenhouse helped tropical plants grow.' },
+  { word:'noise',    pos:'n', zh:'噪音', def:'a sound, especially one that is loud or unpleasant', ex:'A strange \u003cstrong\u003enoise\u003c/strong\u003e came from the attic.' },
+  { word:'annoy',    pos:'v', zh:'惹惱；打擾', def:'to bother, irritate, or make someone slightly angry', ex:'The buzzing mosquito really \u003cstrong\u003eannoyed\u003c/strong\u003e me.' },
+  { word:'enjoy',    pos:'v', zh:'享受', def:'to like doing something', ex:'Jen \u003cstrong\u003eenjoys\u003c/strong\u003e reading comic books in her free time.' },
+  { word:'loyal',    pos:'adj', zh:'忠誠的', def:'always being faithful, true, or supportive', ex:'Dogs are often \u003cstrong\u003eloyal\u003c/strong\u003e companions.' },
+  { word:'unit',     pos:'n', zh:'單位；單元', def:'a single part or measure; a section in a book or course', ex:'I review one \u003cstrong\u003eunit\u003c/strong\u003e of math each day.' },
+  { word:'figure',   pos:'n/v', zh:'數字；想出', def:'a number or person; to think, calculate, or understand', ex:'It took a while to \u003cstrong\u003efigure out\u003c/strong\u003e the answer.' },
 ];
 
 // ===== SPEECH ENGINE =====
@@ -630,7 +630,7 @@ function speak(text, rate, onEnd) {
 
   const go = () => {
     const voices = ss.getVoices();
-    const voice = voices.find(v => v.lang === 'en-US' && /samantha|zira|karen|moira|female/i.test(v.name))
+    const voice = voices.find(v => v.lang === 'en-US' && (v.name.toLowerCase().indexOf('samantha') >= 0 || v.name.toLowerCase().indexOf('zira') >= 0 || v.name.toLowerCase().indexOf('karen') >= 0 || v.name.toLowerCase().indexOf('female') >= 0))
                 || voices.find(v => v.lang === 'en-US')
                 || voices.find(v => v.lang.startsWith('en'))
                 || voices[0] || null;
@@ -670,7 +670,7 @@ function speakWord(e) {
 
 function speakExampleSentence(e) {
   if (e) e.stopPropagation();
-  const raw = fcList[fcIndex].ex.replace(/<[^>]+>/g, '');
+  const raw = fcList[fcIndex].ex.replace(new RegExp('\u003c[^\u003e]+\u003e','g'), '');
   const btn = document.getElementById('fc-speak-back');
   if (btn) btn.classList.add('speaking');
   speak(raw, speechRate * 0.9, () => { if (btn) btn.classList.remove('speaking'); });
@@ -679,11 +679,11 @@ function speakExampleSentence(e) {
 function speakText(t) { speak(t, speechRate); }
 
 // ============ TABS ============
-function switchTab(id) {
+function switchTab(id, btn) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('sec-' + id).classList.add('active');
-  event.currentTarget.classList.add('active');
+  if (btn) btn.classList.add('active');
   if (id === 'match') matchInit();
   if (id === 'quiz') qzInit();
 }
@@ -757,45 +757,66 @@ function qzInit() {
   document.getElementById('qz-result').style.display = 'none';
   qzRender();
 }
-function qzRender() {
-  const q = qzQueue[qzCurrent];
-  const pct = Math.round(qzCurrent / qzQueue.length * 100);
-  document.getElementById('qz-bar').style.width = pct + '%';
-  document.getElementById('qz-score-badge').textContent = qzCorrect + ' / ' + qzCurrent;
-  const shuffled = [...q.choices].sort(() => Math.random() - 0.5);
-  const letters = ['A','B','C','D'];
-  document.getElementById('qz-card-wrap').innerHTML = `
-    <div class="qz-card">
-      <div class="qz-q-num">Question ${qzCurrent + 1} of ${qzQueue.length}</div>
-      <div class="qz-sentence">${q.sentence.replace('___', '<span class="blank-box">___</span>')}</div>
-      <button class="qz-speak-btn" onclick="speakText(${JSON.stringify(q.sentence.replace('___', 'blank'))})">🔊 Listen to sentence</button>
-      <div class="qz-options">
-        ${shuffled.map((c,i) => `<button class="qz-option" data-letter="${letters[i]}" onclick="qzAnswer(this,'${c}','${q.answer}','${(q.zh||'').replace(/'/g,"\\'")}')"><span>${c}</span></button>`).join('')}
-      </div>
-      <div class="qz-feedback" id="qz-fb"></div>
-      <div class="qz-zh-trans" id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(255,143,0,0.08);border-radius:8px;border-left:3px solid var(--gold);"></div>
-    </div>`;
-  document.getElementById('qz-next').classList.remove('show');
-  qzAnswered = false;
-}
-function qzAnswer(btn, chosen, correct, zh) {
-  if (qzAnswered) return;
-  qzAnswered = true;
-  const fb = document.getElementById('qz-fb');
-  const zhEl = document.getElementById('qz-zh');
-  document.querySelectorAll('.qz-option').forEach(b => b.classList.add('disabled'));
-  if (chosen === correct) {
-    btn.classList.add('correct');
-    fb.textContent = '✓ Correct!'; fb.className = 'qz-feedback show ok';
-    qzCorrect++;
-  } else {
-    btn.classList.add('wrong');
-    fb.textContent = '✗ The answer is: ' + correct; fb.className = 'qz-feedback show no';
-    document.querySelectorAll('.qz-option').forEach(b => { if (b.querySelector('span').textContent === correct) b.classList.add('correct'); });
+function qzRender(){
+  const q=qzQueue[qzCurrent];
+  document.getElementById('qz-bar').style.width=Math.round(qzCurrent/qzQueue.length*100)+'%';
+  document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+qzCurrent;
+  const sh=[...q.choices].sort(()=>Math.random()-0.5);
+  const L=['A','B','C','D'];
+  const sentenceHtml=q.sentence.replace('___','\u003c'+'span class="blank-box"\u003e'+'___'+'\u003c'+'/span\u003e');
+  let optionsHtml='';
+  for(let i=0;i<sh.length;i++){
+    optionsHtml+='\u003cbutton class="qz-option" data-letter="'+L[i]+
+      '" data-idx="'+qzCurrent+
+      '" data-choice="'+i+
+      '" onclick="qzAnswerIdx(this,'+i+')"\u003e\u003cspan\u003e'+sh[i]+'\u003c/span\u003e\u003c/button\u003e';
   }
-  if (zh) { zhEl.textContent = '📖 ' + zh; zhEl.style.display = 'block'; }
-  speak(correct, 0.85);
-  document.getElementById('qz-score-badge').textContent = qzCorrect + ' / ' + (qzCurrent + 1);
+  document.getElementById('qz-card-wrap').innerHTML=
+    '\u003cdiv class="qz-card"\u003e'+
+    '\u003cdiv class="qz-q-num"\u003eQuestion '+(qzCurrent+1)+' of '+qzQueue.length+'\u003c/div\u003e'+
+    '\u003cdiv class="qz-sentence"\u003e'+sentenceHtml+'\u003c/div\u003e'+
+    '\u003cbutton class="qz-speak-btn" id="qz-listen-btn" onclick="qzListen()"\u003e🔊 Listen\u003c/button\u003e'+
+    '\u003cdiv class="qz-options" style="margin-top:14px"\u003e'+optionsHtml+'\u003c/div\u003e'+
+    '\u003cdiv class="qz-feedback" id="qz-fb"\u003e\u003c/div\u003e'+
+    '\u003cdiv id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(255,143,0,0.08);border-radius:0 10px 10px 0;border-left:3px solid var(--gold);"\u003e\u003c/div\u003e'+
+    '\u003c/div\u003e';
+  document.getElementById('qz-next').classList.remove('show');
+  qzAnswered=false;
+  // Store shuffled choices for qzAnswerIdx
+  window._qzCurrentSh=sh;
+}
+function qzListen(){
+  const q=qzQueue[qzCurrent];
+  speakText(q.sentence.replace('___','blank'));
+}
+function qzAnswerIdx(btn,choiceIdx){
+  if(qzAnswered)return;
+  qzAnswered=true;
+  const q=qzQueue[qzCurrent];
+  const sh=window._qzCurrentSh;
+  const chosen=sh[choiceIdx];
+  const correct=q.answer;
+  const zh=q.zh||'';
+  const fb=document.getElementById('qz-fb');
+  const zhEl=document.getElementById('qz-zh');
+  document.querySelectorAll('.qz-option').forEach(b=>b.classList.add('disabled'));
+  if(chosen===correct){
+    btn.classList.add('correct');
+    fb.textContent='✓ Correct!';
+    fb.className='qz-feedback show ok';
+    qzCorrect++;
+  }else{
+    btn.classList.add('wrong');
+    fb.textContent='✗ The answer is: '+correct;
+    fb.className='qz-feedback show no';
+    document.querySelectorAll('.qz-option').forEach(function(b){
+      var idx=parseInt(b.getAttribute('data-choice'));
+      if(!isNaN(idx)&&sh[idx]===correct)b.classList.add('correct');
+    });
+  }
+  if(zh){zhEl.textContent='📖 '+zh;zhEl.style.display='block';}
+  speak(correct,0.85);
+  document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+(qzCurrent+1);
   document.getElementById('qz-next').classList.add('show');
 }
 function qzNext() {
@@ -828,8 +849,8 @@ function matchInit() {
   document.getElementById('match-score').textContent = '0 / ' + matchPairs.length;
   const shuffledPairs = [...matchPairs].sort(() => Math.random() - 0.5);
   const shuffledZh = [...matchPairs].sort(() => Math.random() - 0.5);
-  document.getElementById('match-left').innerHTML = shuffledPairs.map(p => `<div class="match-item" data-en="${p.en}" onclick="matchClick(this,'en');speakText('${p.en}')">${p.en} <span style="font-size:11px;opacity:0.4">🔊</span></div>`).join('');
-  document.getElementById('match-right').innerHTML = shuffledZh.map(p => `<div class="match-item" data-en="${p.en}" onclick="matchClick(this,'zh')">${p.zh}</div>`).join('');
+  document.getElementById('match-left').innerHTML = shuffledPairs.map(p => `\u003cdiv class="match-item" data-en="${p.en}" onclick="matchClick(this,'en');speakText('${p.en}')"\u003e${p.en} \u003cspan style="font-size:11px;opacity:0.4"\u003e🔊\u003c/span\u003e\u003c/div\u003e`).join('');
+  document.getElementById('match-right').innerHTML = shuffledZh.map(p => `\u003cdiv class="match-item" data-en="${p.en}" onclick="matchClick(this,'zh')"\u003e${p.zh}\u003c/div\u003e`).join('');
 }
 function matchClick(el, side) {
   if (el.classList.contains('matched')) return;

@@ -519,30 +519,30 @@ nav { display: flex; align-items: center; justify-content: space-between; margin
 // ============ DATA ============
 const cards = [
   // Spelling Words
-  { word:'braid',      pos:'v',     zh:'編成辮子',       def:'to weave hair or strands together in a pattern',                    ex:'Her hair was <strong>braided</strong> neatly for the school performance.' },
-  { word:'maintain',   pos:'v',     zh:'維持；保持',      def:'to keep something in good condition; to continue something',         ex:'We clean our desks to <strong>maintain</strong> a neat classroom.' },
-  { word:'training',   pos:'n',     zh:'訓練',            def:'learning or practicing skills to get better',                        ex:'The team stayed after school for extra <strong>training</strong> before the big game.' },
-  { word:'display',    pos:'v',     zh:'展示',            def:'to show something so others can see it',                             ex:'The teacher will <strong>display</strong> the students\' artwork on the wall.' },
-  { word:'Wednesday',  pos:'n',     zh:'星期三',           def:'the day after Tuesday and before Thursday',                          ex:'The English library is closed on <strong>Wednesday</strong> afternoon.' },
-  { word:'agree',      pos:'v',     zh:'同意',            def:'to say yes; to have the same opinion',                               ex:'The students <strong>agree</strong> to follow the classroom rules.' },
-  { word:'asleep',     pos:'adj',   zh:'睡著的',           def:'sleeping; not awake',                                               ex:'The baby fell <strong>asleep</strong> before the story ended.' },
+  { word:'braid',      pos:'v',     zh:'編成辮子',       def:'to weave hair or strands together in a pattern',                    ex:'Her hair was \u003cstrong\u003ebraided\u003c/strong\u003e neatly for the school performance.' },
+  { word:'maintain',   pos:'v',     zh:'維持；保持',      def:'to keep something in good condition; to continue something',         ex:'We clean our desks to \u003cstrong\u003emaintain\u003c/strong\u003e a neat classroom.' },
+  { word:'training',   pos:'n',     zh:'訓練',            def:'learning or practicing skills to get better',                        ex:'The team stayed after school for extra \u003cstrong\u003etraining\u003c/strong\u003e before the big game.' },
+  { word:'display',    pos:'v',     zh:'展示',            def:'to show something so others can see it',                             ex:'The teacher will \u003cstrong\u003edisplay\u003c/strong\u003e the students\' artwork on the wall.' },
+  { word:'Wednesday',  pos:'n',     zh:'星期三',           def:'the day after Tuesday and before Thursday',                          ex:'The English library is closed on \u003cstrong\u003eWednesday\u003c/strong\u003e afternoon.' },
+  { word:'agree',      pos:'v',     zh:'同意',            def:'to say yes; to have the same opinion',                               ex:'The students \u003cstrong\u003eagree\u003c/strong\u003e to follow the classroom rules.' },
+  { word:'asleep',     pos:'adj',   zh:'睡著的',           def:'sleeping; not awake',                                               ex:'The baby fell \u003cstrong\u003easleep\u003c/strong\u003e before the story ended.' },
   // Vocabulary 8–18
-  { word:'dream',      pos:'n/v',   zh:'夢；夢想；希望',  def:'a hope or goal for the future; to have a hope or goal',             ex:'My <strong>dream</strong> is to travel around the world.' },
-  { word:'leak',       pos:'n',     zh:'裂縫；漏水',       def:'a hole or crack that lets liquid or gas escape',                     ex:'A small <strong>leak</strong> in the faucet caused water to drip all night.' },
-  { word:'peach',      pos:'n',     zh:'桃子',            def:'a soft, sweet fruit with a fuzzy skin',                              ex:'The farmer picked a ripe <strong>peach</strong> and handed it to the children.' },
-  { word:'reach',      pos:'v/n',   zh:'碰到；達到',       def:'to stretch out or arrive at something; the distance you can go',    ex:'He stood on his toes to <strong>reach</strong> the shelf.' },
-  { word:'reason',     pos:'n',     zh:'原因',            def:'the cause or explanation for something',                             ex:'The <strong>reason</strong> for the delay was heavy traffic on the way to school.' },
-  { word:'arrow',      pos:'n',     zh:'箭；箭頭',         def:'a thin stick shot from a bow; a sign that points in a direction',   ex:'During archery lesson, I aimed the <strong>arrow</strong> carefully and hit the target.' },
-  { word:'owner',      pos:'n',     zh:'擁有者；主人',     def:'a person who has something or owns it',                              ex:'The <strong>owner</strong> of the new restaurant welcomed everyone with a smile.' },
-  { word:'shadow',     pos:'n',     zh:'影子',            def:'a dark shape made when light is blocked by something',               ex:'The tree\'s <strong>shadow</strong> gave cool shade during the hot summer afternoon.' },
-  { word:'approach',   pos:'n/v',   zh:'方法；接近',       def:'a way of doing something; to come near or closer',                  ex:'I slowly <strong>approached</strong> the stray kitten so it would not run away.' },
-  { word:'charcoal',   pos:'n',     zh:'木炭',            def:'a black substance made from burned wood, used for fuel',             ex:'We made a fire using <strong>charcoal</strong> to roast marshmallows.' },
-  { word:'toaster',    pos:'n',     zh:'烤麵包機',         def:'a small machine used to make bread crispy and brown',               ex:'Bread popped out of the <strong>toaster</strong> golden and warm.' },
+  { word:'dream',      pos:'n/v',   zh:'夢；夢想；希望',  def:'a hope or goal for the future; to have a hope or goal',             ex:'My \u003cstrong\u003edream\u003c/strong\u003e is to travel around the world.' },
+  { word:'leak',       pos:'n',     zh:'裂縫；漏水',       def:'a hole or crack that lets liquid or gas escape',                     ex:'A small \u003cstrong\u003eleak\u003c/strong\u003e in the faucet caused water to drip all night.' },
+  { word:'peach',      pos:'n',     zh:'桃子',            def:'a soft, sweet fruit with a fuzzy skin',                              ex:'The farmer picked a ripe \u003cstrong\u003epeach\u003c/strong\u003e and handed it to the children.' },
+  { word:'reach',      pos:'v/n',   zh:'碰到；達到',       def:'to stretch out or arrive at something; the distance you can go',    ex:'He stood on his toes to \u003cstrong\u003ereach\u003c/strong\u003e the shelf.' },
+  { word:'reason',     pos:'n',     zh:'原因',            def:'the cause or explanation for something',                             ex:'The \u003cstrong\u003ereason\u003c/strong\u003e for the delay was heavy traffic on the way to school.' },
+  { word:'arrow',      pos:'n',     zh:'箭；箭頭',         def:'a thin stick shot from a bow; a sign that points in a direction',   ex:'During archery lesson, I aimed the \u003cstrong\u003earrow\u003c/strong\u003e carefully and hit the target.' },
+  { word:'owner',      pos:'n',     zh:'擁有者；主人',     def:'a person who has something or owns it',                              ex:'The \u003cstrong\u003eowner\u003c/strong\u003e of the new restaurant welcomed everyone with a smile.' },
+  { word:'shadow',     pos:'n',     zh:'影子',            def:'a dark shape made when light is blocked by something',               ex:'The tree\'s \u003cstrong\u003eshadow\u003c/strong\u003e gave cool shade during the hot summer afternoon.' },
+  { word:'approach',   pos:'n/v',   zh:'方法；接近',       def:'a way of doing something; to come near or closer',                  ex:'I slowly \u003cstrong\u003eapproached\u003c/strong\u003e the stray kitten so it would not run away.' },
+  { word:'charcoal',   pos:'n',     zh:'木炭',            def:'a black substance made from burned wood, used for fuel',             ex:'We made a fire using \u003cstrong\u003echarcoal\u003c/strong\u003e to roast marshmallows.' },
+  { word:'toaster',    pos:'n',     zh:'烤麵包機',         def:'a small machine used to make bread crispy and brown',               ex:'Bread popped out of the \u003cstrong\u003etoaster\u003c/strong\u003e golden and warm.' },
   // Story Vocab
-  { word:'broadly',    pos:'adv',   zh:'咧嘴笑',          def:'widely and openly',                                                  ex:'The boy grinned <strong>broadly</strong> after winning the game.' },
-  { word:'foundation', pos:'n',     zh:'地基；根基',       def:'the base or support for a building',                                ex:'Builders made a strong <strong>foundation</strong> before constructing the house.' },
-  { word:'sturdy',     pos:'adj',   zh:'堅固的',           def:'strong and solid',                                                  ex:'The shelf is <strong>sturdy</strong> enough to hold all the books and supplies.' },
-  { word:'massive',    pos:'adj',   zh:'巨大的',           def:'very large',                                                        ex:'A <strong>massive</strong> tree fell during the storm and blocked the road.' },
+  { word:'broadly',    pos:'adv',   zh:'咧嘴笑',          def:'widely and openly',                                                  ex:'The boy grinned \u003cstrong\u003ebroadly\u003c/strong\u003e after winning the game.' },
+  { word:'foundation', pos:'n',     zh:'地基；根基',       def:'the base or support for a building',                                ex:'Builders made a strong \u003cstrong\u003efoundation\u003c/strong\u003e before constructing the house.' },
+  { word:'sturdy',     pos:'adj',   zh:'堅固的',           def:'strong and solid',                                                  ex:'The shelf is \u003cstrong\u003esturdy\u003c/strong\u003e enough to hold all the books and supplies.' },
+  { word:'massive',    pos:'adj',   zh:'巨大的',           def:'very large',                                                        ex:'A \u003cstrong\u003emassive\u003c/strong\u003e tree fell during the storm and blocked the road.' },
 ];
 
 // ============ QUIZ DATA ============
@@ -569,14 +569,14 @@ const quizData = [
 
 // ============ GRAMMAR QUIZ DATA ============
 const grammarQuestions = [
-  { q: 'Which sentence has a <strong>compound subject</strong>?', opts: ['The musician performed on stage.','The musician and the dancer performed on stage.','The musician performed and bowed.','Performing on stage requires courage.'], ans: 1 },
-  { q: 'Which sentence has a <strong>compound predicate</strong>?', opts: ['The explorer traveled far.','The explorer and the guide traveled far.','The explorer traveled and discovered new lands.','Traveling across the desert is difficult.'], ans: 2 },
-  { q: 'Choose the correct verb.<br><em>The teachers and students ___ preparing for the school fair.</em>', opts: ['is','are','was','prepares'], ans: 1 },
+  { q: 'Which sentence has a \u003cstrong\u003ecompound subject\u003c/strong\u003e?', opts: ['The musician performed on stage.','The musician and the dancer performed on stage.','The musician performed and bowed.','Performing on stage requires courage.'], ans: 1 },
+  { q: 'Which sentence has a \u003cstrong\u003ecompound predicate\u003c/strong\u003e?', opts: ['The explorer traveled far.','The explorer and the guide traveled far.','The explorer traveled and discovered new lands.','Traveling across the desert is difficult.'], ans: 2 },
+  { q: 'Choose the correct verb.\u003cbr\u003e\u003cem\u003eThe teachers and students ___ preparing for the school fair.\u003c/em\u003e', opts: ['is','are','was','prepares'], ans: 1 },
   { q: 'Which sentence has BOTH a compound subject and a compound predicate?', opts: ['The fire alarm rang loudly.','The fire alarm rang loudly and scared the students.','The fire alarm and the flashing lights warned everyone.','The fire alarm and the flashing lights warned everyone and caused confusion.'], ans: 3 },
   { q: 'Choose the correct sentence.', opts: ['The author and the illustrator creates the book.','The author and the illustrator create the book.','The author and the illustrator creating the book.','The author and the illustrator creates and designs the book.'], ans: 1 },
-  { q: 'Which option shows a <strong>compound predicate</strong>?', opts: ['Lily and her friend','read books and write stories','in the library','after school'], ans: 1 },
-  { q: 'Which sentence has a <strong>compound subject</strong>?', opts: ['The principal announced the results.','The principal announced and explained the results.','The principal and the vice principal announced the results.','Announcing the results made everyone nervous.'], ans: 2 },
-  { q: 'Choose the correct verbs.<br><em>The eagle ___ and ___ above the mountains.</em>', opts: ['soar / glide','soars / glides','soar / glides','soars / glide'], ans: 1 },
+  { q: 'Which option shows a \u003cstrong\u003ecompound predicate\u003c/strong\u003e?', opts: ['Lily and her friend','read books and write stories','in the library','after school'], ans: 1 },
+  { q: 'Which sentence has a \u003cstrong\u003ecompound subject\u003c/strong\u003e?', opts: ['The principal announced the results.','The principal announced and explained the results.','The principal and the vice principal announced the results.','Announcing the results made everyone nervous.'], ans: 2 },
+  { q: 'Choose the correct verbs.\u003cbr\u003e\u003cem\u003eThe eagle ___ and ___ above the mountains.\u003c/em\u003e', opts: ['soar / glide','soars / glides','soar / glides','soars / glide'], ans: 1 },
   { q: 'Which sentence tells that TWO people did TWO actions?', opts: ['Liam solved the puzzle.','Liam and Noah solved the puzzle.','Liam solved and explained the puzzle.','Liam and Noah solved and explained the puzzle.'], ans: 3 },
 ];
 
@@ -604,7 +604,7 @@ function speak(text, rate, onEnd) {
 
   const go = () => {
     const voices = ss.getVoices();
-    const voice = voices.find(v => v.lang === 'en-US' && /samantha|zira|karen|moira|female/i.test(v.name))
+    const voice = voices.find(v => v.lang === 'en-US' && (v.name.toLowerCase().indexOf('samantha') >= 0 || v.name.toLowerCase().indexOf('zira') >= 0 || v.name.toLowerCase().indexOf('karen') >= 0 || v.name.toLowerCase().indexOf('female') >= 0))
                 || voices.find(v => v.lang === 'en-US')
                 || voices.find(v => v.lang.startsWith('en'))
                 || voices[0] || null;
@@ -644,7 +644,7 @@ function speakWord(e) {
 
 function speakExampleSentence(e) {
   if (e) e.stopPropagation();
-  const raw = fcList[fcIndex].ex.replace(/<[^>]+>/g, '');
+  const raw = fcList[fcIndex].ex.replace(new RegExp('\u003c[^\u003e]+\u003e','g'), '');
   const btn = document.getElementById('fc-speak-back');
   if (btn) btn.classList.add('speaking');
   speak(raw, speechRate * 0.9, () => { if (btn) btn.classList.remove('speaking'); });
@@ -653,11 +653,11 @@ function speakExampleSentence(e) {
 function speakText(t) { speak(t, speechRate); }
 
 // ============ TABS ============
-function switchTab(id) {
+function switchTab(id, btn) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('sec-' + id).classList.add('active');
-  event.currentTarget.classList.add('active');
+  if (btn) btn.classList.add('active');
   if (id === 'match') matchInit();
   if (id === 'quiz') qzInit();
 }
@@ -705,42 +705,66 @@ function qzInit() {
   document.getElementById('qz-result').style.display = 'none';
   qzRender();
 }
-function qzRender() {
-  const q = qzQueue[qzCurrent];
-  const pct = Math.round(qzCurrent / qzQueue.length * 100);
-  document.getElementById('qz-bar').style.width = pct + '%';
-  document.getElementById('qz-score-badge').textContent = qzCorrect + ' / ' + qzCurrent;
-  const shuffled = [...q.choices].sort(() => Math.random() - 0.5);
-  const letters = ['A','B','C','D'];
-  document.getElementById('qz-card-wrap').innerHTML = `
-    <div class="qz-card">
-      <div class="qz-q-num">Question ${qzCurrent + 1} of ${qzQueue.length}</div>
-      <div class="qz-sentence">${q.sentence.replace('___', '<span class="blank-box">___</span>').replace('___ and ___', '<span class="blank-box">___</span> and <span class="blank-box">___</span>')}</div>
-      <button class="qz-speak-btn" onclick="speakText(${JSON.stringify(q.sentence.replace(/_+/g,'blank'))})">🔊 Listen</button>
-      <div class="qz-options" style="margin-top:14px">
-        ${shuffled.map((c,i) => `<button class="qz-option" data-letter="${letters[i]}" onclick="qzAnswer(this,'${c}','${q.answer}','${(q.zh||'').replace(/'/g,"\\'")}')"><span>${c}</span></button>`).join('')}
-      </div>
-      <div class="qz-feedback" id="qz-fb"></div>
-      <div class="qz-zh-trans" id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(255,143,0,0.08);border-radius:8px;border-left:3px solid var(--gold);"></div>
-    </div>`;
-  document.getElementById('qz-next').classList.remove('show');
-  qzAnswered = false;
-}
-function qzAnswer(btn, chosen, correct, zh) {
-  if (qzAnswered) return;
-  qzAnswered = true;
-  const fb = document.getElementById('qz-fb');
-  const zhEl = document.getElementById('qz-zh');
-  document.querySelectorAll('.qz-option').forEach(b => b.classList.add('disabled'));
-  if (chosen === correct) {
-    btn.classList.add('correct'); fb.textContent = '✓ Correct!'; fb.className = 'qz-feedback show ok'; qzCorrect++;
-  } else {
-    btn.classList.add('wrong'); fb.textContent = '✗ The answer is: ' + correct; fb.className = 'qz-feedback show no';
-    document.querySelectorAll('.qz-option').forEach(b => { if (b.querySelector('span').textContent === correct) b.classList.add('correct'); });
+function qzRender(){
+  const q=qzQueue[qzCurrent];
+  document.getElementById('qz-bar').style.width=Math.round(qzCurrent/qzQueue.length*100)+'%';
+  document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+qzCurrent;
+  const sh=[...q.choices].sort(()=>Math.random()-0.5);
+  const L=['A','B','C','D'];
+  const sentenceHtml=q.sentence.replace('___','\u003c'+'span class="blank-box"\u003e'+'___'+'\u003c'+'/span\u003e');
+  let optionsHtml='';
+  for(let i=0;i<sh.length;i++){
+    optionsHtml+='\u003cbutton class="qz-option" data-letter="'+L[i]+
+      '" data-idx="'+qzCurrent+
+      '" data-choice="'+i+
+      '" onclick="qzAnswerIdx(this,'+i+')"\u003e\u003cspan\u003e'+sh[i]+'\u003c/span\u003e\u003c/button\u003e';
   }
-  if (zh) { zhEl.textContent = '📖 ' + zh; zhEl.style.display = 'block'; }
-  speak(correct, 0.85);
-  document.getElementById('qz-score-badge').textContent = qzCorrect + ' / ' + (qzCurrent + 1);
+  document.getElementById('qz-card-wrap').innerHTML=
+    '\u003cdiv class="qz-card"\u003e'+
+    '\u003cdiv class="qz-q-num"\u003eQuestion '+(qzCurrent+1)+' of '+qzQueue.length+'\u003c/div\u003e'+
+    '\u003cdiv class="qz-sentence"\u003e'+sentenceHtml+'\u003c/div\u003e'+
+    '\u003cbutton class="qz-speak-btn" id="qz-listen-btn" onclick="qzListen()"\u003e🔊 Listen\u003c/button\u003e'+
+    '\u003cdiv class="qz-options" style="margin-top:14px"\u003e'+optionsHtml+'\u003c/div\u003e'+
+    '\u003cdiv class="qz-feedback" id="qz-fb"\u003e\u003c/div\u003e'+
+    '\u003cdiv id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(255,143,0,0.08);border-radius:0 10px 10px 0;border-left:3px solid var(--gold);"\u003e\u003c/div\u003e'+
+    '\u003c/div\u003e';
+  document.getElementById('qz-next').classList.remove('show');
+  qzAnswered=false;
+  // Store shuffled choices for qzAnswerIdx
+  window._qzCurrentSh=sh;
+}
+function qzListen(){
+  const q=qzQueue[qzCurrent];
+  speakText(q.sentence.replace('___','blank'));
+}
+function qzAnswerIdx(btn,choiceIdx){
+  if(qzAnswered)return;
+  qzAnswered=true;
+  const q=qzQueue[qzCurrent];
+  const sh=window._qzCurrentSh;
+  const chosen=sh[choiceIdx];
+  const correct=q.answer;
+  const zh=q.zh||'';
+  const fb=document.getElementById('qz-fb');
+  const zhEl=document.getElementById('qz-zh');
+  document.querySelectorAll('.qz-option').forEach(b=>b.classList.add('disabled'));
+  if(chosen===correct){
+    btn.classList.add('correct');
+    fb.textContent='✓ Correct!';
+    fb.className='qz-feedback show ok';
+    qzCorrect++;
+  }else{
+    btn.classList.add('wrong');
+    fb.textContent='✗ The answer is: '+correct;
+    fb.className='qz-feedback show no';
+    document.querySelectorAll('.qz-option').forEach(function(b){
+      var idx=parseInt(b.getAttribute('data-choice'));
+      if(!isNaN(idx)&&sh[idx]===correct)b.classList.add('correct');
+    });
+  }
+  if(zh){zhEl.textContent='📖 '+zh;zhEl.style.display='block';}
+  speak(correct,0.85);
+  document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+(qzCurrent+1);
   document.getElementById('qz-next').classList.add('show');
 }
 function qzNext() { qzCurrent++; if (qzCurrent >= qzQueue.length) { qzShowResult(); return; } qzRender(); }
@@ -759,15 +783,15 @@ function qzRestart() { qzInit(); }
 let gqAnswered = new Array(grammarQuestions.length).fill(false);
 let gqCorrectCount = 0;
 function gqBuild() {
-  const container = document.getElementById('gq-container');
-  container.innerHTML = grammarQuestions.map((q, qi) => `
-    <div class="gq-card" id="gq-${qi}">
-      <div class="gq-q">${qi + 1}. ${q.q}</div>
-      <div class="gq-options">
-        ${q.opts.map((o, oi) => `<button class="gq-opt" id="gqo-${qi}-${oi}" onclick="gqAnswer(${qi},${oi})">${String.fromCharCode(65+oi)}. ${o}</button>`).join('')}
-      </div>
-      <div class="gq-fb" id="gqf-${qi}"></div>
-    </div>`).join('');
+  var html = '';
+  grammarQuestions.forEach(function(q, qi) {
+    var opts = '';
+    q.opts.forEach(function(o, oi) {
+      opts += '<button class="gq-opt" id="gqo-' + qi + '-' + oi + '" onclick="gqAnswer(' + qi + ',' + oi + ')">' + String.fromCharCode(65 + oi) + '. ' + o + '<\/button>';
+    });
+    html += '<div class="gq-card"><div class="gq-q">' + (qi + 1) + '. ' + q.q + '<\/div><div class="gq-options">' + opts + '<\/div><div class="gq-fb" id="gqf-' + qi + '"><\/div><\/div>';
+  });
+  document.getElementById('gq-container').innerHTML = html;
 }
 function gqAnswer(qi, oi) {
   if (gqAnswered[qi]) return;
@@ -806,8 +830,8 @@ function matchInit() {
   document.getElementById('match-score').textContent = '0 / ' + matchPairs.length;
   const sl = [...matchPairs].sort(() => Math.random() - 0.5);
   const sr = [...matchPairs].sort(() => Math.random() - 0.5);
-  document.getElementById('match-left').innerHTML = sl.map(p => `<div class="match-item" data-en="${p.en}" onclick="matchClick(this,'en')">${p.en}</div>`).join('');
-  document.getElementById('match-right').innerHTML = sr.map(p => `<div class="match-item" data-en="${p.en}" onclick="matchClick(this,'zh')">${p.zh}</div>`).join('');
+  document.getElementById('match-left').innerHTML = sl.map(p => `\u003cdiv class="match-item" data-en="${p.en}" onclick="matchClick(this,'en')"\u003e${p.en}\u003c/div\u003e`).join('');
+  document.getElementById('match-right').innerHTML = sr.map(p => `\u003cdiv class="match-item" data-en="${p.en}" onclick="matchClick(this,'zh')"\u003e${p.zh}\u003c/div\u003e`).join('');
 }
 function matchClick(el, side) {
   if (el.classList.contains('matched')) return;

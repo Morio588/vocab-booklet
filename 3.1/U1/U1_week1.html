@@ -475,7 +475,7 @@ function speak(text, rate, onEnd) {
 
   const go = () => {
     const voices = ss.getVoices();
-    const voice = voices.find(v => v.lang === 'en-US' && /samantha|zira|karen|moira|female/i.test(v.name))
+    const voice = voices.find(v => v.lang === 'en-US' && (v.name.toLowerCase().indexOf('samantha') >= 0 || v.name.toLowerCase().indexOf('zira') >= 0 || v.name.toLowerCase().indexOf('karen') >= 0 || v.name.toLowerCase().indexOf('female') >= 0))
                 || voices.find(v => v.lang === 'en-US')
                 || voices.find(v => v.lang.startsWith('en'))
                 || voices[0] || null;
@@ -537,15 +537,85 @@ fcRender();
 // ===== QUIZ =====
 let qzQueue=[],qzCurrent=0,qzCorrect=0,qzAnswered=false;
 function qzInit(){qzQueue=[...quizData].sort(()=>Math.random()-0.5);qzCurrent=0;qzCorrect=0;qzAnswered=false;document.getElementById('qz-main').style.display='block';document.getElementById('qz-result').style.display='none';qzRender();}
-function qzRender(){const q=qzQueue[qzCurrent];document.getElementById('qz-bar').style.width=Math.round(qzCurrent/qzQueue.length*100)+'%';document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+qzCurrent;const sh=[...q.choices].sort(()=>Math.random()-0.5);const L=['A','B','C','D'];document.getElementById('qz-card-wrap').innerHTML=`<div class="qz-card"><div class="qz-q-num">Question ${qzCurrent+1} of ${qzQueue.length}</div><div class="qz-sentence">${q.sentence.replace('___','<span class="blank-box">___</span>')}</div><button class="qz-speak-btn" onclick="speakText(${JSON.stringify(q.sentence.replace(/___/g,'blank'))})">🔊 Listen</button><div class="qz-options" style="margin-top:14px">${sh.map((c,i)=>`<button class="qz-option" data-letter="${L[i]}" onclick="qzAnswer(this,${JSON.stringify(c)},${JSON.stringify(q.answer)},${JSON.stringify(q.zh||'')})"><span>${c}</span></button>`).join('')}</div><div class="qz-feedback" id="qz-fb"></div><div id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(255,143,0,0.08);border-radius:8px;border-left:3px solid var(--gold);"></div></div>`;document.getElementById('qz-next').classList.remove('show');qzAnswered=false;}
-function qzAnswer(btn,chosen,correct,zh){if(qzAnswered)return;qzAnswered=true;const fb=document.getElementById('qz-fb');const zhEl=document.getElementById('qz-zh');document.querySelectorAll('.qz-option').forEach(b=>b.classList.add('disabled'));if(chosen===correct){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='qz-feedback show ok';qzCorrect++;}else{btn.classList.add('wrong');fb.textContent='✗ The answer is: '+correct;fb.className='qz-feedback show no';document.querySelectorAll('.qz-option').forEach(b=>{if(b.querySelector('span').textContent===correct)b.classList.add('correct');});}if(zh){zhEl.textContent='📖 '+zh;zhEl.style.display='block';}speak(correct,0.85);document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+(qzCurrent+1);document.getElementById('qz-next').classList.add('show');}
+function qzRender(){
+  const q=qzQueue[qzCurrent];
+  document.getElementById('qz-bar').style.width=Math.round(qzCurrent/qzQueue.length*100)+'%';
+  document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+qzCurrent;
+  const sh=[...q.choices].sort(()=>Math.random()-0.5);
+  const L=['A','B','C','D'];
+  const sentenceHtml=q.sentence.replace('___','<span class="blank-box">___</span>');
+  let optionsHtml='';
+  for(let i=0;i<sh.length;i++){
+    optionsHtml+='<button class="qz-option" data-letter="'+L[i]+
+      '" data-idx="'+qzCurrent+
+      '" data-choice="'+i+
+      '" onclick="qzAnswerIdx(this,'+i+')"><span>'+sh[i]+'</span></button>';
+  }
+  document.getElementById('qz-card-wrap').innerHTML=
+    '<div class="qz-card">'+
+    '<div class="qz-q-num">Question '+(qzCurrent+1)+' of '+qzQueue.length+'</div>'+
+    '<div class="qz-sentence">'+sentenceHtml+'</div>'+
+    '<button class="qz-speak-btn" id="qz-listen-btn" onclick="qzListen()">🔊 Listen</button>'+
+    '<div class="qz-options" style="margin-top:14px">'+optionsHtml+'</div>'+
+    '<div class="qz-feedback" id="qz-fb"></div>'+
+    '<div id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(255,143,0,0.08);border-radius:0 10px 10px 0;border-left:3px solid var(--gold);"></div>'+
+    '</div>';
+  document.getElementById('qz-next').classList.remove('show');
+  qzAnswered=false;
+  // Store shuffled choices for qzAnswerIdx
+  window._qzCurrentSh=sh;
+}
+function qzListen(){
+  const q=qzQueue[qzCurrent];
+  speakText(q.sentence.replace('___','blank'));
+}
+function qzAnswerIdx(btn,choiceIdx){
+  if(qzAnswered)return;
+  qzAnswered=true;
+  const q=qzQueue[qzCurrent];
+  const sh=window._qzCurrentSh;
+  const chosen=sh[choiceIdx];
+  const correct=q.answer;
+  const zh=q.zh||'';
+  const fb=document.getElementById('qz-fb');
+  const zhEl=document.getElementById('qz-zh');
+  document.querySelectorAll('.qz-option').forEach(b=>b.classList.add('disabled'));
+  if(chosen===correct){
+    btn.classList.add('correct');
+    fb.textContent='✓ Correct!';
+    fb.className='qz-feedback show ok';
+    qzCorrect++;
+  }else{
+    btn.classList.add('wrong');
+    fb.textContent='✗ The answer is: '+correct;
+    fb.className='qz-feedback show no';
+    document.querySelectorAll('.qz-option').forEach(function(b){
+      var idx=parseInt(b.getAttribute('data-choice'));
+      if(!isNaN(idx)&&sh[idx]===correct)b.classList.add('correct');
+    });
+  }
+  if(zh){zhEl.textContent='📖 '+zh;zhEl.style.display='block';}
+  speak(correct,0.85);
+  document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+(qzCurrent+1);
+  document.getElementById('qz-next').classList.add('show');
+}
 function qzNext(){qzCurrent++;if(qzCurrent>=qzQueue.length){qzShowResult();return;}qzRender();}
 function qzShowResult(){document.getElementById('qz-main').style.display='none';document.getElementById('qz-result').style.display='block';const pct=Math.round(qzCorrect/qzQueue.length*100);document.getElementById('res-score').textContent=qzCorrect+' / '+qzQueue.length;document.getElementById('res-stars').textContent=pct>=90?'⭐⭐⭐':pct>=70?'⭐⭐':'⭐';document.getElementById('res-label').textContent=pct>=90?'Excellent!':pct>=70?'Good job!':'Keep practicing!';document.getElementById('res-sub').textContent=pct+'% correct';}
 function qzRestart(){qzInit();}
 
 // ===== GRAMMAR QUIZ =====
 let gqAnswered=new Array(grammarQuestions.length).fill(false),gqCorrectCount=0;
-function gqBuild(){document.getElementById('gq-container').innerHTML=grammarQuestions.map((q,qi)=>`<div class="gq-card"><div class="gq-q">${qi+1}. ${q.q}</div><div class="gq-options">${q.opts.map((o,oi)=>`<button class="gq-opt" id="gqo-${qi}-${oi}" onclick="gqAnswer(${qi},${oi})">${String.fromCharCode(65+oi)}. ${o}</button>`).join('')}</div><div class="gq-fb" id="gqf-${qi}"></div></div>`).join('');}
+function gqBuild(){
+  var html='';
+  grammarQuestions.forEach(function(q,qi){
+    var opts='';
+    q.opts.forEach(function(o,oi){
+      opts+='<button class="gq-opt" id="gqo-'+qi+'-'+oi+'" onclick="gqAnswer('+qi+','+oi+')">'+String.fromCharCode(65+oi)+'. '+o+'<\/button>';
+    });
+    html+='<div class="gq-card"><div class="gq-q">'+(qi+1)+'. '+q.q+'<\/div><div class="gq-options">'+opts+'<\/div><div class="gq-fb" id="gqf-'+qi+'"><\/div><\/div>';
+  });
+  document.getElementById('gq-container').innerHTML=html;
+}
 function gqAnswer(qi,oi){if(gqAnswered[qi])return;gqAnswered[qi]=true;const q=grammarQuestions[qi];const fb=document.getElementById('gqf-'+qi);for(let i=0;i<q.opts.length;i++)document.getElementById('gqo-'+qi+'-'+i).classList.add('disabled');if(oi===q.ans){document.getElementById('gqo-'+qi+'-'+oi).classList.add('correct');fb.textContent='✓ Correct!';fb.className='gq-fb show ok';gqCorrectCount++;}else{document.getElementById('gqo-'+qi+'-'+oi).classList.add('wrong');document.getElementById('gqo-'+qi+'-'+q.ans).classList.add('correct');fb.textContent='✗ Answer: '+String.fromCharCode(65+q.ans);fb.className='gq-fb show no';}const done=gqAnswered.filter(Boolean).length;document.getElementById('gq-score').textContent=gqCorrectCount+' / '+done+' answered';}
 function gqReset(){gqAnswered=new Array(grammarQuestions.length).fill(false);gqCorrectCount=0;document.getElementById('gq-score').textContent='0 / 7 answered';gqBuild();}
 gqBuild();

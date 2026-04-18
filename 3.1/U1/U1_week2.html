@@ -414,27 +414,27 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
 <script>
 // ===== DATA =====
 const cards = [
-  { word:'city',         pos:'n',   zh:'城市',             def:'a place where many people live and work with many buildings, roads, and services', ex:'Kevin lives in a busy <strong>city</strong> with tall buildings and crowded streets.' },
-  { word:'country',      pos:'n',   zh:'鄉下；國家',        def:'land outside cities and towns; a nation with its own government',               ex:'Canada is a <strong>country</strong> known for its cold winters and beautiful forests.' },
-  { word:'family',       pos:'n',   zh:'家庭',              def:'people who are related to each other',                                           ex:'Joanna\'s <strong>family</strong> eats dinner together every night.' },
-  { word:'fry',          pos:'v',   zh:'炒',                def:'to cook food in hot oil',                                                        ex:'Mom likes to <strong>fry</strong> eggs for breakfast on weekends.' },
-  { word:'party',        pos:'n',   zh:'派對；政黨',         def:'a fun event with food and games; a political group',                             ex:'Amelia had a birthday <strong>party</strong> with music and balloons.' },
-  { word:'penny',        pos:'n',   zh:'一分錢',             def:'a small coin worth one cent; a very small amount of money',                     ex:'Grandma saved every <strong>penny</strong> carefully.' },
-  { word:'pony',         pos:'n',   zh:'小型馬',             def:'a small horse',                                                                  ex:'The <strong>pony</strong> helped beginners feel safe while learning to ride a horse.' },
-  { word:'spy',          pos:'n/v', zh:'間諜；查看',         def:'a person who secretly watches or reports on others; to secretly watch or collect information', ex:'I hid behind the bushes to <strong>spy</strong> on the birds building their nest.' },
-  { word:'patch',        pos:'n',   zh:'小片土地',           def:'a small area that is different from its surroundings',                          ex:'Mom planted a <strong>patch</strong> of flowers in the garden near the fence.' },
-  { word:'pitch',        pos:'v/n', zh:'投，扔；音調',       def:'to throw something; the tone of a sound that can be high or low',               ex:'Daniel tried to <strong>pitch</strong> the baseball as far as possible.' },
-  { word:'inch',         pos:'n',   zh:'英吋',               def:'a unit of length equal to 2.54 centimeters',                                    ex:'I measured the box and found it was six <strong>inches</strong> long.' },
-  { word:'dish',         pos:'n',   zh:'碗盤；菜餚',         def:'a plate for food; a type of food prepared in a special way',                    ex:'Dad cooked a delicious <strong>dish</strong> for the whole family.' },
-  { word:'glass',        pos:'n',   zh:'玻璃杯；玻璃',       def:'a container for drinking; a hard, clear material used for windows or containers', ex:'I looked out the <strong>glass</strong> window and saw the snow falling softly.' },
-  { word:'dress',        pos:'n/v', zh:'洋裝；著裝',         def:'clothing for girls or women; to put on clothing',                              ex:'Olivia wore a beautiful <strong>dress</strong> for the school concert.' },
-  { word:'story',        pos:'n',   zh:'故事；樓層',         def:'something told or written about real or imaginary events; a level of a building', ex:'Noah wrote a <strong>story</strong> about dragons.' },
-  { word:'draw',         pos:'v',   zh:'繪製；吸引；抽籤',  def:'to make a picture; to pull or attract something; to choose something randomly', ex:'Jen <strong>drew</strong> a card from the box to choose the class helper.' },
-  { word:'preparation',  pos:'n',   zh:'準備',               def:'activities to get ready for something',                                          ex:'Mia made all the <strong>preparations</strong> for the school science fair.' },
-  { word:'magnificent',  pos:'adj', zh:'壯觀的；華麗的',     def:'very impressive; very wonderful',                                               ex:'We watched the <strong>magnificent</strong> fireworks display during the festival.' },
-  { word:'brood',        pos:'v',   zh:'沉思；擔憂',         def:'to think deeply or worry about something',                                       ex:'Ryan began to <strong>brood</strong> over the difficult homework problem.' },
-  { word:'rejoice',      pos:'v',   zh:'高興慶祝',           def:'to feel very happy',                                                             ex:'The students <strong>rejoiced</strong> after finishing the big school project.' },
-  { word:'satisfied',    pos:'adj', zh:'滿意的',             def:'happy or pleased',                                                               ex:'Benny was <strong>satisfied</strong> with his test score because he worked hard.' },
+  { word:'city',         pos:'n',   zh:'城市',             def:'a place where many people live and work with many buildings, roads, and services', ex:'Kevin lives in a busy \u003cstrong\u003ecity\u003c/strong\u003e with tall buildings and crowded streets.' },
+  { word:'country',      pos:'n',   zh:'鄉下；國家',        def:'land outside cities and towns; a nation with its own government',               ex:'Canada is a \u003cstrong\u003ecountry\u003c/strong\u003e known for its cold winters and beautiful forests.' },
+  { word:'family',       pos:'n',   zh:'家庭',              def:'people who are related to each other',                                           ex:'Joanna\'s \u003cstrong\u003efamily\u003c/strong\u003e eats dinner together every night.' },
+  { word:'fry',          pos:'v',   zh:'炒',                def:'to cook food in hot oil',                                                        ex:'Mom likes to \u003cstrong\u003efry\u003c/strong\u003e eggs for breakfast on weekends.' },
+  { word:'party',        pos:'n',   zh:'派對；政黨',         def:'a fun event with food and games; a political group',                             ex:'Amelia had a birthday \u003cstrong\u003eparty\u003c/strong\u003e with music and balloons.' },
+  { word:'penny',        pos:'n',   zh:'一分錢',             def:'a small coin worth one cent; a very small amount of money',                     ex:'Grandma saved every \u003cstrong\u003epenny\u003c/strong\u003e carefully.' },
+  { word:'pony',         pos:'n',   zh:'小型馬',             def:'a small horse',                                                                  ex:'The \u003cstrong\u003epony\u003c/strong\u003e helped beginners feel safe while learning to ride a horse.' },
+  { word:'spy',          pos:'n/v', zh:'間諜；查看',         def:'a person who secretly watches or reports on others; to secretly watch or collect information', ex:'I hid behind the bushes to \u003cstrong\u003espy\u003c/strong\u003e on the birds building their nest.' },
+  { word:'patch',        pos:'n',   zh:'小片土地',           def:'a small area that is different from its surroundings',                          ex:'Mom planted a \u003cstrong\u003epatch\u003c/strong\u003e of flowers in the garden near the fence.' },
+  { word:'pitch',        pos:'v/n', zh:'投，扔；音調',       def:'to throw something; the tone of a sound that can be high or low',               ex:'Daniel tried to \u003cstrong\u003epitch\u003c/strong\u003e the baseball as far as possible.' },
+  { word:'inch',         pos:'n',   zh:'英吋',               def:'a unit of length equal to 2.54 centimeters',                                    ex:'I measured the box and found it was six \u003cstrong\u003einches\u003c/strong\u003e long.' },
+  { word:'dish',         pos:'n',   zh:'碗盤；菜餚',         def:'a plate for food; a type of food prepared in a special way',                    ex:'Dad cooked a delicious \u003cstrong\u003edish\u003c/strong\u003e for the whole family.' },
+  { word:'glass',        pos:'n',   zh:'玻璃杯；玻璃',       def:'a container for drinking; a hard, clear material used for windows or containers', ex:'I looked out the \u003cstrong\u003eglass\u003c/strong\u003e window and saw the snow falling softly.' },
+  { word:'dress',        pos:'n/v', zh:'洋裝；著裝',         def:'clothing for girls or women; to put on clothing',                              ex:'Olivia wore a beautiful \u003cstrong\u003edress\u003c/strong\u003e for the school concert.' },
+  { word:'story',        pos:'n',   zh:'故事；樓層',         def:'something told or written about real or imaginary events; a level of a building', ex:'Noah wrote a \u003cstrong\u003estory\u003c/strong\u003e about dragons.' },
+  { word:'draw',         pos:'v',   zh:'繪製；吸引；抽籤',  def:'to make a picture; to pull or attract something; to choose something randomly', ex:'Jen \u003cstrong\u003edrew\u003c/strong\u003e a card from the box to choose the class helper.' },
+  { word:'preparation',  pos:'n',   zh:'準備',               def:'activities to get ready for something',                                          ex:'Mia made all the \u003cstrong\u003epreparations\u003c/strong\u003e for the school science fair.' },
+  { word:'magnificent',  pos:'adj', zh:'壯觀的；華麗的',     def:'very impressive; very wonderful',                                               ex:'We watched the \u003cstrong\u003emagnificent\u003c/strong\u003e fireworks display during the festival.' },
+  { word:'brood',        pos:'v',   zh:'沉思；擔憂',         def:'to think deeply or worry about something',                                       ex:'Ryan began to \u003cstrong\u003ebrood\u003c/strong\u003e over the difficult homework problem.' },
+  { word:'rejoice',      pos:'v',   zh:'高興慶祝',           def:'to feel very happy',                                                             ex:'The students \u003cstrong\u003erejoiced\u003c/strong\u003e after finishing the big school project.' },
+  { word:'satisfied',    pos:'adj', zh:'滿意的',             def:'happy or pleased',                                                               ex:'Benny was \u003cstrong\u003esatisfied\u003c/strong\u003e with his test score because he worked hard.' },
 ];
 
 const quizData = [
@@ -476,16 +476,16 @@ const matchPairs = [
 
 // ===== Grammar Practice =====
 const grammarQuestions = [
-  { sentence:'The small <span class="hl-s">puppy</span> <span class="hl-p">ran</span> across the yard.', q:'What is the simple subject?', opts:['puppy','small puppy','ran','the small puppy'], ans:0, zh:'小小的小狗跑過院子。' },
-  { sentence:'My best <span class="hl-s">friend</span> <span class="hl-p">likes</span> adventure stories.', q:'What is the simple predicate (verb)?', opts:['best friend','likes','adventure stories','my best friend'], ans:1, zh:'我最好的朋友喜歡冒險故事。' },
-  { sentence:'The bright <span class="hl-s">moon</span> <span class="hl-p">shone</span> in the sky.', q:'What is the simple subject?', opts:['bright','moon','shone','the bright moon'], ans:1, zh:'明亮的月亮在天空中閃耀。' },
-  { sentence:'Our <span class="hl-s">class</span> <span class="hl-p">learns</span> new things every day.', q:'What is the simple predicate (verb)?', opts:['our class','new things','learns','every day'], ans:2, zh:'我們班每天學習新事物。' },
-  { sentence:'Some <span class="hl-s">students</span> <span class="hl-p">finished</span> the test quickly.', q:'Which is the complete subject?', opts:['Some students','students','finished the test quickly','finished'], ans:0, zh:'一些學生很快地完成了測驗。' },
-  { sentence:'The noisy <span class="hl-s">birds</span> <span class="hl-p">sang</span> early in the morning.', q:'Which is the complete predicate?', opts:['The noisy birds','birds','sang early in the morning','sang'], ans:2, zh:'吵鬧的鳥兒在清晨歌唱。' },
-  { sentence:'My little <span class="hl-s">brother</span> <span class="hl-p">lost</span> his backpack at school.', q:'What is the simple subject?', opts:['My little brother','little','brother','lost'], ans:2, zh:'我的弟弟在學校弄丟了他的背包。' },
-  { sentence:'The curious <span class="hl-s">students</span> <span class="hl-p">asked</span> many questions.', q:'Which is the complete subject?', opts:['students','asked many questions','The curious students','many questions'], ans:2, zh:'好奇的學生問了很多問題。' },
-  { sentence:'The nervous <span class="hl-s">team</span> <span class="hl-p">practiced</span> quietly in the gym.', q:'Which is the complete predicate?', opts:['The nervous team','team','practiced','practiced quietly in the gym'], ans:3, zh:'緊張的隊伍在體育館安靜地練習。' },
-  { sentence:'The tired <span class="hl-s">students</span> <span class="hl-p">waited</span> patiently near the gate.', q:'What is the simple predicate (verb)?', opts:['tired students','waited','patiently','near the gate'], ans:1, zh:'疲憊的學生在大門附近耐心等待。' },
+  { sentence:'The small \u003cspan class="hl-s"\u003epuppy\u003c/span\u003e \u003cspan class="hl-p"\u003eran\u003c/span\u003e across the yard.', q:'What is the simple subject?', opts:['puppy','small puppy','ran','the small puppy'], ans:0, zh:'小小的小狗跑過院子。' },
+  { sentence:'My best \u003cspan class="hl-s"\u003efriend\u003c/span\u003e \u003cspan class="hl-p"\u003elikes\u003c/span\u003e adventure stories.', q:'What is the simple predicate (verb)?', opts:['best friend','likes','adventure stories','my best friend'], ans:1, zh:'我最好的朋友喜歡冒險故事。' },
+  { sentence:'The bright \u003cspan class="hl-s"\u003emoon\u003c/span\u003e \u003cspan class="hl-p"\u003eshone\u003c/span\u003e in the sky.', q:'What is the simple subject?', opts:['bright','moon','shone','the bright moon'], ans:1, zh:'明亮的月亮在天空中閃耀。' },
+  { sentence:'Our \u003cspan class="hl-s"\u003eclass\u003c/span\u003e \u003cspan class="hl-p"\u003elearns\u003c/span\u003e new things every day.', q:'What is the simple predicate (verb)?', opts:['our class','new things','learns','every day'], ans:2, zh:'我們班每天學習新事物。' },
+  { sentence:'Some \u003cspan class="hl-s"\u003estudents\u003c/span\u003e \u003cspan class="hl-p"\u003efinished\u003c/span\u003e the test quickly.', q:'Which is the complete subject?', opts:['Some students','students','finished the test quickly','finished'], ans:0, zh:'一些學生很快地完成了測驗。' },
+  { sentence:'The noisy \u003cspan class="hl-s"\u003ebirds\u003c/span\u003e \u003cspan class="hl-p"\u003esang\u003c/span\u003e early in the morning.', q:'Which is the complete predicate?', opts:['The noisy birds','birds','sang early in the morning','sang'], ans:2, zh:'吵鬧的鳥兒在清晨歌唱。' },
+  { sentence:'My little \u003cspan class="hl-s"\u003ebrother\u003c/span\u003e \u003cspan class="hl-p"\u003elost\u003c/span\u003e his backpack at school.', q:'What is the simple subject?', opts:['My little brother','little','brother','lost'], ans:2, zh:'我的弟弟在學校弄丟了他的背包。' },
+  { sentence:'The curious \u003cspan class="hl-s"\u003estudents\u003c/span\u003e \u003cspan class="hl-p"\u003easked\u003c/span\u003e many questions.', q:'Which is the complete subject?', opts:['students','asked many questions','The curious students','many questions'], ans:2, zh:'好奇的學生問了很多問題。' },
+  { sentence:'The nervous \u003cspan class="hl-s"\u003eteam\u003c/span\u003e \u003cspan class="hl-p"\u003epracticed\u003c/span\u003e quietly in the gym.', q:'Which is the complete predicate?', opts:['The nervous team','team','practiced','practiced quietly in the gym'], ans:3, zh:'緊張的隊伍在體育館安靜地練習。' },
+  { sentence:'The tired \u003cspan class="hl-s"\u003estudents\u003c/span\u003e \u003cspan class="hl-p"\u003ewaited\u003c/span\u003e patiently near the gate.', q:'What is the simple predicate (verb)?', opts:['tired students','waited','patiently','near the gate'], ans:1, zh:'疲憊的學生在大門附近耐心等待。' },
 ];
 
 // ===== SPEECH ENGINE =====
@@ -498,7 +498,7 @@ function speak(text, rate, onEnd) {
 
   const go = () => {
     const voices = ss.getVoices();
-    const voice = voices.find(v => v.lang === 'en-US' && /samantha|zira|karen|moira|female/i.test(v.name))
+    const voice = voices.find(v => v.lang === 'en-US' && (v.name.toLowerCase().indexOf('samantha') >= 0 || v.name.toLowerCase().indexOf('zira') >= 0 || v.name.toLowerCase().indexOf('karen') >= 0 || v.name.toLowerCase().indexOf('female') >= 0))
                 || voices.find(v => v.lang === 'en-US')
                 || voices.find(v => v.lang.startsWith('en'))
                 || voices[0] || null;
@@ -538,7 +538,7 @@ function speakWord(e) {
 
 function speakExampleSentence(e) {
   if (e) e.stopPropagation();
-  const raw = fcList[fcIndex].ex.replace(/<[^>]+>/g, '');
+  const raw = fcList[fcIndex].ex.replace(new RegExp('\u003c[^\u003e]+\u003e','g'), '');
   const btn = document.getElementById('fc-speak-back');
   if (btn) btn.classList.add('speaking');
   speak(raw, speechRate * 0.9, () => { if (btn) btn.classList.remove('speaking'); });
@@ -560,22 +560,92 @@ fcRender();
 // ===== QUIZ =====
 let qzQueue=[],qzCurrent=0,qzCorrect=0,qzAnswered=false;
 function qzInit(){qzQueue=[...quizData].sort(()=>Math.random()-0.5);qzCurrent=0;qzCorrect=0;qzAnswered=false;document.getElementById('qz-main').style.display='block';document.getElementById('qz-result').style.display='none';qzRender();}
-function qzRender(){const q=qzQueue[qzCurrent];document.getElementById('qz-bar').style.width=Math.round(qzCurrent/qzQueue.length*100)+'%';document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+qzCurrent;const sh=[...q.choices].sort(()=>Math.random()-0.5);const L=['A','B','C','D'];document.getElementById('qz-card-wrap').innerHTML=`<div class="qz-card"><div class="qz-q-num">Question ${qzCurrent+1} of ${qzQueue.length}</div><div class="qz-sentence">${q.sentence.replace('___','<span class="blank-box">___</span>')}</div><button class="qz-speak-btn" onclick="speakText(${JSON.stringify(q.sentence.replace(/___/g,'blank'))})">🔊 Listen</button><div class="qz-options" style="margin-top:14px">${sh.map((c,i)=>`<button class="qz-option" data-letter="${L[i]}" onclick="qzAnswer(this,'${c}','${q.answer}','${(q.zh||'').replace(/'/g,"\\'")}')"><span>${c}</span></button>`).join('')}</div><div class="qz-feedback" id="qz-fb"></div><div id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(255,143,0,0.08);border-radius:8px;border-left:3px solid var(--gold);"></div></div>`;document.getElementById('qz-next').classList.remove('show');qzAnswered=false;}
-function qzAnswer(btn,chosen,correct,zh){if(qzAnswered)return;qzAnswered=true;const fb=document.getElementById('qz-fb');const zhEl=document.getElementById('qz-zh');document.querySelectorAll('.qz-option').forEach(b=>b.classList.add('disabled'));if(chosen===correct){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='qz-feedback show ok';qzCorrect++;}else{btn.classList.add('wrong');fb.textContent='✗ The answer is: '+correct;fb.className='qz-feedback show no';document.querySelectorAll('.qz-option').forEach(b=>{if(b.querySelector('span').textContent===correct)b.classList.add('correct');});}if(zh){zhEl.textContent='📖 '+zh;zhEl.style.display='block';}speak(correct,0.85);document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+(qzCurrent+1);document.getElementById('qz-next').classList.add('show');}
+function qzRender(){
+  const q=qzQueue[qzCurrent];
+  document.getElementById('qz-bar').style.width=Math.round(qzCurrent/qzQueue.length*100)+'%';
+  document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+qzCurrent;
+  const sh=[...q.choices].sort(()=>Math.random()-0.5);
+  const L=['A','B','C','D'];
+  const sentenceHtml=q.sentence.replace('___','\u003c'+'span class="blank-box"\u003e'+'___'+'\u003c'+'/span\u003e');
+  let optionsHtml='';
+  for(let i=0;i<sh.length;i++){
+    optionsHtml+='\u003cbutton class="qz-option" data-letter="'+L[i]+
+      '" data-idx="'+qzCurrent+
+      '" data-choice="'+i+
+      '" onclick="qzAnswerIdx(this,'+i+')"\u003e\u003cspan\u003e'+sh[i]+'\u003c/span\u003e\u003c/button\u003e';
+  }
+  document.getElementById('qz-card-wrap').innerHTML=
+    '\u003cdiv class="qz-card"\u003e'+
+    '\u003cdiv class="qz-q-num"\u003eQuestion '+(qzCurrent+1)+' of '+qzQueue.length+'\u003c/div\u003e'+
+    '\u003cdiv class="qz-sentence"\u003e'+sentenceHtml+'\u003c/div\u003e'+
+    '\u003cbutton class="qz-speak-btn" id="qz-listen-btn" onclick="qzListen()"\u003e🔊 Listen\u003c/button\u003e'+
+    '\u003cdiv class="qz-options" style="margin-top:14px"\u003e'+optionsHtml+'\u003c/div\u003e'+
+    '\u003cdiv class="qz-feedback" id="qz-fb"\u003e\u003c/div\u003e'+
+    '\u003cdiv id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(255,143,0,0.08);border-radius:0 10px 10px 0;border-left:3px solid var(--gold);"\u003e\u003c/div\u003e'+
+    '\u003c/div\u003e';
+  document.getElementById('qz-next').classList.remove('show');
+  qzAnswered=false;
+  // Store shuffled choices for qzAnswerIdx
+  window._qzCurrentSh=sh;
+}
+function qzListen(){
+  const q=qzQueue[qzCurrent];
+  speakText(q.sentence.replace('___','blank'));
+}
+function qzAnswerIdx(btn,choiceIdx){
+  if(qzAnswered)return;
+  qzAnswered=true;
+  const q=qzQueue[qzCurrent];
+  const sh=window._qzCurrentSh;
+  const chosen=sh[choiceIdx];
+  const correct=q.answer;
+  const zh=q.zh||'';
+  const fb=document.getElementById('qz-fb');
+  const zhEl=document.getElementById('qz-zh');
+  document.querySelectorAll('.qz-option').forEach(b=>b.classList.add('disabled'));
+  if(chosen===correct){
+    btn.classList.add('correct');
+    fb.textContent='✓ Correct!';
+    fb.className='qz-feedback show ok';
+    qzCorrect++;
+  }else{
+    btn.classList.add('wrong');
+    fb.textContent='✗ The answer is: '+correct;
+    fb.className='qz-feedback show no';
+    document.querySelectorAll('.qz-option').forEach(function(b){
+      var idx=parseInt(b.getAttribute('data-choice'));
+      if(!isNaN(idx)&&sh[idx]===correct)b.classList.add('correct');
+    });
+  }
+  if(zh){zhEl.textContent='📖 '+zh;zhEl.style.display='block';}
+  speak(correct,0.85);
+  document.getElementById('qz-score-badge').textContent=qzCorrect+' / '+(qzCurrent+1);
+  document.getElementById('qz-next').classList.add('show');
+}
 function qzNext(){qzCurrent++;if(qzCurrent>=qzQueue.length){qzShowResult();return;}qzRender();}
 function qzShowResult(){document.getElementById('qz-main').style.display='none';document.getElementById('qz-result').style.display='block';const pct=Math.round(qzCorrect/qzQueue.length*100);document.getElementById('res-score').textContent=qzCorrect+' / '+qzQueue.length;document.getElementById('res-stars').textContent=pct>=90?'⭐⭐⭐':pct>=70?'⭐⭐':'⭐';document.getElementById('res-label').textContent=pct>=90?'Excellent!':pct>=70?'Good job!':'Keep practicing!';document.getElementById('res-sub').textContent=pct+'% correct';}
 function qzRestart(){qzInit();}
 
 // ===== GRAMMAR QUIZ =====
 let gqAnswered=new Array(grammarQuestions.length).fill(false),gqCorrectCount=0;
-function gqBuild(){document.getElementById('gq-container').innerHTML=grammarQuestions.map((q,qi)=>`<div class="gq-card"><div class="gq-sentence">${q.sentence}</div><div class="gq-q">${qi+1}. ${q.q}</div><div class="gq-options">${q.opts.map((o,oi)=>`<button class="gq-opt" id="gqo-${qi}-${oi}" onclick="gqAnswer(${qi},${oi})">${String.fromCharCode(65+oi)}. ${o}</button>`).join('')}</div><div class="gq-fb" id="gqf-${qi}"></div></div>`).join('');}
+function gqBuild(){
+  var html='';
+  grammarQuestions.forEach(function(q,qi){
+    var opts='';
+    q.opts.forEach(function(o,oi){
+      opts+='<button class="gq-opt" id="gqo-'+qi+'-'+oi+'" onclick="gqAnswer('+qi+','+oi+')">'+String.fromCharCode(65+oi)+'. '+o+'<\/button>';
+    });
+    html+='<div class="gq-card"><div class="gq-q">'+(qi+1)+'. '+q.q+'<\/div><div class="gq-options">'+opts+'<\/div><div class="gq-fb" id="gqf-'+qi+'"><\/div><\/div>';
+  });
+  document.getElementById('gq-container').innerHTML=html;
+}
 function gqAnswer(qi,oi){if(gqAnswered[qi])return;gqAnswered[qi]=true;const q=grammarQuestions[qi];const fb=document.getElementById('gqf-'+qi);for(let i=0;i<q.opts.length;i++)document.getElementById('gqo-'+qi+'-'+i).classList.add('disabled');if(oi===q.ans){document.getElementById('gqo-'+qi+'-'+oi).classList.add('correct');fb.textContent='✓ Correct!';fb.className='gq-fb show ok';gqCorrectCount++;}else{document.getElementById('gqo-'+qi+'-'+oi).classList.add('wrong');document.getElementById('gqo-'+qi+'-'+q.ans).classList.add('correct');fb.textContent='✗ Answer: '+q.opts[q.ans];fb.className='gq-fb show no';}const done=gqAnswered.filter(Boolean).length;document.getElementById('gq-score').textContent=gqCorrectCount+' / '+done+' answered';}
 function gqReset(){gqAnswered=new Array(grammarQuestions.length).fill(false);gqCorrectCount=0;document.getElementById('gq-score').textContent='0 / 10 answered';gqBuild();}
 gqBuild();
 
 // ===== MATCHING =====
 let matchSelected=null,matchMatchedCount=0;
-function matchInit(){matchMatchedCount=0;matchSelected=null;document.getElementById('match-complete').classList.remove('show');document.getElementById('match-score').textContent='0 / '+matchPairs.length;const sl=[...matchPairs].sort(()=>Math.random()-0.5);const sr=[...matchPairs].sort(()=>Math.random()-0.5);document.getElementById('match-left').innerHTML=sl.map(p=>`<div class="match-item" data-en="${p.en}" onclick="matchClick(this,'en')">${p.en}</div>`).join('');document.getElementById('match-right').innerHTML=sr.map(p=>`<div class="match-item" data-en="${p.en}" onclick="matchClick(this,'zh')">${p.zh}</div>`).join('');}
+function matchInit(){matchMatchedCount=0;matchSelected=null;document.getElementById('match-complete').classList.remove('show');document.getElementById('match-score').textContent='0 / '+matchPairs.length;const sl=[...matchPairs].sort(()=>Math.random()-0.5);const sr=[...matchPairs].sort(()=>Math.random()-0.5);document.getElementById('match-left').innerHTML=sl.map(p=>`\u003cdiv class="match-item" data-en="${p.en}" onclick="matchClick(this,'en')"\u003e${p.en}\u003c/div\u003e`).join('');document.getElementById('match-right').innerHTML=sr.map(p=>`\u003cdiv class="match-item" data-en="${p.en}" onclick="matchClick(this,'zh')"\u003e${p.zh}\u003c/div\u003e`).join('');}
 function matchClick(el,side){if(el.classList.contains('matched'))return;if(!matchSelected){el.classList.add('selected');matchSelected={el,side};return;}if(matchSelected.side===side){matchSelected.el.classList.remove('selected');el.classList.add('selected');matchSelected={el,side};return;}const enEl=side==='en'?el:matchSelected.el;const zhEl=side==='zh'?el:matchSelected.el;if(enEl.dataset.en===zhEl.dataset.en){enEl.classList.remove('selected');zhEl.classList.remove('selected');enEl.classList.add('matched');zhEl.classList.add('matched');matchMatchedCount++;document.getElementById('match-score').textContent=matchMatchedCount+' / '+matchPairs.length;if(matchMatchedCount===matchPairs.length)document.getElementById('match-complete').classList.add('show');}else{enEl.classList.add('wrong-flash');zhEl.classList.add('wrong-flash');setTimeout(()=>{enEl.classList.remove('wrong-flash','selected');zhEl.classList.remove('wrong-flash','selected');},450);}matchSelected=null;}
 function matchReset(){matchInit();}
 
