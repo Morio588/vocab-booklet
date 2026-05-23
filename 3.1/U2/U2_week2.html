@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3.1 U2 Week 2 — Vocabulary Booklet</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFFF0;--surface:#FFFFFF;--surface2:#FFF8EC;--border:rgba(230,81,0,0.15);--accent:#E65100;--accent2:#43A047;--gold:#FF8F00;--text:#1B2A1B;--muted:#5D6B52;--success:#43A047;--error:#C62828;--radius:16px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Sora',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 15% 20%,rgba(255,143,0,0.10) 0%,transparent 60%),radial-gradient(ellipse 50% 35% at 85% 80%,rgba(67,160,71,0.08) 0%,transparent 55%);pointer-events:none;z-index:0;}
+.app{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:2rem 1.5rem 4rem;}
+nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.5rem;}
+.nav-brand{font-size:13px;font-weight:600;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;}
+.nav-links{display:flex;align-items:center;gap:10px;}
+.nav-home{font-size:12px;color:var(--muted);text-decoration:none;padding:4px 12px;border-radius:999px;border:1px solid var(--border);transition:all 0.15s;}
+.nav-home:hover{color:var(--text);border-color:rgba(27,42,27,0.35);}
+.nav-tag{background:rgba(230,81,0,0.12);border:1px solid rgba(230,81,0,0.28);color:var(--accent);font-size:12px;padding:4px 12px;border-radius:999px;font-weight:600;letter-spacing:0.06em;}
+.hero{margin-bottom:2.5rem;}
+.hero h1{font-size:clamp(26px,5vw,42px);font-weight:700;line-height:1.15;}
+.hero h1 span{color:var(--accent);}
+.hero p{font-size:15px;color:var(--muted);margin-top:10px;line-height:1.6;}
+.tabs{display:flex;gap:6px;margin-bottom:2rem;flex-wrap:wrap;}
+.tab-btn{background:var(--surface);border:1px solid var(--border);color:var(--muted);font-size:13px;font-weight:600;padding:8px 18px;border-radius:999px;cursor:pointer;transition:all 0.2s;letter-spacing:0.03em;font-family:'Sora',sans-serif;}
+.tab-btn:hover{color:var(--text);border-color:rgba(255,255,255,0.15);}
+.tab-btn.active{background:var(--accent);color:white;border-color:var(--accent);}
+.section{display:none;animation:fadeUp 0.35s ease;}
+.section.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+.flashcard-wrap{perspective:1200px;}
+.fc-progress-row{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem;}
+.fc-counter{font-family:'Space Mono',monospace;font-size:13px;color:var(--muted);white-space:nowrap;}
+.fc-bar-bg{flex:1;height:4px;background:var(--surface2);border-radius:999px;overflow:hidden;}
+.fc-bar{height:4px;background:var(--accent);border-radius:999px;transition:width 0.4s ease;}
+.card-scene{width:100%;height:320px;cursor:pointer;}
+.card-3d{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.55s cubic-bezier(.4,0,.2,1);}
+.card-3d.flipped{transform:rotateY(180deg);}
+.card-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;}
+.card-front{background:var(--surface);border:1px solid var(--border);}
+.card-back{background:linear-gradient(135deg,rgba(255,143,0,0.18),rgba(67,160,71,0.12));border:1px solid rgba(230,81,0,0.25);transform:rotateY(180deg);}
+.card-word{font-size:clamp(32px,7vw,52px);font-weight:700;color:var(--text);letter-spacing:-0.02em;margin-bottom:12px;}
+.card-pos{font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);background:rgba(230,81,0,0.10);border:1px solid rgba(230,81,0,0.22);padding:4px 12px;border-radius:999px;margin-bottom:16px;}
+.card-hint{font-size:14px;color:var(--muted);font-style:italic;}
+.card-flip-hint{position:absolute;bottom:20px;font-size:12px;color:var(--muted);letter-spacing:0.05em;}
+.card-def{font-size:16px;color:var(--text);line-height:1.6;margin-bottom:16px;max-width:400px;}
+.card-zh{font-size:22px;color:var(--gold);font-weight:600;margin-bottom:20px;}
+.card-example{font-size:14px;color:var(--muted);font-style:italic;line-height:1.6;max-width:380px;}
+.card-example strong{color:var(--accent2);font-style:normal;}
+.speak-btn{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;background:rgba(230,81,0,0.10);border:1px solid rgba(230,81,0,0.22);color:var(--accent);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;z-index:10;}
+.speak-btn:hover{background:rgba(230,81,0,0.20);transform:scale(1.08);}
+.speak-btn.speaking{background:rgba(230,81,0,0.20);border-color:var(--accent);animation:pulse-ring 0.9s ease-in-out infinite;}
+@keyframes pulse-ring{0%,100%{box-shadow:0 0 0 0 rgba(230,81,0,0.30);}50%{box-shadow:0 0 0 8px rgba(230,81,0,0);}}
+.speak-btn-back{display:inline-flex;align-items:center;gap:6px;background:rgba(230,81,0,0.10);border:1px solid rgba(230,81,0,0.22);color:var(--accent);border-radius:999px;padding:6px 16px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'Sora',sans-serif;margin-top:14px;}
+.speak-btn-back:hover{background:rgba(230,81,0,0.20);}
+.speak-btn-back.speaking{animation:pulse-ring 0.9s ease-in-out infinite;}
+.speed-row{position:absolute;top:16px;left:16px;display:flex;gap:4px;}
+.speed-pill{font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:all 0.15s;font-family:'Sora',sans-serif;}
+.speed-pill.active{background:rgba(67,160,71,0.15);border-color:rgba(67,160,71,0.4);color:var(--accent2);}
+.fc-controls{display:flex;gap:10px;justify-content:center;margin-top:1.5rem;flex-wrap:wrap;}
+.fc-btn{font-family:'Sora',sans-serif;font-size:13px;font-weight:600;padding:10px 24px;border-radius:999px;border:1px solid var(--border);cursor:pointer;transition:all 0.18s;background:var(--surface);color:var(--text);}
+.fc-btn:hover{background:var(--surface2);}
+.fc-btn.next{background:var(--accent);border-color:var(--accent);color:white;}
+.fc-btn.next:hover{background:#bf360c;}
+.quiz-header{display:flex;align-items:center;gap:16px;margin-bottom:1.5rem;}
+.quiz-score-badge{font-family:'Space Mono',monospace;font-size:13px;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:6px 16px;color:var(--accent);}
+.qz-bar-bg{flex:1;height:4px;background:var(--surface2);border-radius:999px;overflow:hidden;}
+.qz-bar{height:4px;background:linear-gradient(90deg,#FF8F00,#43A047);border-radius:999px;transition:width 0.4s;}
+.qz-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;margin-bottom:1rem;}
+.qz-q-num{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;}
+.qz-sentence{font-size:18px;line-height:1.8;color:var(--text);margin-bottom:1.5rem;}
+.blank-box{display:inline-block;border-bottom:2px solid var(--accent);min-width:90px;padding:0 6px 3px;text-align:center;color:var(--accent);font-family:'Space Mono',monospace;font-size:18px;vertical-align:middle;margin:0 4px;}
+.qz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.qz-option{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 18px;cursor:pointer;font-family:'Sora',sans-serif;font-size:14px;font-weight:600;color:var(--text);transition:all 0.2s;text-align:left;position:relative;}
+.qz-option::before{content:attr(data-letter);position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--muted);font-family:'Space Mono',monospace;}
+.qz-option span{margin-left:22px;}
+.qz-option:hover:not(.disabled){border-color:var(--accent);background:rgba(230,81,0,0.08);}
+.qz-option.correct{background:rgba(67,160,71,0.15);border-color:var(--success);color:var(--success);}
+.qz-option.wrong{background:rgba(198,40,40,0.08);border-color:var(--error);color:var(--error);}
+.qz-option.disabled{cursor:default;}
+.qz-feedback{margin-top:12px;padding:10px 14px;border-radius:10px;font-size:14px;font-weight:600;display:none;}
+.qz-feedback.show{display:block;}
+.qz-feedback.ok{background:rgba(67,160,71,0.10);color:var(--success);}
+.qz-feedback.no{background:rgba(198,40,40,0.08);color:var(--error);}
+.qz-next-btn{display:none;margin-top:1.5rem;background:var(--accent);color:white;border:none;border-radius:999px;padding:12px 32px;font-family:'Sora',sans-serif;font-size:14px;font-weight:600;cursor:pointer;}
+.qz-next-btn.show{display:inline-block;}
+.qz-speak-btn{display:inline-flex;align-items:center;gap:5px;background:rgba(230,81,0,0.08);border:1px solid rgba(230,81,0,0.20);color:var(--accent);border-radius:999px;padding:5px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Sora',sans-serif;margin-top:10px;}
+.result-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:3rem 2rem;text-align:center;}
+.result-score{font-family:'Space Mono',monospace;font-size:64px;font-weight:700;color:var(--accent);}
+.result-label{font-size:18px;color:var(--text);margin:12px 0 6px;font-weight:600;}
+.result-sub{font-size:14px;color:var(--muted);}
+.result-stars{font-size:32px;margin:16px 0;letter-spacing:6px;}
+.retry-btn{margin-top:24px;background:var(--accent);color:white;border:none;border-radius:999px;padding:12px 32px;font-family:'Sora',sans-serif;font-size:14px;font-weight:600;cursor:pointer;}
+.match-info{font-size:13px;color:var(--muted);margin-bottom:1.5rem;}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.match-col-title{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px;}
+.match-items{display:flex;flex-direction:column;gap:8px;}
+.match-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--text);text-align:center;user-select:none;}
+.match-item:hover:not(.matched):not(.selected){border-color:rgba(255,255,255,0.2);background:var(--surface2);}
+.match-item.selected{border-color:var(--accent);background:rgba(230,81,0,0.12);color:var(--accent);}
+.match-item.matched{border-color:var(--success);background:rgba(67,160,71,0.10);color:var(--success);opacity:0.6;cursor:default;}
+.match-item.wrong-flash{border-color:var(--error);background:rgba(198,40,40,0.08);animation:shake 0.4s ease;}
+@keyframes shake{0%,100%{transform:none}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.match-score-row{display:flex;align-items:center;gap:12px;margin-bottom:1rem;}
+.match-score-label{font-size:13px;color:var(--muted);}
+.match-score-num{font-family:'Space Mono',monospace;font-size:18px;color:var(--accent);font-weight:700;}
+.match-reset-btn{background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:8px 20px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.2s;}
+.match-reset-btn:hover{color:var(--text);}
+.match-complete{display:none;background:rgba(67,160,71,0.10);border:1px solid rgba(67,160,71,0.30);border-radius:12px;padding:16px;text-align:center;font-size:15px;color:var(--success);font-weight:600;margin-top:1rem;}
+.match-complete.show{display:block;animation:fadeUp 0.3s ease;}
+.grammar-grid{display:grid;gap:1rem;}
+.grammar-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.grammar-card-header{padding:1rem 1.25rem;display:flex;align-items:center;gap:12px;cursor:pointer;transition:background 0.15s;}
+.grammar-card-header:hover{background:var(--surface2);}
+.grammar-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.grammar-card-header h3{font-size:15px;font-weight:600;color:var(--text);flex:1;}
+.grammar-toggle{font-size:18px;color:var(--muted);transition:transform 0.25s;}
+.grammar-toggle.open{transform:rotate(180deg);}
+.grammar-body{display:none;padding:0 1.25rem 1.25rem;}
+.grammar-body.open{display:block;animation:fadeUp 0.25s ease;}
+.rule-box{background:rgba(255,143,0,0.08);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:14px;font-size:14px;line-height:1.7;}
+.rule-box strong{color:var(--accent);}
+.rule-box em{color:var(--accent2);}
+.grammar-table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0 16px;}
+.grammar-table th{background:var(--surface2);color:var(--muted);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 12px;text-align:left;font-weight:600;}
+.grammar-table td{padding:10px 12px;border-top:1px solid var(--border);color:var(--text);vertical-align:top;line-height:1.6;}
+.grammar-table td:first-child{color:var(--accent);font-weight:600;font-size:13px;}
+.gq-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:10px;}
+.gq-q{font-size:14px;color:var(--text);margin-bottom:10px;line-height:1.7;}
+.gq-options{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.gq-opt{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;cursor:pointer;color:var(--text);text-align:left;font-family:'Sora',sans-serif;transition:all 0.15s;}
+.gq-opt:hover:not(.disabled){border-color:var(--accent);background:rgba(230,81,0,0.06);}
+.gq-opt.correct{background:rgba(67,160,71,0.12);border-color:var(--success);color:var(--success);font-weight:600;}
+.gq-opt.wrong{background:rgba(198,40,40,0.08);border-color:var(--error);color:var(--error);}
+.gq-opt.disabled{cursor:default;}
+.gq-fb{font-size:12px;margin-top:6px;padding:6px 10px;border-radius:8px;display:none;}
+.gq-fb.show{display:block;}
+.gq-fb.ok{background:rgba(67,160,71,0.08);color:var(--success);}
+.gq-fb.no{background:rgba(198,40,40,0.08);color:var(--error);}
+.gq-score{font-family:'Space Mono',monospace;font-size:13px;color:var(--accent);margin-bottom:1rem;}
+.gq-reset{background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:8px 20px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;margin-top:1rem;transition:all 0.15s;}
+.gq-reset:hover{color:var(--text);}
+.spell-table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0 16px;}
+.spell-table th{background:var(--surface2);color:var(--muted);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 12px;text-align:left;font-weight:600;}
+.spell-table td{padding:8px 12px;border-top:1px solid var(--border);color:var(--text);}
+.spell-table .base{font-weight:600;}
+.spell-table .pat{font-size:11px;background:rgba(230,81,0,0.10);color:var(--accent);padding:2px 8px;border-radius:999px;}
+.word-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.word-chip{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:8px 14px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;transition:all 0.2s;}
+.word-chip:hover{border-color:var(--accent2);color:var(--accent2);transform:translateY(-2px);}
+.word-chip .zh{font-size:12px;color:var(--muted);font-weight:400;margin-left:8px;}
+</style>
+</head>
+<body>
+<div class="app">
+  <nav>
+    <span class="nav-brand">Vocabulary Booklet</span>
+    <div class="nav-links">
+      <a class="nav-home" href="../../index.html">← Home</a>
+      <span class="nav-tag">U2 Week 2</span>
+    </div>
+  </nav>
+  <div class="hero">
+    <h1>Learn English<br><span>Interactively</span></h1>
+    <p>r-Controlled Vowels (ar, or, ore, oar) · Vocabulary · Irregular Plural Nouns · HFW</p>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('flashcard',this)">📇 Flashcards</button>
+    <button class="tab-btn" onclick="switchTab('quiz',this)">🎯 Quiz</button>
+    <button class="tab-btn" onclick="switchTab('match',this)">🔗 Matching</button>
+    <button class="tab-btn" onclick="switchTab('grammar',this)">📖 Grammar Notes</button>
+  </div>
+
+  <!-- FLASHCARD -->
+  <div class="section active" id="sec-flashcard">
+    <div class="flashcard-wrap">
+      <div class="fc-progress-row">
+        <div class="fc-counter" id="fc-counter">1 / 12</div>
+        <div class="fc-bar-bg"><div class="fc-bar" id="fc-bar" style="width:8%"></div></div>
+      </div>
+      <div class="card-scene" onclick="flipCard()">
+        <div class="card-3d" id="fc-card">
+          <div class="card-face card-front">
+            <div class="speed-row">
+              <button class="speed-pill active" onclick="setSpeed(0.75,this,event)">0.75x</button>
+              <button class="speed-pill" onclick="setSpeed(1,this,event)">1x</button>
+              <button class="speed-pill" onclick="setSpeed(1.25,this,event)">1.25x</button>
+            </div>
+            <button class="speak-btn" id="fc-speak-btn" onclick="speakWord(event)">🔊</button>
+            <div class="card-pos" id="fc-pos">—</div>
+            <div class="card-word" id="fc-word">—</div>
+            <div class="card-hint" id="fc-hint-zh">—</div>
+            <div class="card-flip-hint">tap card to flip</div>
+          </div>
+          <div class="card-face card-back">
+            <div class="card-def" id="fc-def">—</div>
+            <div class="card-zh" id="fc-zh">—</div>
+            <div class="card-example" id="fc-ex">—</div>
+            <button class="speak-btn-back" id="fc-speak-back" onclick="speakExampleSentence(event)">🔊 Listen to example</button>
+          </div>
+        </div>
+      </div>
+      <div class="fc-controls">
+        <button class="fc-btn" onclick="fcNav(-1)">← Prev</button>
+        <button class="fc-btn" onclick="fcShuffle()">⇄ Shuffle</button>
+        <button class="fc-btn next" onclick="fcNav(1)">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="section" id="sec-quiz">
+    <div id="qz-main">
+      <div class="quiz-header">
+        <div class="quiz-score-badge" id="qz-score-badge">0 / 0</div>
+        <div class="qz-bar-bg"><div class="qz-bar" id="qz-bar" style="width:0%"></div></div>
+      </div>
+      <div id="qz-card-wrap"></div>
+      <button class="qz-next-btn" id="qz-next" onclick="qzNext()">Next question →</button>
+    </div>
+    <div id="qz-result" style="display:none">
+      <div class="result-card">
+        <div class="result-stars" id="res-stars">⭐⭐⭐</div>
+        <div class="result-score" id="res-score">—</div>
+        <div class="result-label" id="res-label">—</div>
+        <div class="result-sub" id="res-sub">—</div>
+        <button class="retry-btn" onclick="qzRestart()">Try Again</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATCH -->
+  <div class="section" id="sec-match">
+    <div class="match-score-row">
+      <span class="match-score-label">Matched:</span>
+      <span class="match-score-num" id="match-score">0 / 10</span>
+      <button class="match-reset-btn" onclick="matchReset()">Reset</button>
+    </div>
+    <p class="match-info">Click a word on the left, then click its Chinese meaning on the right.</p>
+    <div class="match-grid">
+      <div>
+        <div class="match-col-title">English Word</div>
+        <div class="match-items" id="match-left"></div>
+      </div>
+      <div>
+        <div class="match-col-title">Chinese Meaning</div>
+        <div class="match-items" id="match-right"></div>
+      </div>
+    </div>
+    <div class="match-complete" id="match-complete">🎉 Perfect! All matched! Great job!</div>
+  </div>
+
+  <!-- GRAMMAR -->
+  <div class="section" id="sec-grammar">
+    <div class="grammar-grid">
+
+      <!-- 1. Irregular Plurals -->
+      <div class="grammar-card">
+        <div class="grammar-card-header" onclick="toggleGrammar(this)">
+          <div class="grammar-icon" style="background:rgba(230,81,0,0.12)">📝</div>
+          <h3>Grammar: Irregular Plural Nouns</h3>
+          <span class="grammar-toggle">▾</span>
+        </div>
+        <div class="grammar-body">
+          <div class="rule-box">
+            <strong>Irregular Plural Nouns</strong> are not formed in usual ways. You need to memorize them.<br>
+            Some stay the <em>same</em>; some change completely.
+          </div>
+          <table class="grammar-table">
+            <thead><tr><th>Singular</th><th>Irregular Plural</th><th>Singular</th><th>Irregular Plural</th></tr></thead>
+            <tbody>
+              <tr><td>man</td><td>men</td><td>foot</td><td>feet</td></tr>
+              <tr><td>woman</td><td>women</td><td>tooth</td><td>teeth</td></tr>
+              <tr><td>child</td><td>children</td><td>goose</td><td>geese</td></tr>
+              <tr><td>mouse</td><td>mice</td><td>leaf</td><td>leaves</td></tr>
+              <tr><td>deer</td><td>deer (same)</td><td>life</td><td>lives</td></tr>
+              <tr><td>sheep</td><td>sheep (same)</td><td>ox</td><td>oxen</td></tr>
+              <tr><td>fish</td><td>fish / fishes</td><td>moose</td><td>moose (same)</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:1rem;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">🎯 Practice Quiz — 10 questions</div>
+          <div class="gq-score" id="gq-score">0 / 10 answered</div>
+          <div id="gq-container"></div>
+          <button class="gq-reset" onclick="gqReset()">⇄ Reset</button>
+        </div>
+      </div>
+
+      <!-- 2. Spelling r-Controlled -->
+      <div class="grammar-card">
+        <div class="grammar-card-header" onclick="toggleGrammar(this)">
+          <div class="grammar-icon" style="background:rgba(255,143,0,0.15)">📏</div>
+          <h3>Spelling: r-Controlled Vowels (ar, or, ore, oar)</h3>
+          <span class="grammar-toggle">▾</span>
+        </div>
+        <div class="grammar-body">
+          <div class="rule-box">
+            When a vowel is followed by <strong>r</strong>, it makes a special sound:<br>
+            <em>ar</em> → /ar/ (alarm, dark) &nbsp; <em>or</em> → /or/ (format, morning)<br>
+            <em>ore</em> → /or/ (adore, explore) &nbsp; <em>oar</em> → /or/ (soar, board)
+          </div>
+          <table class="spell-table">
+            <thead><tr><th>Word</th><th>Pattern</th><th>Chinese</th></tr></thead>
+            <tbody>
+              <tr><td class="base">alarm</td><td><span class="pat">ar</span></td><td>鬧鐘</td></tr>
+              <tr><td class="base">darkness</td><td><span class="pat">ar</span></td><td>黑暗</td></tr>
+              <tr><td class="base">target</td><td><span class="pat">ar</span></td><td>目標</td></tr>
+              <tr><td class="base">absorb</td><td><span class="pat">or</span></td><td>吸收</td></tr>
+              <tr><td class="base">format</td><td><span class="pat">or</span></td><td>模板；格式</td></tr>
+              <tr><td class="base">morning</td><td><span class="pat">or</span></td><td>早晨</td></tr>
+              <tr><td class="base">adore</td><td><span class="pat">ore</span></td><td>愛慕</td></tr>
+              <tr><td class="base">explore</td><td><span class="pat">ore</span></td><td>探索</td></tr>
+              <tr><td class="base">cardboard</td><td><span class="pat">ar + oar</span></td><td>硬紙板</td></tr>
+              <tr><td class="base">soar</td><td><span class="pat">oar</span></td><td>翱翔</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 3. Vocab + HFW -->
+      <div class="grammar-card">
+        <div class="grammar-card-header" onclick="toggleGrammar(this)">
+          <div class="grammar-icon" style="background:rgba(67,160,71,0.15)">📚</div>
+          <h3>Vocabulary &amp; High-Frequency Words</h3>
+          <span class="grammar-toggle">▾</span>
+        </div>
+        <div class="grammar-body">
+          <div class="word-chips" style="flex-direction:column;gap:10px;margin-top:4px">
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" onclick="speakText('alarm')">alarm <span class="zh">鬧鐘</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) a device that makes a sound to get attention</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" onclick="speakText('darkness')">darkness <span class="zh">黑暗</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) the state of not having any light</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" onclick="speakText('target')">target <span class="zh">目標</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) goal or aim; something you want to achieve</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" onclick="speakText('absorb')">absorb <span class="zh">吸收</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to take in water, liquid, or another substance</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" onclick="speakText('format')">format <span class="zh">模板；格式</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) the way something is arranged; (v) to get ready to be used</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" onclick="speakText('morning')">morning <span class="zh">早晨</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) the time from sunrise to noon</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" onclick="speakText('adore')">adore <span class="zh">愛慕</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to admire someone a lot; to love something very much</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" onclick="speakText('explore')">explore <span class="zh">探索</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to go to a place and learn about it</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" onclick="speakText('cardboard')">cardboard <span class="zh">硬紙板</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) thick, stiff paper used for making boxes</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" onclick="speakText('soar')">soar <span class="zh">翱翔</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(v) to fly very high; to rise quickly</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" onclick="speakText('finally')">finally <span class="zh">最後</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(adv) after a long time or some difficulty; at the end</div></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><div class="word-chip" onclick="speakText('money')">money <span class="zh">金錢</span></div><div style="font-size:13px;color:var(--muted);padding-top:10px">(n) that people use to buy things</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+
+// ===== DATA =====
+const cards = [
+  { word:'alarm',     pos:'n',   zh:'鬧鐘',     def:'a device that makes a sound or light to get attention',   ex:'Jen set an \u003cstrong\u003ealarm\u003c/strong\u003e on her phone, so she would not oversleep for school.' },
+  { word:'darkness',  pos:'n',   zh:'黑暗',     def:'the state of not having any light',                       ex:'The room was silent in the \u003cstrong\u003edarkness\u003c/strong\u003e caused by a blackout.' },
+  { word:'target',    pos:'n',   zh:'目標',     def:'goal or aim; something you want to achieve',              ex:'James set a \u003cstrong\u003etarget\u003c/strong\u003e to run two kilometers every day.' },
+  { word:'absorb',    pos:'v',   zh:'吸收',     def:'to take in water, liquid, or another substance',          ex:'Plants \u003cstrong\u003eabsorb\u003c/strong\u003e water through their roots.' },
+  { word:'format',    pos:'n/v', zh:'模板；格式', def:'the way something is arranged or organized',             ex:'The teacher showed us the \u003cstrong\u003eformat\u003c/strong\u003e of an essay.' },
+  { word:'morning',   pos:'n',   zh:'早晨',     def:'the time from sunrise to noon',                           ex:'Grandpa likes to take a walk every \u003cstrong\u003emorning\u003c/strong\u003e to enjoy the fresh air.' },
+  { word:'adore',     pos:'v',   zh:'愛慕',     def:'to admire someone a lot; to love something very much',    ex:'Ella \u003cstrong\u003eadores\u003c/strong\u003e her little puppy and plays with it every day after school.' },
+  { word:'explore',   pos:'v',   zh:'探索',     def:'to go to a place and learn about it',                     ex:'The children \u003cstrong\u003eexplored\u003c/strong\u003e the forest and discovered many interesting animals.' },
+  { word:'cardboard', pos:'n',   zh:'硬紙板',   def:'thick, stiff paper used for making boxes',                ex:'We used \u003cstrong\u003ecardboard\u003c/strong\u003e to build a model house.' },
+  { word:'soar',      pos:'v',   zh:'翱翔',     def:'to fly very high; to rise quickly',                       ex:'The eagle \u003cstrong\u003esoared\u003c/strong\u003e high above the trees, looking for its prey.' },
+  { word:'finally',   pos:'adv', zh:'最後',     def:'after a long time or some difficulty; at the end',        ex:'After waiting for many hours, Sarah \u003cstrong\u003efinally\u003c/strong\u003e arrived at the airport.' },
+  { word:'money',     pos:'n',   zh:'金錢',     def:'that people use to buy things',                           ex:'Jen saved her \u003cstrong\u003emoney\u003c/strong\u003e to buy a new book she really wanted to read.' },
+];
+
+const quizData = [
+  { sentence:'Jen set an ___ on her phone so she would not oversleep.', zh:'Jen 在手機上設了一個___，這樣她就不會睡過頭。', answer:'alarm', choices:['alarm','target','format','morning'] },
+  { sentence:'The room was silent in the ___ caused by a blackout.', zh:'停電造成的___中，房間一片寂靜。', answer:'darkness', choices:['darkness','morning','cardboard','format'] },
+  { sentence:'James set a ___ to run two kilometers every day.', zh:'James 設定了每天跑兩公里的___。', answer:'target', choices:['target','alarm','format','adore'] },
+  { sentence:'Plants ___ water through their roots.', zh:'植物通過根部___水分。', answer:'absorb', choices:['absorb','explore','soar','adore'] },
+  { sentence:'The teacher showed us the ___ of an essay.', zh:'老師向我們展示了一篇文章的___。', answer:'format', choices:['format','target','darkness','cardboard'] },
+  { sentence:'Grandpa likes to take a walk every ___ to enjoy the fresh air.', zh:'爺爺喜歡每天___散步，享受新鮮空氣。', answer:'morning', choices:['morning','alarm','darkness','money'] },
+  { sentence:'Many fans ___ the famous singer.', zh:'許多粉絲___那位著名歌手。', answer:'adore', choices:['adore','explore','absorb','soar'] },
+  { sentence:'The children ___ the forest and discovered many animals.', zh:'孩子們___了森林，發現了許多動物。', answer:'explored', choices:['explored','adored','soared','absorbed'] },
+  { sentence:'We used ___ to build a model house.', zh:'我們用___建造了一個模型房子。', answer:'cardboard', choices:['cardboard','darkness','target','format'] },
+  { sentence:'The eagle ___ high above the trees, looking for its prey.', zh:'老鷹___高飛在樹木上方，尋找獵物。', answer:'soared', choices:['soared','explored','absorbed','adored'] },
+  { sentence:'After waiting for many hours, Sarah ___ arrived at the airport.', zh:'等了很多小時後，Sarah ___到達了機場。', answer:'finally', choices:['finally','morning','darkness','money'] },
+  { sentence:'Jen saved her ___ to buy a new book she really wanted.', zh:'Jen 存了她的___來買一本她真正想要的書。', answer:'money', choices:['money','target','format','alarm'] },
+];
+
+const matchPairs = [
+  { en:'alarm',     zh:'鬧鐘' },
+  { en:'darkness',  zh:'黑暗' },
+  { en:'target',    zh:'目標' },
+  { en:'absorb',    zh:'吸收' },
+  { en:'format',    zh:'模板；格式' },
+  { en:'adore',     zh:'愛慕' },
+  { en:'explore',   zh:'探索' },
+  { en:'cardboard', zh:'硬紙板' },
+  { en:'finally',   zh:'最後' },
+  { en:'money',     zh:'金錢' },
+];
+
+const grammarQuestions = [
+  { q:'Which noun below has an irregular plural ending in -ee?', opts:['A. mouse','B. goose','C. child','D. leaf'], ans:1 },
+  { q:'Which of these nouns does NOT change in the plural form?', opts:['A. foot','B. woman','C. goose','D. deer'], ans:3 },
+  { q:'Which sentence uses the irregular plural of \u003cem\u003etooth\u003c/em\u003e correctly?', opts:['A. I have many toothes in my bag.','B. Sarah lost two tooths at the dentist.','C. The dentist cleaned all the children\'s teeth.','D. The tooths of the lion were very sharp.'], ans:2 },
+  { q:'Which sentence uses the irregular plural of \u003cem\u003eox\u003c/em\u003e correctly?', opts:['A. I saw many oxes at the zoo.','B. The oxs are grazing quietly.','C. He owns several oxenies on his farm.','D. The farmer has three oxen in the field.'], ans:3 },
+  { q:'Which sentence uses the irregular plural of \u003cem\u003efoot\u003c/em\u003e correctly?', opts:['A. Both of my feet are cold.','B. My feets are sore after the hike.','C. He has big foots.','D. She stepped on all the footes in the room.'], ans:0 },
+  { q:'Which sentence correctly uses the plural of \u003cem\u003emoose\u003c/em\u003e?', opts:['A. Two mooses crossed the river.','B. All of the moosies ran fast.','C. The moose are very quiet animals.','D. I saw three mooses in the forest.'], ans:2 },
+  { q:'Which sentence uses the irregular plural of \u003cem\u003ewoman\u003c/em\u003e correctly?', opts:['A. I saw two womans walking together.','B. Many women attended the meeting yesterday.','C. The womans at the market are very busy.','D. The wemens are cooking in the kitchen.'], ans:1 },
+  { q:'Which sentence uses an irregular plural correctly?', opts:['A. The men walked quickly to the station.','B. I saw two womans at the store yesterday.','C. The childrens are waiting for their teacher.','D. My leafs fell off the tree in autumn.'], ans:0 },
+  { q:'Which sentence uses the irregular plural of \u003cem\u003eleaf or life\u003c/em\u003e correctly?', opts:['A. The leafs fell quickly after the wind blew.','B. I saw several lifes on the street today.','C. Many lifes were saved by the doctors.','D. The leaves on the trees are turning yellow.'], ans:3 },
+  { q:'Which sentence uses an irregular plural correctly?', opts:['A. I saw many sheeps at the farm.','B. My foots hurt after walking all day.','C. The childrens played in the park.','D. The mice ran across the field.'], ans:3 },
+];
+
+// ===== SPEECH ENGINE =====
+let speechRate = 0.75;
+
+function speak(text, rate, onEnd) {
+  if (!window.speechSynthesis) return;
+  const ss = window.speechSynthesis;
+  ss.cancel();
+  const go = () => {
+    const voices = ss.getVoices();
+    const voice = voices.find(v => v.lang === 'en-US' && (v.name.toLowerCase().indexOf('samantha') >= 0 || v.name.toLowerCase().indexOf('zira') >= 0 || v.name.toLowerCase().indexOf('karen') >= 0 || v.name.toLowerCase().indexOf('female') >= 0))
+                || voices.find(v => v.lang === 'en-US')
+                || voices.find(v => v.lang.startsWith('en'))
+                || voices[0] || null;
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US';
+    u.rate = rate || speechRate;
+    if (voice) u.voice = voice;
+    if (onEnd) u.onend = onEnd;
+    if (ss.paused) ss.resume();
+    ss.speak(u);
+  };
+  const voices = ss.getVoices();
+  if (voices.length) { go(); }
+  else {
+    ss.onvoiceschanged = () => { ss.onvoiceschanged = null; go(); };
+    setTimeout(() => { if (!ss.speaking && !ss.pending) go(); }, 300);
+  }
+}
+
+function setSpeed(rate, btn, e) {
+  if (e) e.stopPropagation();
+  speechRate = rate;
+  document.querySelectorAll('.speed-pill').forEach(p => p.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+function speakWord(e) {
+  if (e) e.stopPropagation();
+  const btn = document.getElementById('fc-speak-btn');
+  if (btn) btn.classList.add('speaking');
+  speak(fcList[fcIndex].word, speechRate, () => { if (btn) btn.classList.remove('speaking'); });
+}
+
+function speakExampleSentence(e) {
+  if (e) e.stopPropagation();
+  const raw = fcList[fcIndex].ex.replace(new RegExp('\u003c[^\u003e]+\u003e', 'g'), '');
+  const btn = document.getElementById('fc-speak-back');
+  if (btn) btn.classList.add('speaking');
+  speak(raw, speechRate * 0.9, () => { if (btn) btn.classList.remove('speaking'); });
+}
+
+function speakText(t) { speak(t, speechRate); }
+
+// ===== TABS =====
+function switchTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  if (id === 'match') matchInit();
+  if (id === 'quiz') qzInit();
+}
+
+// ===== FLASHCARDS =====
+let fcIndex = 0, fcList = [...cards], fcFlipped = false;
+function fcRender() {
+  const c = fcList[fcIndex];
+  fcFlipped = false;
+  document.getElementById('fc-card').classList.remove('flipped');
+  document.getElementById('fc-word').textContent = c.word;
+  document.getElementById('fc-pos').textContent = '(' + c.pos + ')';
+  document.getElementById('fc-hint-zh').textContent = c.zh;
+  document.getElementById('fc-def').textContent = c.def;
+  document.getElementById('fc-zh').textContent = c.zh;
+  document.getElementById('fc-ex').innerHTML = c.ex;
+  const pct = Math.round((fcIndex + 1) / fcList.length * 100);
+  document.getElementById('fc-bar').style.width = pct + '%';
+  document.getElementById('fc-counter').textContent = (fcIndex + 1) + ' / ' + fcList.length;
+  document.getElementById('fc-speak-btn').classList.remove('speaking');
+  document.getElementById('fc-speak-back').classList.remove('speaking');
+}
+function flipCard() { fcFlipped = !fcFlipped; document.getElementById('fc-card').classList.toggle('flipped', fcFlipped); }
+function fcNav(dir) { fcIndex = (fcIndex + dir + fcList.length) % fcList.length; fcRender(); }
+function fcShuffle() {
+  for (let i = fcList.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [fcList[i], fcList[j]] = [fcList[j], fcList[i]];
+  }
+  fcIndex = 0; fcRender();
+}
+fcRender();
+
+// ===== QUIZ =====
+let qzQueue = [], qzCurrent = 0, qzCorrect = 0, qzAnswered = false;
+function qzInit() {
+  qzQueue = [...quizData].sort(() => Math.random() - 0.5);
+  qzCurrent = 0; qzCorrect = 0; qzAnswered = false;
+  document.getElementById('qz-main').style.display = 'block';
+  document.getElementById('qz-result').style.display = 'none';
+  qzRender();
+}
+function qzRender() {
+  const q = qzQueue[qzCurrent];
+  document.getElementById('qz-bar').style.width = Math.round(qzCurrent / qzQueue.length * 100) + '%';
+  document.getElementById('qz-score-badge').textContent = qzCorrect + ' / ' + qzCurrent;
+  const sh = [...q.choices].sort(() => Math.random() - 0.5);
+  const L = ['A','B','C','D'];
+  const sentenceHtml = q.sentence.replace('___', '\u003c' + 'span class="blank-box"\u003e' + '___' + '\u003c' + '/span\u003e');
+  let optionsHtml = '';
+  for (let i = 0; i < sh.length; i++) {
+    optionsHtml += '\u003cbutton class="qz-option" data-letter="' + L[i] + '" data-choice="' + i + '" onclick="qzAnswerIdx(this,' + i + ')"\u003e\u003cspan\u003e' + sh[i] + '\u003c/span\u003e\u003c/button\u003e';
+  }
+  document.getElementById('qz-card-wrap').innerHTML =
+    '\u003cdiv class="qz-card"\u003e' +
+    '\u003cdiv class="qz-q-num"\u003eQuestion ' + (qzCurrent + 1) + ' of ' + qzQueue.length + '\u003c/div\u003e' +
+    '\u003cdiv class="qz-sentence"\u003e' + sentenceHtml + '\u003c/div\u003e' +
+    '\u003cbutton class="qz-speak-btn" onclick="qzListen()"\u003e🔊 Listen\u003c/button\u003e' +
+    '\u003cdiv class="qz-options" style="margin-top:14px"\u003e' + optionsHtml + '\u003c/div\u003e' +
+    '\u003cdiv class="qz-feedback" id="qz-fb"\u003e\u003c/div\u003e' +
+    '\u003cdiv id="qz-zh" style="display:none;margin-top:10px;font-size:13px;color:var(--gold);padding:8px 12px;background:rgba(255,143,0,0.08);border-radius:0 10px 10px 0;border-left:3px solid var(--gold);"\u003e\u003c/div\u003e' +
+    '\u003c/div\u003e';
+  document.getElementById('qz-next').classList.remove('show');
+  qzAnswered = false;
+  window._qzCurrentSh = sh;
+}
+function qzListen() {
+  const q = qzQueue[qzCurrent];
+  speakText(q.sentence.replace('___', 'blank'));
+}
+function qzAnswerIdx(btn, choiceIdx) {
+  if (qzAnswered) return;
+  qzAnswered = true;
+  const q = qzQueue[qzCurrent];
+  const sh = window._qzCurrentSh;
+  const chosen = sh[choiceIdx];
+  const correct = q.answer;
+  const zh = q.zh || '';
+  const fb = document.getElementById('qz-fb');
+  const zhEl = document.getElementById('qz-zh');
+  document.querySelectorAll('.qz-option').forEach(b => b.classList.add('disabled'));
+  if (chosen === correct) {
+    btn.classList.add('correct');
+    fb.textContent = '✓ Correct!';
+    fb.className = 'qz-feedback show ok';
+    qzCorrect++;
+  } else {
+    btn.classList.add('wrong');
+    fb.textContent = '✗ The answer is: ' + correct;
+    fb.className = 'qz-feedback show no';
+    document.querySelectorAll('.qz-option').forEach(function(b) {
+      var idx = parseInt(b.getAttribute('data-choice'));
+      if (!isNaN(idx) && sh[idx] === correct) b.classList.add('correct');
+    });
+  }
+  if (zh) { zhEl.textContent = '📖 ' + zh; zhEl.style.display = 'block'; }
+  speak(correct, 0.85);
+  document.getElementById('qz-score-badge').textContent = qzCorrect + ' / ' + (qzCurrent + 1);
+  document.getElementById('qz-next').classList.add('show');
+}
+function qzNext() { qzCurrent++; if (qzCurrent >= qzQueue.length) { qzShowResult(); return; } qzRender(); }
+function qzShowResult() {
+  document.getElementById('qz-main').style.display = 'none';
+  document.getElementById('qz-result').style.display = 'block';
+  const pct = Math.round(qzCorrect / qzQueue.length * 100);
+  document.getElementById('res-score').textContent = qzCorrect + ' / ' + qzQueue.length;
+  document.getElementById('res-stars').textContent = pct >= 90 ? '⭐⭐⭐' : pct >= 70 ? '⭐⭐' : '⭐';
+  document.getElementById('res-label').textContent = pct >= 90 ? 'Excellent!' : pct >= 70 ? 'Good job!' : 'Keep practicing!';
+  document.getElementById('res-sub').textContent = pct + '% correct';
+}
+function qzRestart() { qzInit(); }
+
+// ===== GRAMMAR QUIZ =====
+let gqAnswered = new Array(grammarQuestions.length).fill(false), gqCorrectCount = 0;
+function gqBuild() {
+  document.getElementById('gq-container').innerHTML = grammarQuestions.map((q, qi) =>
+    '\u003cdiv class="gq-card"\u003e\u003cdiv class="gq-q"\u003e' + (qi + 1) + '. ' + q.q + '\u003c/div\u003e\u003cdiv class="gq-options"\u003e' +
+    q.opts.map((o, oi) => '\u003cbutton class="gq-opt" id="gqo-' + qi + '-' + oi + '" onclick="gqAnswer(' + qi + ',' + oi + ')"\u003e' + o + '\u003c/button\u003e').join('') +
+    '\u003c/div\u003e\u003cdiv class="gq-fb" id="gqf-' + qi + '"\u003e\u003c/div\u003e\u003c/div\u003e'
+  ).join('');
+}
+function gqAnswer(qi, oi) {
+  if (gqAnswered[qi]) return;
+  gqAnswered[qi] = true;
+  const q = grammarQuestions[qi];
+  const fb = document.getElementById('gqf-' + qi);
+  for (let i = 0; i < q.opts.length; i++) document.getElementById('gqo-' + qi + '-' + i).classList.add('disabled');
+  if (oi === q.ans) {
+    document.getElementById('gqo-' + qi + '-' + oi).classList.add('correct');
+    fb.textContent = '✓ Correct!'; fb.className = 'gq-fb show ok'; gqCorrectCount++;
+  } else {
+    document.getElementById('gqo-' + qi + '-' + oi).classList.add('wrong');
+    document.getElementById('gqo-' + qi + '-' + q.ans).classList.add('correct');
+    fb.textContent = '✗ Answer: ' + q.opts[q.ans]; fb.className = 'gq-fb show no';
+  }
+  const done = gqAnswered.filter(Boolean).length;
+  document.getElementById('gq-score').textContent = gqCorrectCount + ' / ' + done + ' answered';
+}
+function gqReset() {
+  gqAnswered = new Array(grammarQuestions.length).fill(false); gqCorrectCount = 0;
+  document.getElementById('gq-score').textContent = '0 / 10 answered'; gqBuild();
+}
+gqBuild();
+
+// ===== MATCHING =====
+let matchSelected = null, matchMatchedCount = 0;
+function matchInit() {
+  matchMatchedCount = 0; matchSelected = null;
+  document.getElementById('match-complete').classList.remove('show');
+  document.getElementById('match-score').textContent = '0 / ' + matchPairs.length;
+  const sl = [...matchPairs].sort(() => Math.random() - 0.5);
+  const sr = [...matchPairs].sort(() => Math.random() - 0.5);
+  document.getElementById('match-left').innerHTML = sl.map(p => '\u003cdiv class="match-item" data-en="' + p.en + '" onclick="matchClick(this,\'en\')"\u003e' + p.en + '\u003c/div\u003e').join('');
+  document.getElementById('match-right').innerHTML = sr.map(p => '\u003cdiv class="match-item" data-en="' + p.en + '" onclick="matchClick(this,\'zh\')"\u003e' + p.zh + '\u003c/div\u003e').join('');
+}
+function matchClick(el, side) {
+  if (el.classList.contains('matched')) return;
+  if (!matchSelected) { el.classList.add('selected'); matchSelected = { el, side }; return; }
+  if (matchSelected.side === side) { matchSelected.el.classList.remove('selected'); el.classList.add('selected'); matchSelected = { el, side }; return; }
+  const enEl = side === 'en' ? el : matchSelected.el;
+  const zhEl = side === 'zh' ? el : matchSelected.el;
+  if (enEl.dataset.en === zhEl.dataset.en) {
+    enEl.classList.remove('selected'); zhEl.classList.remove('selected');
+    enEl.classList.add('matched'); zhEl.classList.add('matched');
+    matchMatchedCount++;
+    document.getElementById('match-score').textContent = matchMatchedCount + ' / ' + matchPairs.length;
+    if (matchMatchedCount === matchPairs.length) document.getElementById('match-complete').classList.add('show');
+  } else {
+    enEl.classList.add('wrong-flash'); zhEl.classList.add('wrong-flash');
+    setTimeout(() => { enEl.classList.remove('wrong-flash','selected'); zhEl.classList.remove('wrong-flash','selected'); }, 450);
+  }
+  matchSelected = null;
+}
+function matchReset() { matchInit(); }
+
+// ===== GRAMMAR TOGGLE =====
+function toggleGrammar(h) {
+  const b = h.nextElementSibling;
+  const t = h.querySelector('.grammar-toggle');
+  b.classList.toggle('open');
+  t.classList.toggle('open');
+}
+
+// Unlock audio on first user interaction
+let _audioUnlocked = false;
+document.addEventListener('click', function _unlock() {
+  if (_audioUnlocked) return;
+  _audioUnlocked = true;
+  if (window.speechSynthesis) {
+    const u = new SpeechSynthesisUtterance('');
+    window.speechSynthesis.speak(u);
+    window.speechSynthesis.cancel();
+  }
+  document.removeEventListener('click', _unlock);
+}, { once: true });
+
+</script>
+</body>
+</html>
