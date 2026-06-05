@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3.1 U2 Review — Vocabulary Booklet</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFF0;--surface:#FFFFFF;--surface2:#FFF8EC;
+  --border:rgba(230,81,0,0.15);--accent:#E65100;--accent2:#43A047;
+  --gold:#FF8F00;--text:#1B2A1B;--muted:#5D6B52;--radius:16px;
+  --success:#43A047;--error:#D32F2F;--success-bg:rgba(67,160,71,0.12);
+  --error-bg:rgba(211,47,47,0.10);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Sora',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse 60% 40% at 15% 20%,rgba(230,81,0,0.10) 0%,transparent 60%),
+             radial-gradient(ellipse 50% 35% at 85% 80%,rgba(67,160,71,0.07) 0%,transparent 55%);
+  pointer-events:none;z-index:0;}
+.app{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:2rem 1.25rem 5rem;}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.5rem;}
+.nav-brand{font-size:13px;font-weight:600;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;}
+.nav-links{display:flex;align-items:center;gap:10px;}
+.nav-home{font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;padding:5px 12px;border:1px solid var(--border);border-radius:999px;transition:all 0.2s;}
+.nav-home:hover{color:var(--accent);border-color:rgba(230,81,0,0.4);}
+.nav-tag{background:rgba(230,81,0,0.12);border:1px solid rgba(230,81,0,0.25);color:var(--accent);font-size:11px;padding:4px 12px;border-radius:999px;font-weight:700;letter-spacing:0.06em;}
+
+/* HERO */
+.hero{margin-bottom:2rem;}
+.hero h1{font-size:clamp(26px,5vw,42px);font-weight:700;line-height:1.1;letter-spacing:-0.02em;}
+.hero h1 span{color:var(--accent);}
+.hero p{font-size:14px;color:var(--muted);margin-top:10px;line-height:1.7;max-width:500px;}
+.stats-row{display:flex;gap:10px;margin-top:1.2rem;flex-wrap:wrap;}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 16px;font-size:13px;color:var(--muted);}
+.stat strong{color:var(--accent);font-family:'Space Mono',monospace;}
+
+/* SET TABS */
+.set-tabs{display:flex;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap;}
+.set-btn{padding:9px 20px;border-radius:999px;border:1.5px solid var(--border);background:var(--surface);font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.2s;}
+.set-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+.set-btn:hover:not(.active){border-color:rgba(230,81,0,0.4);color:var(--accent);}
+
+/* SET PANEL */
+.set-panel{display:none;}
+.set-panel.active{display:block;}
+
+/* SECTION HEADER */
+.sec-header{display:flex;align-items:center;gap:10px;margin:2rem 0 1rem;}
+.sec-icon{font-size:18px;}
+.sec-title{font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.sec-divider{flex:1;height:1px;background:var(--border);}
+
+/* SCORE BAR */
+.score-bar{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 20px;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.score-label{font-size:13px;font-weight:600;color:var(--muted);}
+.score-val{font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:var(--accent);}
+.score-actions{display:flex;gap:8px;}
+.btn-check{background:var(--accent2);color:#fff;border:none;border-radius:999px;padding:8px 20px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.btn-check:hover{background:#388E3C;}
+.btn-reset{background:transparent;color:var(--muted);border:1.5px solid var(--border);border-radius:999px;padding:8px 16px;font-family:'Sora',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.btn-reset:hover{border-color:rgba(230,81,0,0.4);color:var(--accent);}
+
+/* QUESTION */
+.q-block{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:10px;transition:border-color 0.2s;}
+.q-block.correct{border-color:var(--success);background:var(--success-bg);}
+.q-block.wrong{border-color:var(--error);background:var(--error-bg);}
+.q-num{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.q-text{font-size:14px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:12px;}
+.q-text em{color:var(--accent);font-style:normal;font-weight:700;}
+
+/* CHOICES */
+.choices{display:flex;flex-direction:column;gap:7px;}
+.choice-btn{display:flex;align-items:center;gap:10px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:9px 14px;font-family:'Sora',sans-serif;font-size:13px;font-weight:500;color:var(--text);cursor:pointer;text-align:left;transition:all 0.15s;}
+.choice-btn:hover:not(:disabled){border-color:rgba(230,81,0,0.4);background:#FFF3E0;}
+.choice-btn.selected{border-color:var(--accent);background:rgba(230,81,0,0.08);color:var(--accent);font-weight:600;}
+.choice-btn.correct{border-color:var(--success)!important;background:var(--success-bg)!important;color:var(--success);font-weight:600;}
+.choice-btn.wrong{border-color:var(--error)!important;background:var(--error-bg)!important;color:var(--error);font-weight:600;}
+.choice-mark{font-size:15px;flex-shrink:0;}
+
+/* FILL-IN */
+.fill-row{display:flex;flex-direction:column;gap:6px;}
+.fill-input{background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:9px 14px;font-family:'Sora',sans-serif;font-size:13px;font-weight:500;color:var(--text);outline:none;transition:all 0.2s;width:100%;}
+.fill-input:focus{border-color:rgba(230,81,0,0.4);}
+.fill-input.correct{border-color:var(--success);background:var(--success-bg);color:var(--success);font-weight:600;}
+.fill-input.wrong{border-color:var(--error);background:var(--error-bg);color:var(--error);}
+.fill-hint{font-size:11px;color:var(--muted);margin-top:2px;}
+.fill-answer{font-size:12px;font-weight:700;color:var(--success);margin-top:4px;display:none;}
+.fill-answer.show{display:block;}
+
+/* COMPOUND WORD fill */
+.compound-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.compound-part{background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:8px 12px;font-family:'Space Mono',monospace;font-size:13px;color:var(--text);outline:none;width:110px;transition:all 0.2s;text-align:center;}
+.compound-part:focus{border-color:rgba(230,81,0,0.4);}
+.compound-part.correct{border-color:var(--success);background:var(--success-bg);color:var(--success);}
+.compound-part.wrong{border-color:var(--error);background:var(--error-bg);color:var(--error);}
+.compound-eq{font-size:14px;font-weight:700;color:var(--muted);}
+.compound-result{background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:8px 14px;font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:var(--text);outline:none;width:140px;transition:all 0.2s;text-align:center;}
+.compound-result:focus{border-color:rgba(230,81,0,0.4);}
+.compound-result.correct{border-color:var(--success);background:var(--success-bg);color:var(--success);}
+.compound-result.wrong{border-color:var(--error);background:var(--error-bg);color:var(--error);}
+
+/* FEEDBACK */
+.q-feedback{font-size:12px;font-weight:600;margin-top:8px;display:none;padding:6px 12px;border-radius:8px;}
+.q-feedback.show{display:block;}
+.q-feedback.ok{color:var(--success);background:var(--success-bg);}
+.q-feedback.no{color:var(--error);background:var(--error-bg);}
+
+/* WORD BANK */
+.word-bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;padding:12px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;}
+.wb-label{width:100%;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.wb-word{background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:5px 14px;font-size:13px;font-weight:600;color:var(--text);}
+</style>
+</head>
+<body>
+<div class="app">
+
+<nav>
+  <span class="nav-brand">Vocabulary Booklet</span>
+  <div class="nav-links">
+    <a class="nav-home" href="../../index.html">← Home</a>
+    <span class="nav-tag">U2 REVIEW</span>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>Unit 2 <span>Review</span></h1>
+  <p>Week 1–5 · Spelling · Grammar · Vocabulary · High-Frequency Words</p>
+  <div class="stats-row">
+    <div class="stat"><strong>2</strong> Review Sets</div>
+    <div class="stat"><strong>80+</strong> Questions</div>
+    <div class="stat"><strong>5</strong> Topics</div>
+  </div>
+</div>
+
+<div class="set-tabs">
+  <button class="set-btn active" onclick="switchSet('r1',this)">📋 Review 1 — Week 1, 2, 5</button>
+  <button class="set-btn" onclick="switchSet('r2',this)">📋 Review 2 — Week 3, 4, 5</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════ REVIEW 1 ═══ -->
+<div class="set-panel active" id="panel-r1">
+
+  <div class="score-bar">
+    <div><div class="score-label">Review 1 Score</div><div class="score-val" id="score-r1">— / —</div></div>
+    <div class="score-actions">
+      <button class="btn-check" onclick="checkAll('r1')">✓ Check Answers</button>
+      <button class="btn-reset" onclick="resetAll('r1')">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- SPELLING W1 -->
+  <div class="sec-header"><span class="sec-icon">✏️</span><span class="sec-title">Spelling · Week 1 — VC/V &amp; V/CV Syllable Patterns</span><div class="sec-divider"></div></div>
+
+  <div class="q-block" id="r1-q1">
+    <div class="q-num">Question 1</div>
+    <div class="q-text">Which word is divided into syllables <em>correctly</em>?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q1','wrong')"><span class="choice-mark">○</span> digi/t</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q1','wrong')"><span class="choice-mark">○</span> fi/nish</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q1','correct')"><span class="choice-mark">○</span> hu/man</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q1','wrong')"><span class="choice-mark">○</span> equ/al</button>
+    </div>
+    <div class="q-feedback" id="r1-q1-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q2">
+    <div class="q-num">Question 2</div>
+    <div class="q-text">Choose the word divided into syllables <em>incorrectly</em>.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q2','wrong')"><span class="choice-mark">○</span> dig/it</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q2','wrong')"><span class="choice-mark">○</span> sal/ad</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q2','correct')"><span class="choice-mark">○</span> fam/ous</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q2','wrong')"><span class="choice-mark">○</span> mi/nus</button>
+    </div>
+    <div class="q-feedback" id="r1-q2-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q3">
+    <div class="q-num">Question 3</div>
+    <div class="q-text">Which word is <em>NOT</em> divided correctly?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q3','wrong')"><span class="choice-mark">○</span> hu/man</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q3','wrong')"><span class="choice-mark">○</span> to/tal</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q3','wrong')"><span class="choice-mark">○</span> e/qual</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q3','correct')"><span class="choice-mark">○</span> def/end</button>
+    </div>
+    <div class="q-feedback" id="r1-q3-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q4">
+    <div class="q-num">Question 4</div>
+    <div class="q-text">Choose the word <em>NOT</em> divided into syllables correctly.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q4','wrong')"><span class="choice-mark">○</span> sal/ad</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q4','wrong')"><span class="choice-mark">○</span> de/fend</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q4','wrong')"><span class="choice-mark">○</span> hu/man</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q4','correct')"><span class="choice-mark">○</span> tot/al</button>
+    </div>
+    <div class="q-feedback" id="r1-q4-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q5">
+    <div class="q-num">Question 5</div>
+    <div class="q-text">Which word is divided into syllables <em>correctly</em>?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q5','wrong')"><span class="choice-mark">○</span> def/end</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q5','correct')"><span class="choice-mark">○</span> dig/it</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q5','wrong')"><span class="choice-mark">○</span> ta/lent</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q5','wrong')"><span class="choice-mark">○</span> min/us</button>
+    </div>
+    <div class="q-feedback" id="r1-q5-fb"></div>
+  </div>
+
+  <!-- SPELLING W2 r-Controlled -->
+  <div class="sec-header"><span class="sec-icon">✏️</span><span class="sec-title">Spelling · Week 2 — r-Controlled Vowels</span><div class="sec-divider"></div></div>
+
+  <div class="q-block" id="r1-q6">
+    <div class="q-num">Question 6</div>
+    <div class="q-text">Which word contains a <em>DIFFERENT</em> r-controlled vowel sound?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q6','wrong')"><span class="choice-mark">○</span> morning</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q6','wrong')"><span class="choice-mark">○</span> board</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q6','wrong')"><span class="choice-mark">○</span> soar</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q6','correct')"><span class="choice-mark">○</span> target</button>
+    </div>
+    <div class="q-feedback" id="r1-q6-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q7">
+    <div class="q-num">Question 7</div>
+    <div class="q-text">Which word does <em>NOT</em> have the same r-controlled vowel sound as <em>"car"</em>?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q7','wrong')"><span class="choice-mark">○</span> farmer</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q7','wrong')"><span class="choice-mark">○</span> darkness</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q7','correct')"><span class="choice-mark">○</span> adore</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q7','wrong')"><span class="choice-mark">○</span> target</button>
+    </div>
+    <div class="q-feedback" id="r1-q7-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q8">
+    <div class="q-num">Question 8</div>
+    <div class="q-text">Which word contains a <em>DIFFERENT</em> r-controlled vowel sound?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q8','wrong')"><span class="choice-mark">○</span> absorb</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q8','wrong')"><span class="choice-mark">○</span> explore</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q8','wrong')"><span class="choice-mark">○</span> sore</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q8','correct')"><span class="choice-mark">○</span> darkness</button>
+    </div>
+    <div class="q-feedback" id="r1-q8-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q9">
+    <div class="q-num">Question 9</div>
+    <div class="q-text">Which word contains a <em>DIFFERENT</em> r-controlled vowel sound?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q9','wrong')"><span class="choice-mark">○</span> adore</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q9','wrong')"><span class="choice-mark">○</span> format</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q9','wrong')"><span class="choice-mark">○</span> absorb</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q9','correct')"><span class="choice-mark">○</span> target</button>
+    </div>
+    <div class="q-feedback" id="r1-q9-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q10">
+    <div class="q-num">Question 10</div>
+    <div class="q-text">Which word does <em>NOT</em> have the same r-controlled vowel as <em>"park"</em>?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q10','wrong')"><span class="choice-mark">○</span> darkness</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q10','wrong')"><span class="choice-mark">○</span> target</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q10','correct')"><span class="choice-mark">○</span> store</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q10','wrong')"><span class="choice-mark">○</span> alarm</button>
+    </div>
+    <div class="q-feedback" id="r1-q10-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q11">
+    <div class="q-num">Question 11</div>
+    <div class="q-text">Which word contains a <em>DIFFERENT</em> r-controlled vowel sound?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q11','correct')"><span class="choice-mark">○</span> carton</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q11','wrong')"><span class="choice-mark">○</span> explore</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q11','wrong')"><span class="choice-mark">○</span> soar</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q11','wrong')"><span class="choice-mark">○</span> adore</button>
+    </div>
+    <div class="q-feedback" id="r1-q11-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q12">
+    <div class="q-num">Question 12</div>
+    <div class="q-text">Which word does <em>NOT</em> have the same r-controlled vowel as <em>"fork"</em>?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q12','wrong')"><span class="choice-mark">○</span> board</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q12','wrong')"><span class="choice-mark">○</span> absorb</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q12','correct')"><span class="choice-mark">○</span> darkness</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q12','wrong')"><span class="choice-mark">○</span> morning</button>
+    </div>
+    <div class="q-feedback" id="r1-q12-fb"></div>
+  </div>
+
+  <!-- SPELLING W5 Contractions -->
+  <div class="sec-header"><span class="sec-icon">✏️</span><span class="sec-title">Spelling · Week 5 — Contractions</span><div class="sec-divider"></div></div>
+
+  <div class="q-block" id="r1-q13">
+    <div class="q-num">Question 13</div>
+    <div class="q-text">We _______ going to visit the museum tomorrow.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q13','wrong')"><span class="choice-mark">○</span> didn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q13','correct')"><span class="choice-mark">○</span> aren't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q13','wrong')"><span class="choice-mark">○</span> isn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q13','wrong')"><span class="choice-mark">○</span> wasn't</button>
+    </div>
+    <div class="q-feedback" id="r1-q13-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q14">
+    <div class="q-num">Question 14</div>
+    <div class="q-text">Mia _______ finish her homework yesterday.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q14','wrong')"><span class="choice-mark">○</span> doesn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q14','wrong')"><span class="choice-mark">○</span> won't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q14','correct')"><span class="choice-mark">○</span> didn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q14','wrong')"><span class="choice-mark">○</span> hasn't</button>
+    </div>
+    <div class="q-feedback" id="r1-q14-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q15">
+    <div class="q-num">Question 15</div>
+    <div class="q-text">They _______ playing basketball right now.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q15','correct')"><span class="choice-mark">○</span> aren't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q15','wrong')"><span class="choice-mark">○</span> don't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q15','wrong')"><span class="choice-mark">○</span> wasn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q15','wrong')"><span class="choice-mark">○</span> didn't</button>
+    </div>
+    <div class="q-feedback" id="r1-q15-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q16">
+    <div class="q-num">Question 16</div>
+    <div class="q-text">Dad _______ go to work tomorrow because he was sick.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q16','wrong')"><span class="choice-mark">○</span> didn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q16','correct')"><span class="choice-mark">○</span> won't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q16','wrong')"><span class="choice-mark">○</span> doesn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q16','wrong')"><span class="choice-mark">○</span> hasn't</button>
+    </div>
+    <div class="q-feedback" id="r1-q16-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q17">
+    <div class="q-num">Question 17</div>
+    <div class="q-text">I _______ seen that movie before.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q17','wrong')"><span class="choice-mark">○</span> don't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q17','wrong')"><span class="choice-mark">○</span> hasn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q17','wrong')"><span class="choice-mark">○</span> doesn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q17','correct')"><span class="choice-mark">○</span> haven't</button>
+    </div>
+    <div class="q-feedback" id="r1-q17-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q18">
+    <div class="q-num">Question 18</div>
+    <div class="q-text">She _______ eating lunch when the doorbell rang.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q18','correct')"><span class="choice-mark">○</span> wasn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q18','wrong')"><span class="choice-mark">○</span> didn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q18','wrong')"><span class="choice-mark">○</span> isn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q18','wrong')"><span class="choice-mark">○</span> hasn't</button>
+    </div>
+    <div class="q-feedback" id="r1-q18-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q19">
+    <div class="q-num">Question 19</div>
+    <div class="q-text">We _______ like this game. It is too difficult.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q19','wrong')"><span class="choice-mark">○</span> didn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q19','correct')"><span class="choice-mark">○</span> don't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q19','wrong')"><span class="choice-mark">○</span> willn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q19','wrong')"><span class="choice-mark">○</span> aren't</button>
+    </div>
+    <div class="q-feedback" id="r1-q19-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q20">
+    <div class="q-num">Question 20</div>
+    <div class="q-text">Tom _______ finish his project last night.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q20','wrong')"><span class="choice-mark">○</span> won't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q20','correct')"><span class="choice-mark">○</span> didn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q20','wrong')"><span class="choice-mark">○</span> doesn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q20','wrong')"><span class="choice-mark">○</span> hasn't</button>
+    </div>
+    <div class="q-feedback" id="r1-q20-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q21">
+    <div class="q-num">Question 21</div>
+    <div class="q-text">They _______ ready for the test at this moment.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q21','wrong')"><span class="choice-mark">○</span> didn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q21','wrong')"><span class="choice-mark">○</span> don't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q21','correct')"><span class="choice-mark">○</span> aren't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q21','wrong')"><span class="choice-mark">○</span> wasn't</button>
+    </div>
+    <div class="q-feedback" id="r1-q21-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q22">
+    <div class="q-num">Question 22</div>
+    <div class="q-text">I guess that Ms. Jen _______ call my mom tonight.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q22','wrong')"><span class="choice-mark">○</span> didn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q22','correct')"><span class="choice-mark">○</span> won't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q22','wrong')"><span class="choice-mark">○</span> don't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q22','wrong')"><span class="choice-mark">○</span> hasn't</button>
+    </div>
+    <div class="q-feedback" id="r1-q22-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q23">
+    <div class="q-num">Question 23</div>
+    <div class="q-text">She _______ been to Japan before.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q23','wrong')"><span class="choice-mark">○</span> didn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q23','wrong')"><span class="choice-mark">○</span> doesn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q23','correct')"><span class="choice-mark">○</span> hasn't</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q23','wrong')"><span class="choice-mark">○</span> won't</button>
+    </div>
+    <div class="q-feedback" id="r1-q23-fb"></div>
+  </div>
+
+  <!-- HIGH-FREQUENCY WORDS -->
+  <div class="sec-header"><span class="sec-icon">⭐</span><span class="sec-title">High-Frequency Words — Week 1, 2, 5</span><div class="sec-divider"></div></div>
+
+  <div class="word-bank">
+    <div class="wb-label">Word Bank</div>
+    <span class="wb-word">certain</span>
+    <span class="wb-word">finally</span>
+    <span class="wb-word">half</span>
+    <span class="wb-word">money</span>
+  </div>
+
+  <div class="q-block" id="r1-q24">
+    <div class="q-num">Question 24</div>
+    <div class="q-text">Please fold the paper in _______ before cutting out the shape.</div>
+    <div class="fill-row">
+      <input class="fill-input" type="text" id="r1-q24-in" placeholder="Type the answer..." autocomplete="off" spellcheck="false">
+      <div class="fill-answer" id="r1-q24-ans">✓ Answer: half</div>
+    </div>
+    <div class="q-feedback" id="r1-q24-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q25">
+    <div class="q-num">Question 25</div>
+    <div class="q-text">Jenny wasn't _______ if she had locked the front door, so she went back to check.</div>
+    <div class="fill-row">
+      <input class="fill-input" type="text" id="r1-q25-in" placeholder="Type the answer..." autocomplete="off" spellcheck="false">
+      <div class="fill-answer" id="r1-q25-ans">✓ Answer: certain</div>
+    </div>
+    <div class="q-feedback" id="r1-q25-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q26">
+    <div class="q-num">Question 26</div>
+    <div class="q-text">My father saved enough _______ over several months to buy a new washing machine.</div>
+    <div class="fill-row">
+      <input class="fill-input" type="text" id="r1-q26-in" placeholder="Type the answer..." autocomplete="off" spellcheck="false">
+      <div class="fill-answer" id="r1-q26-ans">✓ Answer: money</div>
+    </div>
+    <div class="q-feedback" id="r1-q26-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q27">
+    <div class="q-num">Question 27</div>
+    <div class="q-text">After hours of searching, we _______ found Grandma's missing photo album.</div>
+    <div class="fill-row">
+      <input class="fill-input" type="text" id="r1-q27-in" placeholder="Type the answer..." autocomplete="off" spellcheck="false">
+      <div class="fill-answer" id="r1-q27-ans">✓ Answer: finally</div>
+    </div>
+    <div class="q-feedback" id="r1-q27-fb"></div>
+  </div>
+
+  <!-- GRAMMAR W1&2 Nouns -->
+  <div class="sec-header"><span class="sec-icon">📖</span><span class="sec-title">Grammar · Week 1 &amp; 2 — Singular and Plural Nouns</span><div class="sec-divider"></div></div>
+
+  <div class="q-block" id="r1-q30">
+    <div class="q-num">Question 28</div>
+    <div class="q-text">The farmer counted several _____ in the field before sunset.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q30','correct')"><span class="choice-mark">○</span> sheep</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q30','wrong')"><span class="choice-mark">○</span> sheeps</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q30','wrong')"><span class="choice-mark">○</span> sheepses</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q30','wrong')"><span class="choice-mark">○</span> sheepes</button>
+    </div>
+    <div class="q-feedback" id="r1-q30-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q31">
+    <div class="q-num">Question 29</div>
+    <div class="q-text">The two _____ carried heavy boxes into the truck.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q31','wrong')"><span class="choice-mark">○</span> woman</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q31','wrong')"><span class="choice-mark">○</span> womans</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q31','correct')"><span class="choice-mark">○</span> women</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q31','wrong')"><span class="choice-mark">○</span> womens</button>
+    </div>
+    <div class="q-feedback" id="r1-q31-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q32">
+    <div class="q-num">Question 30</div>
+    <div class="q-text">We saw many colorful _____ swimming in the pond.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q32','correct')"><span class="choice-mark">○</span> fish</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q32','wrong')"><span class="choice-mark">○</span> fishies</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q32','wrong')"><span class="choice-mark">○</span> fishs</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q32','wrong')"><span class="choice-mark">○</span> fishes'</button>
+    </div>
+    <div class="q-feedback" id="r1-q32-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q33">
+    <div class="q-num">Question 31</div>
+    <div class="q-text">Several _____ ran across the kitchen floor at night.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q33','wrong')"><span class="choice-mark">○</span> mouse</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q33','wrong')"><span class="choice-mark">○</span> mouses</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q33','correct')"><span class="choice-mark">○</span> mice</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q33','wrong')"><span class="choice-mark">○</span> mices</button>
+    </div>
+    <div class="q-feedback" id="r1-q33-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q34">
+    <div class="q-num">Question 32</div>
+    <div class="q-text">The hikers spotted three _____ in the forest.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q34','correct')"><span class="choice-mark">○</span> deer</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q34','wrong')"><span class="choice-mark">○</span> deers</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q34','wrong')"><span class="choice-mark">○</span> deeres</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q34','wrong')"><span class="choice-mark">○</span> deerses</button>
+    </div>
+    <div class="q-feedback" id="r1-q34-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q37">
+    <div class="q-num">Question 33</div>
+    <div class="q-text">The baby's tiny _____ were cold in the winter air.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q37','wrong')"><span class="choice-mark">○</span> foot</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q37','wrong')"><span class="choice-mark">○</span> foots</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q37','correct')"><span class="choice-mark">○</span> feet</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q37','wrong')"><span class="choice-mark">○</span> feets</button>
+    </div>
+    <div class="q-feedback" id="r1-q37-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q38">
+    <div class="q-num">Question 34</div>
+    <div class="q-text">Which sentence contains a <em>spelling error</em>?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q38','wrong')"><span class="choice-mark">○</span> The knives were placed carefully in the drawer.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q38','correct')"><span class="choice-mark">○</span> The fishs swam near the rocks in the river.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q38','wrong')"><span class="choice-mark">○</span> The sheep rested quietly under the tree.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q38','wrong')"><span class="choice-mark">○</span> The geese crossed the road together.</button>
+    </div>
+    <div class="q-feedback" id="r1-q38-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q39">
+    <div class="q-num">Question 35</div>
+    <div class="q-text">Which sentence does <em>NOT</em> contain a spelling error?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q39','wrong')"><span class="choice-mark">○</span> The tooths were cleaned by the dentist.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q39','wrong')"><span class="choice-mark">○</span> The mens carried heavy bags into the house.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q39','correct')"><span class="choice-mark">○</span> The hikers spotted three deer in the woods.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q39','wrong')"><span class="choice-mark">○</span> The womans were waiting outside the store.</button>
+    </div>
+    <div class="q-feedback" id="r1-q39-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q40">
+    <div class="q-num">Question 36</div>
+    <div class="q-text">Which sentence does <em>NOT</em> contain a spelling error?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q40','wrong')"><span class="choice-mark">○</span> The childs played happily at the playground.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q40','wrong')"><span class="choice-mark">○</span> The wolfs chased each other near the hill.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q40','correct')"><span class="choice-mark">○</span> The mice chewed holes in the old boxes.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q40','wrong')"><span class="choice-mark">○</span> The leafs fell gently onto the ground.</button>
+    </div>
+    <div class="q-feedback" id="r1-q40-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q41">
+    <div class="q-num">Question 37</div>
+    <div class="q-text">Which sentence contains a <em>spelling error</em>?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q41','wrong')"><span class="choice-mark">○</span> The women prepared food for the picnic.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q41','wrong')"><span class="choice-mark">○</span> The feet of the chairs were covered with rubber caps.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q41','correct')"><span class="choice-mark">○</span> The deers stood silently near the lake.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q41','wrong')"><span class="choice-mark">○</span> The teeth were brushed after breakfast.</button>
+    </div>
+    <div class="q-feedback" id="r1-q41-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q42">
+    <div class="q-num">Question 38</div>
+    <div class="q-text">Which sentence does <em>NOT</em> contain a spelling error?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q42','wrong')"><span class="choice-mark">○</span> My tooths hurt after eating candy.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q42','wrong')"><span class="choice-mark">○</span> The mans fixed the fence yesterday.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q42','wrong')"><span class="choice-mark">○</span> The gooses walked slowly across the road.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q42','correct')"><span class="choice-mark">○</span> The children sang songs during the assembly.</button>
+    </div>
+    <div class="q-feedback" id="r1-q42-fb"></div>
+  </div>
+
+  <!-- GRAMMAR W5 Verbs -->
+  <div class="sec-header"><span class="sec-icon">📖</span><span class="sec-title">Grammar · Week 5 — Main Verbs &amp; Helping Verbs</span><div class="sec-divider"></div></div>
+
+  <div class="q-block" id="r1-q43">
+    <div class="q-num">Question 39</div>
+    <div class="q-text">I _________ my grandparents last weekend.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q43','wrong')"><span class="choice-mark">○</span> visit</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q43','correct')"><span class="choice-mark">○</span> visited</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q43','wrong')"><span class="choice-mark">○</span> am visiting</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q43','wrong')"><span class="choice-mark">○</span> will visit</button>
+    </div>
+    <div class="q-feedback" id="r1-q43-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q44">
+    <div class="q-num">Question 40</div>
+    <div class="q-text">Listen! The teacher _________ the story to the class.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q44','wrong')"><span class="choice-mark">○</span> reads</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q44','wrong')"><span class="choice-mark">○</span> read</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q44','correct')"><span class="choice-mark">○</span> is reading</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q44','wrong')"><span class="choice-mark">○</span> will read</button>
+    </div>
+    <div class="q-feedback" id="r1-q44-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q45">
+    <div class="q-num">Question 41</div>
+    <div class="q-text">They _________ dinner when the power went out.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q45','wrong')"><span class="choice-mark">○</span> cook</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q45','wrong')"><span class="choice-mark">○</span> cooked</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q45','correct')"><span class="choice-mark">○</span> were cooking</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q45','wrong')"><span class="choice-mark">○</span> will cook</button>
+    </div>
+    <div class="q-feedback" id="r1-q45-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q46">
+    <div class="q-num">Question 42</div>
+    <div class="q-text">My father _________ to work every morning.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q46','correct')"><span class="choice-mark">○</span> goes</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q46','wrong')"><span class="choice-mark">○</span> went</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q46','wrong')"><span class="choice-mark">○</span> is going</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q46','wrong')"><span class="choice-mark">○</span> will go</button>
+    </div>
+    <div class="q-feedback" id="r1-q46-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q47">
+    <div class="q-num">Question 43</div>
+    <div class="q-text">She _________ a new book right now.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q47','wrong')"><span class="choice-mark">○</span> reads</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q47','wrong')"><span class="choice-mark">○</span> read</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q47','correct')"><span class="choice-mark">○</span> is reading</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q47','wrong')"><span class="choice-mark">○</span> will read</button>
+    </div>
+    <div class="q-feedback" id="r1-q47-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q48">
+    <div class="q-num">Question 44</div>
+    <div class="q-text">We _________ to Japan next summer.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q48','wrong')"><span class="choice-mark">○</span> go</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q48','wrong')"><span class="choice-mark">○</span> went</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q48','wrong')"><span class="choice-mark">○</span> is going</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q48','correct')"><span class="choice-mark">○</span> will go</button>
+    </div>
+    <div class="q-feedback" id="r1-q48-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q49">
+    <div class="q-num">Question 45</div>
+    <div class="q-text">The boys _________ in the yard when it started raining.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q49','wrong')"><span class="choice-mark">○</span> play</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q49','wrong')"><span class="choice-mark">○</span> played</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q49','correct')"><span class="choice-mark">○</span> were playing</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q49','wrong')"><span class="choice-mark">○</span> will play</button>
+    </div>
+    <div class="q-feedback" id="r1-q49-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q50">
+    <div class="q-num">Question 46</div>
+    <div class="q-text">She _________ her teeth every night before bed.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q50','correct')"><span class="choice-mark">○</span> brushes</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q50','wrong')"><span class="choice-mark">○</span> brushed</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q50','wrong')"><span class="choice-mark">○</span> is brushing</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q50','wrong')"><span class="choice-mark">○</span> will brush</button>
+    </div>
+    <div class="q-feedback" id="r1-q50-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q51">
+    <div class="q-num">Question 47</div>
+    <div class="q-text">His family _________ a movie tomorrow evening.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q51','wrong')"><span class="choice-mark">○</span> watch</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q51','wrong')"><span class="choice-mark">○</span> watched</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q51','wrong')"><span class="choice-mark">○</span> are watching</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q51','correct')"><span class="choice-mark">○</span> will watch</button>
+    </div>
+    <div class="q-feedback" id="r1-q51-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q52">
+    <div class="q-num">Question 48</div>
+    <div class="q-text">Tom _________ soccer when I saw him yesterday.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q52','wrong')"><span class="choice-mark">○</span> plays</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q52','wrong')"><span class="choice-mark">○</span> played</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q52','correct')"><span class="choice-mark">○</span> was playing</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q52','wrong')"><span class="choice-mark">○</span> will play</button>
+    </div>
+    <div class="q-feedback" id="r1-q52-fb"></div>
+  </div>
+
+  <!-- Sentence correction questions -->
+  <div class="q-block" id="r1-q53">
+    <div class="q-num">Question 49</div>
+    <div class="q-text">How should this sentence be changed?<br><em>"She is go to school every day."</em></div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q53','wrong')"><span class="choice-mark">○</span> change <em>is go</em> to <em>goes</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q53','wrong')"><span class="choice-mark">○</span> change <em>is go</em> to <em>went</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q53','correct')"><span class="choice-mark">○</span> change <em>is go</em> to <em>going</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q53','wrong')"><span class="choice-mark">○</span> no changes should be made</button>
+    </div>
+    <div class="q-feedback" id="r1-q53-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q54">
+    <div class="q-num">Question 50</div>
+    <div class="q-text">How should this sentence be changed?<br><em>"They will came to the party tomorrow."</em></div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q54','correct')"><span class="choice-mark">○</span> change <em>will came</em> to <em>will come</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q54','wrong')"><span class="choice-mark">○</span> change <em>will came</em> to <em>come</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q54','wrong')"><span class="choice-mark">○</span> change <em>will came</em> to <em>coming</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q54','wrong')"><span class="choice-mark">○</span> no changes should be made</button>
+    </div>
+    <div class="q-feedback" id="r1-q54-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q55">
+    <div class="q-num">Question 51</div>
+    <div class="q-text">How should this sentence be changed?<br><em>"My brother is played basketball right now."</em></div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q55','wrong')"><span class="choice-mark">○</span> change <em>is played</em> to <em>plays</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q55','correct')"><span class="choice-mark">○</span> change <em>is played</em> to <em>is playing</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q55','wrong')"><span class="choice-mark">○</span> change <em>is played</em> to <em>played</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q55','wrong')"><span class="choice-mark">○</span> no changes should be made</button>
+    </div>
+    <div class="q-feedback" id="r1-q55-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q56">
+    <div class="q-num">Question 52</div>
+    <div class="q-text">How should this sentence be changed?<br><em>"We was watching TV when the phone rang."</em></div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q56','correct')"><span class="choice-mark">○</span> change <em>was watching</em> to <em>were watching</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q56','wrong')"><span class="choice-mark">○</span> change <em>was watching</em> to <em>watched</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q56','wrong')"><span class="choice-mark">○</span> change <em>was watching</em> to <em>are watching</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q56','wrong')"><span class="choice-mark">○</span> no changes should be made</button>
+    </div>
+    <div class="q-feedback" id="r1-q56-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q57">
+    <div class="q-num">Question 53</div>
+    <div class="q-text">How should this sentence be changed?<br><em>"She will goes to Japan next month."</em></div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q57','correct')"><span class="choice-mark">○</span> change <em>will goes</em> to <em>will go</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q57','wrong')"><span class="choice-mark">○</span> change <em>will goes</em> to <em>went</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q57','wrong')"><span class="choice-mark">○</span> change <em>will goes</em> to <em>going</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q57','wrong')"><span class="choice-mark">○</span> no changes should be made</button>
+    </div>
+    <div class="q-feedback" id="r1-q57-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q58">
+    <div class="q-num">Question 54</div>
+    <div class="q-text">How should this sentence be changed?<br><em>"I am visited my grandma yesterday."</em></div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q58','correct')"><span class="choice-mark">○</span> change <em>am visited</em> to <em>visited</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q58','wrong')"><span class="choice-mark">○</span> change <em>am visited</em> to <em>am visiting</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q58','wrong')"><span class="choice-mark">○</span> change <em>am visited</em> to <em>will visit</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q58','wrong')"><span class="choice-mark">○</span> no changes should be made</button>
+    </div>
+    <div class="q-feedback" id="r1-q58-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q59">
+    <div class="q-num">Question 55</div>
+    <div class="q-text">How should this sentence be changed?<br><em>"They plays football in the park after school every day."</em></div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q59','wrong')"><span class="choice-mark">○</span> change <em>plays</em> to <em>played</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q59','wrong')"><span class="choice-mark">○</span> change <em>plays</em> to <em>are playing</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q59','correct')"><span class="choice-mark">○</span> change <em>plays</em> to <em>play</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q59','wrong')"><span class="choice-mark">○</span> no changes should be made</button>
+    </div>
+    <div class="q-feedback" id="r1-q59-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q60">
+    <div class="q-num">Question 56</div>
+    <div class="q-text">How should this sentence be changed?<br><em>"He will coming to school tomorrow."</em></div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q60','correct')"><span class="choice-mark">○</span> change <em>will coming</em> to <em>will come</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q60','wrong')"><span class="choice-mark">○</span> change <em>will coming</em> to <em>comes</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q60','wrong')"><span class="choice-mark">○</span> change <em>will coming</em> to <em>came</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q60','wrong')"><span class="choice-mark">○</span> no changes should be made</button>
+    </div>
+    <div class="q-feedback" id="r1-q60-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q61">
+    <div class="q-num">Question 57</div>
+    <div class="q-text">How should this sentence be changed?<br><em>"The children were eat lunch when I saw them."</em></div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q61','correct')"><span class="choice-mark">○</span> change <em>were eat</em> to <em>were eating</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q61','wrong')"><span class="choice-mark">○</span> change <em>were eat</em> to <em>ate</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q61','wrong')"><span class="choice-mark">○</span> change <em>were eat</em> to <em>are eating</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q61','wrong')"><span class="choice-mark">○</span> no changes should be made</button>
+    </div>
+    <div class="q-feedback" id="r1-q61-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q62">
+    <div class="q-num">Question 58</div>
+    <div class="q-text">How should this sentence be changed?<br><em>"She reads a book every night."</em></div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q62','wrong')"><span class="choice-mark">○</span> change <em>reads</em> to <em>read</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q62','wrong')"><span class="choice-mark">○</span> change <em>reads</em> to <em>is reading</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q62','wrong')"><span class="choice-mark">○</span> change <em>reads</em> to <em>readed</em></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q62','correct')"><span class="choice-mark">○</span> no changes should be made</button>
+    </div>
+    <div class="q-feedback" id="r1-q62-fb"></div>
+  </div>
+
+  <!-- VOCABULARY W2 -->
+  <div class="sec-header"><span class="sec-icon">📚</span><span class="sec-title">Vocabulary · Week 2</span><div class="sec-divider"></div></div>
+
+  <div class="q-block" id="r1-q63">
+    <div class="q-num">Question 59</div>
+    <div class="q-text">The lion is a top _________ in the savanna ecosystem.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q63','wrong')"><span class="choice-mark">○</span> immune</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q63','correct')"><span class="choice-mark">○</span> predator</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q63','wrong')"><span class="choice-mark">○</span> species</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q63','wrong')"><span class="choice-mark">○</span> emerge</button>
+    </div>
+    <div class="q-feedback" id="r1-q63-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q64">
+    <div class="q-num">Question 60</div>
+    <div class="q-text">Young animals depend on their parents for _________ from danger.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q64','correct')"><span class="choice-mark">○</span> protection</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q64','wrong')"><span class="choice-mark">○</span> immune</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q64','wrong')"><span class="choice-mark">○</span> predator</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q64','wrong')"><span class="choice-mark">○</span> species</button>
+    </div>
+    <div class="q-feedback" id="r1-q64-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q65">
+    <div class="q-num">Question 61</div>
+    <div class="q-text">There are many different _________ of reptiles living in the rainforest.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q65','wrong')"><span class="choice-mark">○</span> predator</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q65','wrong')"><span class="choice-mark">○</span> emerge</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q65','correct')"><span class="choice-mark">○</span> species</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q65','wrong')"><span class="choice-mark">○</span> protection</button>
+    </div>
+    <div class="q-feedback" id="r1-q65-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q66">
+    <div class="q-num">Question 62</div>
+    <div class="q-text">In spring, many insects _________ from the soil after winter.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q66','wrong')"><span class="choice-mark">○</span> predator</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q66','wrong')"><span class="choice-mark">○</span> protection</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q66','wrong')"><span class="choice-mark">○</span> immune</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q66','correct')"><span class="choice-mark">○</span> emerge</button>
+    </div>
+    <div class="q-feedback" id="r1-q66-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q67">
+    <div class="q-num">Question 63</div>
+    <div class="q-text">Some animals have natural _________ to certain diseases, so they do not get sick easily.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q67','wrong')"><span class="choice-mark">○</span> species</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q67','wrong')"><span class="choice-mark">○</span> protection</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q67','correct')"><span class="choice-mark">○</span> immune</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q67','wrong')"><span class="choice-mark">○</span> predator</button>
+    </div>
+    <div class="q-feedback" id="r1-q67-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q68">
+    <div class="q-num">Question 64</div>
+    <div class="q-text">Which sentence uses the word <em>immune</em> correctly?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q68','wrong')"><span class="choice-mark">○</span> The lion is immune in the food chain.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q68','wrong')"><span class="choice-mark">○</span> Plants are immune to sunlight in the forest.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q68','correct')"><span class="choice-mark">○</span> Some people are immune to certain illnesses.</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q68','wrong')"><span class="choice-mark">○</span> The river is immune across the valley.</button>
+    </div>
+    <div class="q-feedback" id="r1-q68-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q69">
+    <div class="q-num">Question 65</div>
+    <div class="q-text">What does the word <em>predator</em> mean?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q69','wrong')"><span class="choice-mark">○</span> An animal that is hunted by others</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q69','correct')"><span class="choice-mark">○</span> An animal that hunts other animals for food</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q69','wrong')"><span class="choice-mark">○</span> A type of plant in the ocean</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q69','wrong')"><span class="choice-mark">○</span> A safe place for animals to live</button>
+    </div>
+    <div class="q-feedback" id="r1-q69-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q70">
+    <div class="q-num">Question 66</div>
+    <div class="q-text">Which definition best matches the word <em>species</em>?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q70','wrong')"><span class="choice-mark">○</span> A single animal living alone</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q70','wrong')"><span class="choice-mark">○</span> The food chain in an ecosystem</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q70','wrong')"><span class="choice-mark">○</span> A type of weather pattern</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q70','correct')"><span class="choice-mark">○</span> A group of living things that are similar and can live together</button>
+    </div>
+    <div class="q-feedback" id="r1-q70-fb"></div>
+  </div>
+
+  <div class="q-block" id="r1-q71">
+    <div class="q-num">Question 67</div>
+    <div class="q-text">What does <em>protection</em> refer to in science?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r1-q71','wrong')"><span class="choice-mark">○</span> The number of animals in a forest</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q71','wrong')"><span class="choice-mark">○</span> The way plants grow in water</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q71','wrong')"><span class="choice-mark">○</span> The top animal in a food chain</button>
+      <button class="choice-btn" onclick="pick(this,'r1-q71','correct')"><span class="choice-mark">○</span> The act of keeping safe from harm</button>
+    </div>
+    <div class="q-feedback" id="r1-q71-fb"></div>
+  </div>
+
+</div><!-- /panel-r1 -->
+
+
+<!-- ═══════════════════════════════════════════════ REVIEW 2 ═══ -->
+<div class="set-panel" id="panel-r2">
+
+  <div class="score-bar">
+    <div><div class="score-label">Review 2 Score</div><div class="score-val" id="score-r2">— / —</div></div>
+    <div class="score-actions">
+      <button class="btn-check" onclick="checkAll('r2')">✓ Check Answers</button>
+      <button class="btn-reset" onclick="resetAll('r2')">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- SPELLING W3 Compound Words -->
+  <div class="sec-header"><span class="sec-icon">✏️</span><span class="sec-title">Spelling · Week 3 — Compound Words</span><div class="sec-divider"></div></div>
+
+  <div class="q-block" id="r2-q1">
+    <div class="q-num">Question 1</div>
+    <div class="q-text">A snack made from corn kernels that pop when heated.</div>
+    <div class="compound-row">
+      <input class="compound-part" type="text" id="r2-q1-p1" placeholder="part 1" autocomplete="off" spellcheck="false">
+      <span class="compound-eq">+</span>
+      <input class="compound-part" type="text" id="r2-q1-p2" placeholder="part 2" autocomplete="off" spellcheck="false">
+      <span class="compound-eq">=</span>
+      <input class="compound-result" type="text" id="r2-q1-r" placeholder="compound word" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="fill-answer" id="r2-q1-ans">✓ pop + corn = popcorn</div>
+    <div class="q-feedback" id="r2-q1-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q2">
+    <div class="q-num">Question 2</div>
+    <div class="q-text">The light that comes from the moon at night.</div>
+    <div class="compound-row">
+      <input class="compound-part" type="text" id="r2-q2-p1" placeholder="part 1" autocomplete="off" spellcheck="false">
+      <span class="compound-eq">+</span>
+      <input class="compound-part" type="text" id="r2-q2-p2" placeholder="part 2" autocomplete="off" spellcheck="false">
+      <span class="compound-eq">=</span>
+      <input class="compound-result" type="text" id="r2-q2-r" placeholder="compound word" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="fill-answer" id="r2-q2-ans">✓ moon + light = moonlight</div>
+    <div class="q-feedback" id="r2-q2-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q3">
+    <div class="q-num">Question 3</div>
+    <div class="q-text">A place where airplanes arrive and leave. (air + a place where people come and go)</div>
+    <div class="compound-row">
+      <input class="compound-part" type="text" id="r2-q3-p1" placeholder="part 1" autocomplete="off" spellcheck="false">
+      <span class="compound-eq">+</span>
+      <input class="compound-part" type="text" id="r2-q3-p2" placeholder="part 2" autocomplete="off" spellcheck="false">
+      <span class="compound-eq">=</span>
+      <input class="compound-result" type="text" id="r2-q3-r" placeholder="compound word" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="fill-answer" id="r2-q3-ans">✓ air + port = airport</div>
+    <div class="q-feedback" id="r2-q3-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q4">
+    <div class="q-num">Question 4</div>
+    <div class="q-text">The ability of your eyes to see things clearly. (eyes + seeing)</div>
+    <div class="compound-row">
+      <input class="compound-part" type="text" id="r2-q4-p1" placeholder="part 1" autocomplete="off" spellcheck="false">
+      <span class="compound-eq">+</span>
+      <input class="compound-part" type="text" id="r2-q4-p2" placeholder="part 2" autocomplete="off" spellcheck="false">
+      <span class="compound-eq">=</span>
+      <input class="compound-result" type="text" id="r2-q4-r" placeholder="compound word" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="fill-answer" id="r2-q4-ans">✓ eye + sight = eyesight</div>
+    <div class="q-feedback" id="r2-q4-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q5">
+    <div class="q-num">Question 5</div>
+    <div class="q-text">A snake that shakes its tail to warn others. (shaking sound + snake)</div>
+    <div class="compound-row">
+      <input class="compound-part" type="text" id="r2-q5-p1" placeholder="part 1" autocomplete="off" spellcheck="false">
+      <span class="compound-eq">+</span>
+      <input class="compound-part" type="text" id="r2-q5-p2" placeholder="part 2" autocomplete="off" spellcheck="false">
+      <span class="compound-eq">=</span>
+      <input class="compound-result" type="text" id="r2-q5-r" placeholder="compound word" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="fill-answer" id="r2-q5-ans">✓ rattle + snake = rattlesnake</div>
+    <div class="q-feedback" id="r2-q5-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q6">
+    <div class="q-num">Question 6</div>
+    <div class="q-text">A sport where players use their foot to kick a ball. (foot + ball)</div>
+    <div class="compound-row">
+      <input class="compound-part" type="text" id="r2-q6-p1" placeholder="part 1" autocomplete="off" spellcheck="false">
+      <span class="compound-eq">+</span>
+      <input class="compound-part" type="text" id="r2-q6-p2" placeholder="part 2" autocomplete="off" spellcheck="false">
+      <span class="compound-eq">=</span>
+      <input class="compound-result" type="text" id="r2-q6-r" placeholder="compound word" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="fill-answer" id="r2-q6-ans">✓ foot + ball = football</div>
+    <div class="q-feedback" id="r2-q6-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q7">
+    <div class="q-num">Question 7</div>
+    <div class="q-text">The action of cutting and styling your hair. (hair + cutting)</div>
+    <div class="compound-row">
+      <input class="compound-part" type="text" id="r2-q7-p1" placeholder="part 1" autocomplete="off" spellcheck="false">
+      <span class="compound-eq">+</span>
+      <input class="compound-part" type="text" id="r2-q7-p2" placeholder="part 2" autocomplete="off" spellcheck="false">
+      <span class="compound-eq">=</span>
+      <input class="compound-result" type="text" id="r2-q7-r" placeholder="compound word" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="fill-answer" id="r2-q7-ans">✓ hair + cut = haircut</div>
+    <div class="q-feedback" id="r2-q7-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q8">
+    <div class="q-num">Question 8</div>
+    <div class="q-text">A place where children go to play outside on swings and slides.</div>
+    <div class="compound-row">
+      <input class="compound-part" type="text" id="r2-q8-p1" placeholder="part 1" autocomplete="off" spellcheck="false">
+      <span class="compound-eq">+</span>
+      <input class="compound-part" type="text" id="r2-q8-p2" placeholder="part 2" autocomplete="off" spellcheck="false">
+      <span class="compound-eq">=</span>
+      <input class="compound-result" type="text" id="r2-q8-r" placeholder="compound word" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="fill-answer" id="r2-q8-ans">✓ play + ground = playground</div>
+    <div class="q-feedback" id="r2-q8-fb"></div>
+  </div>
+
+  <!-- SPELLING W4 VCe -->
+  <div class="sec-header"><span class="sec-icon">✏️</span><span class="sec-title">Spelling · Week 4 — VCe Patterns (Long Vowels)</span><div class="sec-divider"></div></div>
+
+  <div class="q-block" id="r2-q9">
+    <div class="q-num">Question 9</div>
+    <div class="q-text">Which word does <em>NOT</em> contain a long e sound?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q9','wrong')"><span class="choice-mark">○</span> compete</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q9','wrong')"><span class="choice-mark">○</span> complete</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q9','correct')"><span class="choice-mark">○</span> reptile</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q9','wrong')"><span class="choice-mark">○</span> delete</button>
+    </div>
+    <div class="q-feedback" id="r2-q9-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q10">
+    <div class="q-num">Question 10</div>
+    <div class="q-text">Which word contains a long <em>i</em> sound?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q10','wrong')"><span class="choice-mark">○</span> dispute</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q10','wrong')"><span class="choice-mark">○</span> include</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q10','wrong')"><span class="choice-mark">○</span> translate</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q10','correct')"><span class="choice-mark">○</span> inside</button>
+    </div>
+    <div class="q-feedback" id="r2-q10-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q11">
+    <div class="q-num">Question 11</div>
+    <div class="q-text">Which word contains a long <em>a</em> sound?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q11','wrong')"><span class="choice-mark">○</span> defeat</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q11','wrong')"><span class="choice-mark">○</span> compete</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q11','wrong')"><span class="choice-mark">○</span> expose</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q11','correct')"><span class="choice-mark">○</span> translate</button>
+    </div>
+    <div class="q-feedback" id="r2-q11-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q12">
+    <div class="q-num">Question 12</div>
+    <div class="q-text">Which word does <em>NOT</em> contain a long o sound?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q12','wrong')"><span class="choice-mark">○</span> explode</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q12','wrong')"><span class="choice-mark">○</span> alone</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q12','correct')"><span class="choice-mark">○</span> spot</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q12','wrong')"><span class="choice-mark">○</span> pillow</button>
+    </div>
+    <div class="q-feedback" id="r2-q12-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q13">
+    <div class="q-num">Question 13</div>
+    <div class="q-text">Which word contains the long <em>i</em> sound?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q13','correct')"><span class="choice-mark">○</span> reptile</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q13','wrong')"><span class="choice-mark">○</span> compete</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q13','wrong')"><span class="choice-mark">○</span> expose</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q13','wrong')"><span class="choice-mark">○</span> police</button>
+    </div>
+    <div class="q-feedback" id="r2-q13-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q14">
+    <div class="q-num">Question 14</div>
+    <div class="q-text">Which word does <em>NOT</em> contain a long a sound?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q14','wrong')"><span class="choice-mark">○</span> mistake</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q14','wrong')"><span class="choice-mark">○</span> escape</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q14','correct')"><span class="choice-mark">○</span> again</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q14','wrong')"><span class="choice-mark">○</span> table</button>
+    </div>
+    <div class="q-feedback" id="r2-q14-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q15">
+    <div class="q-num">Question 15</div>
+    <div class="q-text">Which word does <em>NOT</em> contain the long e sound?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q15','wrong')"><span class="choice-mark">○</span> compete</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q15','wrong')"><span class="choice-mark">○</span> complete</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q15','wrong')"><span class="choice-mark">○</span> delete</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q15','correct')"><span class="choice-mark">○</span> despite</button>
+    </div>
+    <div class="q-feedback" id="r2-q15-fb"></div>
+  </div>
+
+  <!-- SPELLING W5 Contractions write -->
+  <div class="sec-header"><span class="sec-icon">✏️</span><span class="sec-title">Spelling · Week 5 — Write the Contraction</span><div class="sec-divider"></div></div>
+
+  <div class="q-block" id="r2-q16">
+    <div class="q-num">Question 16</div>
+    <div class="q-text">She <u>is not</u> going to attend the meeting this afternoon.<br>= She _______ going to attend the meeting this afternoon.</div>
+    <div class="fill-row">
+      <input class="fill-input" type="text" id="r2-q16-in" placeholder="Write the contraction..." autocomplete="off" spellcheck="false">
+      <div class="fill-answer" id="r2-q16-ans">✓ Answer: isn't</div>
+    </div>
+    <div class="q-feedback" id="r2-q16-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q17">
+    <div class="q-num">Question 17</div>
+    <div class="q-text">They <u>have not</u> seen that movie before.<br>= They _______ seen that movie before.</div>
+    <div class="fill-row">
+      <input class="fill-input" type="text" id="r2-q17-in" placeholder="Write the contraction..." autocomplete="off" spellcheck="false">
+      <div class="fill-answer" id="r2-q17-ans">✓ Answer: haven't</div>
+    </div>
+    <div class="q-feedback" id="r2-q17-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q18">
+    <div class="q-num">Question 18</div>
+    <div class="q-text"><u>I am</u> not ready for the science test yet.<br>= _______ not ready for the science test yet.</div>
+    <div class="fill-row">
+      <input class="fill-input" type="text" id="r2-q18-in" placeholder="Write the contraction..." autocomplete="off" spellcheck="false">
+      <div class="fill-answer" id="r2-q18-ans">✓ Answer: I'm</div>
+    </div>
+    <div class="q-feedback" id="r2-q18-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q19">
+    <div class="q-num">Question 19</div>
+    <div class="q-text">It <u>does not</u> look like it will rain today.<br>= It _______ look like it will rain today.</div>
+    <div class="fill-row">
+      <input class="fill-input" type="text" id="r2-q19-in" placeholder="Write the contraction..." autocomplete="off" spellcheck="false">
+      <div class="fill-answer" id="r2-q19-ans">✓ Answer: doesn't</div>
+    </div>
+    <div class="q-feedback" id="r2-q19-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q20">
+    <div class="q-num">Question 20</div>
+    <div class="q-text">We <u>will not</u> forget to bring our books tomorrow.<br>= We _______ forget to bring our books tomorrow.</div>
+    <div class="fill-row">
+      <input class="fill-input" type="text" id="r2-q20-in" placeholder="Write the contraction..." autocomplete="off" spellcheck="false">
+      <div class="fill-answer" id="r2-q20-ans">✓ Answer: won't</div>
+    </div>
+    <div class="q-feedback" id="r2-q20-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q21">
+    <div class="q-num">Question 21</div>
+    <div class="q-text"><u>Let us</u> go to the party together tonight.<br>= _______ go to the party together tonight.</div>
+    <div class="fill-row">
+      <input class="fill-input" type="text" id="r2-q21-in" placeholder="Write the contraction..." autocomplete="off" spellcheck="false">
+      <div class="fill-answer" id="r2-q21-ans">✓ Answer: Let's</div>
+    </div>
+    <div class="q-feedback" id="r2-q21-fb"></div>
+  </div>
+
+  <!-- HIGH-FREQUENCY WORDS R2 -->
+  <div class="sec-header"><span class="sec-icon">⭐</span><span class="sec-title">High-Frequency Words — Week 3, 4, 5</span><div class="sec-divider"></div></div>
+
+  <div class="word-bank">
+    <div class="wb-label">Word Bank</div>
+    <span class="wb-word">decided</span>
+    <span class="wb-word">minutes</span>
+    <span class="wb-word">course</span>
+    <span class="wb-word">facts</span>
+    <span class="wb-word">contains</span>
+    <span class="wb-word">front</span>
+  </div>
+
+  <div class="q-block" id="r2-q22">
+    <div class="q-num">Question 22</div>
+    <div class="q-text">There are only ten _______ left before the school bell rings.</div>
+    <div class="fill-row">
+      <input class="fill-input" type="text" id="r2-q22-in" placeholder="Type the answer..." autocomplete="off" spellcheck="false">
+      <div class="fill-answer" id="r2-q22-ans">✓ Answer: minutes</div>
+    </div>
+    <div class="q-feedback" id="r2-q22-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q23">
+    <div class="q-num">Question 23</div>
+    <div class="q-text">The box _______ all the materials we need for the art project.</div>
+    <div class="fill-row">
+      <input class="fill-input" type="text" id="r2-q23-in" placeholder="Type the answer..." autocomplete="off" spellcheck="false">
+      <div class="fill-answer" id="r2-q23-ans">✓ Answer: contains</div>
+    </div>
+    <div class="q-feedback" id="r2-q23-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q24">
+    <div class="q-num">Question 24</div>
+    <div class="q-text">You should sit in the _______ of the classroom if you want to hear clearly.</div>
+    <div class="fill-row">
+      <input class="fill-input" type="text" id="r2-q24-in" placeholder="Type the answer..." autocomplete="off" spellcheck="false">
+      <div class="fill-answer" id="r2-q24-ans">✓ Answer: front</div>
+    </div>
+    <div class="q-feedback" id="r2-q24-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q25">
+    <div class="q-num">Question 25</div>
+    <div class="q-text">After thinking carefully, my family _______ to move to a new house next year.</div>
+    <div class="fill-row">
+      <input class="fill-input" type="text" id="r2-q25-in" placeholder="Type the answer..." autocomplete="off" spellcheck="false">
+      <div class="fill-answer" id="r2-q25-ans">✓ Answer: decided</div>
+    </div>
+    <div class="q-feedback" id="r2-q25-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q26">
+    <div class="q-num">Question 26</div>
+    <div class="q-text">He enrolled in a swimming _______ to learn how to move safely in deep water.</div>
+    <div class="fill-row">
+      <input class="fill-input" type="text" id="r2-q26-in" placeholder="Type the answer..." autocomplete="off" spellcheck="false">
+      <div class="fill-answer" id="r2-q26-ans">✓ Answer: course</div>
+    </div>
+    <div class="q-feedback" id="r2-q26-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q27">
+    <div class="q-num">Question 27</div>
+    <div class="q-text">The teacher played a video that showed many _______ about wild animals.</div>
+    <div class="fill-row">
+      <input class="fill-input" type="text" id="r2-q27-in" placeholder="Type the answer..." autocomplete="off" spellcheck="false">
+      <div class="fill-answer" id="r2-q27-ans">✓ Answer: facts</div>
+    </div>
+    <div class="q-feedback" id="r2-q27-fb"></div>
+  </div>
+
+  <!-- GRAMMAR W3&4 Possessive -->
+  <div class="sec-header"><span class="sec-icon">📖</span><span class="sec-title">Grammar · Week 3 &amp; 4 — Possessive Nouns</span><div class="sec-divider"></div></div>
+
+  <div class="q-block" id="r2-q28">
+    <div class="q-num">Question 28</div>
+    <div class="q-text">Rewrite using a <em>singular possessive noun</em>:<br>"The notebook of the teacher was found in the staff room."</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q28','wrong')"><span class="choice-mark">○</span> The teachers notebook was found in the staff room.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q28','wrong')"><span class="choice-mark">○</span> The teacher notebook was found in the staff room.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q28','correct')"><span class="choice-mark">○</span> The teacher's notebook was found in the staff room.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q28','wrong')"><span class="choice-mark">○</span> The teachers' notebook was found in the staff room.</button>
+    </div>
+    <div class="q-feedback" id="r2-q28-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q29">
+    <div class="q-num">Question 29</div>
+    <div class="q-text">Rewrite using a <em>singular possessive noun</em>:<br>"The wings of the goose were wet after the rain."</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q29','wrong')"><span class="choice-mark">○</span> The gooses wings were wet after the rain.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q29','wrong')"><span class="choice-mark">○</span> The goose wings were wet after the rain.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q29','correct')"><span class="choice-mark">○</span> The goose's wings were wet after the rain.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q29','wrong')"><span class="choice-mark">○</span> The geese's wings were wet after the rain.</button>
+    </div>
+    <div class="q-feedback" id="r2-q29-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q30">
+    <div class="q-num">Question 30</div>
+    <div class="q-text">Rewrite using a <em>singular possessive noun</em>:<br>"The toys of the puppy were scattered across the yard."</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q30','wrong')"><span class="choice-mark">○</span> The puppys toys were scattered across the yard.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q30','wrong')"><span class="choice-mark">○</span> The puppy toys were scattered across the yard.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q30','correct')"><span class="choice-mark">○</span> The puppy's toys were scattered across the yard.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q30','wrong')"><span class="choice-mark">○</span> The puppies' toys were scattered across the yard.</button>
+    </div>
+    <div class="q-feedback" id="r2-q30-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q31">
+    <div class="q-num">Question 31</div>
+    <div class="q-text">Which sentence uses a <em>plural possessive noun</em> correctly?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q31','correct')"><span class="choice-mark">○</span> Women's clothes were sold at the market.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q31','wrong')"><span class="choice-mark">○</span> The ladys' bicycles were parked outside the gym.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q31','wrong')"><span class="choice-mark">○</span> The teacher lounge is located near the office.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q31','wrong')"><span class="choice-mark">○</span> The childrens' milk were kept in the refrigerator.</button>
+    </div>
+    <div class="q-feedback" id="r2-q31-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q32">
+    <div class="q-num">Question 32</div>
+    <div class="q-text">Which sentence uses a <em>plural possessive noun</em> correctly?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q32','wrong')"><span class="choice-mark">○</span> The doctor's appointment was rescheduled.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q32','correct')"><span class="choice-mark">○</span> The coaches' whistles were stored in the drawer.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q32','wrong')"><span class="choice-mark">○</span> The mens' uniforms were ready for the game.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q32','wrong')"><span class="choice-mark">○</span> The chefes' kitchens were inspected today.</button>
+    </div>
+    <div class="q-feedback" id="r2-q32-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q33">
+    <div class="q-num">Question 33</div>
+    <div class="q-text">Which sentence uses a <em>plural possessive noun</em> correctly?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q33','wrong')"><span class="choice-mark">○</span> The farmer's field was full of corn.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q33','wrong')"><span class="choice-mark">○</span> The engineer's design was approved.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q33','correct')"><span class="choice-mark">○</span> The children's drawings were displayed in the hallway.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q33','wrong')"><span class="choice-mark">○</span> The musician's instrument was very expensive.</button>
+    </div>
+    <div class="q-feedback" id="r2-q33-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q34">
+    <div class="q-num">Question 34</div>
+    <div class="q-text">Which sentence uses a <em>plural possessive noun</em> correctly?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q34','wrong')"><span class="choice-mark">○</span> The geeses' feathers were white and soft.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q34','correct')"><span class="choice-mark">○</span> The eagles' wings were very wide.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q34','wrong')"><span class="choice-mark">○</span> The lion'es roar was very loud.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q34','wrong')"><span class="choice-mark">○</span> The horse's saddle was made of leather.</button>
+    </div>
+    <div class="q-feedback" id="r2-q34-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q35">
+    <div class="q-num">Question 35</div>
+    <div class="q-text">Fill in the blank with the best possessive noun:<br>"The _______ uniforms were neatly arranged before her performance."</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q35','wrong')"><span class="choice-mark">○</span> dancer's</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q35','correct')"><span class="choice-mark">○</span> dancers'</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q35','wrong')"><span class="choice-mark">○</span> dancers</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q35','wrong')"><span class="choice-mark">○</span> dancer</button>
+    </div>
+    <div class="q-feedback" id="r2-q35-fb"></div>
+  </div>
+
+  <!-- GRAMMAR W5 Verbs R2 -->
+  <div class="sec-header"><span class="sec-icon">📖</span><span class="sec-title">Grammar · Week 5 — Main Verbs &amp; Helping Verbs</span><div class="sec-divider"></div></div>
+
+  <div class="q-block" id="r2-q36">
+    <div class="q-num">Question 36</div>
+    <div class="q-text">How should this sentence be changed?<br><em>"We are go to the zoo last Sunday."</em></div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q36','correct')"><span class="choice-mark">○</span> change <em>are go</em> to <em>went</em></button>
+      <button class="choice-btn" onclick="pick(this,'r2-q36','wrong')"><span class="choice-mark">○</span> change <em>are go</em> to <em>going</em></button>
+      <button class="choice-btn" onclick="pick(this,'r2-q36','wrong')"><span class="choice-mark">○</span> change <em>are go</em> to <em>go</em></button>
+      <button class="choice-btn" onclick="pick(this,'r2-q36','wrong')"><span class="choice-mark">○</span> no changes should be made</button>
+    </div>
+    <div class="q-feedback" id="r2-q36-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q37">
+    <div class="q-num">Question 37</div>
+    <div class="q-text">How should this sentence be changed?<br><em>"She is wrote a letter to her friend last night."</em></div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q37','correct')"><span class="choice-mark">○</span> change <em>is wrote</em> to <em>wrote</em></button>
+      <button class="choice-btn" onclick="pick(this,'r2-q37','wrong')"><span class="choice-mark">○</span> change <em>is wrote</em> to <em>was writing</em></button>
+      <button class="choice-btn" onclick="pick(this,'r2-q37','wrong')"><span class="choice-mark">○</span> change <em>is wrote</em> to <em>writes</em></button>
+      <button class="choice-btn" onclick="pick(this,'r2-q37','wrong')"><span class="choice-mark">○</span> no changes should be made</button>
+    </div>
+    <div class="q-feedback" id="r2-q37-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q38">
+    <div class="q-num">Question 38</div>
+    <div class="q-text">How should this sentence be changed?<br><em>"The students will completed their project before the deadline."</em></div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q38','correct')"><span class="choice-mark">○</span> change <em>will completed</em> to <em>will complete</em></button>
+      <button class="choice-btn" onclick="pick(this,'r2-q38','wrong')"><span class="choice-mark">○</span> change <em>will completed</em> to <em>are completing</em></button>
+      <button class="choice-btn" onclick="pick(this,'r2-q38','wrong')"><span class="choice-mark">○</span> change <em>will completed</em> to <em>completed</em></button>
+      <button class="choice-btn" onclick="pick(this,'r2-q38','wrong')"><span class="choice-mark">○</span> no changes should be made</button>
+    </div>
+    <div class="q-feedback" id="r2-q38-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q39">
+    <div class="q-num">Question 39</div>
+    <div class="q-text">How should this sentence be changed?<br><em>"He finished his homework before dinner tomorrow."</em></div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q39','correct')"><span class="choice-mark">○</span> change <em>finished</em> to <em>will finish</em></button>
+      <button class="choice-btn" onclick="pick(this,'r2-q39','wrong')"><span class="choice-mark">○</span> change <em>finished</em> to <em>finished</em></button>
+      <button class="choice-btn" onclick="pick(this,'r2-q39','wrong')"><span class="choice-mark">○</span> change <em>finished</em> to <em>is finishing</em></button>
+      <button class="choice-btn" onclick="pick(this,'r2-q39','wrong')"><span class="choice-mark">○</span> no changes should be made</button>
+    </div>
+    <div class="q-feedback" id="r2-q39-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q40">
+    <div class="q-num">Question 40</div>
+    <div class="q-text">The children ________ in the playground when it started to rain.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q40','wrong')"><span class="choice-mark">○</span> play</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q40','wrong')"><span class="choice-mark">○</span> played</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q40','correct')"><span class="choice-mark">○</span> were playing</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q40','wrong')"><span class="choice-mark">○</span> will play</button>
+    </div>
+    <div class="q-feedback" id="r2-q40-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q41">
+    <div class="q-num">Question 41</div>
+    <div class="q-text">Right now, the teacher ________ the lesson clearly to the class.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q41','wrong')"><span class="choice-mark">○</span> explained</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q41','wrong')"><span class="choice-mark">○</span> explains</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q41','correct')"><span class="choice-mark">○</span> is explaining</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q41','wrong')"><span class="choice-mark">○</span> will explain</button>
+    </div>
+    <div class="q-feedback" id="r2-q41-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q42">
+    <div class="q-num">Question 42</div>
+    <div class="q-text">Which sentence shows a <em>habit or routine</em>?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q42','wrong')"><span class="choice-mark">○</span> I am brushing my teeth now.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q42','wrong')"><span class="choice-mark">○</span> I brushed my teeth yesterday.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q42','correct')"><span class="choice-mark">○</span> I brush my teeth every morning.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q42','wrong')"><span class="choice-mark">○</span> I will brush my teeth later.</button>
+    </div>
+    <div class="q-feedback" id="r2-q42-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q43">
+    <div class="q-num">Question 43</div>
+    <div class="q-text">Which sentence is correct for <em>future plans</em>?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q43','wrong')"><span class="choice-mark">○</span> We go to Japan every summer.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q43','wrong')"><span class="choice-mark">○</span> We went to Japan last summer.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q43','wrong')"><span class="choice-mark">○</span> We are having a fun trip in Japan now.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q43','correct')"><span class="choice-mark">○</span> We will go to Japan next summer.</button>
+    </div>
+    <div class="q-feedback" id="r2-q43-fb"></div>
+  </div>
+
+  <!-- VOCABULARY W3&5 -->
+  <div class="sec-header"><span class="sec-icon">📚</span><span class="sec-title">Vocabulary · Week 3 &amp; 5</span><div class="sec-divider"></div></div>
+
+  <div class="q-block" id="r2-q44">
+    <div class="q-num">Question 44</div>
+    <div class="q-text">What does the term <em>food chain</em> refer to?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q44','wrong')"><span class="choice-mark">○</span> The number of animals that live together in a forest</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q44','wrong')"><span class="choice-mark">○</span> The way animals are protected from danger in the wild</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q44','correct')"><span class="choice-mark">○</span> The order of who eats whom in a natural ecosystem</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q44','wrong')"><span class="choice-mark">○</span> A type of habitat where different animals live together safely</button>
+    </div>
+    <div class="q-feedback" id="r2-q44-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q45">
+    <div class="q-num">Question 45</div>
+    <div class="q-text">Which definition best matches the word <em>population</em>?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q45','correct')"><span class="choice-mark">○</span> The total number of living things of one type in an area</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q45','wrong')"><span class="choice-mark">○</span> The way animals hide from predators in natural environments</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q45','wrong')"><span class="choice-mark">○</span> The process of plants growing and developing in soil</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q45','wrong')"><span class="choice-mark">○</span> A group of ecosystems combined together across a large region</button>
+    </div>
+    <div class="q-feedback" id="r2-q45-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q46">
+    <div class="q-num">Question 46</div>
+    <div class="q-text">What does <em>camouflage</em> mean?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q46','wrong')"><span class="choice-mark">○</span> A type of food that animals usually eat in forests</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q46','correct')"><span class="choice-mark">○</span> A way animals hide by blending into their surroundings</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q46','wrong')"><span class="choice-mark">○</span> A group of animals that hunt together in organized teams</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q46','wrong')"><span class="choice-mark">○</span> A place where wild animals build homes and raise young</button>
+    </div>
+    <div class="q-feedback" id="r2-q46-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q47">
+    <div class="q-num">Question 47</div>
+    <div class="q-text">What does it mean when animals have <em>depended</em> on something?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q47','wrong')"><span class="choice-mark">○</span> They avoided it completely in their natural environment</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q47','correct')"><span class="choice-mark">○</span> They used it as their main support for survival in life</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q47','wrong')"><span class="choice-mark">○</span> They changed into it for protection against other animals</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q47','wrong')"><span class="choice-mark">○</span> They lived without needing it at all in any situation</button>
+    </div>
+    <div class="q-feedback" id="r2-q47-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q48">
+    <div class="q-num">Question 48</div>
+    <div class="q-text">In a forest ecosystem, foxes and rabbits are part of the same _________ because one eats the other.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q48','wrong')"><span class="choice-mark">○</span> available</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q48','correct')"><span class="choice-mark">○</span> food chain</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q48','wrong')"><span class="choice-mark">○</span> camouflage</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q48','wrong')"><span class="choice-mark">○</span> population</button>
+    </div>
+    <div class="q-feedback" id="r2-q48-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q49">
+    <div class="q-num">Question 49</div>
+    <div class="q-text">The number of pandas in the forest is a small _________ that needs protection.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q49','wrong')"><span class="choice-mark">○</span> camouflage</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q49','wrong')"><span class="choice-mark">○</span> balance</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q49','correct')"><span class="choice-mark">○</span> population</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q49','wrong')"><span class="choice-mark">○</span> food chain</button>
+    </div>
+    <div class="q-feedback" id="r2-q49-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q50">
+    <div class="q-num">Question 50</div>
+    <div class="q-text">Some insects use _________ to look like leaves so predators cannot see them.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q50','wrong')"><span class="choice-mark">○</span> food chain</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q50','wrong')"><span class="choice-mark">○</span> balance</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q50','correct')"><span class="choice-mark">○</span> camouflage</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q50','wrong')"><span class="choice-mark">○</span> available</button>
+    </div>
+    <div class="q-feedback" id="r2-q50-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q51">
+    <div class="q-num">Question 51</div>
+    <div class="q-text">Clean drinking water is not always _________ in dry regions.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q51','wrong')"><span class="choice-mark">○</span> emerge</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q51','wrong')"><span class="choice-mark">○</span> camouflage</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q51','correct')"><span class="choice-mark">○</span> available</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q51','wrong')"><span class="choice-mark">○</span> population</button>
+    </div>
+    <div class="q-feedback" id="r2-q51-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q52">
+    <div class="q-num">Question 52</div>
+    <div class="q-text">Many animals _________ on water sources like rivers and lakes to survive.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q52','wrong')"><span class="choice-mark">○</span> balance</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q52','wrong')"><span class="choice-mark">○</span> population</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q52','correct')"><span class="choice-mark">○</span> depended</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q52','wrong')"><span class="choice-mark">○</span> camouflage</button>
+    </div>
+    <div class="q-feedback" id="r2-q52-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q53">
+    <div class="q-num">Question 53</div>
+    <div class="q-text">A healthy ecosystem must stay in _________ so no one species grows too large or too small.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q53','wrong')"><span class="choice-mark">○</span> population</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q53','wrong')"><span class="choice-mark">○</span> available</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q53','correct')"><span class="choice-mark">○</span> balance</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q53','wrong')"><span class="choice-mark">○</span> camouflage</button>
+    </div>
+    <div class="q-feedback" id="r2-q53-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q54">
+    <div class="q-num">Question 54</div>
+    <div class="q-text">Which sentence uses <em>population</em> correctly?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q54','wrong')"><span class="choice-mark">○</span> The population of water is very cold and freezing today.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q54','wrong')"><span class="choice-mark">○</span> The population of trees ate all insects in the forest area.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q54','wrong')"><span class="choice-mark">○</span> The population of rocks moved quickly down the river stream.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q54','correct')"><span class="choice-mark">○</span> The population of fish in the river increased during the year.</button>
+    </div>
+    <div class="q-feedback" id="r2-q54-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q55">
+    <div class="q-num">Question 55</div>
+    <div class="q-text">Which sentence uses <em>available</em> correctly?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q55','wrong')"><span class="choice-mark">○</span> The dog available ran quickly through the park with children.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q55','wrong')"><span class="choice-mark">○</span> Available birds fly under the ocean in deep water every day.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q55','wrong')"><span class="choice-mark">○</span> The available food chain is strong and working in forest.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q55','correct')"><span class="choice-mark">○</span> Clean water is available in the village well for everyone today.</button>
+    </div>
+    <div class="q-feedback" id="r2-q55-fb"></div>
+  </div>
+
+  <div class="q-block" id="r2-q56">
+    <div class="q-num">Question 56</div>
+    <div class="q-text">Which sentence uses <em>balance</em> correctly?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="pick(this,'r2-q56','wrong')"><span class="choice-mark">○</span> The balance of rocks moved quickly down the river stream.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q56','correct')"><span class="choice-mark">○</span> The forest stayed in balance when predators and prey were equal.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q56','wrong')"><span class="choice-mark">○</span> The balance of water is very cold and freezing today.</button>
+      <button class="choice-btn" onclick="pick(this,'r2-q56','wrong')"><span class="choice-mark">○</span> The balance of trees ate all insects in the forest area.</button>
+    </div>
+    <div class="q-feedback" id="r2-q56-fb"></div>
+  </div>
+
+</div><!-- /panel-r2 -->
+
+</div><!-- .app -->
+
+<script>
+// ── STATE ──
+var _state = {};
+
+// ── SET SWITCHING ──
+function switchSet(id, btn) {
+  document.querySelectorAll('.set-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.set-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── MCQ PICK ──
+function pick(btn, qId, verdict) {
+  var block = document.getElementById(qId);
+  if (!block) return;
+  // disable all choices in this question
+  var choices = block.querySelectorAll('.choice-btn');
+  choices.forEach(function(b){ b.disabled = true; b.style.cursor = 'default'; });
+  btn.classList.add(verdict === 'correct' ? 'correct' : 'wrong');
+  _state[qId] = verdict;
+  var fb = document.getElementById(qId + '-fb');
+  if (fb) {
+    fb.textContent = verdict === 'correct' ? '\u2713 Correct!' : '\u2717 Incorrect — check the answer key.';
+    fb.className = 'q-feedback show ' + (verdict === 'correct' ? 'ok' : 'no');
+  }
+}
+
+// ── CHECK ALL ──
+function checkAll(setId) {
+  var panel = document.getElementById('panel-' + setId);
+  if (!panel) return;
+  var total = 0, correct = 0;
+
+  // MCQ: check unanswered
+  panel.querySelectorAll('.q-block').forEach(function(block) {
+    var qId = block.id;
+    if (!qId) return;
+
+    // MCQ
+    var choices = block.querySelectorAll('.choice-btn[onclick]');
+    if (choices.length > 0) {
+      total++;
+      var answered = block.querySelector('.choice-btn.correct, .choice-btn.wrong');
+      if (!answered) {
+        // mark correct answer green
+        choices.forEach(function(b) {
+          b.disabled = true; b.style.cursor = 'default';
+          if (b.getAttribute('onclick') && b.getAttribute('onclick').indexOf("'correct'") !== -1) {
+            b.classList.add('correct');
+          }
+        });
+        var fb = document.getElementById(qId + '-fb');
+        if (fb) { fb.textContent = '\u2717 Not answered.'; fb.className = 'q-feedback show no'; }
+      } else {
+        if (answered.classList.contains('correct')) correct++;
+      }
+      return;
+    }
+
+    // Fill-in (single input)
+    var inp = document.getElementById(qId + '-in');
+    if (inp) {
+      total++;
+      var correctAnsEl = document.getElementById(qId + '-ans');
+      var correctAns = correctAnsEl ? correctAnsEl.textContent.replace('\u2713 Answer: ','').trim().toLowerCase() : '';
+      var userVal = inp.value.trim().toLowerCase();
+      var fb = document.getElementById(qId + '-fb');
+      if (userVal === correctAns) {
+        inp.className = 'fill-input correct'; correct++;
+        if (fb) { fb.textContent = '\u2713 Correct!'; fb.className = 'q-feedback show ok'; }
+      } else {
+        inp.className = 'fill-input wrong';
+        if (correctAnsEl) correctAnsEl.classList.add('show');
+        if (fb) { fb.textContent = '\u2717 Incorrect.'; fb.className = 'q-feedback show no'; }
+      }
+      inp.disabled = true;
+      return;
+    }
+
+    // Compound word (3 inputs: p1, p2, r)
+    var p1 = document.getElementById(qId + '-p1');
+    var p2 = document.getElementById(qId + '-p2');
+    var r  = document.getElementById(qId + '-r');
+    if (p1 && p2 && r) {
+      total++;
+      var ansEl = document.getElementById(qId + '-ans');
+      var ansText = ansEl ? ansEl.textContent : '';
+      // parse "✓ X + Y = Z"
+      var m = ansText.match(/\u2713\s*(\w+)\s*\+\s*(\w+)\s*=\s*(\w+)/);
+      var ap1 = m ? m[1].toLowerCase() : '';
+      var ap2 = m ? m[2].toLowerCase() : '';
+      var ar  = m ? m[3].toLowerCase() : '';
+      var ok1 = p1.value.trim().toLowerCase() === ap1;
+      var ok2 = p2.value.trim().toLowerCase() === ap2;
+      var okr = r.value.trim().toLowerCase() === ar;
+      var allOk = ok1 && ok2 && okr;
+      p1.className = 'compound-part ' + (ok1 ? 'correct' : 'wrong');
+      p2.className = 'compound-part ' + (ok2 ? 'correct' : 'wrong');
+      r.className  = 'compound-result ' + (okr ? 'correct' : 'wrong');
+      if (allOk) correct++;
+      else if (ansEl) ansEl.classList.add('show');
+      var fb = document.getElementById(qId + '-fb');
+      if (fb) {
+        fb.textContent = allOk ? '\u2713 Correct!' : '\u2717 Incorrect.';
+        fb.className = 'q-feedback show ' + (allOk ? 'ok' : 'no');
+      }
+      p1.disabled = true; p2.disabled = true; r.disabled = true;
+    }
+  });
+
+  document.getElementById('score-' + setId).textContent = correct + ' / ' + total;
+}
+
+// ── RESET ──
+function resetAll(setId) {
+  var panel = document.getElementById('panel-' + setId);
+  if (!panel) return;
+  panel.querySelectorAll('.choice-btn').forEach(function(b) {
+    b.className = 'choice-btn'; b.disabled = false; b.style.cursor = '';
+  });
+  panel.querySelectorAll('.fill-input').forEach(function(inp) {
+    inp.value = ''; inp.className = 'fill-input'; inp.disabled = false;
+  });
+  panel.querySelectorAll('.compound-part').forEach(function(inp) {
+    inp.value = ''; inp.className = 'compound-part'; inp.disabled = false;
+  });
+  panel.querySelectorAll('.compound-result').forEach(function(inp) {
+    inp.value = ''; inp.className = 'compound-result'; inp.disabled = false;
+  });
+  panel.querySelectorAll('.q-feedback').forEach(function(fb) {
+    fb.className = 'q-feedback'; fb.textContent = '';
+  });
+  panel.querySelectorAll('.fill-answer').forEach(function(a) {
+    a.classList.remove('show');
+  });
+  panel.querySelectorAll('.q-block').forEach(function(b) {
+    b.classList.remove('correct','wrong');
+  });
+  document.getElementById('score-' + setId).textContent = '\u2014 / \u2014';
+  _state = {};
+}
+</script>
+</body>
+</html>
