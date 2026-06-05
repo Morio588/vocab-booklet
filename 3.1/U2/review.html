@@ -120,9 +120,8 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
 .speak-btn{flex-shrink:0;background:none;border:1.5px solid var(--border);border-radius:8px;padding:5px 8px;font-size:14px;cursor:pointer;color:var(--muted);transition:all 0.15s;line-height:1;margin-top:1px;}
 .speak-btn:hover{border-color:rgba(230,81,0,0.4);color:var(--accent);background:#FFF3E0;}
 .speak-btn.speaking{border-color:var(--accent2);color:var(--accent2);background:rgba(67,160,71,0.08);}
-.choice-btn .choice-spk{margin-left:auto;font-size:13px;opacity:0;transition:opacity 0.15s;flex-shrink:0;padding:2px 4px;border-radius:4px;}
-.choice-btn:hover .choice-spk{opacity:0.6;}
-.choice-btn:hover .choice-spk:hover{opacity:1;color:var(--accent);}
+.choice-btn .choice-spk{margin-left:auto;font-size:14px;flex-shrink:0;padding:3px 6px;border-radius:6px;border:1px solid transparent;color:var(--muted);transition:all 0.15s;line-height:1;}
+.choice-btn .choice-spk:hover{border-color:rgba(230,81,0,0.3);color:var(--accent);background:#FFF3E0;}
 .speed-row{display:flex;gap:6px;margin-bottom:10px;}
 .speed-pill{background:var(--surface2);border:1.5px solid var(--border);border-radius:999px;padding:4px 12px;font-family:'Sora',sans-serif;font-size:11px;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.15s;}
 .speed-pill.active{background:var(--accent);border-color:var(--accent);color:#fff;}
@@ -179,10 +178,10 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <div class="q-num">Question 1</div>
     <div class="q-text-row"><div class="q-text">Which word is divided into syllables <em>correctly</em>?</div><button class="speak-btn" onclick="speakBtn(this,'Which word is divided into syllables correctly?')" title="Read question">&#128266;</button></div>
     <div class="choices">
-      <button class="choice-btn" onclick="pick(this,'r1-q1','wrong')"><span class="choice-mark">○</span> digi/t<span class="choice-spk" onclick="event.stopPropagation();speak('digi/t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q1','wrong')"><span class="choice-mark">○</span> fi/nish<span class="choice-spk" onclick="event.stopPropagation();speak('fi/nish')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q1','correct')"><span class="choice-mark">○</span> hu/man<span class="choice-spk" onclick="event.stopPropagation();speak('hu/man')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q1','wrong')"><span class="choice-mark">○</span> equ/al<span class="choice-spk" onclick="event.stopPropagation();speak('equ/al')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q1','wrong')"><span class="choice-mark">○</span> digi/t<span class="choice-spk" onclick="event.stopPropagation();speak('digit')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q1','wrong')"><span class="choice-mark">○</span> fi/nish<span class="choice-spk" onclick="event.stopPropagation();speak('finish')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q1','correct')"><span class="choice-mark">○</span> hu/man<span class="choice-spk" onclick="event.stopPropagation();speak('human')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q1','wrong')"><span class="choice-mark">○</span> equ/al<span class="choice-spk" onclick="event.stopPropagation();speak('equal')">&#128266;</span></button>
     </div>
     <div class="q-feedback" id="r1-q1-fb"></div>
   </div>
@@ -191,10 +190,10 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <div class="q-num">Question 2</div>
     <div class="q-text-row"><div class="q-text">Choose the word divided into syllables <em>incorrectly</em>.</div><button class="speak-btn" onclick="speakBtn(this,'Choose the word divided into syllables incorrectly.')" title="Read question">&#128266;</button></div>
     <div class="choices">
-      <button class="choice-btn" onclick="pick(this,'r1-q2','wrong')"><span class="choice-mark">○</span> dig/it<span class="choice-spk" onclick="event.stopPropagation();speak('dig/it')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q2','wrong')"><span class="choice-mark">○</span> sal/ad<span class="choice-spk" onclick="event.stopPropagation();speak('sal/ad')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q2','correct')"><span class="choice-mark">○</span> fam/ous<span class="choice-spk" onclick="event.stopPropagation();speak('fam/ous')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q2','wrong')"><span class="choice-mark">○</span> mi/nus<span class="choice-spk" onclick="event.stopPropagation();speak('mi/nus')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q2','wrong')"><span class="choice-mark">○</span> dig/it<span class="choice-spk" onclick="event.stopPropagation();speak('digit')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q2','wrong')"><span class="choice-mark">○</span> sal/ad<span class="choice-spk" onclick="event.stopPropagation();speak('salad')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q2','correct')"><span class="choice-mark">○</span> fam/ous<span class="choice-spk" onclick="event.stopPropagation();speak('famous')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q2','wrong')"><span class="choice-mark">○</span> mi/nus<span class="choice-spk" onclick="event.stopPropagation();speak('minus')">&#128266;</span></button>
     </div>
     <div class="q-feedback" id="r1-q2-fb"></div>
   </div>
@@ -203,10 +202,10 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <div class="q-num">Question 3</div>
     <div class="q-text-row"><div class="q-text">Which word is <em>NOT</em> divided correctly?</div><button class="speak-btn" onclick="speakBtn(this,'Which word is NOT divided correctly?')" title="Read question">&#128266;</button></div>
     <div class="choices">
-      <button class="choice-btn" onclick="pick(this,'r1-q3','wrong')"><span class="choice-mark">○</span> hu/man<span class="choice-spk" onclick="event.stopPropagation();speak('hu/man')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q3','wrong')"><span class="choice-mark">○</span> to/tal<span class="choice-spk" onclick="event.stopPropagation();speak('to/tal')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q3','wrong')"><span class="choice-mark">○</span> e/qual<span class="choice-spk" onclick="event.stopPropagation();speak('e/qual')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q3','correct')"><span class="choice-mark">○</span> def/end<span class="choice-spk" onclick="event.stopPropagation();speak('def/end')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q3','wrong')"><span class="choice-mark">○</span> hu/man<span class="choice-spk" onclick="event.stopPropagation();speak('human')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q3','wrong')"><span class="choice-mark">○</span> to/tal<span class="choice-spk" onclick="event.stopPropagation();speak('total')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q3','wrong')"><span class="choice-mark">○</span> e/qual<span class="choice-spk" onclick="event.stopPropagation();speak('equal')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q3','correct')"><span class="choice-mark">○</span> def/end<span class="choice-spk" onclick="event.stopPropagation();speak('defend')">&#128266;</span></button>
     </div>
     <div class="q-feedback" id="r1-q3-fb"></div>
   </div>
@@ -215,10 +214,10 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <div class="q-num">Question 4</div>
     <div class="q-text-row"><div class="q-text">Choose the word <em>NOT</em> divided into syllables correctly.</div><button class="speak-btn" onclick="speakBtn(this,'Choose the word NOT divided into syllables correctly.')" title="Read question">&#128266;</button></div>
     <div class="choices">
-      <button class="choice-btn" onclick="pick(this,'r1-q4','wrong')"><span class="choice-mark">○</span> sal/ad<span class="choice-spk" onclick="event.stopPropagation();speak('sal/ad')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q4','wrong')"><span class="choice-mark">○</span> de/fend<span class="choice-spk" onclick="event.stopPropagation();speak('de/fend')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q4','wrong')"><span class="choice-mark">○</span> hu/man<span class="choice-spk" onclick="event.stopPropagation();speak('hu/man')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q4','correct')"><span class="choice-mark">○</span> tot/al<span class="choice-spk" onclick="event.stopPropagation();speak('tot/al')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q4','wrong')"><span class="choice-mark">○</span> sal/ad<span class="choice-spk" onclick="event.stopPropagation();speak('salad')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q4','wrong')"><span class="choice-mark">○</span> de/fend<span class="choice-spk" onclick="event.stopPropagation();speak('defend')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q4','wrong')"><span class="choice-mark">○</span> hu/man<span class="choice-spk" onclick="event.stopPropagation();speak('human')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q4','correct')"><span class="choice-mark">○</span> tot/al<span class="choice-spk" onclick="event.stopPropagation();speak('total')">&#128266;</span></button>
     </div>
     <div class="q-feedback" id="r1-q4-fb"></div>
   </div>
@@ -227,10 +226,10 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <div class="q-num">Question 5</div>
     <div class="q-text-row"><div class="q-text">Which word is divided into syllables <em>correctly</em>?</div><button class="speak-btn" onclick="speakBtn(this,'Which word is divided into syllables correctly?')" title="Read question">&#128266;</button></div>
     <div class="choices">
-      <button class="choice-btn" onclick="pick(this,'r1-q5','wrong')"><span class="choice-mark">○</span> def/end<span class="choice-spk" onclick="event.stopPropagation();speak('def/end')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q5','correct')"><span class="choice-mark">○</span> dig/it<span class="choice-spk" onclick="event.stopPropagation();speak('dig/it')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q5','wrong')"><span class="choice-mark">○</span> ta/lent<span class="choice-spk" onclick="event.stopPropagation();speak('ta/lent')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q5','wrong')"><span class="choice-mark">○</span> min/us<span class="choice-spk" onclick="event.stopPropagation();speak('min/us')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q5','wrong')"><span class="choice-mark">○</span> def/end<span class="choice-spk" onclick="event.stopPropagation();speak('defend')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q5','correct')"><span class="choice-mark">○</span> dig/it<span class="choice-spk" onclick="event.stopPropagation();speak('digit')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q5','wrong')"><span class="choice-mark">○</span> ta/lent<span class="choice-spk" onclick="event.stopPropagation();speak('talent')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q5','wrong')"><span class="choice-mark">○</span> min/us<span class="choice-spk" onclick="event.stopPropagation();speak('minus')">&#128266;</span></button>
     </div>
     <div class="q-feedback" id="r1-q5-fb"></div>
   </div>
@@ -329,10 +328,10 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <div class="q-num">Question 13</div>
     <div class="q-text-row"><div class="q-text">We _______ going to visit the museum tomorrow.</div><button class="speak-btn" onclick="speakBtn(this,'We _______ going to visit the museum tomorrow.')" title="Read question">&#128266;</button></div>
     <div class="choices">
-      <button class="choice-btn" onclick="pick(this,'r1-q13','wrong')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('didn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q13','correct')"><span class="choice-mark">○</span> aren't<span class="choice-spk" onclick="event.stopPropagation();speak('aren\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q13','wrong')"><span class="choice-mark">○</span> isn't<span class="choice-spk" onclick="event.stopPropagation();speak('isn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q13','wrong')"><span class="choice-mark">○</span> wasn't<span class="choice-spk" onclick="event.stopPropagation();speak('wasn\'t')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q13','wrong')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('did not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q13','correct')"><span class="choice-mark">○</span> aren't<span class="choice-spk" onclick="event.stopPropagation();speak('are not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q13','wrong')"><span class="choice-mark">○</span> isn't<span class="choice-spk" onclick="event.stopPropagation();speak('is not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q13','wrong')"><span class="choice-mark">○</span> wasn't<span class="choice-spk" onclick="event.stopPropagation();speak('was not')">&#128266;</span></button>
     </div>
     <div class="q-feedback" id="r1-q13-fb"></div>
   </div>
@@ -341,10 +340,10 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <div class="q-num">Question 14</div>
     <div class="q-text-row"><div class="q-text">Mia _______ finish her homework yesterday.</div><button class="speak-btn" onclick="speakBtn(this,'Mia _______ finish her homework yesterday.')" title="Read question">&#128266;</button></div>
     <div class="choices">
-      <button class="choice-btn" onclick="pick(this,'r1-q14','wrong')"><span class="choice-mark">○</span> doesn't<span class="choice-spk" onclick="event.stopPropagation();speak('doesn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q14','wrong')"><span class="choice-mark">○</span> won't<span class="choice-spk" onclick="event.stopPropagation();speak('won\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q14','correct')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('didn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q14','wrong')"><span class="choice-mark">○</span> hasn't<span class="choice-spk" onclick="event.stopPropagation();speak('hasn\'t')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q14','wrong')"><span class="choice-mark">○</span> doesn't<span class="choice-spk" onclick="event.stopPropagation();speak('does not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q14','wrong')"><span class="choice-mark">○</span> won't<span class="choice-spk" onclick="event.stopPropagation();speak('will not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q14','correct')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('did not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q14','wrong')"><span class="choice-mark">○</span> hasn't<span class="choice-spk" onclick="event.stopPropagation();speak('has not')">&#128266;</span></button>
     </div>
     <div class="q-feedback" id="r1-q14-fb"></div>
   </div>
@@ -353,10 +352,10 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <div class="q-num">Question 15</div>
     <div class="q-text-row"><div class="q-text">They _______ playing basketball right now.</div><button class="speak-btn" onclick="speakBtn(this,'They _______ playing basketball right now.')" title="Read question">&#128266;</button></div>
     <div class="choices">
-      <button class="choice-btn" onclick="pick(this,'r1-q15','correct')"><span class="choice-mark">○</span> aren't<span class="choice-spk" onclick="event.stopPropagation();speak('aren\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q15','wrong')"><span class="choice-mark">○</span> don't<span class="choice-spk" onclick="event.stopPropagation();speak('don\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q15','wrong')"><span class="choice-mark">○</span> wasn't<span class="choice-spk" onclick="event.stopPropagation();speak('wasn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q15','wrong')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('didn\'t')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q15','correct')"><span class="choice-mark">○</span> aren't<span class="choice-spk" onclick="event.stopPropagation();speak('are not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q15','wrong')"><span class="choice-mark">○</span> don't<span class="choice-spk" onclick="event.stopPropagation();speak('do not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q15','wrong')"><span class="choice-mark">○</span> wasn't<span class="choice-spk" onclick="event.stopPropagation();speak('was not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q15','wrong')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('did not')">&#128266;</span></button>
     </div>
     <div class="q-feedback" id="r1-q15-fb"></div>
   </div>
@@ -365,10 +364,10 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <div class="q-num">Question 16</div>
     <div class="q-text-row"><div class="q-text">Dad _______ go to work tomorrow because he was sick.</div><button class="speak-btn" onclick="speakBtn(this,'Dad _______ go to work tomorrow because he was sick.')" title="Read question">&#128266;</button></div>
     <div class="choices">
-      <button class="choice-btn" onclick="pick(this,'r1-q16','wrong')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('didn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q16','correct')"><span class="choice-mark">○</span> won't<span class="choice-spk" onclick="event.stopPropagation();speak('won\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q16','wrong')"><span class="choice-mark">○</span> doesn't<span class="choice-spk" onclick="event.stopPropagation();speak('doesn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q16','wrong')"><span class="choice-mark">○</span> hasn't<span class="choice-spk" onclick="event.stopPropagation();speak('hasn\'t')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q16','wrong')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('did not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q16','correct')"><span class="choice-mark">○</span> won't<span class="choice-spk" onclick="event.stopPropagation();speak('will not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q16','wrong')"><span class="choice-mark">○</span> doesn't<span class="choice-spk" onclick="event.stopPropagation();speak('does not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q16','wrong')"><span class="choice-mark">○</span> hasn't<span class="choice-spk" onclick="event.stopPropagation();speak('has not')">&#128266;</span></button>
     </div>
     <div class="q-feedback" id="r1-q16-fb"></div>
   </div>
@@ -377,10 +376,10 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <div class="q-num">Question 17</div>
     <div class="q-text-row"><div class="q-text">I _______ seen that movie before.</div><button class="speak-btn" onclick="speakBtn(this,'I _______ seen that movie before.')" title="Read question">&#128266;</button></div>
     <div class="choices">
-      <button class="choice-btn" onclick="pick(this,'r1-q17','wrong')"><span class="choice-mark">○</span> don't<span class="choice-spk" onclick="event.stopPropagation();speak('don\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q17','wrong')"><span class="choice-mark">○</span> hasn't<span class="choice-spk" onclick="event.stopPropagation();speak('hasn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q17','wrong')"><span class="choice-mark">○</span> doesn't<span class="choice-spk" onclick="event.stopPropagation();speak('doesn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q17','correct')"><span class="choice-mark">○</span> haven't<span class="choice-spk" onclick="event.stopPropagation();speak('haven\'t')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q17','wrong')"><span class="choice-mark">○</span> don't<span class="choice-spk" onclick="event.stopPropagation();speak('do not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q17','wrong')"><span class="choice-mark">○</span> hasn't<span class="choice-spk" onclick="event.stopPropagation();speak('has not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q17','wrong')"><span class="choice-mark">○</span> doesn't<span class="choice-spk" onclick="event.stopPropagation();speak('does not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q17','correct')"><span class="choice-mark">○</span> haven't<span class="choice-spk" onclick="event.stopPropagation();speak('have not')">&#128266;</span></button>
     </div>
     <div class="q-feedback" id="r1-q17-fb"></div>
   </div>
@@ -389,10 +388,10 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <div class="q-num">Question 18</div>
     <div class="q-text-row"><div class="q-text">She _______ eating lunch when the doorbell rang.</div><button class="speak-btn" onclick="speakBtn(this,'She _______ eating lunch when the doorbell rang.')" title="Read question">&#128266;</button></div>
     <div class="choices">
-      <button class="choice-btn" onclick="pick(this,'r1-q18','correct')"><span class="choice-mark">○</span> wasn't<span class="choice-spk" onclick="event.stopPropagation();speak('wasn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q18','wrong')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('didn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q18','wrong')"><span class="choice-mark">○</span> isn't<span class="choice-spk" onclick="event.stopPropagation();speak('isn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q18','wrong')"><span class="choice-mark">○</span> hasn't<span class="choice-spk" onclick="event.stopPropagation();speak('hasn\'t')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q18','correct')"><span class="choice-mark">○</span> wasn't<span class="choice-spk" onclick="event.stopPropagation();speak('was not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q18','wrong')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('did not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q18','wrong')"><span class="choice-mark">○</span> isn't<span class="choice-spk" onclick="event.stopPropagation();speak('is not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q18','wrong')"><span class="choice-mark">○</span> hasn't<span class="choice-spk" onclick="event.stopPropagation();speak('has not')">&#128266;</span></button>
     </div>
     <div class="q-feedback" id="r1-q18-fb"></div>
   </div>
@@ -401,10 +400,10 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <div class="q-num">Question 19</div>
     <div class="q-text-row"><div class="q-text">We _______ like this game. It is too difficult.</div><button class="speak-btn" onclick="speakBtn(this,'We _______ like this game. It is too difficult.')" title="Read question">&#128266;</button></div>
     <div class="choices">
-      <button class="choice-btn" onclick="pick(this,'r1-q19','wrong')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('didn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q19','correct')"><span class="choice-mark">○</span> don't<span class="choice-spk" onclick="event.stopPropagation();speak('don\'t')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q19','wrong')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('did not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q19','correct')"><span class="choice-mark">○</span> don't<span class="choice-spk" onclick="event.stopPropagation();speak('do not')">&#128266;</span></button>
       <button class="choice-btn" onclick="pick(this,'r1-q19','wrong')"><span class="choice-mark">○</span> willn't<span class="choice-spk" onclick="event.stopPropagation();speak('willn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q19','wrong')"><span class="choice-mark">○</span> aren't<span class="choice-spk" onclick="event.stopPropagation();speak('aren\'t')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q19','wrong')"><span class="choice-mark">○</span> aren't<span class="choice-spk" onclick="event.stopPropagation();speak('are not')">&#128266;</span></button>
     </div>
     <div class="q-feedback" id="r1-q19-fb"></div>
   </div>
@@ -413,10 +412,10 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <div class="q-num">Question 20</div>
     <div class="q-text-row"><div class="q-text">Tom _______ finish his project last night.</div><button class="speak-btn" onclick="speakBtn(this,'Tom _______ finish his project last night.')" title="Read question">&#128266;</button></div>
     <div class="choices">
-      <button class="choice-btn" onclick="pick(this,'r1-q20','wrong')"><span class="choice-mark">○</span> won't<span class="choice-spk" onclick="event.stopPropagation();speak('won\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q20','correct')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('didn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q20','wrong')"><span class="choice-mark">○</span> doesn't<span class="choice-spk" onclick="event.stopPropagation();speak('doesn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q20','wrong')"><span class="choice-mark">○</span> hasn't<span class="choice-spk" onclick="event.stopPropagation();speak('hasn\'t')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q20','wrong')"><span class="choice-mark">○</span> won't<span class="choice-spk" onclick="event.stopPropagation();speak('will not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q20','correct')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('did not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q20','wrong')"><span class="choice-mark">○</span> doesn't<span class="choice-spk" onclick="event.stopPropagation();speak('does not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q20','wrong')"><span class="choice-mark">○</span> hasn't<span class="choice-spk" onclick="event.stopPropagation();speak('has not')">&#128266;</span></button>
     </div>
     <div class="q-feedback" id="r1-q20-fb"></div>
   </div>
@@ -425,10 +424,10 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <div class="q-num">Question 21</div>
     <div class="q-text-row"><div class="q-text">They _______ ready for the test at this moment.</div><button class="speak-btn" onclick="speakBtn(this,'They _______ ready for the test at this moment.')" title="Read question">&#128266;</button></div>
     <div class="choices">
-      <button class="choice-btn" onclick="pick(this,'r1-q21','wrong')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('didn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q21','wrong')"><span class="choice-mark">○</span> don't<span class="choice-spk" onclick="event.stopPropagation();speak('don\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q21','correct')"><span class="choice-mark">○</span> aren't<span class="choice-spk" onclick="event.stopPropagation();speak('aren\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q21','wrong')"><span class="choice-mark">○</span> wasn't<span class="choice-spk" onclick="event.stopPropagation();speak('wasn\'t')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q21','wrong')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('did not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q21','wrong')"><span class="choice-mark">○</span> don't<span class="choice-spk" onclick="event.stopPropagation();speak('do not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q21','correct')"><span class="choice-mark">○</span> aren't<span class="choice-spk" onclick="event.stopPropagation();speak('are not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q21','wrong')"><span class="choice-mark">○</span> wasn't<span class="choice-spk" onclick="event.stopPropagation();speak('was not')">&#128266;</span></button>
     </div>
     <div class="q-feedback" id="r1-q21-fb"></div>
   </div>
@@ -437,10 +436,10 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <div class="q-num">Question 22</div>
     <div class="q-text-row"><div class="q-text">I guess that Ms. Jen _______ call my mom tonight.</div><button class="speak-btn" onclick="speakBtn(this,'I guess that Ms. Jen _______ call my mom tonight.')" title="Read question">&#128266;</button></div>
     <div class="choices">
-      <button class="choice-btn" onclick="pick(this,'r1-q22','wrong')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('didn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q22','correct')"><span class="choice-mark">○</span> won't<span class="choice-spk" onclick="event.stopPropagation();speak('won\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q22','wrong')"><span class="choice-mark">○</span> don't<span class="choice-spk" onclick="event.stopPropagation();speak('don\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q22','wrong')"><span class="choice-mark">○</span> hasn't<span class="choice-spk" onclick="event.stopPropagation();speak('hasn\'t')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q22','wrong')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('did not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q22','correct')"><span class="choice-mark">○</span> won't<span class="choice-spk" onclick="event.stopPropagation();speak('will not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q22','wrong')"><span class="choice-mark">○</span> don't<span class="choice-spk" onclick="event.stopPropagation();speak('do not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q22','wrong')"><span class="choice-mark">○</span> hasn't<span class="choice-spk" onclick="event.stopPropagation();speak('has not')">&#128266;</span></button>
     </div>
     <div class="q-feedback" id="r1-q22-fb"></div>
   </div>
@@ -449,10 +448,10 @@ nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:
     <div class="q-num">Question 23</div>
     <div class="q-text-row"><div class="q-text">She _______ been to Japan before.</div><button class="speak-btn" onclick="speakBtn(this,'She _______ been to Japan before.')" title="Read question">&#128266;</button></div>
     <div class="choices">
-      <button class="choice-btn" onclick="pick(this,'r1-q23','wrong')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('didn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q23','wrong')"><span class="choice-mark">○</span> doesn't<span class="choice-spk" onclick="event.stopPropagation();speak('doesn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q23','correct')"><span class="choice-mark">○</span> hasn't<span class="choice-spk" onclick="event.stopPropagation();speak('hasn\'t')">&#128266;</span></button>
-      <button class="choice-btn" onclick="pick(this,'r1-q23','wrong')"><span class="choice-mark">○</span> won't<span class="choice-spk" onclick="event.stopPropagation();speak('won\'t')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q23','wrong')"><span class="choice-mark">○</span> didn't<span class="choice-spk" onclick="event.stopPropagation();speak('did not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q23','wrong')"><span class="choice-mark">○</span> doesn't<span class="choice-spk" onclick="event.stopPropagation();speak('does not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q23','correct')"><span class="choice-mark">○</span> hasn't<span class="choice-spk" onclick="event.stopPropagation();speak('has not')">&#128266;</span></button>
+      <button class="choice-btn" onclick="pick(this,'r1-q23','wrong')"><span class="choice-mark">○</span> won't<span class="choice-spk" onclick="event.stopPropagation();speak('will not')">&#128266;</span></button>
     </div>
     <div class="q-feedback" id="r1-q23-fb"></div>
   </div>
